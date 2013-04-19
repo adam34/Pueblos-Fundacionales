@@ -5,15 +5,26 @@
 	<title>Pueblos Fundacionales</title>
 	<meta name="description" content="En este sitio podrás visualizar todo lo relacionado a los Pueblos Fundacionales de la Zona Norte de BCS, desde su ubicación, hoteles, restaurantes, etc."/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<!-- CSS -->
 	<link rel="stylesheet" href="/static/css/estilos.css">
+	<!-- JavaScript -->
+	<script src="/static/js/jquery-1.8.3.min.js"></script>
+	<script src="/static/js/script.slider.js"></script>
 </head>
 <body>
 	<div class="conf_idiomas">
 		<div class="idiomas">
-			<p>
-				<img src="/static/img/Bandera.png" alt="Español">
+			<a href="#">
+				<img id="arrow" src="/static/img/arrow.png" alt=""/>
+			</a>
+			<div class="esp">
+				<img src="/static/img/bandera.png" alt="Español">
 				<a href="#">Español</a>
-			</p>
+			</div>
+			<div class="eng">
+				<img src="/static/img/ingles.png" alt="Español">
+				<a href="#">Inglés</a>
+			</div>
 		</div>
 		<div class="social_icons">
 			<a href="#" title="Facebook">
@@ -28,7 +39,18 @@
 		</div>
 	</div>
 	<header>
-		<section class="superior"></section>
+		<section class="superior">
+			<img class="logotipo" src="/static/img/Logotipo.png" alt="Proyecto Pueblos">
+			<h1 class="titulo">Pueblos Fundacionales</h1>
+			<article class="buscar">
+				<form class="expandable_search">
+  					<input type="search" placeholder="Buscar">
+				</form>
+			</article>
+		</section>
 	</header>
+	<footer>
+		Hola
+	</footer>
 </body>
 </html>
