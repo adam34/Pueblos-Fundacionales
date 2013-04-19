@@ -21,15 +21,78 @@ body {
 }
 footer {
   background: #605e57;
+  clear: both;
   height: auto;
   margin-top: 10em;
   width: 100%;
+}
+header,
+nav,
+.contenedor {
+  margin: 0 auto;
+  width: 80%;
+}
+header {
+  background: #1e1f26;
+  height: 160px;
 }
 /* Identifidores */
 #arrow {
   height: 15px;
   margin: 0.8em 0;
   width: 15px;
+}
+.buscar,
+.titulo {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  display: inline-block;
+  margin: 1em 1em;
+  vertical-align: middle;
+  width: 50%;
+}
+.buscar {
+  padding: 0.7em;
+  width: 30%;
+}
+.buscar input[type=search] {
+  background: #26272f;
+  -ms-border-radius: 1em;
+  -moz-border-radius: 1em;
+  -webkit-border-radius: 1em;
+  -o-border-radius: 1em;
+  border-radius: 1em;
+  font-weight: bold;
+  -ms-box-shadow: 0 0 10px #eee;
+  -moz-box-shadow: 0 0 10px #eee;
+  -o-box-shadow: 0 0 10px #eee;
+  -webkit-box-shadow: 0 0 10px #eee;
+  box-shadow: 0 0 10px #eee;
+  padding: 0.5em;
+  -ms-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+  width: 70%;
+  word-spacing: 1.3em;
+}
+.buscar input[type=search]:hover {
+  -ms-border-radius: 2em;
+  -moz-border-radius: 2em;
+  -webkit-border-radius: 2em;
+  -o-border-radius: 2em;
+  border-radius: 2em;
+  -ms-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+  width: 80%;
 }
 .conf_idiomas,
 .idiomas {
@@ -58,6 +121,10 @@ footer {
 .eng a {
   position: relative;
   top: -0.5em;
+}
+.fluid_container {
+  margin: 0 auto;
+  width: 80%;
 }
 .idiomas,
 .social_icons {
@@ -128,6 +195,12 @@ footer {
   background: transparent;
   height: 130px;
   width: 100%;
+}
+.titulo {
+  font-family: 'Open Sans', Arial, Verdana;
+  font-size: 2em;
+  font-weight: bold;
+  text-shadow: 0 0.1em 0.2em #1e6381;
 }
 /* Mediaqueries 320 480 600 768 1024 1200 */
 @media screen and (max-width: 1200px) {

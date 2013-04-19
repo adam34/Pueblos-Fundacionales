@@ -16,9 +16,18 @@ body
 
 footer 
 	background gris3
+	clear both
 	height auto
 	margin-top 10em
 	width 100%
+
+header, nav, .contenedor 
+	margin 0 auto
+	width 80%
+
+header 
+	background darken(gris2, 20%)
+	height 40px * 4
 
 /* Identifidores */
 #arrow 
@@ -26,6 +35,31 @@ footer
 	margin .8em 0
 	transform()
 	width 15px
+
+.buscar, .titulo 
+	box-sizing()
+	color blanco 
+	display inline-block
+	margin 1em 1em 
+	vertical-align middle 
+	width 50%
+
+.buscar 
+	padding .7em
+	width 30%
+	input[type=search]
+		background gris2
+		bordes(1em)
+		font-weight bold
+		sombras-caja(0 0 10px blanco2)
+		padding .5em
+		transicion()
+		width 70%
+		word-spacing 1.3em 
+		&:hover 
+			bordes(2em)
+			transicion()
+			width 80%
 
 .conf_idiomas, .idiomas
 	background darken(gris, 40%)
@@ -45,6 +79,10 @@ footer
 	a 
 		position relative 
 		top -.5em
+
+.fluid_container 
+	margin 0 auto
+	width 80%
 
 .idiomas, .social_icons 
 	display inline-block
@@ -93,6 +131,11 @@ footer
 	background transparent
 	height 130px
 	width 100%
+
+.titulo 
+	font-family 'Open Sans', Arial, Verdana 
+	font-size 2em 
+	text-shadow 0 .1em .2em azul
 
 /* Mediaqueries 320 480 600 768 1024 1200 */
 @media screen and (max-width: 1200px)

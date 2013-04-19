@@ -7,9 +7,22 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	<!-- CSS -->
 	<link rel="stylesheet" href="/static/css/estilos.css">
+	<link rel='stylesheet' id='camera-css' href='/static/css/camera.css' media='all'> 
 	<!-- JavaScript -->
 	<script src="/static/js/jquery-1.8.3.min.js"></script>
 	<script src="/static/js/script.slider.js"></script>
+	<!-- Slider -->
+	<script src='/static/scripts/jquery.mobile.customized.min.js'></script>
+    <script src='/static/scripts/jquery.easing.1.3.js'></script> 
+    <script src='static/scripts/camera.min.js'></script> 
+    <script>
+		$(function(){		
+			$('#camera_wrap_1').camera({
+				height : '300px',
+				thumbnails: true,
+			});
+		});
+	</script>
 </head>
 <body>
 	<div class="conf_idiomas">
@@ -49,6 +62,19 @@
 			</article>
 		</section>
 	</header>
+	<div class="fluid_container">
+		<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
+			<div data-thumb="/static/images/slides/thumbs/bridge.jpg" data-src="/static/images/slides/bridge.jpg">
+			</div>
+			<div data-thumb="/static/images/slides/thumbs/leaf.jpg" data-src="/static/images/slides/leaf.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    Hola Astorga <em>No uses IE</em>
+                </div>
+            </div>
+			<div data-thumb="/static/images/slides/thumbs/bridge.jpg" data-src="/static/images/slides/bridge.jpg">
+			</div>
+		</div>
+	</div>
 	<footer>
 		Hola
 	</footer>

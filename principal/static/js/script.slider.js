@@ -5,7 +5,6 @@ $(document).on("ready", inicio);
              "transform": "rotate (180 deg)"
         });
     }
-
     function transicion() {
         $('.eng').toggle();    
     }
