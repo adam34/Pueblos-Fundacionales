@@ -91,12 +91,66 @@ nav
 			text-shadow .1em .1em .2em negro
 			&:hover 
 				font-weight bold
-/* Identifidores */
+/* Identificadores */
 #arrow 
 	height 15px
 	margin .8em 0
 	transform()
 	width 15px
+
+/* Mapa de Google */
+#locations 
+	list-style none
+	width 200px
+	float left
+	li 
+		color blanco
+		cursor pointer 
+		height 60px
+		margin .5em auto
+		padding 10px
+		width 180px
+		&:nth-child(1)
+			background darken(azul, 30%)
+		&:nth-child(1):hover 
+			background darken(azul, 40%)
+			transicion()
+		&:nth-child(2)
+			background rojizo 
+		&:nth-child(2):hover 
+			background darken(rojizo, 40%)
+			transicion()
+		&:nth-child(3)
+			background amarillo
+		&:nth-child(3):hover 
+			background darken(amarillo, 40%)
+			transicion()
+		&:nth-child(4)
+			background cafe 
+		&:nth-child(4):hover 
+			background darken(cafe, 40%)
+			transicion()
+
+#map_canvas 
+	width 100%
+	height 350px 
+	width 210px 
+	float left 
+	position relative 
+	z-index 30 
+
+#more-info 
+	background lighten(#555, 80%)
+	color darken(azul, 50%)
+	float right
+	font-size .8em
+	padding .3em
+	width 120px 
+
+/* Mapa de Google */
+#page-wrap 
+	margin: 0 auto
+	width 95%
 
 .buscar, .titulo 
 	box-sizing()
@@ -242,6 +296,19 @@ nav
 		rotacion()
 		transicion()
 
+
+/* Mapa de Google */
+.longdesc 
+	display none
+
+.mapa-misiones 
+	height 480px
+	margin .3em auto
+	a 
+		color cafe
+		text-decoration none
+		text-shadow .1em .2em .2em lighten(cafe, 70%)
+
 .menu-lateral, .principal
 	background darken(blanco, 6%)
 	color darken(blanco, 70%)
@@ -255,6 +322,13 @@ nav
 .menu-lateral
 	max-width 53.5%
 
+.numerosTelefonicos
+	font-size .9em
+	margin .2em .6em
+	text-align center
+	a 
+		color lighten(rojizo, 20%)
+		text-decoration none
 .social_icons
 	height 2.6em
 	text-align center
@@ -271,13 +345,19 @@ nav
 
 .telefonos 
 	width 30%
+	span 
+		margin 0 auto
+		a 
+			margin 0 4em 
+			font-size .9em
+			text-decoration none
 
 .titulo 
 	font-family 'Open Sans', Arial, Verdana 
 	font-size 2em 
 	text-shadow 0 .1em .2em azul
 
-/* Mediaqueries 320 480 600 768 1024 1200 */
+/* Media queries 320 480 600 768 1024 1200 */
 @media screen and (max-width: 1200px)
 	footer 
 		background rojizo 

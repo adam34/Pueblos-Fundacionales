@@ -156,11 +156,91 @@ nav li.menu a {
 nav li.menu a:hover {
   font-weight: bold;
 }
-/* Identifidores */
+/* Identificadores */
 #arrow {
   height: 15px;
   margin: 0.8em 0;
   width: 15px;
+}
+/* Mapa de Google */
+#locations {
+  list-style: none;
+  width: 200px;
+  float: left;
+}
+#locations li {
+  color: #fff;
+  cursor: pointer;
+  height: 60px;
+  margin: 0.5em auto;
+  padding: 10px;
+  width: 180px;
+}
+#locations li:nth-child(1) {
+  background: #15455a;
+}
+#locations li:nth-child(1):hover {
+  background: #123b4d;
+  -ms-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+#locations li:nth-child(2) {
+  background: #a70325;
+}
+#locations li:nth-child(2):hover {
+  background: #640216;
+  -ms-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+#locations li:nth-child(3) {
+  background: #ce8610;
+}
+#locations li:nth-child(3):hover {
+  background: #7c500a;
+  -ms-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+#locations li:nth-child(4) {
+  background: #4c2506;
+}
+#locations li:nth-child(4):hover {
+  background: #2e1604;
+  -ms-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+#map_canvas {
+  width: 100%;
+  height: 350px;
+  width: 210px;
+  float: left;
+  position: relative;
+  z-index: 30;
+}
+#more-info {
+  background: #ddd;
+  color: #0f3141;
+  float: right;
+  font-size: 0.8em;
+  font-weight: bold;
+  padding: 0.3em;
+  width: 120px;
+}
+/* Mapa de Google */
+#page-wrap {
+  margin: 0 auto;
+  width: 95%;
 }
 .buscar,
 .titulo {
@@ -389,6 +469,19 @@ nav li.menu a:hover {
   -webkit-transition: all 1s ease-out;
   transition: all 1s ease-out;
 }
+/* Mapa de Google */
+.longdesc {
+  display: none;
+}
+.mapa-misiones {
+  height: 480px;
+  margin: 0.3em auto;
+}
+.mapa-misiones a {
+  color: #4c2506;
+  text-decoration: none;
+  text-shadow: 0.1em 0.2em 0.2em #f6b988;
+}
 .menu-lateral,
 .principal {
   background: #f0f0f0;
@@ -406,6 +499,16 @@ nav li.menu a:hover {
 }
 .menu-lateral {
   max-width: 53.5%;
+}
+.numerosTelefonicos {
+  font-size: 0.9em;
+  font-weight: bold;
+  margin: 0.2em 0.6em;
+  text-align: center;
+}
+.numerosTelefonicos a {
+  color: #ea0434;
+  text-decoration: none;
 }
 .social_icons {
   height: 2.6em;
@@ -426,13 +529,22 @@ nav li.menu a:hover {
 .telefonos {
   width: 30%;
 }
+.telefonos span {
+  margin: 0 auto;
+}
+.telefonos span a {
+  margin: 0 4em;
+  font-size: 0.9em;
+  font-weight: bold;
+  text-decoration: none;
+}
 .titulo {
   font-family: 'Open Sans', Arial, Verdana;
   font-size: 2em;
   font-weight: bold;
   text-shadow: 0 0.1em 0.2em #1e6381;
 }
-/* Mediaqueries 320 480 600 768 1024 1200 */
+/* Media queries 320 480 600 768 1024 1200 */
 @media screen and (max-width: 1200px) {
   footer {
     background: #a70325;
