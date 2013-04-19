@@ -21,14 +21,69 @@ footer
 	margin-top 10em
 	width 100%
 
-header, nav, .contenedor 
-	margin 0 auto
-	width 80%
+h2 
+	color saturate(azul, 30%)
+	estilos_h()
+	text-shadow .2em .2em .2em lighten(azul, 60%)
+
+h3 
+	color rojizo
+	estilos_h()
+	text-shadow .2em .2em .2em lighten(rojizo, 60%)
 
 header 
 	background darken(gris2, 20%)
 	height 40px * 4
 
+header, nav, .contenedor 
+	margin 0 auto
+	width 80%
+
+nav
+	background darken(gris, 20%)
+	box-sizing()
+	ul 
+		text-align left
+	li.menu
+		background azul 
+		cursor pointer 
+		display inline-block
+		font-size 1.1em
+		font-weight bold
+		margin 0 auto
+		padding .8em
+		vertical-align top
+		width 15%
+		&:first-child 
+			background darken(azul, 30%)
+		&:first-child:hover 
+			background darken(azul, 40%)
+			font-size 1.2em
+			transicion()
+		&:nth-child(2)
+			background rojizo 
+		&:nth-child(2):hover 
+			background darken(rojizo, 40%)
+			font-size 1.2em
+			transicion()
+		&:nth-child(3)
+			background amarillo
+		&:nth-child(3):hover 
+			background darken(amarillo, 40%)
+			font-size 1.2em
+			transicion()
+		&:last-child
+			background cafe 
+		&:last-child:hover 
+			background darken(cafe, 40%)
+			font-size 1.2em
+			transicion()
+		a 
+			color darken(blanco, 10%) 
+			text-decoration none
+			text-shadow .1em .1em .2em negro
+			&:hover 
+				font-weight bold
 /* Identifidores */
 #arrow 
 	height 15px
@@ -69,6 +124,37 @@ header
 	height 2.6em
 	width 100%
 
+.contenedor
+	background darken(blanco, 6%)
+	height 1650px
+	margin .6em auto
+	sombras-caja(.1em .1em .1em blanco)
+
+.contenido 
+	font-size .7em
+	height 120px
+	margin .5em auto
+	min-width 60%
+	padding .7em
+	max-width 90%
+	a 
+		color gris2
+		font-family Verdana
+		text-decoration none
+	img 
+		float left 
+		margin-right .7em
+	p 
+		bordes(.4em)
+		height 86px
+		margin .2em auto 
+		padding 1em 
+		sombras-caja(.2em .2em .5em darken(gris2, 10%))
+		text-align justify
+	span 
+		margin .5em
+		a 
+			color rojizo
 .esp, .eng 
 	display inline-block
 	position relative
@@ -79,6 +165,37 @@ header
 	a 
 		position relative 
 		top -.5em
+
+.enlaces-utiles, .telefonos
+	border thin solid amarillo
+	bordes(.5em)
+	display inline-block
+	height 200px
+	vertical-align top
+	width 65%
+
+.enlaces-utiles
+	margin-left .3em
+	p 
+		display inline-block
+		font-size .9em
+		margin .3em auto
+		margin-left 1.1em
+		text-align left
+		vertical-align top
+		width 45%
+		img 
+			height 25px 
+			margin .3em .3em .3em -.3em  
+			width 25px
+		a 
+			color lighten(cafe, 10%)
+			font-weight bold 
+			margin-left 0
+			position relative 
+			top -.7em
+			text-decoration none
+
 
 .fluid_container 
 	margin 0 auto
@@ -118,6 +235,19 @@ header
 		rotacion()
 		transicion()
 
+.menu-lateral, .principal
+	background darken(blanco, 6%)
+	color darken(blanco, 70%)
+	display inline-block
+	height 1400px
+	margin-right .2em 
+	sombras-caja(.3em 0 .2em darken(blanco, 30%))
+	vertical-align top
+	max-width 45%
+
+.menu-lateral
+	max-width 53.5%
+
 .social_icons
 	height 2.6em
 	text-align center
@@ -132,6 +262,9 @@ header
 	height 130px
 	width 100%
 
+.telefonos 
+	width 30%
+
 .titulo 
 	font-family 'Open Sans', Arial, Verdana 
 	font-size 2em 
@@ -141,54 +274,131 @@ header
 @media screen and (max-width: 1200px)
 	footer 
 		background rojizo 
+	.buscar 
+		width 27%
 	.esp, .eng
 		max-width 20%
 		width 17%
 	.idiomas 
 		margin 0 0 0 2em
+	.login 
+		left 50em
+		width 12%
+		a 
+			margin-left 20%
 
 @media screen and (max-width: 1024px)
 	footer 
 		background green
+	.buscar 
+		width 28%
 	.esp, .eng
 		max-width 25%
 		width 23%
+	.logotipo
+		height 60px 
+		width 60px
+	.titulo 
+		font-size 1.5em
+		width 45%
 
 @media screen and (max-width: 768px)
 	footer 
 		background blue
+	nav 
+		li.menu
+			font-size 1em
+			padding .8em
+			width 19%
+			&:first-child:hover 
+				font-size 1em
+				transicion()
+			&:nth-child(2):hover 
+				font-size 1em
+			&:nth-child(3):hover 
+				font-size 1em
+			&:nth-child(4):hover 
+				font-size 1em
+	.buscar 
+		width 30%
 	.esp, .eng
 		max-width 29%
 		width 28%
+	.logotipo
+		height 45px 
+		width 45px
+	.titulo 
+		font-size 1.2em
+		width 40%
 
 @media screen and (max-width: 600px)
 	footer 
 		background cyan
+	nav 
+		li.menu
+			font-size 1em
+			padding .7em
+			width 17%
+	.buscar 
+		display block
+		margin-left 3em
+		width 100%
 	.esp, .eng
 		max-width 36%
 		width 36%
 	.social_icons
 		width 25%
-
+	.logotipo 
+		margin-left 3em
+		height 40px 
+		width 40px
+	.titulo 
+		font-size 1.2em
+		margin-top 1.6em
+		width 60%
 @media screen and (max-width: 480px)
 	footer 
 		background magenta 
+	nav 
+		li.menu
+			text-align center
+			width 91%
 	.esp, .eng
 		max-width 44%
-		width 44%
+		width 43%
 	.idiomas 
 		font-size .9em
 		margin 0
 		width 65%
 	.social_icons
 		width 33%
+	.logotipo 
+		margin-left 1em
+		height 40px 
+		width 40px
+	.titulo 
+		font-size 1.1em
+		margin-top 1.6em
+		width 60%
 
 @media screen and (max-width: 320px)
 	footer 
 		background yellow 
+	header 
+		margin-top .2em
+	.buscar 
+		margin-left 2em
 	.idiomas 
 		font-size .8em
 	.social_icons
 		img 
 			height 30px 
 			width 30px
+	.logotipo 
+		margin-left .9em
+		height 40px 
+		width 40px
+	.titulo 
+		font-size 1em
+		margin-top 1.6em
+		width 50%

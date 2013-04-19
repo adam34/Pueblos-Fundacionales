@@ -26,15 +26,122 @@ footer {
   margin-top: 10em;
   width: 100%;
 }
+h2 {
+  color: #0f6990;
+  background: #d6d6d6;
+  -ms-border-radius: 0.3em;
+  -moz-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  -o-border-radius: 0.3em;
+  border-radius: 0.3em;
+  margin: 1em 1em;
+  text-align: center;
+  text-shadow: 0.2em 0.2em 0.2em #8dcae5;
+}
+h3 {
+  color: #a70325;
+  background: #d6d6d6;
+  -ms-border-radius: 0.3em;
+  -moz-border-radius: 0.3em;
+  -webkit-border-radius: 0.3em;
+  -o-border-radius: 0.3em;
+  border-radius: 0.3em;
+  margin: 1em 1em;
+  text-align: center;
+  text-shadow: 0.2em 0.2em 0.2em #fd7995;
+}
+header {
+  background: #1e1f26;
+  height: 160px;
+}
 header,
 nav,
 .contenedor {
   margin: 0 auto;
   width: 80%;
 }
-header {
-  background: #1e1f26;
-  height: 160px;
+nav {
+  background: #292929;
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+nav ul {
+  text-align: left;
+}
+nav li.menu {
+  background: #1e6381;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1.1em;
+  font-weight: bold;
+  font-weight: bold;
+  margin: 0 auto;
+  padding: 0.8em;
+  vertical-align: top;
+  width: 15%;
+}
+nav li.menu:first-child {
+  background: #15455a;
+}
+nav li.menu:first-child:hover {
+  background: #123b4d;
+  font-size: 1.2em;
+  font-weight: bold;
+  -ms-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+nav li.menu:nth-child(2) {
+  background: #a70325;
+}
+nav li.menu:nth-child(2):hover {
+  background: #640216;
+  font-size: 1.2em;
+  font-weight: bold;
+  -ms-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+nav li.menu:nth-child(3) {
+  background: #ce8610;
+}
+nav li.menu:nth-child(3):hover {
+  background: #7c500a;
+  font-size: 1.2em;
+  font-weight: bold;
+  -ms-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+nav li.menu:last-child {
+  background: #4c2506;
+}
+nav li.menu:last-child:hover {
+  background: #2e1604;
+  font-size: 1.2em;
+  font-weight: bold;
+  -ms-transition: all 1s ease-out;
+  -moz-transition: all 1s ease-out;
+  -o-transition: all 1s ease-out;
+  -webkit-transition: all 1s ease-out;
+  transition: all 1s ease-out;
+}
+nav li.menu a {
+  color: #e6e6e6;
+  text-decoration: none;
+  text-shadow: 0.1em 0.1em 0.2em #000;
+}
+nav li.menu a:hover {
+  font-weight: bold;
 }
 /* Identifidores */
 #arrow {
@@ -108,6 +215,56 @@ header {
   height: 2.6em;
   width: 100%;
 }
+.contenedor {
+  background: #f0f0f0;
+  height: 1650px;
+  margin: 0.6em auto;
+  -ms-box-shadow: 0.1em 0.1em 0.1em #fff;
+  -moz-box-shadow: 0.1em 0.1em 0.1em #fff;
+  -o-box-shadow: 0.1em 0.1em 0.1em #fff;
+  -webkit-box-shadow: 0.1em 0.1em 0.1em #fff;
+  box-shadow: 0.1em 0.1em 0.1em #fff;
+}
+.contenido {
+  font-size: 0.7em;
+  font-weight: bold;
+  height: 120px;
+  margin: 0.5em auto;
+  min-width: 60%;
+  padding: 0.7em;
+  max-width: 90%;
+}
+.contenido a {
+  color: #26272f;
+  font-family: Verdana;
+  text-decoration: none;
+}
+.contenido img {
+  float: left;
+  margin-right: 0.7em;
+}
+.contenido p {
+  -ms-border-radius: 0.4em;
+  -moz-border-radius: 0.4em;
+  -webkit-border-radius: 0.4em;
+  -o-border-radius: 0.4em;
+  border-radius: 0.4em;
+  height: 86px;
+  margin: 0.2em auto;
+  padding: 1em;
+  -ms-box-shadow: 0.2em 0.2em 0.5em #22232a;
+  -moz-box-shadow: 0.2em 0.2em 0.5em #22232a;
+  -o-box-shadow: 0.2em 0.2em 0.5em #22232a;
+  -webkit-box-shadow: 0.2em 0.2em 0.5em #22232a;
+  box-shadow: 0.2em 0.2em 0.5em #22232a;
+  text-align: justify;
+}
+.contenido span {
+  margin: 0.5em;
+}
+.contenido span a {
+  color: #a70325;
+}
 .esp,
 .eng {
   display: inline-block;
@@ -121,6 +278,45 @@ header {
 .eng a {
   position: relative;
   top: -0.5em;
+}
+.enlaces-utiles,
+.telefonos {
+  border: thin solid #ce8610;
+  -ms-border-radius: 0.5em;
+  -moz-border-radius: 0.5em;
+  -webkit-border-radius: 0.5em;
+  -o-border-radius: 0.5em;
+  border-radius: 0.5em;
+  display: inline-block;
+  height: 200px;
+  vertical-align: top;
+  width: 65%;
+}
+.enlaces-utiles {
+  margin-left: 0.3em;
+}
+.enlaces-utiles p {
+  display: inline-block;
+  font-size: 0.9em;
+  font-weight: bold;
+  margin: 0.3em auto;
+  margin-left: 1.1em;
+  text-align: left;
+  vertical-align: top;
+  width: 45%;
+}
+.enlaces-utiles p img {
+  height: 25px;
+  margin: 0.3em 0.3em 0.3em -0.3em;
+  width: 25px;
+}
+.enlaces-utiles p a {
+  color: #743809;
+  font-weight: bold;
+  margin-left: 0;
+  position: relative;
+  top: -0.7em;
+  text-decoration: none;
 }
 .fluid_container {
   margin: 0 auto;
@@ -180,6 +376,24 @@ header {
   -webkit-transition: all 1s ease-out;
   transition: all 1s ease-out;
 }
+.menu-lateral,
+.principal {
+  background: #f0f0f0;
+  color: #4d4d4d;
+  display: inline-block;
+  height: 1400px;
+  margin-right: 0.2em;
+  -ms-box-shadow: 0.3em 0 0.2em #b3b3b3;
+  -moz-box-shadow: 0.3em 0 0.2em #b3b3b3;
+  -o-box-shadow: 0.3em 0 0.2em #b3b3b3;
+  -webkit-box-shadow: 0.3em 0 0.2em #b3b3b3;
+  box-shadow: 0.3em 0 0.2em #b3b3b3;
+  vertical-align: top;
+  max-width: 45%;
+}
+.menu-lateral {
+  max-width: 53.5%;
+}
 .social_icons {
   height: 2.6em;
   text-align: center;
@@ -196,6 +410,9 @@ header {
   height: 130px;
   width: 100%;
 }
+.telefonos {
+  width: 30%;
+}
 .titulo {
   font-family: 'Open Sans', Arial, Verdana;
   font-size: 2em;
@@ -207,6 +424,9 @@ header {
   footer {
     background: #a70325;
   }
+  .buscar {
+    width: 27%;
+  }
   .esp,
   .eng {
     max-width: 20%;
@@ -215,30 +435,99 @@ header {
   .idiomas {
     margin: 0 0 0 2em;
   }
+  .login {
+    left: 50em;
+    width: 12%;
+  }
+  .login a {
+    margin-left: 20%;
+  }
 }
 @media screen and (max-width: 1024px) {
   footer {
     background: #008000;
+  }
+  .buscar {
+    width: 28%;
   }
   .esp,
   .eng {
     max-width: 25%;
     width: 23%;
   }
+  .logotipo {
+    height: 60px;
+    width: 60px;
+  }
+  .titulo {
+    font-size: 1.5em;
+    font-weight: bold;
+    width: 45%;
+  }
 }
 @media screen and (max-width: 768px) {
   footer {
     background: #00f;
+  }
+  nav li.menu {
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.8em;
+    width: 19%;
+  }
+  nav li.menu:first-child:hover {
+    font-size: 1em;
+    font-weight: bold;
+    -ms-transition: all 1s ease-out;
+    -moz-transition: all 1s ease-out;
+    -o-transition: all 1s ease-out;
+    -webkit-transition: all 1s ease-out;
+    transition: all 1s ease-out;
+  }
+  nav li.menu:nth-child(2):hover {
+    font-size: 1em;
+    font-weight: bold;
+  }
+  nav li.menu:nth-child(3):hover {
+    font-size: 1em;
+    font-weight: bold;
+  }
+  nav li.menu:nth-child(4):hover {
+    font-size: 1em;
+    font-weight: bold;
+  }
+  .buscar {
+    width: 30%;
   }
   .esp,
   .eng {
     max-width: 29%;
     width: 28%;
   }
+  .logotipo {
+    height: 45px;
+    width: 45px;
+  }
+  .titulo {
+    font-size: 1.2em;
+    font-weight: bold;
+    width: 40%;
+  }
 }
 @media screen and (max-width: 600px) {
   footer {
     background: #0ff;
+  }
+  nav li.menu {
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0.7em;
+    width: 17%;
+  }
+  .buscar {
+    display: block;
+    margin-left: 3em;
+    width: 100%;
   }
   .esp,
   .eng {
@@ -248,15 +537,30 @@ header {
   .social_icons {
     width: 25%;
   }
+  .logotipo {
+    margin-left: 3em;
+    height: 40px;
+    width: 40px;
+  }
+  .titulo {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-top: 1.6em;
+    width: 60%;
+  }
 }
 @media screen and (max-width: 480px) {
   footer {
     background: #f0f;
   }
+  nav li.menu {
+    text-align: center;
+    width: 91%;
+  }
   .esp,
   .eng {
     max-width: 44%;
-    width: 44%;
+    width: 43%;
   }
   .idiomas {
     font-size: 0.9em;
@@ -267,10 +571,27 @@ header {
   .social_icons {
     width: 33%;
   }
+  .logotipo {
+    margin-left: 1em;
+    height: 40px;
+    width: 40px;
+  }
+  .titulo {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-top: 1.6em;
+    width: 60%;
+  }
 }
 @media screen and (max-width: 320px) {
   footer {
     background: #ff0;
+  }
+  header {
+    margin-top: 0.2em;
+  }
+  .buscar {
+    margin-left: 2em;
   }
   .idiomas {
     font-size: 0.8em;
@@ -279,5 +600,16 @@ header {
   .social_icons img {
     height: 30px;
     width: 30px;
+  }
+  .logotipo {
+    margin-left: 0.9em;
+    height: 40px;
+    width: 40px;
+  }
+  .titulo {
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 1.6em;
+    width: 50%;
   }
 }
