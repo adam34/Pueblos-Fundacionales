@@ -165,21 +165,21 @@ nav li.menu a:hover {
 /* Mapa de Google */
 #locations {
   list-style: none;
-  width: 200px;
+  max-width: 200px;
   float: left;
 }
 #locations li {
   color: #fff;
   cursor: pointer;
-  height: 60px;
-  margin: 0.5em auto;
-  padding: 10px;
-  width: 180px;
+  height: 50px;
+  margin: 0.3em auto;
+  padding: 1px 10px;
+  max-width: 180px;
 }
-#locations li:nth-child(1) {
+#locations li:first-child {
   background: #15455a;
 }
-#locations li:nth-child(1):hover {
+#locations li:first-child:hover {
   background: #123b4d;
   -ms-transition: all 1s ease-out;
   -moz-transition: all 1s ease-out;
@@ -240,7 +240,7 @@ nav li.menu a:hover {
 /* Mapa de Google */
 #page-wrap {
   margin: 0 auto;
-  width: 95%;
+  max-width: 95%;
 }
 .buscar,
 .titulo {
