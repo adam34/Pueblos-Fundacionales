@@ -9,7 +9,7 @@ $(function() {
        	center: loreto,
        	mapTypeId: google.maps.MapTypeId.ROADMAP
    	};
-
+    //Modificación - Localizaciones 
    	var map = new google.maps.Map($("#map_canvas")[0], myOptions);
    	$("#locations li").mouseenter(function() {
    		$el = $(this);

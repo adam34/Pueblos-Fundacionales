@@ -164,16 +164,16 @@ nav li.menu a:hover {
 }
 /* Mapa de Google */
 #locations {
+  float: left;
   list-style: none;
   max-width: 200px;
-  float: left;
 }
 #locations li {
   color: #fff;
   cursor: pointer;
   height: 50px;
   margin: 0.3em auto;
-  padding: 1px 10px;
+  padding: 10px;
   max-width: 180px;
 }
 #locations li:first-child {
@@ -209,10 +209,10 @@ nav li.menu a:hover {
   -webkit-transition: all 1s ease-out;
   transition: all 1s ease-out;
 }
-#locations li:nth-child(4) {
+#locations li:last-child {
   background: #4c2506;
 }
-#locations li:nth-child(4):hover {
+#locations li:last-child:hover {
   background: #2e1604;
   -ms-transition: all 1s ease-out;
   -moz-transition: all 1s ease-out;
@@ -223,7 +223,7 @@ nav li.menu a:hover {
 #map_canvas {
   width: 100%;
   height: 350px;
-  width: 210px;
+  max-width: 220px;
   float: left;
   position: relative;
   z-index: 30;
@@ -235,9 +235,8 @@ nav li.menu a:hover {
   font-size: 0.8em;
   font-weight: bold;
   padding: 0.3em;
-  width: 120px;
+  width: 150px;
 }
-/* Mapa de Google */
 #page-wrap {
   margin: 0 auto;
   max-width: 95%;
@@ -482,6 +481,41 @@ nav li.menu a:hover {
   text-decoration: none;
   text-shadow: 0.1em 0.2em 0.2em #f6b988;
 }
+.materiales,
+.relatos {
+  display: inline-block;
+  height: 220px;
+  margin: -2em 0.8em 0 0.8em;
+  -ms-box-shadow: 0.3em 0 0.2em #b3b3b3;
+  -moz-box-shadow: 0.3em 0 0.2em #b3b3b3;
+  -o-box-shadow: 0.3em 0 0.2em #b3b3b3;
+  -webkit-box-shadow: 0.3em 0 0.2em #b3b3b3;
+  box-shadow: 0.3em 0 0.2em #b3b3b3;
+  vertical-align: top;
+  width: 37%;
+}
+.materiales {
+  font-size: 0.8em;
+  font-weight: bold;
+  -ms-box-shadow: ;
+  -moz-box-shadow: ;
+  -o-box-shadow: ;
+  -webkit-box-shadow: ;
+  box-shadow: ;
+}
+.materiales p {
+  margin: 0 1em;
+  text-align: justify;
+}
+.materiales p a {
+  color: #ce8610;
+  font-size: 1.3em;
+  font-weight: bold;
+  position: relative;
+  left: 3em;
+  top: 1em;
+  text-decoration: none;
+}
 .menu-lateral,
 .principal {
   background: #f0f0f0;
@@ -509,6 +543,27 @@ nav li.menu a:hover {
 .numerosTelefonicos a {
   color: #ea0434;
   text-decoration: none;
+}
+.relatos {
+  color: #26272f;
+  width: 53%;
+}
+.relatos p {
+  font-size: 0.8em;
+  font-weight: bold;
+  margin: 0 0.5em;
+  padding: 0 0.5em;
+  text-align: justify;
+}
+.relatos p a {
+  color: #303030;
+  text-decoration: none;
+}
+.relatos img {
+  cursor: pointer;
+  height: 80px;
+  margin: 0.5em 0 0 6em;
+  max-width: 55px;
 }
 .social_icons {
   height: 2.6em;
