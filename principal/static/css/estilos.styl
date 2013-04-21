@@ -146,7 +146,7 @@ nav
 	float right
 	font-size .8em
 	padding .3em
-	width 150px 
+	width 130px 
 
 #page-wrap 
 	margin: 0 auto
@@ -183,6 +183,19 @@ nav
 			transicion()
 			width 80%
 
+.calendario-eventos, .calendario-notas 
+	display inline-block
+	height 280px 
+	vertical-align top 
+	width 55%
+
+.calendario-notas
+	width 40%
+	p
+		font-size .8em
+		margin 0 .4em
+		text-align justify
+
 .clima, .multimedia
 	display inline-block 
 	height 410px
@@ -201,7 +214,7 @@ nav
 
 .contenedor
 	background darken(blanco, 6%)
-	height 1650px
+	height 1700px
 	margin .6em auto
 	sombras-caja(.1em .1em .1em blanco)
 
@@ -245,7 +258,7 @@ nav
 	border thin solid amarillo
 	bordes(.5em)
 	display inline-block
-	height 200px
+	height 225px
 	vertical-align top
 	width 65%
 
@@ -254,7 +267,7 @@ nav
 	p 
 		display inline-block
 		font-size .9em
-		margin .3em auto
+		margin .5em auto
 		margin-left 1.1em
 		text-align left
 		vertical-align top
@@ -270,6 +283,15 @@ nav
 			position relative 
 			top -.7em
 			text-decoration none
+
+.eventos 
+	height 300px 
+	margin 0 auto 
+	width 95%
+	input[type="text"]
+		background darken(blanco, 6%)
+		color darken(blanco, 6%)
+		width 250px
 
 
 .fluid_container 
@@ -328,13 +350,13 @@ nav
 	margin -2em .8em 0 .8em
 	sombras-caja(.3em 0 .2em darken(blanco, 30%))
 	vertical-align top 
-	width 37%
+	width 36%
 
 .materiales 
 	sombras-caja()
 	p 
 		font-size .8em
-		margin 0 1em
+		margin 0 .5em
 		text-align justify
 		a 
 			color amarillo
@@ -348,7 +370,7 @@ nav
 	background darken(blanco, 6%)
 	color darken(blanco, 70%)
 	display inline-block
-	height 1400px
+	height 1410px
 	margin-right .2em 
 	sombras-caja(.3em 0 .2em darken(blanco, 30%))
 	vertical-align top
@@ -365,7 +387,7 @@ nav
 		text-align justify
 		a 
 			img 
-				margin 2em .5em
+				margin 2em .3em
 				height 50px 
 				width 50px
 	span 
@@ -377,13 +399,52 @@ nav
 			text-decoration none
 
 .numerosTelefonicos
-	font-size .9em
+	font-size .8em
 	margin .2em .7em
 	text-align center
 	a 
 		color lighten(rojizo, 20%)
 		text-decoration none
+		img 
+			height 90px 
+			width 90px
 
+.proximos-eventos
+	article 
+		box-sizing()
+		font-size .8em
+		height 50px
+		margin .2em 1.2em
+		sombras-caja(0 0 .5em lighten(gris2, 80%))
+		text-align justify
+		p, a 
+			display inline-block
+			vertical-align top
+		p 
+			background azul 
+			color blanco
+			cursor pointer
+			font-size 1.5em
+			height 30px 
+			padding .5em
+			width 30px
+		a 
+			color azul
+			margin-left .5em
+			text-decoration none
+	span 
+		text-align center
+		margin-top .5em
+		margin-left 10em
+		a 
+			color rojizo
+			text-decoration none
+
+.recomendaciones
+	text-align center
+	img 
+		height 120px 
+		width 90%
 .relatos 
 	color gris2
 	width 53%
@@ -424,7 +485,6 @@ nav
 			margin 0 4em 
 			font-size .9em
 			text-decoration none
-
 .titulo 
 	font-family 'Open Sans', Arial, Verdana 
 	font-size 2em 

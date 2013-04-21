@@ -10,8 +10,11 @@ $(document).on("ready", inicio);
         linkClick.click(function () {
         	$(this).find('ul li').slideToggle("fast, 100");
     	});
+        $('#carousel').elastislide({
+            minItems : 2  
+        });
+        
     }
     function transicion() {
         $('.eng').toggle();    
     }
-   

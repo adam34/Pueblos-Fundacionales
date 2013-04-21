@@ -12,11 +12,15 @@
 	<link rel='stylesheet' id='camera-css' href='/static/css/camera.css' media='all'> 
 	<!-- Slider del Clima -->
 	<link rel="stylesheet" href="/static/css/weatherslider.css">
+	<!-- CSS de Eventos -->
+	<link rel="stylesheet" href="/static/css/glDatePicker.default.css">
+	<link rel="stylesheet" href="/static/css/elastislide.css" />
 	<!-- JavaScript -->
 	<script src="/static/js/jquery-1.8.3.min.js"></script>
 	<script src="/static/js/script.slider.js"></script>
 	<!-- Slider -->
 	<script src='/static/scripts/jquery.mobile.customized.min.js'></script>
+	<script src="/static/js/modernizr.custom.17475.js"></script>
     <script src='/static/scripts/jquery.easing.1.3.js'></script> 
     <script src='static/scripts/camera.min.js'></script> 
     <script>
@@ -32,6 +36,12 @@
 	<script src="/static/js/mapa.js"></script>
 	<!-- Slider de Clima -->
 	<script src="/static/js/weatherslider.kreaturamedia.jquery-min.js"></script>
+	<!-- Eventos -->
+	<script src="/static/js/glDatePicker.js"></script>
+	<script src="/static/js/eventos.js"></script>
+	<!-- ElastiSlide -->
+	<script src="/static/js/jquery.elastislide.js"></script>
+	<!-- Script -->
 	<script src="/static/js/example.js"></script>
 </head>
 <body>
@@ -130,10 +140,16 @@
 				</p>
 			</article>
 			<h3>Recomendaciones</h3>
-			<section class="video">
+			<section class="recomendaciones">
 				<!--<video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="440" height="240" data-setup="{}">
   				<source src="video/477 Aniversario de La Paz.mp4" type='video/mp4'>
 				</video>-->
+				<a href="#">
+					<img src="/static/img/banner1.jpg" alt="">
+				</a>
+				<a href="">
+					<img src="/static/img/banner2.jpg".jpg alt="">
+				</a>
 			</section>
 			<h3>Eventos</h3>
 			<section class="eventos">
@@ -146,6 +162,28 @@
 					<h4>Eventos de la semana</h4>
 					<p class="noticias">Selecciona alguna de las fechas en el Calendario.</p>
 				</div>
+				<section class="proximos-eventos">
+					<h4>Próximos Eventos</h4>
+					<article>
+						<p>14</p>
+						<a href="#">
+							Fiestas tradicionales de La Purísima.
+						</a>
+					</article>
+					<article>
+						<p>16</p>
+						<a href="#">
+							Fiestas tradicionales de Loreto.
+						</a>
+					</article>
+					<article>
+						<p>20</p>
+						<a href="#">
+							Fiestas tradicionales de San Ignacio.
+						</a>
+					</article>
+					<span><a href="#">Ver todos los próximos eventos</a></span>
+				</section>
 			</section>
 		</section>
 		<section class="menu-lateral">
@@ -182,27 +220,18 @@
 			<article class="telefonos">
 				<h4>Teléfonos</h4>
 				<p class="numerosTelefonicos">
-					<a href="#" title="066">
-					Emergencias:
+					<a href="#">Cruz Roja</a>
+					<br>
+					<a href="#">Secretaria de Turismo</a>
+					<br>
+					<a href="#">Emergencias</a>
+					<a href="#" title="Directorio">
+						<img src="/static/img/directorio.png" alt=""/>
 					</a>
-					<br/>
-					<a href="#" title="Cruz Roja">
-					Cruz Roja
-					</a>
-					<br/>
-					<a href="#" title="Cruz Roja">
-					Protección Civil
-					</a>
-					<br/>
-					<a href="#" title="Cruz Roja">
-					Policía Ministerial
-					</a>
-					<br/>
-					<br/>
 				</p>
 				<span>
 					<a href="#">
-						Ver más
+						Ver todos
 					</a>
 				</span>
 			</article>
@@ -314,6 +343,36 @@
 				</span>
 			</section>
 		</section>
+		<br><br>
+		<br>
+		<div class="container demo-3">
+			<div class="fixed-bar">
+				<!-- Elastislide Carousel -->
+				<ul id="carousel" class="elastislide-list">
+					<li><a href="#"><img src="/static/images/small/1.jpg" alt="image01" /></a></li>
+					<li><a href="#"><img src="/static/images/small/2.jpg" alt="image02" /></a></li>
+					<li><a href="#"><img src="/static/images/small/3.jpg" alt="image03" /></a></li>
+					<li><a href="#"><img src="/static/images/small/4.jpg" alt="image04" /></a></li>
+					<li><a href="#"><img src="/static/images/small/5.jpg" alt="image05" /></a></li>
+					<li><a href="#"><img src="/static/images/small/6.jpg" alt="image06" /></a></li>
+					<li><a href="#"><img src="/static/images/small/7.jpg" alt="image07" /></a></li>
+					<li><a href="#"><img src="/static/images/small/8.jpg" alt="image08" /></a></li>
+					<li><a href="#"><img src="/static/images/small/9.jpg" alt="image09" /></a></li>
+					<li><a href="#"><img src="/static/images/small/10.jpg" alt="image10" /></a></li>
+					<li><a href="#"><img src="/static/images/small/11.jpg" alt="image11" /></a></li>
+					<li><a href="#"><img src="/static/images/small/12.jpg" alt="image12" /></a></li>
+					<li><a href="#"><img src="/static/images/small/13.jpg" alt="image13" /></a></li>
+					<li><a href="#"><img src="/static/images/small/14.jpg" alt="image14" /></a></li>
+					<li><a href="#"><img src="/static/images/small/15.jpg" alt="image15" /></a></li>
+					<li><a href="#"><img src="/static/images/small/16.jpg" alt="image16" /></a></li>
+					<li><a href="#"><img src="/static/images/small/17.jpg" alt="image17" /></a></li>
+					<li><a href="#"><img src="/static/images/small/18.jpg" alt="image18" /></a></li>
+					<li><a href="#"><img src="/static/images/small/19.jpg" alt="image19" /></a></li>
+					<li><a href="#"><img src="/static/images/small/20.jpg" alt="image20" /></a></li>
+				</ul>
+				<!-- End Elastislide Carousel -->
+			</div>
+		</div>
 	</section>
 	<footer>
 		Hola

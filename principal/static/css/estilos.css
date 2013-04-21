@@ -235,7 +235,7 @@ nav li.menu a:hover {
   font-size: 0.8em;
   font-weight: bold;
   padding: 0.3em;
-  width: 150px;
+  width: 130px;
 }
 #page-wrap {
   margin: 0 auto;
@@ -297,6 +297,22 @@ nav li.menu a:hover {
   transition: all 1s ease-out;
   width: 80%;
 }
+.calendario-eventos,
+.calendario-notas {
+  display: inline-block;
+  height: 280px;
+  vertical-align: top;
+  width: 55%;
+}
+.calendario-notas {
+  width: 40%;
+}
+.calendario-notas p {
+  font-size: 0.8em;
+  font-weight: bold;
+  margin: 0 0.4em;
+  text-align: justify;
+}
 .clima,
 .multimedia {
   display: inline-block;
@@ -326,7 +342,7 @@ nav li.menu a:hover {
 }
 .contenedor {
   background: #f0f0f0;
-  height: 1650px;
+  height: 1700px;
   margin: 0.6em auto;
   -ms-box-shadow: 0.1em 0.1em 0.1em #fff;
   -moz-box-shadow: 0.1em 0.1em 0.1em #fff;
@@ -397,7 +413,7 @@ nav li.menu a:hover {
   -o-border-radius: 0.5em;
   border-radius: 0.5em;
   display: inline-block;
-  height: 200px;
+  height: 225px;
   vertical-align: top;
   width: 65%;
 }
@@ -408,7 +424,7 @@ nav li.menu a:hover {
   display: inline-block;
   font-size: 0.9em;
   font-weight: bold;
-  margin: 0.3em auto;
+  margin: 0.5em auto;
   margin-left: 1.1em;
   text-align: left;
   vertical-align: top;
@@ -426,6 +442,16 @@ nav li.menu a:hover {
   position: relative;
   top: -0.7em;
   text-decoration: none;
+}
+.eventos {
+  height: 300px;
+  margin: 0 auto;
+  width: 95%;
+}
+.eventos input[type="text"] {
+  background: #f0f0f0;
+  color: #f0f0f0;
+  width: 250px;
 }
 .fluid_container {
   margin: 0 auto;
@@ -509,7 +535,7 @@ nav li.menu a:hover {
   -webkit-box-shadow: 0.3em 0 0.2em #b3b3b3;
   box-shadow: 0.3em 0 0.2em #b3b3b3;
   vertical-align: top;
-  width: 37%;
+  width: 36%;
 }
 .materiales {
   -ms-box-shadow: ;
@@ -521,7 +547,7 @@ nav li.menu a:hover {
 .materiales p {
   font-size: 0.8em;
   font-weight: bold;
-  margin: 0 1em;
+  margin: 0 0.5em;
   text-align: justify;
 }
 .materiales p a {
@@ -538,7 +564,7 @@ nav li.menu a:hover {
   background: #f0f0f0;
   color: #4d4d4d;
   display: inline-block;
-  height: 1400px;
+  height: 1410px;
   margin-right: 0.2em;
   -ms-box-shadow: 0.3em 0 0.2em #b3b3b3;
   -moz-box-shadow: 0.3em 0 0.2em #b3b3b3;
@@ -561,7 +587,7 @@ nav li.menu a:hover {
   text-align: justify;
 }
 .multimedia p a img {
-  margin: 2em 0.5em;
+  margin: 2em 0.3em;
   height: 50px;
   width: 50px;
 }
@@ -576,7 +602,7 @@ nav li.menu a:hover {
   text-decoration: none;
 }
 .numerosTelefonicos {
-  font-size: 0.9em;
+  font-size: 0.8em;
   font-weight: bold;
   margin: 0.2em 0.7em;
   text-align: center;
@@ -584,6 +610,63 @@ nav li.menu a:hover {
 .numerosTelefonicos a {
   color: #ea0434;
   text-decoration: none;
+}
+.numerosTelefonicos a img {
+  height: 90px;
+  width: 90px;
+}
+.proximos-eventos article {
+  -ms-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 0.8em;
+  font-weight: bold;
+  height: 50px;
+  margin: 0.2em 1.2em;
+  -ms-box-shadow: 0 0 0.5em #d0d1d9;
+  -moz-box-shadow: 0 0 0.5em #d0d1d9;
+  -o-box-shadow: 0 0 0.5em #d0d1d9;
+  -webkit-box-shadow: 0 0 0.5em #d0d1d9;
+  box-shadow: 0 0 0.5em #d0d1d9;
+  text-align: justify;
+}
+.proximos-eventos article p,
+.proximos-eventos article a {
+  display: inline-block;
+  vertical-align: top;
+}
+.proximos-eventos article p {
+  background: #1e6381;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.5em;
+  font-weight: bold;
+  height: 30px;
+  padding: 0.5em;
+  width: 30px;
+}
+.proximos-eventos article a {
+  color: #1e6381;
+  margin-left: 0.5em;
+  text-decoration: none;
+}
+.proximos-eventos span {
+  text-align: center;
+  margin-top: 0.5em;
+  margin-left: 10em;
+}
+.proximos-eventos span a {
+  color: #a70325;
+  text-decoration: none;
+}
+.recomendaciones {
+  text-align: center;
+}
+.recomendaciones img {
+  height: 120px;
+  width: 90%;
 }
 .relatos {
   color: #26272f;
