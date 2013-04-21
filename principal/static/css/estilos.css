@@ -223,7 +223,7 @@ nav li.menu a:hover {
 #map_canvas {
   width: 100%;
   height: 350px;
-  max-width: 220px;
+  max-width: 200px;
   float: left;
   position: relative;
   z-index: 30;
@@ -235,14 +235,14 @@ nav li.menu a:hover {
   font-size: 0.8em;
   font-weight: bold;
   padding: 0.3em;
-  width: 130px;
+  width: 25%;
 }
 #page-wrap {
   margin: 0 auto;
   max-width: 95%;
 }
 #weatherslider {
-  width: 300px;
+  width: 95%;
   height: 310px;
 }
 .buscar,
@@ -425,7 +425,7 @@ nav li.menu a:hover {
   font-size: 0.9em;
   font-weight: bold;
   margin: 0.5em auto;
-  margin-left: 1.1em;
+  margin-left: 1em;
   text-align: left;
   vertical-align: top;
   width: 45%;
@@ -451,7 +451,7 @@ nav li.menu a:hover {
 .eventos input[type="text"] {
   background: #f0f0f0;
   color: #f0f0f0;
-  width: 250px;
+  width: 230px;
 }
 .fluid_container {
   margin: 0 auto;
@@ -578,7 +578,7 @@ nav li.menu a:hover {
   max-width: 53.5%;
 }
 .multimedia {
-  max-width: 41%;
+  width: 41%;
 }
 .multimedia p {
   font-size: 0.8em;
@@ -588,8 +588,8 @@ nav li.menu a:hover {
 }
 .multimedia p a img {
   margin: 2em 0.3em;
-  height: 50px;
-  width: 50px;
+  height: 47px;
+  width: 47px;
 }
 .multimedia span {
   padding: 0.5em;
@@ -604,7 +604,7 @@ nav li.menu a:hover {
 .numerosTelefonicos {
   font-size: 0.8em;
   font-weight: bold;
-  margin: 0.2em 0.7em;
+  margin: 0 0.7em 0.2em 0.7em;
   text-align: center;
 }
 .numerosTelefonicos a {
@@ -728,13 +728,36 @@ nav li.menu a:hover {
   footer {
     background: #a70325;
   }
+  #locations li {
+    height: 65px;
+    width: 130px;
+  }
+  #map_canvas {
+    height: 350px;
+    max-width: 150px;
+    float: left;
+    position: relative;
+    z-index: 30;
+  }
   .buscar {
     width: 27%;
+  }
+  .enlaces-utiles p {
+    max-width: 42%;
+  }
+  .enlaces-utiles p img {
+    margin: 0.2em;
   }
   .esp,
   .eng {
     max-width: 20%;
     width: 17%;
+  }
+  .eventos {
+    height: 300px;
+  }
+  .eventos input[type="text"] {
+    width: 190px;
   }
   .idiomas {
     margin: 0 0 0 2em;
@@ -746,22 +769,196 @@ nav li.menu a:hover {
   .login a {
     margin-left: 20%;
   }
+  .materiales {
+    height: 230px;
+  }
+  .multimedia {
+    width: 41%;
+  }
+  .multimedia p {
+    margin: 0.2em 1.3em;
+  }
+  .multimedia p a img {
+    margin: 1.8em 0.2em;
+    height: 40px;
+    width: 40px;
+  }
+  .proximos-eventos span {
+    text-align: center;
+    margin-top: 0.7em;
+    margin-left: 5em;
+  }
+  .relatos {
+    height: 230px;
+    width: 51%;
+  }
+  .relatos p {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 0 0.5em;
+    padding: 0 0.5em;
+    text-align: justify;
+  }
+  .relatos img {
+    height: 80px;
+    margin: 0.5em 0 0 6em;
+    width: 55px;
+  }
 }
 @media screen and (max-width: 1024px) {
   footer {
     background: #008000;
   }
+  #locations li {
+    font-size: 0.9em;
+    font-weight: bold;
+    height: 65px;
+    width: 80px;
+  }
+  #map_canvas {
+    max-width: 140px;
+  }
+  #more-info {
+    font-size: 0.8em;
+    font-weight: bold;
+    height: 160px;
+    margin-bottom: 3em;
+    width: 95%;
+  }
   .buscar {
     width: 28%;
+  }
+  .calendario-eventos {
+    width: 95%;
+  }
+  .calendario-notas {
+    height: 140px;
+    width: 95%;
+  }
+  .calendario-notas p {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 0 0.4em;
+    text-align: justify;
+  }
+  .clima {
+    margin-bottom: 0;
+    width: 95%;
+  }
+  .contenedor {
+    height: 2700px;
+  }
+  .enlaces-utiles {
+    height: 300px;
+    width: 95%;
+  }
+  .enlaces-utiles p {
+    margin-left: 2.3em;
+    max-width: 30%;
+  }
+  .enlaces-utiles p img {
+    margin: 0.2em;
   }
   .esp,
   .eng {
     max-width: 25%;
     width: 23%;
   }
+  .eventos {
+    height: 300px;
+  }
+  .eventos input[type="text"] {
+    margin-left: 2em;
+    width: 250px;
+  }
   .logotipo {
     height: 60px;
-    width: 60px;
+    max-width: 60px;
+  }
+  .materiales {
+    height: 150px;
+    width: 95%;
+  }
+  .materiales a {
+    margin-left: 2em;
+  }
+  .menu-lateral {
+    width: 42%;
+  }
+  .menu-lateral,
+  .principal {
+    height: 2450px;
+  }
+  .multimedia {
+    height: 380px;
+    width: 94%;
+  }
+  .multimedia p {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 0.2em 1.4em;
+    text-align: justify;
+  }
+  .multimedia p a img {
+    margin: 2em 0.3em;
+    height: 47px;
+    width: 47px;
+  }
+  .multimedia span {
+    padding: 0.5em;
+    margin: 0 4em;
+  }
+  .multimedia span a {
+    color: #ce8610;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  .principal {
+    border: thin solid #00f;
+    max-width: 55%;
+  }
+  .relatos {
+    height: 250px;
+    margin-bottom: 2em;
+    width: 95%;
+  }
+  .relatos img {
+    height: 70px;
+    width: 70px;
+  }
+  .telefonos {
+    margin: 0.3em;
+    width: 95%;
+  }
+  .telefonos span {
+    margin: 0 auto;
+  }
+  .telefonos span a {
+    color: #ce8610;
+    margin-left: 5.8em;
+    font-size: 1em;
+    font-weight: bold;
+  }
+  .numerosTelefonicos {
+    font-size: 0.9em;
+    font-weight: bold;
+    margin: 0 0.7em 0.2em 0.7em;
+    text-align: center;
+  }
+  .numerosTelefonicos a {
+    color: #ea0434;
+    text-decoration: none;
+  }
+  .numerosTelefonicos a img {
+    height: 80px;
+    width: 80px;
+  }
+  .proximos-eventos article a {
+    margin: 0;
+  }
+  .proximos-eventos span {
+    margin-left: 4em;
   }
   .titulo {
     font-size: 1.5em;
