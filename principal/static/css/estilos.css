@@ -825,6 +825,10 @@ nav li.menu a:hover {
     margin-bottom: 3em;
     width: 95%;
   }
+  #weatherslider {
+    width: 95%;
+    height: 240px;
+  }
   .buscar {
     width: 28%;
   }
@@ -842,11 +846,23 @@ nav li.menu a:hover {
     text-align: justify;
   }
   .clima {
+    height: 310px;
     margin-bottom: 0;
     width: 95%;
   }
   .contenedor {
-    height: 2700px;
+    height: 2420px;
+  }
+  .contenido {
+    margin-bottom: 4em;
+  }
+  .contenido p {
+    -ms-border-radius: 0.4em;
+    -moz-border-radius: 0.4em;
+    -webkit-border-radius: 0.4em;
+    -o-border-radius: 0.4em;
+    border-radius: 0.4em;
+    height: 120px;
   }
   .enlaces-utiles {
     height: 300px;
@@ -887,10 +903,12 @@ nav li.menu a:hover {
   }
   .menu-lateral,
   .principal {
-    height: 2450px;
+    height: 2200px;
   }
   .multimedia {
-    height: 380px;
+    font-size: 0.9em;
+    font-weight: bold;
+    height: 325px;
     width: 94%;
   }
   .multimedia p {
@@ -901,8 +919,8 @@ nav li.menu a:hover {
   }
   .multimedia p a img {
     margin: 2em 0.3em;
-    height: 47px;
-    width: 47px;
+    height: 40px;
+    width: 40px;
   }
   .multimedia span {
     padding: 0.5em;
@@ -910,24 +928,24 @@ nav li.menu a:hover {
   }
   .multimedia span a {
     color: #ce8610;
-    font-size: 1.3em;
+    font-size: 1.1em;
     font-weight: bold;
     text-decoration: none;
   }
   .principal {
-    border: thin solid #00f;
     max-width: 55%;
   }
   .relatos {
-    height: 250px;
+    height: 220px;
     margin-bottom: 2em;
     width: 95%;
   }
   .relatos img {
-    height: 70px;
-    width: 70px;
+    height: 60px;
+    width: 60px;
   }
   .telefonos {
+    height: 170px;
     margin: 0.3em;
     width: 95%;
   }
@@ -951,14 +969,18 @@ nav li.menu a:hover {
     text-decoration: none;
   }
   .numerosTelefonicos a img {
-    height: 80px;
-    width: 80px;
+    height: 50px;
+    width: 50px;
   }
   .proximos-eventos article a {
     margin: 0;
   }
   .proximos-eventos span {
     margin-left: 4em;
+  }
+  .recomendaciones img {
+    height: 200px;
+    width: 90%;
   }
   .titulo {
     font-size: 1.5em;
@@ -1008,6 +1030,12 @@ nav li.menu a:hover {
   .logotipo {
     height: 45px;
     width: 45px;
+  }
+  .menu-lateral {
+    max-width: 98%;
+  }
+  .principal {
+    max-width: 98%;
   }
   .titulo {
     font-size: 1.2em;
