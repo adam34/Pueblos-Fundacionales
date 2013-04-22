@@ -770,7 +770,6 @@ nav
 				margin-left 5em
 
 	.principal 
-		border thin solid red
 		height 1480px
 		margin-bottom .8em
 		max-width 95%
@@ -802,11 +801,17 @@ nav
 @media screen and (max-width: 600px)
 	footer 
 		background cyan
+	header, nav, .contenedor 
+		margin 0 auto
+		width 95%
 	nav 
 		li.menu
 			font-size 1em
 			padding .7em
 			width 17%
+	#more-info 
+		height auto
+		width 30% 
 	.buscar 
 		display block
 		margin-left 3em
@@ -814,6 +819,10 @@ nav
 	.esp, .eng
 		max-width 36%
 		width 36%
+	
+	.eventos
+		input[type="text"]
+			width 200px
 	.social_icons
 		width 25%
 	.logotipo 
@@ -831,15 +840,69 @@ nav
 		li.menu
 			text-align center
 			width 91%
+	.mapa-misiones
+		display none
+	.calendario-eventos
+		width 95%
+	.calendario-notas
+		height 140px
+		width 95%
+	
+	.enlaces-utiles
+		height 310px
+		width 95%
+		p 
+			margin-left 2em
+			max-width 30%
+			img 
+				margin .2em
+
 	.esp, .eng
 		max-width 44%
 		width 43%
+	.eventos 
+		height 300px
+		input[type="text"]
+			margin-left .5em
+			width 260px
 	.idiomas 
-		font-size .9em
+		font-size .8em
 		margin 0
 		width 65%
+	.multimedia 
+		height auto
+		p.multi 
+			a 
+				img 
+					height 40px 
+					width 40px
+		span 
+			a 
+				font-size 1em
+				margin-left 5em
+	.principal 
+		height 1610px
+	.proximos-eventos
+		article
+			p 	
+				font-size 1em
+				margin-right .7em
+				height 20px 
+				width 20px
+			a 
+				margin 0
+		span 
+			font-size .9em
+			margin-top 5em
+			margin-left 1em
+	.relatos, .materiales 
+		margin-top .5em
+		width 95%
 	.social_icons
-		width 33%
+		width 32%
+		img 
+			height 30px 
+			width 30px
 	.logotipo 
 		margin-left 1em
 		height 40px 
@@ -856,12 +919,28 @@ nav
 		margin-top .2em
 	.buscar 
 		margin-left 2em
+	.clima 
+		max-width 95%
+	.conf_idiomas
+		width 100%
 	.idiomas 
-		font-size .8em
+		font-size .7em
+	.materiales 
+		height 150px
+	.proximos-eventos
+		article
+			height 50px
+			p 	
+				font-size .8em
+				margin-right 1.6em
+				height 20px 
+				width 20px
+			a 
+				font-size .9em
 	.social_icons
 		img 
-			height 30px 
-			width 30px
+			height 28px 
+			width 28px
 	.logotipo 
 		margin-left .9em
 		height 40px 
