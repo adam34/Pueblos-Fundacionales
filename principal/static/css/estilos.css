@@ -13,7 +13,7 @@
 /*Elementos HTML */
 body {
   background: #0b0c0e url("../img/wallpaper-82838.jpg");
-  background-repeat: no-repeat;
+  background-repeat: no-repeat no-repeat;
   font-family: 'Open Sans', Arial, Verdana;
   font-weight: normal;
   font-size: 16px;
@@ -1142,7 +1142,7 @@ nav li.menu a:hover {
     width: 36%;
   }
   .eventos input[type="text"] {
-    width: 200px;
+    width: 195px;
   }
   .social_icons {
     width: 25%;
