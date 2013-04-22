@@ -214,7 +214,7 @@ nav
 
 .contenedor
 	background darken(blanco, 6%)
-	height 1700px
+	height auto
 	margin .6em auto
 	sombras-caja(.1em .1em .1em blanco)
 
@@ -490,7 +490,7 @@ nav
 	font-size 2em 
 	text-shadow 0 .1em .2em azul
 
-/* Media queries 320 480 600 768 1024 1200 */
+/*  queries 320 480 600 768 1024 1200 */
 @media screen and (max-width: 1200px)
 	footer 
 		background rojizo 
@@ -593,7 +593,8 @@ nav
 		margin-bottom 0
 		width 95%
 	.contenedor 
-		height 2420px
+		height auto
+
 	.contenido 
 		margin-bottom 4em
 		p 
@@ -626,7 +627,7 @@ nav
 		a 
 			margin-left 2em
 	.menu-lateral
-		width 42%
+		max-width 42%
 	.menu-lateral, .principal
 		height 2200px
 
@@ -706,27 +707,94 @@ nav
 			font-size 1em
 			padding .8em
 			width 19%
-			&:first-child:hover 
-				font-size 1em
-				transicion()
-			&:nth-child(2):hover 
-				font-size 1em
-			&:nth-child(3):hover 
-				font-size 1em
-			&:nth-child(4):hover 
-				font-size 1em
+	#map_canvas 
+		max-width 40% 
+	#more-info 
+		height auto
+		width 35% 
 	.buscar 
 		width 30%
+
+	.calendario-eventos
+		width 55%
+
+	.calendario-notas
+		height 140px
+		width 40%
+		p
+			font-size .8em
+			margin 0 .4em
+			text-align justify	
+	.contenido 
+		margin-bottom .5em
+		p 
+			bordes(.4em)
+			height 80px
+	.contenedor 
+		height auto
+	.enlaces-utiles
+		height 200px
+		width 95%
+		p 
+			margin-left 1.2em
+			max-width 28%
+			img 
+				margin .2em
 	.esp, .eng
-		max-width 29%
-		width 28%
+		max-width 30%
+		width 29.5%
+	.eventos
+		height 300px
+		input[type="text"]
+			margin-left 2em
+			width 220px
 	.logotipo
 		height 45px 
 		width 45px
-	.menu-lateral 
-		max-width 98%
+
+	.menu-lateral
+		margin-top 1em
+		height auto
+		max-width 95%
+
+	.materiales 
+		a 
+			margin 0 auto
+
+	.multimedia 
+		height 280px
+		p.multi 
+			text-align center
+		span 
+			a 
+				margin-left 5em
+
 	.principal 
-		max-width 98%
+		border thin solid red
+		height 1480px
+		margin-bottom .8em
+		max-width 95%
+	.recomendaciones
+		img 
+			height 150px 
+			width 90%
+
+	.relatos, .materiales
+		display inline-block 
+		height 250px
+		margin-bottom 2.2em
+		vertical-align top
+		width 43%
+	.telefonos
+		height 170px
+		margin .3em 
+		width 95%
+		text-align center
+		span 
+			
+			a 
+				color amarillo
+				 
 	.titulo 
 		font-size 1.2em
 		width 40%

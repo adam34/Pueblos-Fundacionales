@@ -342,7 +342,7 @@ nav li.menu a:hover {
 }
 .contenedor {
   background: #f0f0f0;
-  height: 1700px;
+  height: auto;
   margin: 0.6em auto;
   -ms-box-shadow: 0.1em 0.1em 0.1em #fff;
   -moz-box-shadow: 0.1em 0.1em 0.1em #fff;
@@ -723,7 +723,7 @@ nav li.menu a:hover {
   font-weight: bold;
   text-shadow: 0 0.1em 0.2em #1e6381;
 }
-/* Media queries 320 480 600 768 1024 1200 */
+/*  queries 320 480 600 768 1024 1200 */
 @media screen and (max-width: 1200px) {
   footer {
     background: #a70325;
@@ -851,7 +851,7 @@ nav li.menu a:hover {
     width: 95%;
   }
   .contenedor {
-    height: 2420px;
+    height: auto;
   }
   .contenido {
     margin-bottom: 4em;
@@ -899,7 +899,7 @@ nav li.menu a:hover {
     margin-left: 2em;
   }
   .menu-lateral {
-    width: 42%;
+    max-width: 42%;
   }
   .menu-lateral,
   .principal {
@@ -998,44 +998,113 @@ nav li.menu a:hover {
     padding: 0.8em;
     width: 19%;
   }
-  nav li.menu:first-child:hover {
-    font-size: 1em;
-    font-weight: bold;
-    -ms-transition: all 1s ease-out;
-    -moz-transition: all 1s ease-out;
-    -o-transition: all 1s ease-out;
-    -webkit-transition: all 1s ease-out;
-    transition: all 1s ease-out;
+  #map_canvas {
+    max-width: 40%;
   }
-  nav li.menu:nth-child(2):hover {
-    font-size: 1em;
-    font-weight: bold;
-  }
-  nav li.menu:nth-child(3):hover {
-    font-size: 1em;
-    font-weight: bold;
-  }
-  nav li.menu:nth-child(4):hover {
-    font-size: 1em;
-    font-weight: bold;
+  #more-info {
+    height: auto;
+    width: 35%;
   }
   .buscar {
     width: 30%;
   }
+  .calendario-eventos {
+    width: 55%;
+  }
+  .calendario-notas {
+    height: 140px;
+    width: 40%;
+  }
+  .calendario-notas p {
+    font-size: 0.8em;
+    font-weight: bold;
+    margin: 0 0.4em;
+    text-align: justify;
+  }
+  .contenido {
+    margin-bottom: 0.5em;
+  }
+  .contenido p {
+    -ms-border-radius: 0.4em;
+    -moz-border-radius: 0.4em;
+    -webkit-border-radius: 0.4em;
+    -o-border-radius: 0.4em;
+    border-radius: 0.4em;
+    height: 80px;
+  }
+  .contenedor {
+    height: auto;
+  }
+  .enlaces-utiles {
+    height: 200px;
+    width: 95%;
+  }
+  .enlaces-utiles p {
+    margin-left: 1.2em;
+    max-width: 28%;
+  }
+  .enlaces-utiles p img {
+    margin: 0.2em;
+  }
   .esp,
   .eng {
-    max-width: 29%;
-    width: 28%;
+    max-width: 30%;
+    width: 29.5%;
+  }
+  .eventos {
+    height: 300px;
+  }
+  .eventos input[type="text"] {
+    margin-left: 2em;
+    width: 220px;
   }
   .logotipo {
     height: 45px;
     width: 45px;
   }
   .menu-lateral {
-    max-width: 98%;
+    margin-top: 1em;
+    height: auto;
+    max-width: 95%;
+  }
+  .materiales a {
+    margin: 0 auto;
+  }
+  .multimedia {
+    height: 280px;
+  }
+  .multimedia p.multi {
+    text-align: center;
+  }
+  .multimedia span a {
+    margin-left: 5em;
   }
   .principal {
-    max-width: 98%;
+    border: thin solid #f00;
+    height: 1480px;
+    margin-bottom: 0.8em;
+    max-width: 95%;
+  }
+  .recomendaciones img {
+    height: 150px;
+    width: 90%;
+  }
+  .relatos,
+  .materiales {
+    display: inline-block;
+    height: 250px;
+    margin-bottom: 2.2em;
+    vertical-align: top;
+    width: 43%;
+  }
+  .telefonos {
+    height: 170px;
+    margin: 0.3em;
+    width: 95%;
+    text-align: center;
+  }
+  .telefonos span a {
+    color: #ce8610;
   }
   .titulo {
     font-size: 1.2em;
