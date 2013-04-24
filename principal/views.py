@@ -15,3 +15,6 @@ def pueblos(request):
 
 def galerias(request): 
 	return render_to_response('galerias.html')
+
+def libros(request): 
+	return render_to_response('libros.html')
