@@ -1,0 +1,19 @@
+* {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: #ddd;
+}
+h1 {
+  color: #fff;
+  margin: 0 auto;
+  text-align: center;
+  text-shadow: 0.1em 0.1em 0.3em #333;
+}
+section {
+  height: 300px;
+  margin: 0 auto;
+  width: 90%;
+}
