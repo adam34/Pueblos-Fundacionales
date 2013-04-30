@@ -8,7 +8,8 @@
 	<meta name="description" content="En este sitio podrás visualizar todo lo relacionado a los Pueblos Fundacionales de la Zona Norte de BCS, desde su ubicación, hoteles, restaurantes, etc."/>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 	<!-- CSS -->
-	<link rel="stylesheet" href="/static/css/estilos.css">
+	<link rel="stylesheet" href="/static/css/comida.css">
+	<link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
 	<div class="conf_idiomas">
@@ -47,6 +48,13 @@
 				</form>
 			</article>
 		</section>
+		<div class="support-note"><!-- let's check browser support with modernizr -->
+			<span class="no-cssanimations">CSS animations are not supported in your browser</span>
+			<span class="no-csstransforms">CSS transforms are not supported in your browser</span>
+			<span class="no-csstransforms3d">CSS 3D transforms are not supported in your browser</span>
+			<span class="no-csstransitions">CSS transitions are not supported in your browser</span>
+			<span class="note-ie">Sorry, only modern browsers.</span>
+		</div>
 	</header>
 	<nav>
 		<ul>
@@ -64,7 +72,39 @@
 			</li>
 		</ul>
 	</nav>
-	<section class="contenido_accesos">
+	<section class="main">
+		<div id="rm-container" class="rm-container">
+			<div class="rm-wrapper">
+				<div class="rm-cover">
+					<div class="rm-front">
+						<div class="rm-content">
+							<div class="rm-logo"></div>
+								<h2>Menú de Pueblos Fundacionales</h2>
+								<h3>Recomendaciones de Restaurantes</h3>
+								<a href="#" class="rm-button-open">Entra a ver el menú</a>
+								<div class="rm-info">
+									<p>
+									<strong>Para gente elegante y sofisticada</strong><br>
+										Pueblos Fundacionales<br>
+										Baja California Sur<br>
+									<strong>Teléfonos</strong> 626.511.1170<br>
+									<strong>Fax</strong> 626.992.1020</p>
+								</div>
+							</div>
+						</div><!-- /rm-content -->
+					</div><!-- /rm-front -->
+				</div>
+			</div>
+		</div>
 	</section>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <script type="text/javascript" src="/static/js/menu.js"></script>
+		<script type="text/javascript">
+			$(function() {
+
+				Menu.init();
+			
+			});
+		</script>
 </body>
 </html>

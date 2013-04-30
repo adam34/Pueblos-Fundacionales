@@ -5,6 +5,89 @@
   src: url("../fonts/OpenSans-Bold-webfont.eot");
   src: url("../fonts/OpenSans-Bold-webfont.eot?#iefix") format("embedded-opentype"), src url("../fonts/OpenSans-Bold-webfont.ttf") format("truetype"), src url("../fonts/OpenSans-Bold-webfont.svg") format("svg"), src url("../fonts/OpenSans-Bold-webfont.woff") format("woff");
 }
+.contenido_secciones,
+.secciones {
+  background: #fff;
+  height: 550px;
+  margin: 0 auto;
+  width: 80%;
+}
+.contenido_secciones {
+  margin-top: 0.5em;
+}
+.menu_secciones,
+.pueblos_secciones {
+  display: inline-block;
+  height: 500px;
+  vertical-align: top;
+  width: 20%;
+}
+.pueblos_secciones {
+  background: #e6e6e6;
+  width: 75%;
+}
+.contenido_accesos {
+  background: #fff;
+  height: 750px;
+  margin: 0.5em auto;
+  width: 80%;
+}
+.contenido_secciones_pueblos,
+.menu_secciones_pueblos {
+  background: #ccc;
+  display: inline-block;
+  height: 600px;
+  vertical-align: top;
+  width: 35%;
+}
+.contenido_secciones_pueblos {
+  width: 63%;
+  text-align: center;
+}
+.contenido_secciones_pueblos img {
+  height: 230px;
+  width: 230px;
+}
+.contenido_secciones_pueblos p {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 1em auto;
+}
+.menu_accesos,
+.pueblos_accesos {
+  background: #1b5974;
+  display: inline-block;
+  height: 700px;
+  vertical-align: top;
+  width: 24%;
+}
+.menu_secciones_pueblos {
+  font-size: 0.9em;
+  font-weight: bold;
+}
+.menu_secciones_pueblos ul {
+  margin-top: 0.6em;
+  list-style: none;
+}
+.menu_secciones_pueblos li {
+  margin-left: 0.5em;
+  margin-top: 0.2em;
+}
+.menu_secciones_pueblos li a {
+  color: #4d4d4d;
+  text-decoration: none;
+}
+.menu_secciones_pueblos li a:hover {
+  color: #1e6381;
+}
+.menu_secciones_pueblos li li {
+  margin-left: 1em;
+}
+.pueblos_accesos {
+  background: #e6e6e6;
+  margin-left: 0.2em;
+  width: 75%;
+}
 * {
   border: 0;
   margin: 0;
@@ -242,7 +325,7 @@ nav li.menu a:hover {
   max-width: 95%;
 }
 #weatherslider {
-  width: 95%;
+  width: 86%;
   height: 310px;
 }
 .buscar,

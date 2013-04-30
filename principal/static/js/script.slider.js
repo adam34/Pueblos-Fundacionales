@@ -13,6 +13,9 @@ $(document).on("ready", inicio);
         $('#carousel').elastislide({
             minItems : 2  
         });
+        $(".cosas").on("click", function(){
+            $(".contenido_secciones_pueblos").load("/templates/cosas.html");
+        });
         
     }
     function transicion() {
