@@ -36,3 +36,6 @@ def info(request):
 
 def dir(request): 
 	return render_to_response('directorio.html')
+
+def humans(request): 
+	return render_to_response('humans.txt')

@@ -26,4 +26,5 @@ urlpatterns = patterns('',
     url(r'^comida/$', 'principal.views.comida'),
     url(r'^info/$', 'principal.views.info'),
     url(r'^dir/$', 'principal.views.dir'),
+    url(r'^humans\.txt$', 'principal.views.humans'),
 )
