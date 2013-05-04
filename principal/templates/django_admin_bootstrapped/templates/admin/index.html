@@ -1,0 +1,114 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_static bootstrapped_goodies_tags %}
+
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />
+{% endblock %}
+
+{% block coltype %}colMS{% endblock %}
+
+{% block bodyclass %}dashboard{% endblock %}
+
+{% block breadcrumbs %}
+{% endblock %}
+
+{% block object-tools %}
+<ul class="nav">
+    {% for app in app_list %}
+        {% for model in app.models %}
+    <li class="dropdown">
+            {% if model.admin_url %}
+                <a href="#" id='{{model.name}}'>{{ model.name }}</a>
+            {% else %}
+                {{ model.name }}
+            {% endif %}
+        </a>
+    </li>
+        {% endfor %}
+    {% endfor %}
+</ul>
+{% endblock %}
+
+
+{% block content %}
+<div id="content-main">
+    <ul class="breadcrumb">
+        <li>{% trans 'Home' %}</li>
+    </ul>
+    <p>Este es el ejemplo de una palabra, nada mas.</p>
+    <p>Ahí viene, la integral de oro. Ahí viene, la diferencial de oro.</p>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+<script type="text/javascript">
+    $(function(){
+        {% for app in app_list %} {% for model in app.models %}
+        $('#{{model.name}}').on('click',cargar);
+        {% endfor %}{% endfor %}
+        function cargar(e)
+        {
+            var ruta;
+            {% for app in app_list %} {% for model in app.models %}
+            if(e.target.id=='{{model.name}}')
+            {
+                ruta='{{model.admin_url}}';
+            }
+            {% endfor %}{% endfor %}
+
+            if(ruta!='')
+            {
+                $.ajax({
+                    async:false,
+                    url:ruta,
+                    data:{csrfmiddlewaretoken:'{{csrf_token}}'},
+                    type:'POST',
+                    //dataType:
+                    success:function(response)
+                    {
+                        if(response!='')
+                        {
+                            $('body').removeClass();
+                            $('body').addClass('_change-list')
+                            $('#content-main').hide(500);
+                            $('#content-main').show(1000);
+                            $('#content-main').html(response);
+                            //class:_change-list
+                            //class: dashboard
+                        }
+                        else
+                        {
+                            alert('No hubo respuesta por parte del servidor.');
+                        }
+                    },
+                    error:function(jqXHR, status, error)
+                    {
+                        alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+                    },
+                    // complete:function(jqXHR, status)
+                    // {
+                    //     alert(jqXHR.responseText+'\n'+status)
+                    // },
+                });
+            }
+            else
+            {
+                alert('Error inesperado al tratar de cargar el modulo deseado. Consulte a su administrador.')
+            }
+        }
+    });
+</script>
+<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function($) {
+        $("tr input.action-select").actions();
+    });
+})(django.jQuery);
+</script>
+{% endblock %}
