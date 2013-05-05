@@ -22,8 +22,26 @@ nav li.menu:last-child:hover{background:#1f1f1f;-ms-transition:all 1s ease-out;-
 nav li.menu a{color:#e6e6e6;text-decoration:none;text-shadow:.1em .1em .2em #000;}
 nav li.menu a:hover{font-weight:bold}
 #arrow{height:15px;margin:.8em 0;width:15px}
+#locations{float:left;list-style:none;max-width:200px;}
+#locations li{color:#fff;cursor:pointer;height:50px;margin:.3em auto;padding:10px;max-width:180px;}
+#locations li:first-child{background:#15455a}
+#locations li:first-child:hover{background:#123b4d;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
+#locations li:nth-child(2){background:#a70325}
+#locations li:nth-child(2):hover{background:#640216;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
+#locations li:nth-child(3){background:#ce8610}
+#locations li:nth-child(3):hover{background:#7c500a;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
+#locations li:last-child{background:#4c2506}
+#locations li:last-child:hover{background:#2e1604;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
+#map_canvas{width:100%;height:350px;max-width:200px;float:left;position:relative;z-index:30}
+#more-info{background:#ddd;color:#0f3141;float:right;font-size:.8em;font-weight:bold;font-weight:normal;padding:.3em;width:25%;}
+#more-info a{color:#1e6381;text-decoration:none}
+#page-wrap{margin:0 auto;max-width:95%}
+#weatherslider{margin-top:1.4em;height:310px;width:88%}
 .buscar,.titulo{-ms-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;display:inline-block;margin:1em 1em;vertical-align:middle;width:50%}
 .buscar{padding:.7em;width:30%}
+.clima,.multimedia{border:thin solid #d6d6d6;display:inline-block;height:400px;margin:.8em 0;vertical-align:top;width:52%;}
+.clima h3,.multimedia h3{color:#c8042c}
+.clima{margin-left:1.3em}
 .contenedor{background:#f0f0f0;height:auto;margin:.6em auto;-ms-box-shadow:.1em .1em .1em #fff;-moz-box-shadow:.1em .1em .1em #fff;-o-box-shadow:.1em .1em .1em #fff;-webkit-box-shadow:.1em .1em .1em #fff;box-shadow:.1em .1em .1em #fff}
 .contenido{font-size:.7em;font-weight:bold;height:120px;margin:.5em auto;min-width:60%;padding:.7em;max-width:90%;}
 .contenido a{color:#26272f;font-family:Verdana;text-decoration:none}
@@ -49,12 +67,29 @@ nav li.menu a:hover{font-weight:bold}
 .esp a,.eng a{position:relative;top:-.5em}
 .logotipo{background:#fff;border:.4em dotted #1e6381;-ms-border-radius:999px;-moz-border-radius:999px;-webkit-border-radius:999px;-o-border-radius:999px;border-radius:999px;height:70px;left:10px;position:relative;-ms-box-shadow:.3em 0 .2em #b3b3b3;-moz-box-shadow:.3em 0 .2em #b3b3b3;-o-box-shadow:.3em 0 .2em #b3b3b3;-webkit-box-shadow:.3em 0 .2em #b3b3b3;box-shadow:.3em 0 .2em #b3b3b3;top:30px;width:70px;}
 .logotipo:hover{cursor:pointer;-ms-transform:rotate(360deg);-moz-transform:rotate(360deg);-o-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg);-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
+.longdesc{display:none}
+.mapa-misiones{height:480px;margin:.3em auto;}
+.mapa-misiones h3{color:#88420b}
 .menu-lateral,.principal{background:#f0f0f0;color:#4d4d4d;display:inline-block;height:1410px;margin-right:.2em;vertical-align:top;max-width:45%}
 .menu-lateral{max-width:53.5%;}
 .menu-lateral h2{color:#c8042c}
+.multimedia{width:41%;}
+.multimedia p{font-size:.8em;font-weight:bold;margin:.2em 1.4em;text-align:justify}
+.multimedia div{text-align:center;}
+.multimedia div img{height:40px;width:40px}
+.multimedia div a{color:#ce8610;font-size:1.1em;font-weight:bold;text-decoration:none}
 .principal{-ms-box-shadow:.3em 0 .1em #e0e0e0;-moz-box-shadow:.3em 0 .1em #e0e0e0;-o-box-shadow:.3em 0 .1em #e0e0e0;-webkit-box-shadow:.3em 0 .1em #e0e0e0;box-shadow:.3em 0 .1em #e0e0e0}
 .recomendaciones{text-align:center;}
 .recomendaciones img{height:120px;width:90%}
+.materiales,.relatos{border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;display:inline-block;height:220px;margin:-2em 0 0 0;vertical-align:top;width:40%;}
+.materiales h3,.relatos h3{font-size:1em;font-weight:bold}
+.materiales p{font-size:.8em;font-weight:bold;margin:0 1.7em;text-align:justify}
+.materiales div{margin-top:1.5em;text-align:center;}
+.materiales div a{color:#ce8610;font-size:1.1em;font-weight:bold;text-decoration:none}
+.relatos{color:#26272f;margin-left:1.2em;width:53%;}
+.relatos p{font-size:.8em;font-weight:bold;margin:0 .5em;padding:0 .5em;text-align:justify;}
+.relatos p a{color:#303030;text-decoration:none}
+.relatos img{cursor:pointer;height:80px;margin:.5em 0 0 6em;max-width:55px}
 .social_icons{height:2.6em;text-align:center;width:20%;}
 .social_icons a{text-decoration:none}
 .social_icons img{margin:.4em auto}

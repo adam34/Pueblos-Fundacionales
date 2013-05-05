@@ -99,6 +99,67 @@ nav
 	transform()
 	width 15px
 
+#locations 
+	float left
+	list-style none
+	max-width 200px
+	li 
+		color blanco
+		cursor pointer 
+		height 50px
+		margin .3em auto
+		padding 10px
+		max-width 180px
+		&:first-child
+			background darken(azul, 30%)
+		&:first-child:hover 
+			background darken(azul, 40%)
+			transicion()
+		&:nth-child(2)
+			background rojizo 
+		&:nth-child(2):hover 
+			background darken(rojizo, 40%)
+			transicion()
+		&:nth-child(3)
+			background amarillo
+		&:nth-child(3):hover 
+			background darken(amarillo, 40%)
+			transicion()
+		&:last-child
+			background cafe 
+		&:last-child:hover 
+			background darken(cafe, 40%)
+			transicion()
+
+#map_canvas 
+	width 100%
+	height 350px 
+	max-width 200px 
+	float left 
+	position relative 
+	z-index 30 
+
+#more-info 
+	background lighten(#555, 80%)
+	color darken(azul, 50%)
+	float right
+	font-size .8em
+	font-weight normal
+	padding .3em
+	width 25%
+	a 
+		color azul
+		text-decoration none
+
+#page-wrap 
+	margin: 0 auto
+	max-width 95% 
+
+#weatherslider 
+	margin-top 1.4em
+	height 310px
+	width 88%
+
 /*Clases */
 .buscar, .titulo 
 	box-sizing()
@@ -111,6 +172,19 @@ nav
 .buscar 
 	padding .7em
 	width 30%
+
+.clima, .multimedia
+	border thin solid lighten(gris, 80%)
+	display inline-block 
+	height 400px
+	margin .8em 0
+	vertical-align top
+	width 52%
+	h3 
+		color lighten(rojizo, 10%)
+
+.clima
+	margin-left 1.3em
 
 .contenedor
 	background darken(blanco, 6%)
@@ -250,6 +324,15 @@ nav
 		rotacion()
 		transicion()
 
+.longdesc 
+	display none
+
+.mapa-misiones 
+	height 480px
+	margin .3em auto
+	h3 
+		color lighten(cafe, 15%)
+
 .menu-lateral, .principal
 	background darken(blanco, 6%)
 	color darken(blanco, 70%)
@@ -264,6 +347,22 @@ nav
 	h2 
 		color lighten(rojizo, 10%)
 
+.multimedia
+	width 41%
+	p
+		font-size .8em
+		margin .2em 1.4em
+		text-align justify
+	div 
+		text-align center
+		img 
+			height 40px 
+			width 40px
+		a 
+			color amarillo
+			font-size 1.1em
+			text-decoration none
+
 .principal 
 	sombras-caja(.3em 0 .1em darken(blanco, 12%))
 
@@ -272,6 +371,49 @@ nav
 	img 
 		height 120px 
 		width 90%
+
+.materiales, .relatos 
+	border thin solid lighten(gris, 80%)
+	bordes(.2em)
+	display inline-block
+	height 220px 
+	margin -2em 0 0 0
+	vertical-align top 
+	width 40%
+	h3 
+		font-size 1em
+
+.materiales 
+	p 
+		font-size .8em
+		margin 0 1.7em
+		text-align justify
+	div
+		margin-top 1.5em
+		text-align center
+		a 
+			color amarillo
+			font-size 1.1em
+			text-decoration none
+
+.relatos 
+	color gris2
+	margin-left 1.2em
+	width 53%
+	p 
+		font-size .8em
+		margin  0 .5em
+		padding 0 .5em
+		text-align justify
+		a 
+			color darken(blanco2, 80%)
+			text-decoration none
+	img 
+		cursor pointer
+		height 80px
+		margin .5em 0 0 6em
+		max-width 55px 
+
 
 .social_icons
 	height 2.6em

@@ -19,6 +19,8 @@
 	<link rel="stylesheet" href="/static/css/estilos.css">
 	<!-- Slider superior Camera -->
 	<link rel='stylesheet' id='camera-css' href='/static/css/camera.css' media='all'> 
+	<!-- Slider del Clima -->
+	<link rel="stylesheet" href="/static/css/weatherslider.css">
 </head>
 <body>
 	<!--[if lt IE 8]>
@@ -191,6 +193,107 @@
 				</span>
 			</article>
 			<!-- Mapa General -->
+			<article class="mapa-misiones">
+				<h3>Mapa General de Misiones</h3>
+				<div id="page-wrap">
+					<ul id="locations">
+						<li data-geo-lat="26.013132" data-geo-long="-111.347895">
+							<h5>Loreto</h5>
+          					<p>Misión de Loreto</p>
+          					<p class="longdesc"><strong>Historia:</strong><br>
+								Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
+          					</p>
+        				</li>
+        				<li data-geo-lat="26.299571" data-geo-long="-111.715851">
+          					<h5>Comondú</h4>
+          					<p>La Purísima</p>
+          					<p class="longdesc"><strong>Historia:</strong> 
+								La Purísima cuenta con una rica tradición gastronómica, basada principalmente en la elaboración de quesos de cabra y vaca, dulces regionales, pan artesanal de dátil y de haba, birria de cabrito, así como elaboración de vino, herencia de la presencia jesuita, que junto a nuestras artesanías nos recuerdan nuestro origen de pueblo misionero.
+          					</p>
+        				</li>
+        				<li data-geo-lat="24.80037" data-geo-long="-112.103162">
+          					<h5>Comondú</h5>
+	          				<p>San Carlos</p>
+    	      				<p class="longdesc"><strong>Historia:</strong> 
+								Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
+      				    	</p>
+       				 	</li>
+         				<li data-geo-lat="26.013132" data-geo-long="-111.347895">
+          					<h5>Loreto</h5>
+          					<p>Loreto</p>
+           					<p class="longdesc"><strong>Historia:</strong> 
+								Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
+          					</p>
+        				</li>
+					</ul>
+					<div id="map_canvas"></div>
+					<div id="more-info">
+						<h5><a href="#">Más info (click acá)</a></h5>
+						<p>Hover over location on the left.</p>
+					</div>
+					<div></div>
+				</div>
+			</article>
+			<section class="relatos">
+				<h3>Relatos</h3>
+				<p>
+					<a href="#">Comparte tu historia.</a>
+				</p>
+				<p>
+					<a href="#">¿Cómo es la vida en tu comunidad?</a>
+				</p>
+				<p>
+					<a href="#">¿Cómo era la vida en tu ciudad hace 5, 10, 20 o más años?</a>
+				</p>
+				<img src="static/img/cuento.png" alt="Relatos" title="Da click para acceder">
+			</section>
+			<section class="materiales">
+				<h3>Materiales impresos</h3>
+				<p>
+					¡Descarga nuestras guías turísticas así como la historia de nuestros Pueblos Fundacionales!
+				</p>
+				<div>
+					<a href="/libros/">
+					Acceder
+					</a>
+				</div>
+			</section>
+			<section class="clima">
+				<h3>Clima</h3>
+				<div id="weatherslider">
+					<span class="ws-location">Loreto, Baja California Sur</span>
+					<span class="ws-location">La Purísima, Baja California Sur, <br/>México</span>
+					<span class="ws-location">San Javier, Baja California Sur, <br/>México</span>
+					<span class="ws-location">San Carlos, Baja California Sur, <br/>México</span>
+					<span class="ws-location">San Isidro, Baja California Sur, <br/>México</span>
+					<span class="ws-location">Santa Rosalía,Baja California Sur, <br/>México</span>
+					<span class="ws-location">San Ignacio, Baja California Sur, <br/>México</span>
+					<span class="ws-location">San Miguel, Baja California Sur, <br/>México</span>
+					<span class="ws-location">Adolfo López Mateos, Baja California Sur, <br/>México</span>
+				</div>
+			</section>
+			<section class="multimedia">
+				<h3>Multimedia</h3>
+				<p>
+					¿Quieres conocer la música típica de nuestra región? ¿Ver vídeos referentes a nuestras misiones? 
+					<br/><br/>
+					Ven y conoce los aspectos audiovisuales de nuestros Pueblos Fundacionales.
+					<br><br>
+				</p>
+				<div>
+					<a href="#">
+						<img src="/static/img/audio.png" alt="" >
+					</a>
+					<a href="#">
+						<img src="/static/img/video.png" alt="" >
+					</a>
+					<a href="#">
+						<img src="/static/img/recetas.png" alt="" >
+					</a>
+					<br><br>
+					<a href="#">Ver todos</a>
+				</div>
+			</section>
 		</section>
 	</section>
 	<!-- jQuery -->
@@ -211,5 +314,12 @@
 			});
 		});
 	</script>
+	<!-- Mapa -->
+	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+	<script src="/static/js/mapa.js"></script>
+	<!-- Slider de Clima -->
+	<script src="/static/js/weatherslider.kreaturamedia.jquery-min.js"></script>
+	<!-- Script Clima-->
+	<script src="/static/js/example.js"></script>
 </body>
 </html>
