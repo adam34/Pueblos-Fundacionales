@@ -65,21 +65,9 @@ audio:not([controls]) {
  *    user zoom.
  */
 
-html {
-    background: #fff; /* 1 */
-    color: #000; /* 2 */
-    font-family: sans-serif; /* 3 */
-    -ms-text-size-adjust: 100%; /* 4 */
-    -webkit-text-size-adjust: 100%; /* 4 */
-}
-
 /**
  * Remove default margin.
  */
-
-body {
-    margin: 0;
-}
 
 /* ==========================================================================
    Links
