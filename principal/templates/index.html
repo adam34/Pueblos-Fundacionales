@@ -17,6 +17,8 @@
 	<link rel="stylesheet" href="/static/css/normalize.css">
 	<!-- Hoja de Estilos -->
 	<link rel="stylesheet" href="/static/css/estilos.css">
+	<!-- Slider superior Camera -->
+	<link rel='stylesheet' id='camera-css' href='/static/css/camera.css' media='all'> 
 </head>
 <body>
 	<!--[if lt IE 8]>
@@ -59,5 +61,36 @@
 			</article>
 		</section>
 	</header>
+	<div class="fluid_container">
+		<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
+			<div data-thumb="/static/images/slides/thumbs/bridge.jpg" data-src="/static/images/slides/bridge.jpg">
+			</div>
+			<div data-thumb="/static/images/slides/thumbs/leaf.jpg" data-src="/static/images/slides/leaf.jpg">
+                <div class="camera_caption fadeFromBottom">
+                    Hola Astorga <em>No uses IE</em>
+                </div>
+            </div>
+			<div data-thumb="/static/images/slides/thumbs/bridge.jpg" data-src="/static/images/slides/bridge.jpg">
+			</div>
+		</div>
+	</div>
+	<!-- jQuery -->
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<!-- jQuery Mobile -->
+	<script src='/static/scripts/jquery.mobile.customized.min.js'></script>
+	<!-- Modernizr -->
+	<script src="/static/js/modernizr.custom.17475.js"></script>
+	<!-- jQuery Easing -->
+	 <script src='/static/scripts/jquery.easing.1.3.js'></script> 
+	 <!-- Slider Camera -->
+    <script src='static/scripts/camera.min.js'></script> 
+    <script>
+		$(function(){		
+			$('#camera_wrap_1').camera({
+				height : '300px',
+				thumbnails: true,
+			});
+		});
+	</script>
 </body>
 </html>

@@ -1,13 +1,15 @@
 @font-face{font-family:'Open Sans';font-style:normal;font-weight:normal;src:url("../fonts/OpenSans-Bold-webfont.eot");src:url("../fonts/OpenSans-Bold-webfont.eot?#iefix") format("embedded-opentype"),src url("../fonts/OpenSans-Bold-webfont.ttf") format("truetype"),src url("../fonts/OpenSans-Bold-webfont.svg") format("svg"),src url("../fonts/OpenSans-Bold-webfont.woff") format("woff")}
 *{border:0;margin:0;padding:0}
 body{background:#0b0c0e url("../img/wallpaper-82838.jpg");background-repeat:no-repeat no-repeat;font-family:'Open Sans',Arial,Verdana;font-weight:normal;font-size:16px;font-weight:bold}
-header{background:#1e1f26;height:160px;margin:0 auto;width:80%}
+header,nav{margin:0 auto;width:80%}
+header{background:#1e1f26;height:160px}
 #arrow{height:15px;margin:.8em 0;width:15px}
 .buscar,.titulo{-ms-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;display:inline-block;margin:1em 1em;vertical-align:middle;width:50%}
 .buscar{padding:.7em;width:30%}
 .icono_buscar{background:#26272f url("../img/buscar.png") right no-repeat;background--ms-border-radius:1em;-moz-border-radius:1em;-webkit-border-radius:1em;-o-border-radius:1em;border-radius:1em;font-weight:bold;-ms-box-shadow:0 0 10px #eee;-moz-box-shadow:0 0 10px #eee;-o-box-shadow:0 0 10px #eee;-webkit-box-shadow:0 0 10px #eee;box-shadow:0 0 10px #eee;padding:.5em;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out;width:70%;word-spacing:1.3em;}
 .icono_buscar:hover{background:#eee;-ms-border-radius:2em;-moz-border-radius:2em;-webkit-border-radius:2em;-o-border-radius:2em;border-radius:2em;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out;width:80%}
 .conf_idiomas,.idiomas{background:#1f1f1f;-ms-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;font-family:'Open Sans',Verdana,Arial;font-size:;font-weight:bold;height:2.6em;width:100%}
+.fluid_container{margin:0 auto;width:80%}
 .idiomas,.social_icons{display:inline-block;margin:0 auto;text-align:right;vertical-align:middle;width:60%}
 .idiomas{margin:0 0 0 5em;}
 .idiomas a{color:#fff;text-decoration:none}
