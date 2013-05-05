@@ -14,13 +14,83 @@ body
 	font-weight normal
 	font-size 16px
 
-header, nav
+h2 
+	background lighten(gris, 85%)
+	bordes(.2em)
+	color saturate(azul, 30%)
+	margin 1em 1em
+	text-align center
+
+h3 
+	color saturate(amarillo, 30%)
+	background lighten(gris, 85%)
+	bordes(.2em)
+	margin .5em 
+	text-align center
+
+header, nav, .contenedor 
 	margin 0 auto
 	width 80%
 
 header 
 	background darken(gris2, 20%)
 	height 40px * 4
+
+nav
+	background darken(gris, 20%)
+	box-sizing()
+	ul 
+		text-align left
+	li.menu
+		menu azul 
+		cursor pointer 
+		display inline-block
+		font-size 1.1em
+		font-weight bold
+		margin 0 auto
+		padding .8em
+		vertical-align top
+		width 15%
+		&:first-child
+			background darken(azul, 30%)
+		&:first-child:hover 
+			background darken(azul, 40%)
+			font-size 1.2em
+			transicion()
+		&:nth-child(2)
+			background rojizo 
+		&:nth-child(2):hover 
+			background darken(rojizo, 40%)
+			font-size 1.2em
+			transicion()
+		&:nth-child(3)
+			background amarillo
+		&:nth-child(3):hover 
+			background darken(amarillo, 40%)
+			font-size 1.2em
+			transicion()
+		&:nth-child(4)
+			background cafe
+		&:nth-child(4):hover 
+			background darken(cafe, 40%)
+			font-size 1.2em
+			transicion()
+		&:nth-child(5)
+			background transparent
+			width 5%
+		&:last-child
+			background azul
+			text-align center 
+			transicion()
+		&:last-child:hover 
+			background darken(gris, 40%)
+			transicion()
+		a 
+			color darken(blanco, 10%) 
+			text-decoration none
+			text-shadow .1em .1em .2em negro
+			&:hover 
+				font-weight bold
 
 /* Identificadores */
 #arrow 
@@ -42,9 +112,44 @@ header
 	padding .7em
 	width 30%
 
+.contenedor
+	background darken(blanco, 6%)
+	height auto
+	margin .6em auto
+	sombras-caja(.1em .1em .1em blanco)
+
+.contenido 
+	font-size .7em
+	height 120px
+	margin .5em auto
+	min-width 60%
+	padding .7em
+	max-width 90%
+	a 
+		color gris2
+		font-family Verdana
+		text-decoration none
+	img 
+		float left 
+		height 80px 
+		margin-right .7em
+		width 80
+	p 
+		bordes(.4em)
+		border thin solid lighten(gris, 80%)
+		height 86px
+		margin .2em auto 
+		padding 1em 
+		text-align justify
+		&:hover 
+			sombras-caja(0 .2em .4em darken(gris2, 10%))
+	span 
+		margin .5em
+		a 
+			color rojizo
+
 .icono_buscar
 	background gris2 url('../img/buscar.png') right no-repeat
-	background-
 	bordes(1em)
 	font-weight bold
 	sombras-caja(0 0 10px blanco2)
@@ -65,6 +170,37 @@ header
 	font-size()
 	height 2.6em
 	width 100%
+
+.enlaces-utiles, .telefonos
+	border thin solid lighten(gris, 80%)
+	bordes(.5em)
+	box-sizing()
+	display inline-block
+	height 200px
+	vertical-align top
+	width 65%
+
+.enlaces-utiles
+	margin-left .3em
+	p 
+		display inline-block
+		font-size .9em
+		margin .5em auto
+		margin-left 1em
+		text-align left
+		vertical-align top
+		width 45%
+		img 
+			height 25px 
+			margin .3em .3em .3em -.3em  
+			width 25px
+		a 
+			color lighten(cafe, 10%)
+			font-weight bold 
+			margin-left 0
+			position relative 
+			top -.7em
+			text-decoration none
 
 .fluid_container 
 	margin 0 auto
@@ -98,16 +234,6 @@ header
 	a 
 		position relative 
 		top -.5em
-	img 
-		height 28px
-		width 39px
-		background-image url('../img/Sprites2.png')
-.eng 
-	img 
-		background-position 0 -65px
-.esp 
-	img 
-		background-position .4px -5px
 
 .logotipo 
 	background blanco
@@ -124,6 +250,29 @@ header
 		rotacion()
 		transicion()
 
+.menu-lateral, .principal
+	background darken(blanco, 6%)
+	color darken(blanco, 70%)
+	display inline-block
+	height 1410px
+	margin-right .2em 
+	vertical-align top
+	max-width 45%
+
+.menu-lateral
+	max-width 53.5%
+	h2 
+		color lighten(rojizo, 10%)
+
+.principal 
+	sombras-caja(.3em 0 .1em darken(blanco, 12%))
+
+.recomendaciones
+	text-align center
+	img 
+		height 120px 
+		width 90%
+
 .social_icons
 	height 2.6em
 	text-align center
@@ -138,6 +287,19 @@ header
 	height 130px
 	width 100%
 
+.telefonos 
+	font-size .9em
+	text-align center
+	width 30%
+	a 
+		color lighten(rojizo, 10%)
+		text-decoration none
+	img 
+		height 80px
+		margin-top .5em 
+		margin-bottom .5em
+		width 80px
+			
 .titulo 
 	font-family 'Open Sans', Arial, Verdana 
 	font-size 2em 
