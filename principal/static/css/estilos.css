@@ -56,7 +56,7 @@ nav li.menu a:hover{font-weight:bold}
 .acceso p a{color:#a70325;text-decoration:none}
 .formulario{color:#666;text-align:center;width:60%;}
 .formulario a{color:#a70325;font-size:.8em;font-weight:bold;float:right;text-decoration:none}
-.formulario input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);color:#fff;height:30px;width:90px}
+.formulario input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);color:#fff;height:30px;width:90px}
 .formulario input[type="text"],.formulario input[type="password"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;width:230px}
 .formulario input[type="text"]{margin-left:3em}
 .formulario label{margin-left:1em}
@@ -137,7 +137,7 @@ nav li.menu a:hover{font-weight:bold}
 .superior{background:transparent;height:130px;width:100%}
 .suscribete{margin-left:1.3em;text-align:center;width:47%;}
 .suscribete input[type="text"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#f0f0f0;margin-top:.5em;height:30px;width:230px}
-.suscribete input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));height:30px;color:#fff;width:90px}
+.suscribete input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);height:30px;color:#fff;width:90px}
 .telefonos{font-size:.9em;font-weight:bold;text-align:center;width:30%;}
 .telefonos a{color:#c8042c;text-decoration:none}
 .telefonos img{height:80px;margin-top:.5em;margin-bottom:.5em;width:80px}
@@ -228,7 +228,7 @@ header,nav,.contenedor{width:95%}
 }@media screen and (max-width: 600px){aside article{margin-left:0}
 footer{background:#0ff}
 header,nav,.contenedor{width:100%}
-nav li.menu{font-size:1em;font-weight:bold;padding:.7em 1em .7em 1.2em;width:17%;}
+nav li.menu{font-size:1em;font-weight:bold;padding:.7em 1em .7em 1.2em;width:16%;}
 nav li.menu:last-child{margin-left:20%;margin-top:.2em;width:40%}
 #map_canvas{width:36%}
 #more-info{height:auto;width:28%}
@@ -250,42 +250,47 @@ aside,.relatos,.materiales,.suscribete{margin:.3em auto .3em auto;width:100%}
 aside,.suscribete{height:150px}
 nav li.menu{text-align:center;width:91%;}
 nav li.menu:last-child{margin-left:5%;margin-top:0;width:80%}
-#map_canvas{width:55%}
+#map_canvas{width:50%}
 #more-info{width:95%}
 .accesibilidad{font-size:.9em;font-weight:bold;height:230px}
 .calendario-eventos{width:95%}
 .calendario-notas{height:140px;width:95%}
 .clima,.multimedia{margin:.3em auto .3em auto;width:100%}
-.enlaces-utiles{font-size:1em;font-weight:bold;height:220px;width:95%;}
+.enlaces-utiles{font-size:1em;font-weight:bold;height:220px;width:100%;}
 .enlaces-utiles p{max-width:47%;}
 .enlaces-utiles p img{margin:.2em}
-.esp,.eng{max-width:44%;width:43%}
+.esp,.eng{max-width:44%;margin-left:-.1em;width:44%}
 #twitter,#facebook{font-size:.6em;font-weight:bold}
 .acceso{height:230px;}
 .acceso p{font-size:.7em;font-weight:bold}
 .formulario input[type="password"],.formulario input[type="text"]{width:170px}
 .formulario input[type="button"]{margin-left:30%}
 .modalDialog > div{width:200px}
-.idiomas{font-size:.8em;font-weight:bold;margin:0;width:65%}
+.idiomas{font-size:.7em;font-weight:bold;margin:0;width:65%}
 .logotipo{margin-left:1em;height:40px;width:40px}
 .mapa-misiones{height:580px;margin-bottom:.5em}
 .menu-lateral{margin-top:3em}
 .multimedia{height:300px}
-.social_icons{width:32%;}
-.social_icons img{height:30px;width:30px}
+.social_icons{width:30%;}
+.social_icons img{height:26px;width:26px}
 .telefonos{width:95%}
 .titulo{font-size:1.5em;font-weight:bold;margin-top:1.6em;width:60%}
 }@media screen and (max-width: 320px){footer{background:#ff0}
 .accesibilidad{height:250px}
+.buscar{margin-top:-.5em}
+.calendario-eventos input[type="text"]{border:thin solid #fff;position:relative}
 .conf_idiomas{width:100%}
 .enlaces-utiles,.telefonos{width:100%;}
 .enlaces-utiles h3,.telefonos h3{font-size:1em;font-weight:bold}
-.idiomas{font-size:.7em;font-weight:bold}
+.enlaces-utiles{font-size:.9em;font-weight:bold}
+.eventos_div{position:relative;top:-10px}
+.idiomas{font-size:.6em;font-weight:bold}
 .mapa-misiones{display:none}
 .menu-lateral{margin-top:4em}
 .proximos-eventos article{height:50px;}
 .proximos-eventos article p{font-size:.8em;font-weight:bold;margin-right:1.6em;height:20px;width:20px}
 .proximos-eventos article a{font-size:.9em;font-weight:bold}
 .social_icons img{height:28px;width:28px}
+.titulo{font-size:1.3em;font-weight:bold;margin-top:1.6em}
 .wcont{width:100%}
 }
