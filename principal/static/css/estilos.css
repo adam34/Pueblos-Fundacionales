@@ -6,19 +6,20 @@ aside h3{color:#25799d}
 body{background:#0b0c0e url("../img/wallpaper-82838.jpg");background-repeat:no-repeat no-repeat;font-family:'Open Sans',Arial,Verdana;font-weight:normal;font-size:16px;font-weight:bold}
 h2{background:#e0e0e0;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#0f6990;margin:1em 1em;text-align:center}
 h3{color:#eb8d00;background:#e0e0e0;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;margin:.5em;text-align:center}
+footer{background:#141414;margin:0 auto;width:100%}
 header,nav,.contenedor{margin:0 auto;width:80%}
-header{background:#1e1f26;height:160px}
+header{background:transparent;height:160px}
 nav{background:#292929;-ms-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;}
 nav ul{text-align:left}
 nav li.menu{menu:#1e6381;cursor:pointer;display:inline-block;font-size:1.1em;font-weight:bold;font-weight:bold;margin:0 auto;padding:.8em;vertical-align:top;width:15%;}
 nav li.menu:first-child{background:#15455a}
-nav li.menu:first-child:hover{background:#123b4d;font-size:1.2em;font-weight:bold;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
+nav li.menu:first-child:hover{background:#123b4d;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
 nav li.menu:nth-child(2){background:#a70325}
-nav li.menu:nth-child(2):hover{background:#640216;font-size:1.2em;font-weight:bold;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
+nav li.menu:nth-child(2):hover{background:#640216;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
 nav li.menu:nth-child(3){background:#ce8610}
-nav li.menu:nth-child(3):hover{background:#7c500a;font-size:1.2em;font-weight:bold;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
+nav li.menu:nth-child(3):hover{background:#7c500a;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
 nav li.menu:nth-child(4){background:#4c2506}
-nav li.menu:nth-child(4):hover{background:#2e1604;font-size:1.2em;font-weight:bold;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
+nav li.menu:nth-child(4):hover{background:#2e1604;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
 nav li.menu:nth-child(5){background:transparent;width:5%}
 nav li.menu:last-child{background:#1e6381;text-align:center;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
 nav li.menu:last-child:hover{background:#1f1f1f;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
@@ -71,6 +72,7 @@ nav li.menu a:hover{font-weight:bold}
 .eventos{height:300px;margin:0 auto;width:95%;}
 .eventos input[type="text"]{background:#f0f0f0;color:#f0f0f0;width:230px}
 .fluid_container{margin:0 auto;width:80%}
+.footer_container{margin:0 auto;width:80%}
 .idiomas,.social_icons{display:inline-block;margin:0 auto;text-align:right;vertical-align:middle;width:60%}
 .idiomas{margin:0 0 0 5em;}
 .idiomas a{color:#fff;text-decoration:none}
@@ -120,3 +122,7 @@ nav li.menu a:hover{font-weight:bold}
 .telefonos a{color:#c8042c;text-decoration:none}
 .telefonos img{height:80px;margin-top:.5em;margin-bottom:.5em;width:80px}
 .titulo{font-family:'Open Sans',Arial,Verdana;font-size:2em;font-weight:bold;text-shadow:0 .1em .2em #1e6381}
+.wcont{color:#ccc;display:inline-block;text-align:center;vertical-align:top;width:24%;}
+.wcont ul{margin-top:.5em;margin-bottom:.5em}
+.wcont li{list-style:none;}
+.wcont li a{color:#808080;text-decoration:none}

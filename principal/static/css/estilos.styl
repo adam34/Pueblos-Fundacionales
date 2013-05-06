@@ -44,12 +44,18 @@ h3
 	margin .5em 
 	text-align center
 
+footer 
+	background darken(gris, 60%)
+	margin 0 auto
+	width 100%
+
 header, nav, .contenedor 
 	margin 0 auto
 	width 80%
 
 header 
-	background darken(gris2, 20%)
+	//background lighten(blanco, 20%) 
+	background transparent
 	height 40px * 4
 
 nav
@@ -71,25 +77,21 @@ nav
 			background darken(azul, 30%)
 		&:first-child:hover 
 			background darken(azul, 40%)
-			font-size 1.2em
 			transicion()
 		&:nth-child(2)
 			background rojizo 
 		&:nth-child(2):hover 
 			background darken(rojizo, 40%)
-			font-size 1.2em
 			transicion()
 		&:nth-child(3)
 			background amarillo
 		&:nth-child(3):hover 
 			background darken(amarillo, 40%)
-			font-size 1.2em
 			transicion()
 		&:nth-child(4)
 			background cafe
 		&:nth-child(4):hover 
 			background darken(cafe, 40%)
-			font-size 1.2em
 			transicion()
 		&:nth-child(5)
 			background transparent
@@ -334,6 +336,10 @@ nav
 	margin 0 auto
 	width 80%
 
+.footer_container
+	margin 0 auto
+	width 80%
+
 .idiomas, .social_icons 
 	display inline-block
 	margin 0 auto
@@ -554,3 +560,18 @@ nav
 	font-family 'Open Sans', Arial, Verdana 
 	font-size 2em 
 	text-shadow 0 .1em .2em azul
+
+.wcont
+	color darken(blanco, 20%)
+	display inline-block
+	text-align center
+	vertical-align top
+	width 24%
+	ul 
+		margin-top .5em
+		margin-bottom .5em
+	li 
+		list-style none
+		a 
+			color darken(blanco, 50%)
+			text-decoration none
