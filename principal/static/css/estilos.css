@@ -37,6 +37,10 @@ nav li.menu a:hover{font-weight:bold}
 #more-info a{color:#1e6381;text-decoration:none}
 #page-wrap{margin:0 auto;max-width:95%}
 #weatherslider{margin-top:1.4em;height:310px;width:88%}
+.accesibilidad{border:thin solid #d6d6d6;height:220px;margin:.5em auto;}
+.accesibilidad a{color:#25799d;text-decoration:none}
+.accesibilidad img{float:left;margin-left:.5em;margin-right:.5em}
+.accesibilidad p{font-size:.8em;font-weight:bold;margin:.3em 3em;text-align:justify}
 .buscar,.titulo{-ms-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;display:inline-block;margin:1em 1em;vertical-align:middle;width:50%}
 .buscar{padding:.7em;width:30%}
 .calendario-eventos,.calendario-notas{display:inline-block;height:280px;vertical-align:top;width:55%}
@@ -75,7 +79,7 @@ nav li.menu a:hover{font-weight:bold}
 .longdesc{display:none}
 .mapa-misiones{border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;height:430px;margin:.3em auto 2.5em auto;}
 .mapa-misiones h3{color:#88420b}
-.menu-lateral,.principal{background:#f0f0f0;color:#4d4d4d;display:inline-block;height:1410px;margin-right:.2em;vertical-align:top;max-width:45%}
+.menu-lateral,.principal{background:#f0f0f0;color:#4d4d4d;display:inline-block;height:1810px;margin-right:.2em;vertical-align:top;max-width:45%}
 .menu-lateral{max-width:53.5%;}
 .menu-lateral h2{color:#c8042c}
 .multimedia{width:41%;}
