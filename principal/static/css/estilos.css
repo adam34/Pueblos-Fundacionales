@@ -85,7 +85,7 @@ nav li.menu a:hover{font-weight:bold}
 .enlaces-utiles p img{height:25px;margin:.3em .3em .3em -.3em;width:25px}
 .enlaces-utiles p a{color:#743809;font-weight:bold;margin-left:0;position:relative;top:-.7em;text-decoration:none}
 .eventos{height:300px;margin:0 auto;width:95%;}
-.eventos input[type="text"]{background:#f0f0f0;color:#333;width:230px}
+.eventos input[type="text"]{background:#f0f0f0;color:#f0f0f0;width:230px}
 .fluid_container{margin:0 auto;width:80%}
 .footer_container{margin:0 auto;width:80%}
 .idiomas,.social_icons{display:inline-block;margin:0 auto;text-align:right;vertical-align:middle;width:60%}
@@ -163,5 +163,65 @@ nav li.menu:nth-child(5){width:1%}
 .proximos-eventos span a{font-size:.9em;font-weight:bold}
 .suscribete input[type="text"]{width:210px}
 }@media screen and (max-width: 1024px){footer{background:#008000}
-}@media screen and (max-width: 768px){footer{background:#1e6381}
+aside{margin-left:1em;height:130px;text-align:center;width:90%;}
+aside article{margin:0 .7em}
+h2,h3{font-size:1.1em;font-weight:bold}
+nav li.menu{padding:.8em .5em .8em .5em;}
+nav li.menu:nth-child(5){width:0%}
+#locations li{font-size:.9em;font-weight:bold;height:65px;max-width:120px}
+#map_canvas{max-width:190px}
+#more-info{font-size:.8em;font-weight:bold;height:160px;margin-bottom:3em;width:95%}
+.accesibilidad{height:260px}
+.buscar{font-size:.9em;font-weight:bold;padding:.5em;width:30%}
+.calendario-notas{height:140px;width:95%;}
+.calendario-notas p{font-size:.8em;font-weight:bold;margin:0 .4em;text-align:justify}
+.calendario-eventos{width:95%}
+.clima{height:390px;width:90%}
+.menu-lateral,.principal{height:2480px}
+.enlaces-utiles{height:210px;margin-left:.2em;width:95%;}
+.enlaces-utiles p{font-size:.8em;font-weight:bold;margin:.3em auto;margin-left:1em;max-width:45%;}
+.enlaces-utiles p img{width:30px}
+.esp,.eng{max-width:25%;width:23%}
+.eventos{height:300px;margin:0 auto;text-align:center;}
+.eventos input[type="text"]{width:250px}
+.mapa-misiones{height:580px}
+.materiales{height:150px;margin-left:1em;width:90%}
+.multimedia{height:280px;margin-left:1.3em;width:90%;}
+.multimedia p{font-size:.9em;font-weight:bold}
+.proximos-eventos article{margin:.1em .6em;}
+.proximos-eventos article a{font-size:.9em;font-weight:bold;margin:0}
+.proximos-eventos span{margin-left:4em}
+.relatos{height:220px;margin-bottom:2.3em;width:90%}
+.suscribete{width:90%;margin-bottom:.5em;}
+.suscribete input[type="text"]{width:270px}
+.telefonos{height:180px;margin:.3em;width:95%}
+.titulo{font-size:1.5em;font-weight:bold;width:45%}
+.wcont{font-size:.9em;font-weight:bold}
+}@media screen and (max-width: 768px){aside,.suscribete{width:45%}
+aside{margin-left:.2em;width:47%}
+.suscribete input[type="text"]{width:200px}
+footer{background:#1e6381}
+header,nav,.contenedor{width:95%}
+#more-info{height:auto;width:33%}
+.accesibilidad{height:190px;margin-bottom:.4em}
+.buscar{width:30%}
+.calendario-eventos,.calendario-notas{display:inline-block;vertical-align:top;width:55%}
+.calendario-notas{width:40%}
+.clima,.multimedia{margin-top:-2em;height:380px;width:52%}
+.enlaces-utiles,.telefonos{display:inline-block;height:200px;vertical-align:top;width:65%}
+.telefonos{-ms-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;width:30%}
+.esp,.eng{max-width:30%;width:29.5%}
+.eventos{height:300px;}
+.eventos input[type="text"]{margin-left:2em;width:220px}
+.mapa-misiones{width:95%;height:430px}
+.materiales,.relatos{height:200px;width:52%}
+.materiales{margin-left:.2em;width:38%}
+.menu-lateral{height:auto;margin:0 auto;max-width:100%}
+.multimedia{margin-left:.2em;width:38%}
+.principal{height:auto;margin-bottom:.8em;max-width:100%;-ms-box-shadow:0 0 0 #fff;-moz-box-shadow:0 0 0 #fff;-o-box-shadow:0 0 0 #fff;-webkit-box-shadow:0 0 0 #fff;box-shadow:0 0 0 #fff}
+.recomendaciones img{height:150px;width:90%}
+.titulo{font-size:1.2em;font-weight:bold;width:40%}
+}@media screen and (max-width: 600px){footer{background:#0ff}
+}@media screen and (max-width: 480px){footer{background:#f0f}
+}@media screen and (max-width: 320px){footer{background:#ff0}
 }

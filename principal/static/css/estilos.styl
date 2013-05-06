@@ -401,7 +401,7 @@ nav
 	width 95%
 	input[type="text"]
 		background darken(blanco, 6%)
-		color darken(blanco, 80%)
+		color darken(blanco, 6%)
 		width 230px
 
 .fluid_container 
@@ -739,8 +739,200 @@ nav
 @media screen and (max-width: 1024px)
 	footer 
 		background green
+	aside 
+		margin-left 1em
+		height 130px
+		text-align center
+		width 90%
+		article
+			margin 0 .7em
+	h2, h3 
+		font-size 1.1em
+	nav 
+		li.menu
+			padding .8em .5em .8em .5em
+			&:nth-child(5)
+				width 0%
+	#locations 
+		li 
+			font-size .9em
+			height 65px
+			max-width 120px
+	#map_canvas 
+		max-width 190px 
+
+	#more-info 
+		font-size .8em
+		height 160px
+		margin-bottom 3em
+		width 95% 
+
+	.accesibilidad
+		height 260px
+	.buscar 
+		font-size .9em
+		padding .5em
+		width 30%
+	.calendario-notas
+		height 140px
+		width 95%
+		p
+			font-size .8em
+			margin 0 .4em
+			text-align justify	
+	.calendario-eventos
+		width 95%
+	.clima 
+		height 390px
+		width 90%	
+	.menu-lateral, .principal
+		height 2480px
+
+	.enlaces-utiles
+		height 210px
+		margin-left .2em
+		width 95%
+		p 
+			font-size .8em
+			margin .3em auto
+			margin-left 1em
+			max-width 45%
+			img 
+				width 30px
+	.esp, .eng
+		max-width 25%
+		width 23%
+	.eventos 
+		height 300px
+		margin 0 auto
+		text-align center
+		input[type="text"]
+			width 250px
+	.mapa-misiones 
+		height 580px
+	.materiales
+		height 150px
+		margin-left 1em
+		width 90%
+
+	.multimedia
+		height 280px
+		margin-left 1.3em
+		width 90%	
+		p 
+			font-size .9em	
 	
+	.proximos-eventos
+		article
+			margin .1em .6em
+			a 
+				font-size .9em
+				margin 0
+		span 
+			margin-left 4em
+	.relatos 
+		height 220px
+		margin-bottom 2.3em
+		width 90%
+	.suscribete 
+		width 90%
+		margin-bottom .5em
+		input[type="text"]
+			width 270px
+	.telefonos
+		height 180px
+		margin .3em 
+		width 95%
+	.titulo 
+		font-size 1.5em
+		width 45%
+	.wcont
+		font-size .9em
 
 @media screen and (max-width: 768px)
+	aside, .suscribete 
+		width 45%
+	aside
+		margin-left .2em
+		width 47%
+	.suscribete 
+		input[type="text"]
+			width 200px
 	footer 
 		background azul
+	header, nav, .contenedor 
+		width 95%
+	#more-info 
+		height auto
+		width 33%
+	.accesibilidad
+		height 190px
+		margin-bottom .4em
+	.buscar 
+		width 30%
+	.calendario-eventos, .calendario-notas 
+		display inline-block
+		vertical-align top 
+		width 55%
+	.calendario-notas
+		width 40%
+	.clima, .multimedia 
+		margin-top -2em
+		height 380px
+		width 52%
+	.enlaces-utiles, .telefonos
+		display inline-block
+		height 200px
+		vertical-align top 
+		width 65%
+	.telefonos
+		box-sizing()
+		width 30%
+	.esp, .eng
+		max-width 30%
+		width 29.5%
+	.eventos
+		height 300px
+		input[type="text"]
+			margin-left 2em
+			width 220px
+	.mapa-misiones 
+		width 95%
+		height 430px
+	.materiales, .relatos
+		height 200px
+		width 52%
+	.materiales
+		margin-left .2em
+		width 38%
+	.menu-lateral
+		height auto
+		margin 0 auto
+		max-width 100%
+	.multimedia 
+		margin-left .2em
+		width 38%
+	.principal 
+		height auto
+		margin-bottom .8em
+		max-width 100%
+		sombras-caja(0, 0, 0, blanco)
+	.recomendaciones
+		img 
+			height 150px 
+			width 90%
+	.titulo 
+		font-size 1.2em
+		width 40%
+
+@media screen and (max-width: 600px)
+	footer 
+		background cyan
+
+@media screen and (max-width: 480px)
+	footer 
+		background magenta 
+
+@media screen and (max-width: 320px)
+	footer 
+		background yellow 
