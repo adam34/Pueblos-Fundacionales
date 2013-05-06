@@ -197,13 +197,15 @@ nav li.menu:nth-child(5){width:0%}
 .telefonos{height:180px;margin:.3em;width:95%}
 .titulo{font-size:1.5em;font-weight:bold;width:45%}
 .wcont{font-size:.9em;font-weight:bold}
-}@media screen and (max-width: 768px){aside,.suscribete{width:45%}
+}@media screen and (max-width: 768px){aside,.suscribete{height:180px;width:45%}
 aside{margin-left:.2em;width:47%}
 .suscribete input[type="text"]{width:200px}
 footer{background:#1e6381}
 header,nav,.contenedor{width:95%}
 #more-info{height:auto;width:33%}
 .accesibilidad{height:190px;margin-bottom:.4em}
+.acceso,.formulario{margin:.2em auto;width:90%}
+.acceso{height:200px}
 .buscar{width:30%}
 .calendario-eventos,.calendario-notas{display:inline-block;vertical-align:top;width:55%}
 .calendario-notas{width:40%}
@@ -217,11 +219,73 @@ header,nav,.contenedor{width:95%}
 .materiales,.relatos{height:200px;width:52%}
 .materiales{margin-left:.2em;width:38%}
 .menu-lateral{height:auto;margin:0 auto;max-width:100%}
+.modalDialog{margin:0 auto}
+.modalDialog > div{width:400px;height:500px}
 .multimedia{margin-left:.2em;width:38%}
 .principal{height:auto;margin-bottom:.8em;max-width:100%;-ms-box-shadow:0 0 0 #fff;-moz-box-shadow:0 0 0 #fff;-o-box-shadow:0 0 0 #fff;-webkit-box-shadow:0 0 0 #fff;box-shadow:0 0 0 #fff}
 .recomendaciones img{height:150px;width:90%}
 .titulo{font-size:1.2em;font-weight:bold;width:40%}
-}@media screen and (max-width: 600px){footer{background:#0ff}
+}@media screen and (max-width: 600px){aside article{margin-left:0}
+footer{background:#0ff}
+header,nav,.contenedor{width:100%}
+nav li.menu{font-size:1em;font-weight:bold;padding:.7em 1em .7em 1.2em;width:17%;}
+nav li.menu:last-child{margin-left:20%;margin-top:.2em;width:40%}
+#map_canvas{width:36%}
+#more-info{height:auto;width:28%}
+.buscar{display:block;margin-left:3em;margin-bottom:2em;width:100%}
+.esp,.eng{max-width:36%;width:36%}
+.formulario{font-size:.9em;font-weight:bold;height:250px;text-align:left;}
+.formulario input[type="password"],.formulario input[type="text"]{margin:0 auto;margin-left:5%;width:300px}
+.formulario input[type="button"]{margin-left:50%}
+.formulario label{margin-right:50%}
+.fluid_container{margin-top:2em}
+.mapa-misiones{width:100%}
+.modalDialog{margin:0 auto}
+.modalDialog > div{width:360px;height:500px}
+.social_icons{width:25%}
+.titulo{font-size:1.4em;font-weight:bold;margin-top:1.6em;width:60%}
+.wcont{width:45%}
 }@media screen and (max-width: 480px){footer{background:#f0f}
+aside,.relatos,.materiales,.suscribete{margin:.3em auto .3em auto;width:100%}
+aside,.suscribete{height:150px}
+nav li.menu{text-align:center;width:91%;}
+nav li.menu:last-child{margin-left:5%;margin-top:0;width:80%}
+#map_canvas{width:55%}
+#more-info{width:95%}
+.accesibilidad{font-size:.9em;font-weight:bold;height:230px}
+.calendario-eventos{width:95%}
+.calendario-notas{height:140px;width:95%}
+.clima,.multimedia{margin:.3em auto .3em auto;width:100%}
+.enlaces-utiles{font-size:1em;font-weight:bold;height:220px;width:95%;}
+.enlaces-utiles p{max-width:47%;}
+.enlaces-utiles p img{margin:.2em}
+.esp,.eng{max-width:44%;width:43%}
+#twitter,#facebook{font-size:.6em;font-weight:bold}
+.acceso{height:230px;}
+.acceso p{font-size:.7em;font-weight:bold}
+.formulario input[type="password"],.formulario input[type="text"]{width:170px}
+.formulario input[type="button"]{margin-left:30%}
+.modalDialog > div{width:200px}
+.idiomas{font-size:.8em;font-weight:bold;margin:0;width:65%}
+.logotipo{margin-left:1em;height:40px;width:40px}
+.mapa-misiones{height:580px;margin-bottom:.5em}
+.menu-lateral{margin-top:3em}
+.multimedia{height:300px}
+.social_icons{width:32%;}
+.social_icons img{height:30px;width:30px}
+.telefonos{width:95%}
+.titulo{font-size:1.5em;font-weight:bold;margin-top:1.6em;width:60%}
 }@media screen and (max-width: 320px){footer{background:#ff0}
+.accesibilidad{height:250px}
+.conf_idiomas{width:100%}
+.enlaces-utiles,.telefonos{width:100%;}
+.enlaces-utiles h3,.telefonos h3{font-size:1em;font-weight:bold}
+.idiomas{font-size:.7em;font-weight:bold}
+.mapa-misiones{display:none}
+.menu-lateral{margin-top:4em}
+.proximos-eventos article{height:50px;}
+.proximos-eventos article p{font-size:.8em;font-weight:bold;margin-right:1.6em;height:20px;width:20px}
+.proximos-eventos article a{font-size:.9em;font-weight:bold}
+.social_icons img{height:28px;width:28px}
+.wcont{width:100%}
 }
