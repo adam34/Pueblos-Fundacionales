@@ -21,6 +21,8 @@
 	<link rel='stylesheet' id='camera-css' href='/static/css/camera.css' media='all'> 
 	<!-- Slider del Clima -->
 	<link rel="stylesheet" href="/static/css/weatherslider.css">
+		<!-- CSS de Eventos -->
+	<link rel="stylesheet" href="/static/css/glDatePicker.default.css">
 </head>
 <body>
 	<!--[if lt IE 8]>
@@ -141,6 +143,40 @@
 				</a>
 			</section>
 			<!-- Eventos -->
+			<h2>Eventos</h2>
+			<section class="eventos">
+				<div class="calendario-eventos">
+					<input type="text" id="eventos" gldp-id="gldp-3023006963" class="gldp-el">
+    				<div gldp-el="mydate" style="width:300px; height:300px; position:relative; top:70px; left:100px;">
+    				</div>
+				</div>
+				<div class="calendario-notas">
+					<h3>Eventos de la semana</h3>
+					<p class="noticias">Selecciona alguna de las fechas en el Calendario.</p>
+				</div>
+				<section class="proximos-eventos">
+					<h4>Próximos Eventos</h4>
+					<article>
+						<p>14</p>
+						<a href="#">
+							Fiestas tradicionales de La Purísima.
+						</a>
+					</article>
+					<article>
+						<p>16</p>
+						<a href="#">
+							Fiestas tradicionales de Loreto.
+						</a>
+					</article>
+					<article>
+						<p>20</p>
+						<a href="#">
+							Fiestas tradicionales de San Ignacio.
+						</a>
+					</article>
+					<span><a href="#">Ver todos los próximos eventos</a></span>
+				</section>
+			</section>
 		</section>
 		<!-- Fin de Sección Principal -->
 		<section class="menu-lateral">
@@ -318,7 +354,10 @@
 	<script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script src="/static/js/mapa.js"></script>
 	<!-- Slider de Clima -->
-	<script src="/static/js/weatherslider.kreaturamedia.jquery-min.js"></script>
+	<script src="/static/js/weatherslider.kreaturamedia.jquery.js"></script>
+	<!-- Eventos -->
+	<script src="/static/js/glDatePicker.js"></script>
+	<script src="/static/js/eventos.js"></script>
 	<!-- Script Clima-->
 	<script src="/static/js/example.js"></script>
 </body>

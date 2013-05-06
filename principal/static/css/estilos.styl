@@ -173,6 +173,19 @@ nav
 	padding .7em
 	width 30%
 
+.calendario-eventos, .calendario-notas 
+	display inline-block
+	height 280px 
+	vertical-align top 
+	width 55%
+
+.calendario-notas
+	width 40%
+	p
+		font-size .8em
+		margin 0 .4em
+		text-align justify
+
 .clima, .multimedia
 	border thin solid lighten(gris, 80%)
 	display inline-block 
@@ -276,6 +289,15 @@ nav
 			top -.7em
 			text-decoration none
 
+.eventos 
+	height 300px 
+	margin 0 auto 
+	width 95%
+	input[type="text"]
+		background darken(blanco, 6%)
+		color darken(blanco, 6%)
+		width 230px
+
 .fluid_container 
 	margin 0 auto
 	width 80%
@@ -328,8 +350,10 @@ nav
 	display none
 
 .mapa-misiones 
-	height 480px
-	margin .3em auto
+	border thin solid lighten(gris, 80%)
+	bordes(.2em)
+	height 430px
+	margin .3em auto 2.5em auto
 	h3 
 		color lighten(cafe, 15%)
 
@@ -365,6 +389,38 @@ nav
 
 .principal 
 	sombras-caja(.3em 0 .1em darken(blanco, 12%))
+
+.proximos-eventos
+	border thin solid lighten(gris, 80%)
+	article 
+		box-sizing()
+		font-size .8em
+		height 50px
+		margin .2em 1.2em
+		sombras-caja(0 0 .5em lighten(gris2, 80%))
+		text-align justify
+		p, a 
+			display inline-block
+			vertical-align top
+		p 
+			background azul 
+			color blanco
+			cursor pointer
+			font-size 1.5em
+			height 30px 
+			padding .5em
+			width 30px
+		a 
+			color azul
+			margin-left .5em
+			text-decoration none
+	span 
+		text-align center
+		margin-top .5em
+		margin-left 10em
+		a 
+			color rojizo
+			text-decoration none
 
 .recomendaciones
 	text-align center
