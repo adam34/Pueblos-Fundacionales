@@ -30,7 +30,15 @@ from principal.models import *
 # 	filter_horizontal = ('ARCHIVOS',)
 # 	raw_id_fields = ('USUARIO',)
 
-#admin.site.register(idioma)
+class IdiomaAdmin(admin.ModelAdmin):
+	class Media:
+		js = ('admin/js/fns.js',)
+		css = {}
+	list_per_page = 5
+	search_fields = ('NOMBRE',)
+	ordering = ['NOMBRE',]
+
+admin.site.register(idioma,IdiomaAdmin)
 # admin.site.register(archivo,ArchivoAdmin)
 # admin.site.register(galeria,GaleriaAdmin)
 # admin.site.register(pueblo)
