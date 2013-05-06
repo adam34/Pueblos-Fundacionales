@@ -40,11 +40,26 @@ nav li.menu a:hover{font-weight:bold}
 #more-info{background:#ddd;color:#0f3141;float:right;font-size:.8em;font-weight:bold;font-weight:normal;padding:.3em;width:25%;}
 #more-info a{color:#1e6381;text-decoration:none}
 #page-wrap{margin:0 auto;max-width:95%}
+#twitter,#facebook{background:#1e62a9;-ms-border-radius:.5em;-moz-border-radius:.5em;-webkit-border-radius:.5em;-o-border-radius:.5em;border-radius:.5em;cursor:pointer;height:40px;width:85%}
+#twitter{background:#1ec4fe}
 #weatherslider{margin-top:1.4em;height:310px;width:88%}
 .accesibilidad{border:thin solid #d6d6d6;height:220px;margin:.5em auto;}
 .accesibilidad a{color:#25799d;text-decoration:none}
 .accesibilidad img{float:left;margin-left:.5em;margin-right:.5em}
 .accesibilidad p{font-size:.8em;font-weight:bold;margin:.3em 3em;text-align:justify}
+.acceso,.formulario{border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;display:inline-block;height:280px;padding-right:10px;vertical-align:top;width:35%}
+.acceso{font-size:.9em;font-weight:bold;}
+.acceso h2{font-size:1.3em;font-weight:bold}
+.acceso div{color:#fff;margin:.5em auto;}
+.acceso div img{margin-left:.5em;margin-top:.3em;vertical-align:middle}
+.acceso p{margin:1em 1.5em;font-size:.8em;font-weight:bold;}
+.acceso p a{color:#a70325;text-decoration:none}
+.formulario{color:#666;text-align:center;width:60%;}
+.formulario a{color:#a70325;font-size:.8em;font-weight:bold;float:right;text-decoration:none}
+.formulario input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);color:#fff;height:30px;width:90px}
+.formulario input[type="text"],.formulario input[type="password"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;width:230px}
+.formulario input[type="text"]{margin-left:3em}
+.formulario label{margin-left:1em}
 .buscar,.titulo{-ms-box-sizing:border-box;-moz-box-sizing:border-box;-o-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box;color:#fff;display:inline-block;margin:1em 1em;vertical-align:middle;width:50%}
 .buscar{padding:.7em;width:30%}
 .calendario-eventos,.calendario-notas{display:inline-block;height:280px;vertical-align:top;width:55%}
@@ -70,7 +85,7 @@ nav li.menu a:hover{font-weight:bold}
 .enlaces-utiles p img{height:25px;margin:.3em .3em .3em -.3em;width:25px}
 .enlaces-utiles p a{color:#743809;font-weight:bold;margin-left:0;position:relative;top:-.7em;text-decoration:none}
 .eventos{height:300px;margin:0 auto;width:95%;}
-.eventos input[type="text"]{background:#f0f0f0;color:#f0f0f0;width:230px}
+.eventos input[type="text"]{background:#f0f0f0;color:#333;width:230px}
 .fluid_container{margin:0 auto;width:80%}
 .footer_container{margin:0 auto;width:80%}
 .idiomas,.social_icons{display:inline-block;margin:0 auto;text-align:right;vertical-align:middle;width:60%}
@@ -87,6 +102,11 @@ nav li.menu a:hover{font-weight:bold}
 .menu-lateral,.principal{background:#f0f0f0;color:#4d4d4d;display:inline-block;height:1640px;margin-right:.2em;vertical-align:top;max-width:45%}
 .menu-lateral{max-width:53.5%;}
 .menu-lateral h2{color:#c8042c}
+.modalDialog{position:fixed;font-family:Arial,Helvetica,sans-serif;top:0;right:-100;bottom:0;background:rgba(0,0,0,0.8);z-index:99999;opacity:0;-webkit-transition:opacity 400ms ease-in;-moz-transition:opacity 400ms ease-in;transition:opacity 400ms ease-in;pointer-events:none;width:100%;}
+.modalDialog:target{opacity:1;pointer-events:auto}
+.modalDialog > div{width:700px;position:relative;margin:10% auto;padding:5px 20px 13px 20px;height:280px;-ms-border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;border-radius:10px;background:#fff}
+.close{background:#606061;color:#fff;line-height:25px;position:absolute;right:-12px;text-align:center;top:-10px;width:24px;text-decoration:none;font-weight:bold;-ms-border-radius:.9em;-moz-border-radius:.9em;-webkit-border-radius:.9em;-o-border-radius:.9em;border-radius:.9em;-ms-box-shadow:1px 1px 3px #000;-moz-box-shadow:1px 1px 3px #000;-o-box-shadow:1px 1px 3px #000;-webkit-box-shadow:1px 1px 3px #000;box-shadow:1px 1px 3px #000;}
+.close:hover{background:#a70325}
 .multimedia{width:41%;}
 .multimedia p{font-size:.8em;font-weight:bold;margin:.2em 1.4em;text-align:justify}
 .multimedia div{text-align:center;}

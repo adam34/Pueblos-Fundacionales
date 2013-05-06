@@ -173,6 +173,16 @@ nav
 	margin: 0 auto
 	max-width 95% 
 
+#twitter, #facebook 
+	background #1E62A9
+	bordes(.5em)
+	cursor pointer
+	height 40px
+	width 85% 
+
+#twitter 
+	background #1EC4FE
+
 #weatherslider 
 	margin-top 1.4em
 	height 310px
@@ -194,6 +204,68 @@ nav
 		font-size .8em
 		margin .3em 3em
 		text-align justify
+
+
+.acceso, .formulario
+	border thin solid lighten(gris, 80%)
+	bordes(.2em)
+	display inline-block
+	height 280px
+	padding-right 10px
+	vertical-align top
+	width 35%
+
+
+.acceso 
+	font-size .9em
+	h2 
+		font-size 1.3em
+	div 
+		color blanco
+		margin .5em auto
+		img 
+			margin-left .5em
+			margin-top .3em
+			vertical-align middle
+	p 
+		margin 1em 1.5em
+		font-size .8em
+		a 
+			color rojizo
+			text-decoration none 
+
+
+.formulario 
+	color darken(blanco, 60%)
+	text-align center
+	width 60%
+	a 
+		color rojizo
+		font-size .8em
+		float right
+		text-decoration none
+	input[type="button"]
+		bordes(.2em)
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		color blanco
+		height 30px
+		width 90px
+	input[type="text"], input[type="password"]
+		background darken(blanco, 6%)
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		color darken(blanco, 80%)
+		margin-top .5em
+		height 30px
+		width 230px
+	input[type="text"]
+		margin-left 3em
+	label 
+		margin-left 1em
+
 
 .buscar, .titulo 
 	box-sizing()
@@ -329,7 +401,7 @@ nav
 	width 95%
 	input[type="text"]
 		background darken(blanco, 6%)
-		color darken(blanco, 6%)
+		color darken(blanco, 80%)
 		width 230px
 
 .fluid_container 
@@ -339,6 +411,7 @@ nav
 .footer_container
 	margin 0 auto
 	width 80%
+
 
 .idiomas, .social_icons 
 	display inline-block
@@ -408,6 +481,48 @@ nav
 	max-width 53.5%
 	h2 
 		color lighten(rojizo, 10%)
+
+.modalDialog
+	position fixed
+	font-family Arial, Helvetica, sans-serif
+	top 0 
+	right -100 
+	bottom 0
+	background rgba(0, 0, 0, .8)
+	z-index 99999
+	opacity 0
+	transicion_modal()
+	pointer-events none
+	width 100%
+	&:target 
+		opacity 1
+		pointer-events auto
+
+.modalDialog > div 
+	width 700px 
+	position relative
+	margin 10% auto 
+	padding 5px 20px 13px 20px 
+	height 280px
+	bordes(10px)
+	background blanco 
+
+
+.close 
+	background #606061
+	color blanco 
+	line-height 25px 
+	position absolute
+	right -12px 
+	text-align center
+	top -10px 
+	width 24px 
+	text-decoration none 
+	font-weight bold 
+	bordes(.9em)
+	sombras-caja(1px 1px 3px #000)
+	&:hover 
+		background rojizo
 
 .multimedia
 	width 41%
