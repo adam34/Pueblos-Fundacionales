@@ -18,7 +18,7 @@ aside, .suscribete
 aside 
 	article 
 		display inline-block
-		margin 0 .5em 
+		margin 0 .3em 
 		vertical-align top
 	h3 
 		color lighten(azul, 10%)
@@ -690,3 +690,57 @@ nav
 		a 
 			color darken(blanco, 50%)
 			text-decoration none
+
+/* Media-queries 320 480 600 768 1024 1200 */
+@media screen and (max-width: 1200px)
+	footer 
+		background rojizo 
+	aside 
+		article
+			margin 0 .25em 
+	header, nav, .contenedor 
+		width 90%
+	nav 
+		li.menu
+			&:nth-child(5)
+				width 1%
+	#map_canvas 
+		height 350px 
+		max-width 180px 
+	.accesibilidad
+		margin .3em auto
+		height 230px
+		p 
+			margin .1em 2em
+	.buscar 
+		width 27%
+	.enlaces-utiles, .telefonos
+		height 215px
+	.enlaces-utiles
+		p 
+			max-width 42%
+			img 
+				margin .2em
+	.eventos 
+		height 300px
+		input[type="text"]
+			width 210px
+	.idiomas 
+		font-size .8em
+	.proximos-eventos
+		span 
+			a 
+				font-size .9em
+	.suscribete
+		input[type="text"]
+			width 210px
+
+
+@media screen and (max-width: 1024px)
+	footer 
+		background green
+	
+
+@media screen and (max-width: 768px)
+	footer 
+		background azul

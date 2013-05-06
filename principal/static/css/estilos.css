@@ -1,7 +1,7 @@
 @font-face{font-family:'Open Sans';font-style:normal;font-weight:normal;src:url("../fonts/OpenSans-Bold-webfont.eot");src:url("../fonts/OpenSans-Bold-webfont.eot?#iefix") format("embedded-opentype"),src url("../fonts/OpenSans-Bold-webfont.ttf") format("truetype"),src url("../fonts/OpenSans-Bold-webfont.svg") format("svg"),src url("../fonts/OpenSans-Bold-webfont.woff") format("woff")}
 *{border:0;margin:0;padding:0}
 aside,.suscribete{border:thin solid #d6d6d6;display:inline-block;height:150px;vertical-align:top;width:45%}
-aside article{display:inline-block;margin:0 .5em;vertical-align:top}
+aside article{display:inline-block;margin:0 .3em;vertical-align:top}
 aside h3{color:#25799d}
 body{background:#0b0c0e url("../img/wallpaper-82838.jpg");background-repeat:no-repeat no-repeat;font-family:'Open Sans',Arial,Verdana;font-weight:normal;font-size:16px;font-weight:bold}
 h2{background:#e0e0e0;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#0f6990;margin:1em 1em;text-align:center}
@@ -146,3 +146,22 @@ nav li.menu a:hover{font-weight:bold}
 .wcont ul{margin-top:.5em;margin-bottom:.5em}
 .wcont li{list-style:none;}
 .wcont li a{color:#808080;text-decoration:none}
+@media screen and (max-width: 1200px){footer{background:#a70325}
+aside article{margin:0 .25em}
+header,nav,.contenedor{width:90%}
+nav li.menu:nth-child(5){width:1%}
+#map_canvas{height:350px;max-width:180px}
+.accesibilidad{margin:.3em auto;height:230px;}
+.accesibilidad p{margin:.1em 2em}
+.buscar{width:27%}
+.enlaces-utiles,.telefonos{height:215px}
+.enlaces-utiles p{max-width:42%;}
+.enlaces-utiles p img{margin:.2em}
+.eventos{height:300px;}
+.eventos input[type="text"]{width:210px}
+.idiomas{font-size:.8em;font-weight:bold}
+.proximos-eventos span a{font-size:.9em;font-weight:bold}
+.suscribete input[type="text"]{width:210px}
+}@media screen and (max-width: 1024px){footer{background:#008000}
+}@media screen and (max-width: 768px){footer{background:#1e6381}
+}
