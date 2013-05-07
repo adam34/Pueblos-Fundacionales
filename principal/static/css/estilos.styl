@@ -7,7 +7,6 @@
 	margin 0 
 	padding 0
 
-
 aside, .suscribete 
 	border thin solid lighten(gris, 80%)
 	display inline-block
@@ -30,6 +29,11 @@ body
 	font-weight normal
 	font-size 16px
 
+footer 
+	background darken(gris, 60%)
+	margin 0 auto
+	width 100%
+
 h2 
 	background lighten(gris, 85%)
 	bordes(.2em)
@@ -43,11 +47,6 @@ h3
 	bordes(.2em)
 	margin .5em 
 	text-align center
-
-footer 
-	background darken(gris, 60%)
-	margin 0 auto
-	width 100%
 
 header, nav, .contenedor 
 	margin 0 auto
@@ -109,6 +108,12 @@ nav
 			text-shadow .1em .1em .2em negro
 			&:hover 
 				font-weight bold
+
+header 
+	//background lighten(blanco, 20%) 
+	background transparent
+	height 40px * 4
+
 
 /* Identificadores */
 #arrow 
@@ -205,7 +210,6 @@ nav
 		margin .3em 3em
 		text-align justify
 
-
 .acceso, .formulario
 	border thin solid lighten(gris, 80%)
 	bordes(.2em)
@@ -233,40 +237,6 @@ nav
 		a 
 			color rojizo
 			text-decoration none 
-
-
-.formulario 
-	color darken(blanco, 60%)
-	text-align center
-	width 60%
-	a 
-		color rojizo
-		font-size .8em
-		float right
-		text-decoration none
-	input[type="button"]
-		bordes(.2em)
-		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
-		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
-		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
-		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
-		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
-		color blanco
-		height 30px
-		width 90px
-	input[type="text"], input[type="password"]
-		background darken(blanco, 6%)
-		border thin solid lighten(gris, 80%)
-		bordes(.2em)
-		color darken(blanco, 80%)
-		margin-top .5em
-		height 30px
-		width 230px
-	input[type="text"]
-		margin-left 3em
-	label 
-		margin-left 1em
-
 
 .buscar, .titulo 
 	box-sizing()
@@ -302,9 +272,32 @@ nav
 	width 52%
 	h3 
 		color lighten(rojizo, 10%)
-
 .clima
 	margin-left 1.3em
+
+.close 
+	background #606061
+	color blanco 
+	line-height 25px 
+	position absolute
+	right -12px 
+	text-align center
+	top -10px 
+	width 24px 
+	text-decoration none 
+	font-weight bold 
+	bordes(.9em)
+	sombras-caja(1px 1px 3px #000)
+	&:hover 
+		background rojizo
+
+.conf_idiomas, .idiomas
+	background darken(gris, 40%)
+	box-sizing()
+	font-family 'Open Sans', Verdana, Arial
+	font-size()
+	height 2.6em
+	width 100%
 
 .contenedor
 	background darken(blanco, 6%)
@@ -341,29 +334,6 @@ nav
 		margin .5em
 		a 
 			color rojizo
-
-.icono_buscar
-	background gris2 url('../img/buscar.png') right no-repeat
-	bordes(1em)
-	font-weight bold
-	sombras-caja(0 0 10px blanco2)
-	padding .5em
-	transicion()
-	width 70%
-	word-spacing 1.3em 
-	&:hover 
-		background blanco2
-		bordes(2em)
-		transicion()
-		width 80%
-
-.conf_idiomas, .idiomas
-	background darken(gris, 40%)
-	box-sizing()
-	font-family 'Open Sans', Verdana, Arial
-	font-size()
-	height 2.6em
-	width 100%
 
 .enlaces-utiles, .telefonos
 	border thin solid lighten(gris, 80%)
@@ -405,14 +375,41 @@ nav
 		color darken(blanco, 6%)
 		width 230px
 
-.fluid_container 
-	margin 0 auto
-	width 80%
-
 .footer_container
 	margin 0 auto
 	width 80%
 
+.formulario 
+	color darken(blanco, 60%)
+	text-align center
+	width 60%
+	a 
+		color rojizo
+		font-size .8em
+		float right
+		text-decoration none
+	input[type="button"]
+		bordes(.2em)
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		color blanco
+		height 30px
+		width 90px
+	input[type="text"], input[type="password"]
+		background darken(blanco, 6%)
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		color darken(blanco, 80%)
+		margin-top .5em
+		height 30px
+		width 230px
+	input[type="text"]
+		margin-left 3em
+	label 
+		margin-left 1em
 
 .idiomas, .social_icons 
 	display inline-block
@@ -432,6 +429,26 @@ nav
 		position relative 
 		top 1px
 		width 30px
+
+.icono_buscar
+	background gris2 url('../img/buscar.png') right no-repeat
+	bordes(1em)
+	font-weight bold
+	sombras-caja(0 0 10px blanco2)
+	padding .5em
+	transicion()
+	width 70%
+	word-spacing 1.3em 
+	&:hover 
+		background blanco2
+		bordes(2em)
+		transicion()
+		width 80%
+
+.fluid_container 
+	margin 0 auto
+	width 80%
+
 .esp, .eng 
 	display inline-block
 	position relative
@@ -483,47 +500,30 @@ nav
 	h2 
 		color lighten(rojizo, 10%)
 
-.modalDialog
+.modalDialog 
 	position fixed
-	font-family Arial, Helvetica, sans-serif
-	top 0 
-	right -100 
-	bottom 0
+	font-family Arial, Helvetica, sans-serif 
 	background rgba(0, 0, 0, .8)
-	z-index 99999
+	bottom 0 
+	display none
+	height 100%
 	opacity 0
 	transicion_modal()
-	pointer-events none
+	top 100
+	right -100
 	width 100%
+	z-index 99999
 	&:target 
 		opacity 1
-		pointer-events auto
-
+	
 .modalDialog > div 
-	width 700px 
-	position relative
-	margin 10% auto 
-	padding 5px 20px 13px 20px 
-	height 280px
+	background blanco
 	bordes(10px)
-	background blanco 
-
-
-.close 
-	background #606061
-	color blanco 
-	line-height 25px 
-	position absolute
-	right -12px 
-	text-align center
-	top -10px 
-	width 24px 
-	text-decoration none 
-	font-weight bold 
-	bordes(.9em)
-	sombras-caja(1px 1px 3px #000)
-	&:hover 
-		background rojizo
+	position relative 
+	height 280px 
+	margin 10% auto
+	padding 5px 20px 13px 20px
+	width 700px
 
 .multimedia
 	width 41%
@@ -624,7 +624,6 @@ nav
 		margin .5em 0 0 6em
 		max-width 55px 
 
-
 .social_icons
 	height 2.6em
 	text-align center
@@ -633,12 +632,11 @@ nav
 		text-decoration none
 	img 
 		margin 0.4em auto
-		
+
 .superior
 	background transparent
 	height 130px
 	width 100%
-
 
 .suscribete
 	margin-left 1.3em
@@ -648,7 +646,7 @@ nav
 		background darken(blanco, 6%)
 		border thin solid lighten(gris, 80%)
 		bordes(.2em)
-		color darken(blanco, 6%)
+		color darken(blanco, 80%)
 		margin-top .5em
 		height 30px
 		width 230px
@@ -675,7 +673,7 @@ nav
 		margin-top .5em 
 		margin-bottom .5em
 		width 80px
-			
+
 .titulo 
 	font-family 'Open Sans', Arial, Verdana 
 	font-size 2em 

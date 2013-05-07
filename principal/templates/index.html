@@ -98,7 +98,7 @@
 				<a href="#"></a>
 			</li>
 			<li class="menu">
-				<a href="#openModal">Ingresa</a>
+				<a href="#openModal" id="ingresa">Ingresa</a>
 			</li>
 		</ul>
 	</nav>
@@ -131,7 +131,6 @@
 				<p>O ingresa con tu correo electrónico y llena el siguiente cuestionario <a href="#">aquí</a></p>
 			</article>
 		</div>
-	</div>
 	</div>
 	<section class="contenedor">
 		<!-- Principal -->
@@ -466,6 +465,24 @@
 			$('#camera_wrap_1').camera({
 				height : '300px',
 				thumbnails: true,
+			});
+		});
+		$(function(){
+			$('#ingresa').on("click", function(){
+				$('.modalDialog').show(function(){
+					$(this).fadeIn(5000)
+				});
+			});
+			$('.close').on("click", function(){
+				$('.modalDialog').hide(function(){
+					$(this).css({
+						WebkitTransition : 'opacity 400ms ease-in-out',
+    					MozTransition    : 'opacity 400ms ease-in-out',
+    					MsTransition     : 'opacity 400ms ease-in-out',
+    					OTransition      : 'opacity 400ms ease-in-out',
+    					transition       : 'opacity 400ms sease-in-out'
+					});
+				});
 			});
 		});
 	</script>
