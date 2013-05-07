@@ -4,8 +4,13 @@ from django.template import Library
 register = Library()
 #Es una metodo para obtener un elemento de una lista
 @register.filter
-def get_list(list):
-	return 1
+def dir_python(obj):
+	print type(obj)
+	return dir(obj)
+
+@register.filter
+def get_value(obj):
+	return obj
 
 @register.simple_tag
 def put_fns():

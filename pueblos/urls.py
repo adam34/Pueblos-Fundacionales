@@ -27,4 +27,6 @@ urlpatterns = patterns('',
     url(r'^info/$', 'principal.views.info'),
     url(r'^dir/$', 'principal.views.dir'),
     url(r'^humans\.txt$', 'principal.views.humans'),
+    url(r'^vista1/$', 'administrador.views.vista1'),
+    url(r'^vista_ajax1/$', 'administrador.views.vista_ajax1'),
 )
