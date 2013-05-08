@@ -39,3 +39,6 @@ def dir(request):
 
 def humans(request): 
 	return render_to_response('humans.txt')
+
+def libreria(request): 
+	return render_to_response('libreria.html')
