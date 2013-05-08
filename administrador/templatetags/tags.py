@@ -4,15 +4,26 @@ from django.template import Library
 register = Library()
 #Es una metodo para obtener un elemento de una lista
 @register.filter
-def dir_python(obj):
-	print type(obj)
-	return dir(obj)
+def put_fns(obj,nombre):
+	try:
+		js=''
+		for jss in obj._js:
+			temp = jss
+			if temp.endswith(nombre+'.js'):
+				js=jss
+				break
+		lista=[js]
+		obj._js=lista
+		return obj.render()
+	except IndexError:
+		return []
 
 @register.filter
 def get_value(obj):
 	return obj
 
-@register.simple_tag
-def put_fns():
-	script = '<script type="text/javascript" src="/static/admin/js/fns.js"></script>'
-	return script
+@register.filter
+def dir_python(obj):
+	print type(obj)
+	print obj
+	return dir(obj)

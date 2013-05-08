@@ -3,6 +3,8 @@
 from django.contrib import admin
 from administrador.models import *
 from principal.models import *
+from administrador.formas import *
+from django.contrib.auth.models import User
 
 # class PersonaAdmin(admin.ModelAdmin):
 #     list_display = ('NOMBRE', 'DIRECCION','SEXO','TELEFONO','EMAIL',)
@@ -32,13 +34,22 @@ from principal.models import *
 
 class IdiomaAdmin(admin.ModelAdmin):
 	class Media:
-		js = ('admin/js/fns.js',)
+		js = ('admin/js/idiomas.js',) #No preocuparse por agregar la referencia "static" al directorio.
 		css = {}
 	list_per_page = 5
 	search_fields = ('NOMBRE',)
 	ordering = ['NOMBRE',]
 
+class UsuarioAdmin(admin.ModelAdmin):
+	class Media:
+		js = ('admin/js/users.js',)
+		css = {}
+
 admin.site.register(idioma,IdiomaAdmin)
+admin.site.unregister(User)
+admin.site.register(User,UsuarioAdmin)
+
+
 # admin.site.register(archivo,ArchivoAdmin)
 # admin.site.register(galeria,GaleriaAdmin)
 # admin.site.register(pueblo)
