@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from django import forms
-from example.models import *
+from administrador.models import *
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 import re
 
@@ -22,3 +23,7 @@ mensajes ={'required':'Error 101','max_length':'Error 102',}
 class FormAutenticacion(forms.Form):
 	Usuario=forms.CharField(required=True,help_text="Nombre de usuario.",max_length=20, error_messages=mensajes, validators=[validar_usuario])
 	Contrasena=forms.CharField(widget=forms.PasswordInput,required=True,help_text="Nombre de usuario.",max_length=30,error_messages=mensajes, validators=[validar_contrasena])
+
+class FormUser(forms.ModelForm):
+	class Meta:
+		model = User
