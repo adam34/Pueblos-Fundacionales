@@ -1,4 +1,32 @@
-.contenido_secciones,.secciones{background:#fff;height:550px;margin:0 auto;width:80%}
-.contenido_secciones{margin-top:.5em}
-.menu_secciones,.pueblos_secciones{display:inline-block;height:500px;vertical-align:top;width:20%}
+.hoteles,.seccion_restaurantes,.seccion_centros,.seccion_curiosidades,.seccion_pueblos,.seccion_eventos,.compras,.informacion_turistica,.visitabcs,.guias_turisticas{display:inline-block;vertical-align:top;width:45%}
+.hoteles,.seccion_restaurantes,.seccion_centros,.seccion_curiosidades,.seccion_pueblos,.seccion_eventos{border:thin solid #d6d6d6;height:150px;margin-left:2%;margin-top:2%;margin-bottom:2%;}
+.hoteles h4,.seccion_restaurantes h4,.seccion_centros h4,.seccion_curiosidades h4,.seccion_pueblos h4,.seccion_eventos h4{color:#1e6381;font-size:1.2em;font-weight:bold;margin-left:2%}
+.hoteles ul,.seccion_restaurantes ul,.seccion_centros ul,.seccion_curiosidades ul,.seccion_pueblos ul,.seccion_eventos ul{list-style:none;}
+.hoteles ul li,.seccion_restaurantes ul li,.seccion_centros ul li,.seccion_curiosidades ul li,.seccion_pueblos ul li,.seccion_eventos ul li{color:#1e6381;font-weight:normal;margin:0 auto;margin-left:10%}
+.informacion_turistica,.compras,.visitabcs,.guias_turisticas{border:thin solid #d6d6d6;font-size:.9em;font-weight:bold;height:250px;margin:2%;text-align:center;}
+.informacion_turistica h4,.compras h4,.visitabcs h4,.guias_turisticas h4{color:#1e6381;font-size:1.1em;font-weight:bold}
+.informacion_turistica img,.compras img,.visitabcs img,.guias_turisticas img{height:150px;width:150px}
+.menu_turistico{border:thin solid #d6d6d6;margin:2% auto;width:95%}
 .pueblos_secciones{background:#e6e6e6;width:75%}
+.redes_sociales{margin:0 auto;width:95%;}
+.redes_sociales article{border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;height:80px;margin:.3em;margin-left:2%;}
+.redes_sociales article img{float:left;height:70px;margin:.3em;width:70px}
+.redes_sociales article div{margin:.4em;}
+.redes_sociales article div h4{color:#a70325;font-size:.9em;font-weight:bold;margin-left:30%}
+.redes_sociales article div p{font-size:.75em;font-weight:bold;font-weight:normal;margin-left:30%}
+.seccion_curiosidades{margin-left:2%}
+.seccion_centros h4,.seccion_curiosidades h4{color:#4c2506}
+.seccion_centros ul li,.seccion_curiosidades ul li{color:#4c2506}
+.seccion_pueblos h4,.seccion_eventos h4{color:#a70325}
+.seccion_pueblos ul li,.seccion_eventos ul li{color:#a70325}
+.secciones,.menu_secciones{display:inline-block;height:auto;margin:0 auto;vertical-align:top;width:65%}
+.secciones{-ms-box-shadow:.3em 0 .1em #e0e0e0;-moz-box-shadow:.3em 0 .1em #e0e0e0;-o-box-shadow:.3em 0 .1em #e0e0e0;-webkit-box-shadow:.3em 0 .1em #e0e0e0;box-shadow:.3em 0 .1em #e0e0e0;}
+.secciones h3{width:30%}
+.secciones p{font-size:.9em;font-weight:bold;font-weight:normal;margin-left:3%;}
+.secciones p a{color:#a70325;font-weight:bold;text-decoration:none}
+.menu_secciones{margin-left:1%;width:32%}
+.sitios_turisticos{border:thin solid #d6d6d6;margin:0 auto;max-width:95%}
+.suscribete_redes{border:thin solid #d6d6d6;height:150px;margin-left:.4em;text-align:center;width:95%;}
+.suscribete_redes h3{color:#ce8610}
+.suscribete_redes input[type="text"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;width:230px}
+.suscribete_redes input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);height:30px;color:#fff;width:90px}
