@@ -1,0 +1,11 @@
+.contenedor_tabs{background:ligthen(#333,80%);height:800px;margin:.2% auto;width:95%}
+.pueblos,.pueblos_menu{display:inline-block;height:auto;margin:0 auto;vertical-align:top;width:65%}
+.pueblos{-ms-box-shadow:.3em 0 .1em #e0e0e0;-moz-box-shadow:.3em 0 .1em #e0e0e0;-o-box-shadow:.3em 0 .1em #e0e0e0;-webkit-box-shadow:.3em 0 .1em #e0e0e0;box-shadow:.3em 0 .1em #e0e0e0;}
+.pueblos h3{width:30%}
+.pueblos p{font-size:.9em;font-weight:bold;font-weight:normal;margin-left:3%;}
+.pueblos p a{color:#a70325;font-weight:bold;text-decoration:none}
+.pueblos_menu{margin-left:1%;width:32%;text-align:center;}
+.pueblos_menu ul{list-style:none;}
+.pueblos_menu ul li{display:inline-block;vertical-align:top;width:45%;}
+.pueblos_menu ul li img{cursor:pointer;height:80px;width:80px}
+.pueblos_menu ul li h4{cursor:pointer;color:#1e6381;font-size:1em;font-weight:bold}

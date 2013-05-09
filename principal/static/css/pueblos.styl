@@ -1,0 +1,48 @@
+@import "_var"
+@import "_mixins"
+
+.contenedor_tabs
+	background ligthen(gris, 80%)
+	height 800px 
+	margin .2% auto
+	width 95%
+
+.pueblos, .pueblos_menu
+	display inline-block  
+	height auto
+	margin 0 auto
+	vertical-align top
+	width 65%
+
+.pueblos 
+	sombras-caja(.3em 0 .1em darken(blanco, 12%))
+	h3
+		width 30%
+	p 
+		font-size .9em
+		font-weight normal
+		margin-left 3%
+		a 
+			color rojizo
+			font-weight bold
+			text-decoration none 
+
+.pueblos_menu
+	margin-left 1%
+	width 32%
+	text-align center
+	ul 
+		list-style none
+		li 
+			display inline-block
+			vertical-align top 
+			width 45%
+			img
+				cursor pointer
+				height 80px
+				width 80px 
+			h4 
+				cursor pointer
+				color azul
+				font-size 1em 
+
