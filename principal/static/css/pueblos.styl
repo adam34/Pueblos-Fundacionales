@@ -46,3 +46,59 @@
 				color azul
 				font-size 1em 
 
+.tabs 
+	margin 0 
+	width 90%
+
+.tabs input 
+	cursor pointer
+	height 40px 
+	left 0px 
+	opacity 0 
+	position absolute 
+	top 0px 
+	width 120px 
+	z-index 1000
+	#tab-1 
+		background azul
+	#tab-2 
+		left 120px 
+	#tab-3
+		left 240px 
+	#tab-4 
+		left 360px
+	&:hover + label 
+		background azul 
+		-webkit-transition top linear 0.2s 
+		-moz-transition top linear .2s 
+		-o-transition top linear .2s
+		-ms-transition top linear .2s
+		transition top linear .2s
+		top -8px 
+
+.tabs label 
+	background azul
+	bordes(3px 3px 0 0)
+	color darken(blanco, 5%)
+	display block  
+	float left 
+	font-size .9em
+	font-weight bold 
+	letter-spacing 1px  
+	line-height 40px 
+	padding 0 20px
+	position relative
+	sombras-caja(2px 0 2px rgba(0, 0, 0, .1), -2px 0 2px rgba(0, 0, 0, .1))
+	text-shadow 1px 1px 1px rgba(255, 255, 255, .3)
+	text-align center 
+	text-transform uppercase
+	top 0px
+	width 80px
+	&:after 
+		background blanco 
+		content: ''
+		height 8px 
+		display block
+		left 0 
+		position absolute 
+		width 100% 

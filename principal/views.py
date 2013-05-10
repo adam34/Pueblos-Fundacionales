@@ -42,3 +42,9 @@ def humans(request):
 
 def libreria(request): 
 	return render_to_response('libreria.html')
+
+def p(request): 
+	return render_to_response('pueblos/purisima.html')
+
+def l(request): 
+	return render_to_response('pueblos/loreto.html')

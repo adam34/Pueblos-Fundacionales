@@ -29,4 +29,6 @@ urlpatterns = patterns('',
     url(r'^vista1/$', 'administrador.views.vista1'),
     url(r'^vista_ajax1/$', 'administrador.views.vista_ajax1'),
     url(r'^libreria/$', 'principal.views.libreria'),
+    url(r'^pueblos/purisima/$', 'principal.views.p'),
+    url(r'^pueblos/loreto/$', 'principal.views.l'),
 )

@@ -9,3 +9,12 @@
 .pueblos_menu ul li{display:inline-block;vertical-align:top;width:45%;}
 .pueblos_menu ul li img{cursor:pointer;height:80px;width:80px}
 .pueblos_menu ul li h4{cursor:pointer;color:#1e6381;font-size:1em;font-weight:bold}
+.tabs{margin:0;width:90%}
+.tabs input{cursor:pointer;height:40px;left:0;opacity:0;position:absolute;top:0;width:120px;z-index:1000;}
+.tabs input #tab-1{background:#1e6381}
+.tabs input #tab-2{left:120px}
+.tabs input #tab-3{left:240px}
+.tabs input #tab-4{left:360px}
+.tabs input:hover + label{background:#1e6381;-webkit-transition:top linear .2s;-moz-transition:top linear .2s;-o-transition:top linear .2s;-ms-transition:top linear .2s;transition:top linear .2s;top:-8px}
+.tabs label{background:#1e6381;-ms-border-radius:3px 3px 0 0;-moz-border-radius:3px 3px 0 0;-webkit-border-radius:3px 3px 0 0;-o-border-radius:3px 3px 0 0;border-radius:3px 3px 0 0;color:#f2f2f2;display:block;float:left;font-size:.9em;font-weight:bold;font-weight:bold;letter-spacing:1px;line-height:40px;padding:0 20px;position:relative;-ms-box-shadow:2px 0 2px rgba(0,0,0,0.1) -2px 0 2px rgba(0,0,0,0.1);-moz-box-shadow:2px 0 2px rgba(0,0,0,0.1) -2px 0 2px rgba(0,0,0,0.1);-o-box-shadow:2px 0 2px rgba(0,0,0,0.1) -2px 0 2px rgba(0,0,0,0.1);-webkit-box-shadow:2px 0 2px rgba(0,0,0,0.1) -2px 0 2px rgba(0,0,0,0.1);box-shadow:2px 0 2px rgba(0,0,0,0.1) -2px 0 2px rgba(0,0,0,0.1);text-shadow:1px 1px 1px rgba(255,255,255,0.3);text-align:center;text-transform:uppercase;top:0;width:80px;}
+.tabs label:after{background:#fff;content:'';height:8px;display:block;left:0;position:absolute;width:100%}
