@@ -4,6 +4,7 @@ function mostrarPueblos(){
 	$("#loreto").on("click", quePueblos);
 	//Librería
 	$("#libro_purisima").on("click", libreria);
+	$("#libro_loreto").on("click", libreria);
 }
 
 function quePueblos(enlace){
