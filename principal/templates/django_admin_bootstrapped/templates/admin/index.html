@@ -1,7 +1,9 @@
+<!-- Archivo modificado  -->
 {% extends "admin/base_site.html" %}
 {% load i18n admin_static bootstrapped_goodies_tags %}
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />
+<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
 {% endblock %}
 
 {% block coltype %}colMS{% endblock %}
@@ -17,7 +19,7 @@
         {% for model in app.models %}
     <li class="dropdown">
             {% if model.admin_url %}
-                <a href="#" id='{{model.name}}'>{{ model.name }}</a>
+                <a href="#" id='{{model.name|cut:" "}}'>{{ model.name }}</a>
             {% else %}
                 {{ model.name }}
             {% endif %}
@@ -34,8 +36,8 @@
     <ul class="breadcrumb">
         <li>{% trans 'Home' %}</li>
     </ul>
-    <p>Este es el ejemplo de una palabra, nada mas.</p>
-    <p>Ahí viene, la integral de oro. Ahí viene, la diferencial de oro.</p>
+    <h1>Bienvenido al administrador del Sitio de Pueblos Fundacionales.</h1>
+    <h2>Haga clic en alguna de las opciones del menu para proceder.</h2>
 </div>
 {% endblock %}
 
@@ -43,13 +45,13 @@
 <script type="text/javascript">
     $(function(){
         {% for app in app_list %} {% for model in app.models %}
-        $('#{{model.name}}').on('click',cargar);
+        $('#{{model.name|cut:" "}}').on('click',cargar);
         {% endfor %}{% endfor %}
         function cargar(e)
         {
             var ruta;
             {% for app in app_list %} {% for model in app.models %}
-            if(e.target.id=='{{model.name}}')
+            if(e.target.id=='{{model.name|cut:" "}}')
             {
                 ruta='{{model.admin_url}}';
             }
@@ -69,9 +71,11 @@
                         {
                             $('body').removeClass();
                             $('body').addClass('_change-list')
-                            $('#content-main').hide(500);
-                            $('#content-main').show(1000);
-                            $('#content-main').html(response);
+                            $('#content-main').hide(500,function()
+                                {
+                                    $('#content-main').html(response);
+                                    $('#content-main').show(1000);
+                                });
                             //class:_change-list
                             //class: dashboard
                         }
@@ -97,7 +101,6 @@
         }
     });
 </script>
-<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
 <script type="text/javascript" src="/admin/jsi18n/"></script>
 <script type="text/javascript" src="/static/admin/js/core.js"></script>
 <script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
