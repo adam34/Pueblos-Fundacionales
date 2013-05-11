@@ -48,3 +48,6 @@ def p(request):
 
 def l(request): 
 	return render_to_response('pueblos/loreto.html')
+
+def libro_p(request): 
+	return render_to_response('libreria/libro_purisima.html')

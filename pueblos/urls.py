@@ -31,4 +31,5 @@ urlpatterns = patterns('',
     url(r'^libreria/$', 'principal.views.libreria'),
     url(r'^pueblos/purisima/$', 'principal.views.p'),
     url(r'^pueblos/loreto/$', 'principal.views.l'),
+    url(r'^libreria/libro_purisima/$', 'principal.views.libro_p'),
 )
