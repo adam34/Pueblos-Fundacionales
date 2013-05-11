@@ -6,6 +6,9 @@ from principal.models import *
 from administrador.formas import *
 from django.contrib.auth.models import User
 
+# from django.contrib.auth.models import User
+# from django.contrib.auth.admin import *
+
 # class PersonaAdmin(admin.ModelAdmin):
 #     list_display = ('NOMBRE', 'DIRECCION','SEXO','TELEFONO','EMAIL',)
 #     list_filter = ('SEXO',)   
@@ -41,13 +44,49 @@ class IdiomaAdmin(admin.ModelAdmin):
 	ordering = ['NOMBRE',]
 
 class UsuarioAdmin(admin.ModelAdmin):
-	class Media:
-		js = ('admin/js/users.js',)
-		css = {}
+	list_display =('username','first_name','last_name','email','is_staff',)
+	def get_form(self, request, obj=None, **kwargs):
+		#print dir(self.form._meta.fields)
+		if obj: # obj is not None, so this is a change page
+			pass
+			#kwargs['fields'] = ['username', 'password','password2']
+			self.form=UserChangeForm
+			self.fieldsets = (
+				(None, {
+					'fields': ('username',)
+					}),
+				('Datos personales', {
+					'fields': ('first_name', 'last_name', 'email',)
+					}),
+				('Privilegios del usuario', {
+					'fields': ('is_active','is_staff','groups','user_permissions',)
+					}),
+				)
+		else: # obj is None, so this is an add page
+			self.form=UserForm
+			self.fieldsets = (
+				(None, {
+					'fields': ('username', 'password','password2')
+					}),
+				('Datos personales', {
+					'classes': ('collapse',),
+					'fields': ('first_name', 'last_name', 'email',)
+					}),
+				('Privilegios del usuario', {
+					'classes': ('collapse',),
+					'fields': ('is_active','is_staff','groups','user_permissions',)
+					}),
+				)
+		return super(UsuarioAdmin, self).get_form(request, obj, **kwargs)	
+        # def __init__(self, *args, **kwargs):
+        #     super(UsuarioAdmin, self).__init__(*args, **kwargs)
 
-admin.site.register(idioma,IdiomaAdmin)
+
+    #id_groups,id_user_permissions,id_last_login_0,id_date_joined_0
 admin.site.unregister(User)
 admin.site.register(User,UsuarioAdmin)
+
+admin.site.register(idioma,IdiomaAdmin)
 
 
 # admin.site.register(archivo,ArchivoAdmin)
@@ -70,3 +109,22 @@ admin.site.register(User,UsuarioAdmin)
 # admin.site.register(reporte_comentario)
 # admin.site.register(curiosidad_idioma)
 # admin.site.register(curiosidad)
+
+
+
+
+
+
+# class MyForm(forms.ModelForm):
+#     def __init__(self, *args, **kwargs):
+#         super(MyForm, self).__init__(*args, **kwargs)
+#         self.fields['myfield'].help_text = 'New help text!'
+
+
+# class PropertyForm(models.ModelAdmin):
+#     class Meta:
+#         model = Property
+#     def __init__(self, *args, **kwargs):
+#         super(PropertyForm, self).__init__(*args, **kwargs)
+#         for (key, val) in self.fields.iteritems():
+#             self.fields[key].help_text = 'what_u_want' 

@@ -1,5 +1,0 @@
-﻿django.contrib.admin.views.options.py (Este es de gran importancia para el administrador)
-
-add_view
-
-django.contrib.admin.views.sites.py (Este es de gran importancia para el administrador)
