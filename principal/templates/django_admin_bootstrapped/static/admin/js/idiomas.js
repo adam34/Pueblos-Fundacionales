@@ -125,7 +125,7 @@ function validar_nombre_idioma()
         errores.push('El campo no puede ser mayor de 20 carácteres.');
     }
 
-    var patt=new RegExp("[A-Za-zñÑáéíóúÁÉÍÓÚ]+");
+    var patt=new RegExp("^[A-Za-zñÑáéíóúÁÉÍÓÚ]+$");
     if(!patt.test(str))
     {
         errores.push("El idioma debe tener solamente letras, sin espacios y números y ningún otro tipo de dato.");
