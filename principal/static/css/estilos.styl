@@ -238,6 +238,18 @@ header
 			color rojizo
 			text-decoration none 
 
+.btn
+	bordes(.2em)
+	background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+	background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+	background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+	background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+	background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+	color blanco
+	height 30px
+	margin .3em 0
+	width 90px
+
 .buscar, .titulo 
 	box-sizing()
 	color blanco 
@@ -334,6 +346,12 @@ header
 		margin .5em
 		a 
 			color rojizo
+
+.contenedor_mapa
+	background azul
+	height 500px 
+	margin .5em auto
+	width 95%
 
 .enlaces-utiles, .telefonos
 	border thin solid lighten(gris, 80%)
@@ -459,7 +477,8 @@ header
 	a 
 		position relative 
 		top -.5em
-
+.input
+	text-align center
 .logotipo 
 	background blanco
 	border .4em dotted azul
@@ -477,6 +496,17 @@ header
 
 .longdesc 
 	display none
+
+.mapa, .menu_mapas 
+	display inline-block
+	margin 0 auto
+	height auto
+	vertical-align top 
+	width 75%
+
+.menu_mapas 
+	margin-left 2%
+	width 20%
 
 .mapa-misiones 
 	border thin solid lighten(gris, 80%)
