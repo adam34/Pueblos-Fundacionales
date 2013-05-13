@@ -133,17 +133,17 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'principal',
     'administrador',
-    'social_auth',
+    #'social_auth',
 )
 
 
-AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.facebook.FacebookBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#     'social_auth.backends.facebook.FacebookBackend',
+# )
 
 
-FACEBOOK_APP_ID='165397843628610'
-FACEBOOK_API_SECRET='a46281c66bc7671edad3921679e6ae06'
+# FACEBOOK_APP_ID='165397843628610'
+# FACEBOOK_API_SECRET='a46281c66bc7671edad3921679e6ae06'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

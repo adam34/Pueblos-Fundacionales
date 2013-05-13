@@ -74,7 +74,7 @@ class UsuarioAdmin(admin.ModelAdmin):
 					}),
 				('Privilegios del usuario', {
 					'classes': ('collapse',),
-					'fields': ('is_active','is_staff','groups','user_permissions',)
+					'fields': ('is_active','is_superuser','is_staff','groups','user_permissions',)
 					}),
 				)
 		return super(UsuarioAdmin, self).get_form(request, obj, **kwargs)	

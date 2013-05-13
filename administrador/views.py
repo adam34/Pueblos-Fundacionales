@@ -4,9 +4,17 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
+from administrador.formas import *
+from django.contrib.auth.models import User
 
 def vista1(request):
-	return render_to_response('pagina1.html')
+	# user=User.objects.get(username='root')
+	# obj = UserForm(initial={'username':user.username,'password':user.password,'first_name':user.first_name,'last_name':user.last_name,'is_staff':user.is_staff,'is_superuser':user.is_superuser})
+	obj = UserForm(initial={'password':'aaaa',})
+	# print type(user.user_permissions.all())
+	# print dir(user.user_permissions.all())
+	# print user.user_permissions.all()
+	return render_to_response('pagina1.html',{'form':obj,})
 
 @csrf_exempt
 def vista_ajax1(request):
