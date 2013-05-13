@@ -129,8 +129,15 @@
 		<section class="mapa">
 			<h2>Hola Mapas</h2>
 			<section id="map" class="contenedor_mapa">
-				
 			</section>
+			<div class="row">
+      			<a href="#" class="btn" id="get_route">Obtener ruta</a>
+      			<a href="#" class="btn" id="back">&laquo; Regresar</a>
+      			<a href="#" class="btn" id="forward">Adelante &raquo;</a>
+    		</div>
+    		<div class="row">
+      			<ul id="steps"></ul>
+    		</div>
 		</section>
 		<section class="menu_mapas">
 			<h2>Menú</h2>
@@ -182,12 +189,56 @@
 	 <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
 	<script src="/static/js/gmaps.js"></script>
 	<script>
-		var map;
+		var map; 
+		var route;
+		$('#forward').attr('disabled', 'disabled');
+      	$('#back').attr('disabled', 'disabled');
+      	$('#get_route').click(function(e){
+      		e.preventDefault();
+      		origin = map.markers[0].getPosition();
+        	destination = map.markers[map.markers.length-1].getPosition();
+      		map.getRoutes({
+      			origin: [origin.lat(), origin.lng()],
+      			destination: [destination.lat(), destination.lng()],
+      			travelMode: 'driving',
+      			callback: function(e){
+            		route = new GMaps.Route({
+              		map: map,
+              		route: e[0],
+          			strokeColor: '#336699',
+              		strokeOpacity: 0.5,
+              		strokeWeight: 10
+            	});
+            	$('#forward').removeAttr('disabled');
+            	$('#back').removeAttr('disabled');
+        	}
+      	});
+      	$('#forward').click(function(e){
+        	e.preventDefault();
+          	route.forward();
+          	if(route.step_count < route.steps_length)
+            	$('#steps').append('<li>'+route.steps[route.step_count].instructions+'</li>');
+        	});
+      	});
+      	$('#back').click(function(e){
+         	e.preventDefault();
+         	route.back();
+
+          	if(route.step_count >= 0)
+            	$('#steps').find('li').last().remove();
+        	});
+		
 		map = new GMaps({
   			div: '#map',
   			lat: 24.13570,
   			lng: -110.33032,
   			zoom: 8,
+  			click: function(e){
+          		map.addMarker({
+            		lat: e.latLng.lat(),
+            		lng: e.latLng.lng()
+          		});
+        	}
 		});
 		$('#geocoding_form').submit(function(e){
 			e.preventDefault();
