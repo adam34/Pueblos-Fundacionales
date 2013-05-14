@@ -103,17 +103,26 @@
             {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
         </div>
     </div>
-{{media|put_fns:opts.verbose_name_plural|safe}}
+{% if add %}
+    {%put_fns media opts.verbose_name_plural 'add' %}
+{% else %}
+    {%put_fns media opts.verbose_name_plural 'change' %}
+{% endif %}
+
 <script type="text/javascript">
     //event.preventDefault(), event.stopPropagation() y event.stopInmediatePropagation().
     $(function(){
-        $('input[name="_addanother"]').on('click',agregar_form);
-        $('input[name="_continue"]').on('click',agregar_form);
-        $('input[name="_save"]').on('click',agregar_form);
+        $('input[name="_addanother"]').on('click',guardar_form);
+        $('input[name="_continue"]').on('click',guardar_form);
+        $('input[name="_save"]').on('click',guardar_form);
         $('.historylink').on('click',historial);
-        function agregar_form(e)
+        function guardar_form(e)
         {
-            agregar(e,'#{{ opts.module_name }}_form',"{% url opts|admin_urlname:'add' %}")
+            {% if add %}
+            agregar(e,'#{{ opts.module_name }}_form',"{% url opts|admin_urlname:'add' %}");
+            {% else %}
+            agregar(e,'#{{ opts.module_name }}_form',"{{ opts.app_label }}/{{ opts.verbose_name }}/{{object_id}}/");
+            {% endif %}
         }
         function historial(e)
         {

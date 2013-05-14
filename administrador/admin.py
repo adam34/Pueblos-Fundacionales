@@ -35,6 +35,10 @@ from django.contrib.auth.models import User
 # 	filter_horizontal = ('ARCHIVOS',)
 # 	raw_id_fields = ('USUARIO',)
 
+admin.site.login_form = CustomAutenticacionForm
+
+#print admin.site.get_urls()
+
 class IdiomaAdmin(admin.ModelAdmin):
 	class Media:
 		js = ('admin/js/idiomas.js',) #No preocuparse por agregar la referencia "static" al directorio.
@@ -59,7 +63,7 @@ class UsuarioAdmin(admin.ModelAdmin):
 					'fields': ('first_name', 'last_name', 'email',)
 					}),
 				('Privilegios del usuario', {
-					'fields': ('is_active','is_staff','groups','user_permissions',)
+					'fields': ('is_active','is_superuser','is_staff','groups','user_permissions',)
 					}),
 				)
 		else: # obj is None, so this is an add page
@@ -87,7 +91,6 @@ admin.site.unregister(User)
 admin.site.register(User,UsuarioAdmin)
 
 admin.site.register(idioma,IdiomaAdmin)
-
 
 # admin.site.register(archivo,ArchivoAdmin)
 # admin.site.register(galeria,GaleriaAdmin)

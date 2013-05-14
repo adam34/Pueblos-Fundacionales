@@ -17,7 +17,7 @@ $(function()
                 return false;
             }
 			//var patt=new RegExp("[A-Za-z0-9]+");
-			var patt=new RegExp("[A-Za-zñÑáéíóúÁÉÍÓÚ]+");
+			var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]+/;
 			var caracter = String.fromCharCode(e.charCode);
 			if(!patt.test(caracter))
 			{
@@ -27,6 +27,16 @@ $(function()
 				return false;
 			}
 		}
+        $('#id_password').on('focusout',validar_contrasena);
+        function validar_contrasena(e)
+        {
+            str=$('#id_password').val();
+            if(str.length==0)
+            {
+                alert('La contraseña no puede quedar en blanco. Es obligatoria.')
+            }
+            return false;
+        }
         $('#id_password2').on('focusout',validar_contrasenas);
         function validar_contrasenas(e)
         {
@@ -34,7 +44,7 @@ $(function()
             $pass2=$('#id_password2');
             if($pass1.val()!=$pass2.val())
             {
-                alert('Las contraseñas no son las mismas. Favor de verificarlo')
+                alert('Las contraseñas no son las mismas. Favor de verificarlo.')
                 $pass1.focus();
             }
             return false;
@@ -67,7 +77,7 @@ $(function()
         $('#id_email').on('keypress',validar_email);
         function validar_email(e)
         {
-            var patt=new RegExp("^[A-Za-z0-9.-_@#$%&/()=]+$");
+            var patt=new RegExp("^[A-Za-z0-9.-_@]+$");
             var caracter = String.fromCharCode(e.charCode);
             if(!patt.test(caracter))
             {
@@ -83,9 +93,9 @@ $(function()
 //Metodo utilizado para controlar el guardado de los datos con el servidor por Ajax.
 function agregar(e,form,ruta)
 {
-    debugger;
     var arreglo=validar_formulario_usuario();
     if(arreglo.length==0)
+    if(true)
     {
         forma=$(form);
         var datos="";
@@ -108,8 +118,6 @@ function agregar(e,form,ruta)
         }
         if(ruta!='')
         {
-            //NO OLVIDAR QUITAR ESTE RETURN FALSE DESPUES.
-            return false;
             $.ajax({
                 async:false,
                 url:ruta,
@@ -178,7 +186,7 @@ function validar_formulario_usuario()
         errores.push('La longitud del nombre de usuario no puede ser menor de 6 caracteres.');
     }
     //var patt=new RegExp("[A-Za-z0-9]+");
-    var patt=new RegExp("[A-Za-zñÑáéíóúÁÉÍÓÚ]+");
+    var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ]+/;
     if(!patt.test(str1))
     {
         errores.push('El nombre de usuario sólo puede contener letras, ningún otro tipo de caracter.');
@@ -192,6 +200,14 @@ function validar_formulario_usuario()
     {
         errores.push('La longitud de la contraseña debe ser mayor o igual a 6 caracteres.');
     }
+    else
+    {
+        patt=/(?=.*\d)(?=.*[a-z])/;
+        if(!patt.test(str1))
+        {
+            errores.push('La contraseña debe estar compuesta de números y letras, por seguridad.');
+        }
+    }
 
     if(str1.length!=str2.length)
     {
@@ -203,21 +219,22 @@ function validar_formulario_usuario()
     str2 =$('#id_last_name').val()
     if(str1!="" || str2!="")
     {
-        var patt=new RegExp("^([A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})+(\s+[A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})*$");
+        //patt=new RegExp("^([A-Za-zñÑáéíóúÁÉÍÓÚ]+)+(\s+[A-Za-zñÑáéíóúÁÉÍÓÚ]+)*$");
+        patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})*$/;
         if(!patt.test(str1))
         {
-            errores.push('El campo de nombre(s) no tiene el formato correcto. Asegurese de introducir nombres compuestos sólo por letras y separados por un espacio y de proporcionar tanto el/los nombre(s) como el/los apellido(s).');
+            errores.push('El campo de nombre(s) no tiene el formato correcto. Asegurese de introducir nombres compuestos sólo por letras, de 3 caracteres como mínimo, separados por un "sólo" espacio y de proporcionar tanto el/los nombre(s) como el/los apellido(s).');
         }
         if(!patt.test(str2))
         {
-            errores.push('El campo de apellido(s) no tiene el formato correcto. Asegurese de introducir nombres compuestos sólo por letras y separados por un espacio y de proporcionar tanto el/los nombre(s) como el/los apellido(s).');
+            errores.push('El campo de apellido(s) no tiene el formato correcto. Asegurese de introducir nombres compuestos sólo por letras y separados por un "sólo" espacio y de proporcionar tanto el/los nombre(s) como el/los apellido(s).');
         }
     }
     //Se valida el formato del email.
     str =$('#id_email').val()
     if(str!="")
     {
-        var patt=new RegExp('^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$');
+        var patt= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
         if(!patt.test(str))
         {
             errores.push('El formato del email es incorrecto. Favor de verificarlo.');
