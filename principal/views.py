@@ -57,3 +57,9 @@ def multimedia(request):
 
 def player(request):
 	return render_to_response('multimedia/player.html')
+
+def eventos(request):
+	return render_to_response('eventos.html')
+
+def galeria(request):
+	return render_to_response('multimedia/galeria.html')

@@ -1,0 +1,27 @@
+<!doctype html>
+<head>
+</head>
+<body>
+	<h4>Prueba Galería</h4>
+	<div id="gallery">
+		<a href="#">
+			<img src="http://t0.gstatic.com/images?q=tbn:ANd9GcSJvSuAFpx41pnD7ZSH1b001E6krzTG3u9unq9tll85uPieESRIJw" alt="">
+		</a>
+		<a href="#">
+			<img src="http://t0.gstatic.com/images?q=tbn:ANd9GcSJvSuAFpx41pnD7ZSH1b001E6krzTG3u9unq9tll85uPieESRIJw" alt="">
+		</a>
+		<a href="#">
+			<img src="http://t1.gstatic.com/images?q=tbn:ANd9GcQwZyCNNGY-8dcjpqOzNM5x268UE2_oSLfnO-N8pYHJ_2iu5muHDA" alt="">
+		</a>
+	</div>
+	<script src="/static/js/photobox.js"></script>
+	<script>
+		$('#gallery').photobox('a');
+		// or with a fancier selector and some settings, and a callback:
+		$('#gallery').photobox('a:first', { thumbs:false, time:0 }, imageLoaded);
+		function imageLoaded(){
+			console.log('image has been loaded...');
+		}
+	</script>
+</body>
+</html>

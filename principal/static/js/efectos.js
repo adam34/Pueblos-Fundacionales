@@ -6,6 +6,7 @@ function mostrarPueblos(){
 	$("#libro_purisima").on("click", libreria);
 	$("#libro_loreto").on("click", libreria);
 	$("#player").on("click", contenido_multimedia);
+	$("#galeria").on("click", contenido_multimedia);
 }
 
 function quePueblos(enlace){
