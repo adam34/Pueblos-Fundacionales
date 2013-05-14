@@ -1,5 +1,6 @@
 #book{height:480px;margin:0 8%;width:700px}
-.contenedor_tabs{background:ligthen(#333,80%);height:500px;margin:.2% auto;width:95%}
+.contenedor_tabs{background:ligthen(#333,80%);height:auto;margin:.5% auto;width:95%}
+.contenido_multimedia{background:#1e6381;height:400px;margin:0 auto;width:95%}
 .contenedor_imagen{background:#1e6381;height:450px;margin:0 auto;width:100%}
 .libreria{color:#1e6381;font-size:1.2em;font-weight:bold;margin:.5em;text-align:center;}
 .libreria h4{margin-bottom:.6em}
@@ -8,6 +9,8 @@
 .menuLibros article{display:inline-block;margin:0 auto;position:relative;vertical-align:top;top:20px;width:40%;}
 .menuLibros article img{height:100px;width:80px}
 .menuLibros p img{height:80px;width:90%}
+.multimedia,.menu_multimedia{display:inline-block;height:auto;margin:0 auto;vertical-align:top;width:75%}
+.menu_multimedia{width:20%}
 .pueblos,.pueblos_menu{display:inline-block;height:auto;margin:0 auto;vertical-align:top;width:65%}
 .pueblos{-ms-box-shadow:.3em 0 .1em #e0e0e0;-moz-box-shadow:.3em 0 .1em #e0e0e0;-o-box-shadow:.3em 0 .1em #e0e0e0;-webkit-box-shadow:.3em 0 .1em #e0e0e0;box-shadow:.3em 0 .1em #e0e0e0;}
 .pueblos h3{width:30%}

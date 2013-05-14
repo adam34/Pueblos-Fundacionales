@@ -51,3 +51,9 @@ def l(request):
 
 def libro_p(request): 
 	return render_to_response('libreria/libro_purisima.html')
+
+def multimedia(request):
+	return render_to_response('multimedia.html')
+
+def player(request):
+	return render_to_response('multimedia/player.html')
