@@ -6,6 +6,7 @@ from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
 from administrador.formas import *
 from django.contrib.auth.models import User
+from django.contrib import admin
 
 def vista1(request):
 	# user=User.objects.get(username='root')
@@ -14,7 +15,10 @@ def vista1(request):
 	# print type(user.user_permissions.all())
 	# print dir(user.user_permissions.all())
 	# print user.user_permissions.all()
-	return render_to_response('pagina1.html',{'form':obj,})
+	print type(admin.site.login_form)
+	print admin.site.login_form
+	print dir(admin.site.login_form)
+	return render_to_response('pagina1.html',{'form':obj})
 
 @csrf_exempt
 def vista_ajax1(request):
