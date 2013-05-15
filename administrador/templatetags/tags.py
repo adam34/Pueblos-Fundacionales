@@ -27,7 +27,7 @@ def put_fns(obj,nombre, tipo):
 		return obj.render()
 	except IndexError:
 		return []
-		
+
 @register.filter
 def get_value(obj):
 	return obj

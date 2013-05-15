@@ -4,6 +4,7 @@
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />
 <link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+<link rel="stylesheet" type="text/css" href="/static/admin/css/estilos.css">
 {% endblock %}
 
 {% block coltype %}colMS{% endblock %}
@@ -14,7 +15,7 @@
 {% endblock %}
 
 {% block object-tools %}
-<ul class="nav">
+<!-- <ul class="nav">
     {% for app in app_list %}
         {% for model in app.models %}
     <li class="dropdown">
@@ -27,17 +28,130 @@
     </li>
         {% endfor %}
     {% endfor %}
+</ul> -->
+<ul class="nav">
+    <li class="active"><a href="/admin/">Inicio</a></li>
+    <ul class="nav nav-pills">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Control de usuarios
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <!-- links -->
+          <li>
+            <a href="#">Grupos</a>
+          </li>
+          <li>
+            <a href="#">Usuarios</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav nav-pills">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Pueblos
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <!-- links -->
+          <li>
+            <a href="#">Pueblos</a>
+          </li>
+          <li>
+            <a href="#">Curiosidades</a>
+          </li>
+          <li>
+            <a href="#">Eventos</a>
+          </li>
+          <li>
+            <a href="#">Relatos</a>
+          </li>          
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav nav-pills">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Sitios turísticos
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <!-- links -->
+          <li>
+            <a href="#">Categorias</a>
+          </li>
+          <li>
+            <a href="#">Contratos</a>
+          </li>        
+        </ul>
+      </li>
+    </ul>
+    <li><a href="#">Idiomas</a></li>
+    <li><a href="#">Galerías</a></li>
+    <li><a href="#">Administrador de archivos</a></li>
+    <li><a href="#">Configuración del sitio</a></li>
+    <li><a href="#">Acerca de</a></li>
+
 </ul>
 {% endblock %}
 
 
 {% block content %}
 <div id="content-main">
-    <ul class="breadcrumb">
-        <li>{% trans 'Home' %}</li>
-    </ul>
-    <h1>Bienvenido al administrador del Sitio de Pueblos Fundacionales.</h1>
-    <h2>Haga clic en alguna de las opciones del menu para proceder.</h2>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span7">
+        <span class="label">Relatos enviados.</span>
+        <br/>
+        <br/>
+        <table class="table table_special table-condensed">
+          <tr id='headers'>
+            <th>Usuario</th>
+            <th>Pueblo</th>
+            <th>Fecha de recibido</th>
+          </tr>
+          <tr>
+            <td>Algo1</td>
+            <td>Algo1</td>
+            <td>Algo1</td>
+          </tr>
+        </table>
+        <br/>
+        <br/>
+        <span class="label">Reportes enviados</span>
+        <br/>
+        <br/>
+        <table class="table table_special table-condensed">
+          <tr class="success">
+            <th>Remitente</th>
+            <th>Sección</th>
+            <th>Fecha de envio</th>
+          </tr>
+          <tr>
+            <td>Algo1</td>
+            <td>Algo1</td>
+            <td>Algo1</td>
+          </tr>
+        </table>
+      </div>
+      <div class="span3 offset2">
+        <span class="label">Ultimos accesos del usuario</span>
+        <br/>
+        <br/>
+        <table class="table table_special table-condensed">
+          <tr>
+            <th>Accesos</th>
+          </tr>
+          <tr>
+            <td>Algo1</td>
+          </tr>
+        </table>
+        <!--Body content-->
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
 
@@ -134,3 +248,4 @@
 })(django.jQuery);
 </script>
 {% endblock %}
+

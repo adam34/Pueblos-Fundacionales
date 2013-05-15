@@ -56,7 +56,6 @@ class pueblo(models.Model):
 	ID=models.AutoField(primary_key=True, null=False)
 	NOMBRE=models.CharField(max_length=30,null=False)
 	GALERIA=models.ForeignKey('galeria',null=False)
-	ADMINISTRADOR=models.ManyToManyField(User,null=False, related_name='pueblo_administrador')
 	TIPO=models.CharField(max_length=1,null=False)
 	LATITUD=models.CharField(max_length=10,null=False)
 	LONGITUD=models.CharField(max_length=10,null=False)

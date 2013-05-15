@@ -37,7 +37,7 @@ def validar_email(valor):
 #Fin de validadores para UserForm
 
 mensajes ={'required':'El campo es obligatorio. No se puede dejar en blanco o sin datos','max_length':'El dato excedió el limite de caracteres para este campo',}
-	
+
 #------------------------------------------Codigo de los forms -------------------------------------------
 errores_login={
 	'min_length': ("Error del tipo min_length."),
@@ -123,7 +123,7 @@ class UserForm(forms.ModelForm):
 
 		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Mantenga presionada la tecla "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
-	
+
 	def save(self,commit=True):
 		user = super(UserForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password"])
