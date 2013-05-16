@@ -234,7 +234,6 @@ class contrato(models.Model):
 	DESCRIPCION=models.CharField(null=False,max_length=30)
 	FECHA_INICIO=models.DateTimeField(null=False)
 	DURACION=models.IntegerField(null=True,default=0)
-	ESTADO=models.CharField(null=False,max_length=10)
 	NOVECES=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
 		return self.ID
@@ -257,6 +256,7 @@ class curiosidad_idioma(models.Model):
 		verbose_name_plural="curiosidades_idiomas" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True, null=False)
 	IDIOMA =models.ForeignKey('idioma',null=False)
+	CURIOSIDAD =models.ForeignKey('curiosidad',null=False)
 	TITULO=models.CharField(null=False,max_length=30)
 	DESCRIPCION=models.TextField(null=False)	
 	def __unicode__(self):
@@ -267,4 +267,4 @@ class curiosidad(models.Model):
 		verbose_name="curiosidad" #Nombre en singular del modelo
 		verbose_name_plural="curiosidades " #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True, null=False)
-	IDIOMAS=models.ManyToManyField(curiosidad_idioma,null=False)
+	PUEBLO=models.ForeignKey('pueblo',null=False)
