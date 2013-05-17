@@ -67,8 +67,8 @@ class pueblo_idioma(models.Model):
 		verbose_name="pueblo_idioma" #Nombre en singular del modelo
 		verbose_name_plural="pueblos_idiomas" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True, null=False,unique=True)
-	Pueblo=models.ForeignKey('Pueblo',null=False)
-	Idioma=models.ForeignKey('Idioma',null=False)
+	PUEBLO=models.ForeignKey('Pueblo',null=False)
+	IDIOMAa=models.ForeignKey('Idioma',null=False)
 	DESCRIPCION=models.TextField(null=False)
 	def __unicode__(self):
 		return self.ID
