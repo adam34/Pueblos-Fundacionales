@@ -9,15 +9,18 @@ from django.contrib.auth.models import User
 from django.contrib import admin
 
 def vista1(request):
+	# import os
+	# RUTA_PROYECTO = os.path.dirname(os.path.realpath(__file__))
+	# print RUTA_PROYECTO
 	# user=User.objects.get(username='root')
 	# obj = UserForm(initial={'username':user.username,'password':user.password,'first_name':user.first_name,'last_name':user.last_name,'is_staff':user.is_staff,'is_superuser':user.is_superuser})
 	obj = UserForm(initial={'password':'aaaa',})
 	# print type(user.user_permissions.all())
 	# print dir(user.user_permissions.all())
 	# print user.user_permissions.all()
-	print type(admin.site.login_form)
-	print admin.site.login_form
-	print dir(admin.site.login_form)
+	# print type(admin.site.login_form)
+	# print admin.site.login_form
+	# print dir(admin.site.login_form)
 	return render_to_response('pagina1.html',{'form':obj})
 
 @csrf_exempt
