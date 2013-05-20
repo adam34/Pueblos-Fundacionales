@@ -52,6 +52,7 @@ nav li.menu:nth-child(5){width:0%}
 .seccion_sugerencias article > div > p{font-size:.65em}
 .sitios_turisticos h3{width:60%}
 .suscribete_redes input[type="text"]{width:190px}
+.menu_mapas input[type="text"]{max-width:100%}
 }@media screen and (max-width: 768px){footer{background:#00f}
 aside,.suscribete{height:180px;width:45%}
 aside{margin-left:.2em;width:47%}
@@ -104,6 +105,9 @@ nav li.menu:last-child{margin-left:20%;margin-top:.2em;width:40%}
 .social_icons{width:25%}
 .titulo{font-size:1.4em;margin-top:1.6em;width:60%}
 .wcont{width:45%}
+.mapa,.menu_mapas{width:100%}
+.menu_mapas{margin-bottom:2%;}
+.menu_mapas label{margin-left:5%}
 }@media screen and (max-width: 480px){footer{background:#f0f}
 aside,.relatos,.materiales,.suscribete{margin:.3em auto .3em auto;width:100%}
 aside,.suscribete{height:150px}
@@ -139,6 +143,7 @@ nav li.menu:last-child{margin-left:5%;margin-top:0;width:80%}
 .informacion_turistica img,.compras img,.visitabcs img,.guias_turisticas img{height:130px;margin-top:.3em}
 .informacion_turistica p,.compras p,.visitabcs p,.guias_turisticas p{margin-left:3%;margin-right:3%}
 .suscribete_redes input[type="text"]{width:270px}
+#forward,#back,#get_route{padding:.5em}
 }@media screen and (max-width: 320px){footer{background:#ff0}
 .accesibilidad{height:250px}
 .buscar{margin-top:-.5em}
@@ -158,4 +163,7 @@ nav li.menu:last-child{margin-left:5%;margin-top:0;width:80%}
 .titulo{font-size:1.2em;margin-top:1.6em}
 .wcont{width:100%}
 .suscribete_redes input[type="text"]{width:240px}
+#forward,#back,#get_route{padding:.3em}
+#steps{font-size:.9em;list-style:none;font-weight:bold}
+.menu_mapas input[type="text"]{width:180px}
 }
