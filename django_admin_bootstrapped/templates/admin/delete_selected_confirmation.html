@@ -1,0 +1,167 @@
+{% load i18n l10n %}
+{% load url from future %}
+{% load admin_urls %}
+<!-- FALTA PROGRAMAR EL BOTON DE ELIMINAR. NO OLVIDAR HACER ESO.-->
+<!-- FALTA PROGRAMAR EL BOTON DE ELIMINAR. NO OLVIDAR HACER ESO.-->
+<!-- FALTA PROGRAMAR EL BOTON DE ELIMINAR. NO OLVIDAR HACER ESO.-->
+<!-- FALTA PROGRAMAR EL BOTON DE ELIMINAR. NO OLVIDAR HACER ESO.-->
+<!-- FALTA PROGRAMAR EL BOTON DE ELIMINAR. NO OLVIDAR HACER ESO.-->
+<!-- FALTA PROGRAMAR EL BOTON DE ELIMINAR. NO OLVIDAR HACER ESO.-->
+<!-- FALTA PROGRAMAR EL BOTON DE ELIMINAR. NO OLVIDAR HACER ESO.-->
+
+<!-- csrfmiddlewaretoken:m1EGwZxmp7proCegGkXLKbZB1ldlobsm
+_selected_action:16
+action:delete_selected
+post:yes
+
+csrfmiddlewaretoken=m1EGwZxmp7proCegGkXLKbZB1ldlobsm&_selected_action=16&action=delete_selected&post=yes -->
+
+{% block breadcrumbs %}
+<ul class="breadcrumb">
+<li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> <span class="divider">/</span></li>
+<li><a href="{% url 'admin:app_list' app_label=app_label %}">{{ app_label|capfirst|escape }}</a> <span class="divider">/</span></li>
+<li><a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a> <span class="divider">/</span></li>
+<li>{% trans 'Delete multiple objects' %}</li>
+</ul>
+{% endblock %}
+
+{% block content %}
+<div class="row-fluid">
+    <div class="span12">
+{% if perms_lacking or protected %}
+    {% if perms_lacking %}
+        <p>{% blocktrans %}Deleting the selected {{ objects_name }} would result in deleting related objects, but your account doesn't have permission to delete the following types of objects:{% endblocktrans %}</p>
+        <ul>
+        {% for obj in perms_lacking %}
+            <li>{{ obj }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% if protected %}
+        <p>{% blocktrans %}Deleting the selected {{ objects_name }} would require deleting the following protected related objects:{% endblocktrans %}</p>
+        <ul>
+        {% for obj in protected %}
+            <li>{{ obj }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% else %}
+    <p>{% blocktrans %}Are you sure you want to delete the selected {{ objects_name }}? All of the following objects and their related items will be deleted:{% endblocktrans %}</p>
+    {% for deletable_object in deletable_objects %}
+        <ul id='to_delete'>{{ deletable_object|unordered_list }}</ul>
+    {% endfor %}
+    <form id='form_delete' action="" method="post">{% csrf_token %}
+    <div>
+    {% for obj in queryset %}
+    <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}" />
+    {% endfor %}
+    <input type="hidden" name="action" value="delete_selected" />
+    <input type="hidden" name="post" value="yes" />
+    <div class="form-actions">
+        <div class="pull-right">
+            <input type="button" id='bt_eliminar' class="btn btn-danger" value="Sí, estoy seguro de lo que hago" />
+        </div>
+    </div>
+    </div>
+    </form>
+{% endif %}
+    </div>
+</div>
+{% endblock %}
+
+<script type="text/javascript">
+$(function()
+{
+    $("#to_delete a").on('click',visualizar);
+    function visualizar(e)
+    {
+        var elemento=e.target;
+        var ref=elemento.href;
+        $.ajax({
+            async:false,
+            url:ref,
+            data:{csrfmiddlewaretoken:'{{csrf_token}}'},
+            type:'GET',
+            //dataType:
+            success:function(response)
+            {
+                if(response!='')
+                {
+                    //$('body').removeClass();
+                    //$('body').addClass('_change-list')
+                    $('#content-main').hide(500,function()
+                        {
+                            $('#content-main').html(response);
+                            $('#content-main').show(1000);
+                        });
+                    //class:_change-list
+                    //class: dashboard
+                }
+                else
+                {
+                    alert('No hubo respuesta por parte del servidor.');
+                }
+            },
+            error:function(jqXHR, status, error)
+            {
+                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+            },
+            // complete:function(jqXHR, status)
+            // {
+            //     alert(jqXHR.responseText+'\n'+status)
+            // },
+        });
+        return false;
+    }
+
+    $('#bt_eliminar').on('click',acciones);
+    function acciones(e)
+    {
+        var ref = "{% url opts|admin_urlname:'changelist' %}{{ cl.opts.module_name }}" ;
+        var post =$('#form_delete input[name="post"]')[0].value;
+        var accion =$('#form_delete input[name="action"]')[0].value;
+        values = $('#form_delete input[name="_selected_action"]');
+        var choosens="";
+        for(x=0;x<values.length;x++)
+        {
+            choosens+="&_selected_action="+values[x].value;
+        }
+        //ref = ref.split('add')[0];
+        $.ajax({
+            async:false,
+            url:ref,
+            data:"csrfmiddlewaretoken={{csrf_token}}&action="+accion+"&post="+post+""+choosens,
+            type:'POST',
+            success:function(response)
+            {
+                if(response!='')
+                {
+                    //$('body').removeClass();
+                    //$('body').addClass('_change-list')
+                    $('#content-main').hide(500,function()
+                        {
+                            $('#content-main').html(response);
+                            $('#content-main').show(1000);
+                        });
+                    //class:_change-list
+                    //class: dashboard
+                }
+                else
+                {
+                    alert('No hubo respuesta por parte del servidor.');
+                }
+            },
+            error:function(jqXHR, status, error)
+            {
+                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+            },
+            // complete:function(jqXHR, status)
+            // {
+            //     alert(jqXHR.responseText+'\n'+status)
+            // },
+        });
+        return false;
+    }
+});
+</script>
+

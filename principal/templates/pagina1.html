@@ -1,0 +1,46 @@
+<html>
+<head>
+	<title>Pagina 1</title>
+	<script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+	<form id='algo'>
+		<input type='text' id='textbox1'>
+		<input type='text' id='textbox2'>
+		<input type='text' id='textbox3'>
+		<input type='text' id='textbox4'>
+	</form>
+	<button id='bt'>Boton de ajax.</button>
+	<form>
+		{{form.as_table}}
+	</form>
+</body>
+<script type="text/javascript">
+$(function(){
+	$('#bt').on('click',test1);
+	function test1()
+	{
+		var form=$("#algo");
+		$.ajax({
+		    async:false,
+		    url:'http://localhost/vista_ajax1/',
+		    data:form.serialize(),
+		    type:'POST',
+		    //dataType:
+		    success:function(response)
+		    {
+		    	alert(response);
+		    },
+		    error:function(jqXHR, status, error)
+		    {
+		        alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+		    },
+		    // complete:function(jqXHR, status)
+		    // {
+		    //     alert(jqXHR.responseText+'\n'+status)
+		    // },
+		});
+	}
+});
+</script>
+</html>

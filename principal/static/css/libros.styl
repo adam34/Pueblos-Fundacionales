@@ -1,0 +1,135 @@
+@import "_var"
+@import "_mixins"
+
+
+.container
+	background darken(blanco, 6%)
+	margin .6em auto
+	width 80%
+
+.folletos, .informacion_general, .mapas
+	border thin solid lighten(gris, 80%)
+	bordes(.2em)
+	height auto
+	margin .3em auto 
+	width 90%
+	article 
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		display inline-block
+		margin-left 2%
+		margin-bottom .5em
+		padding .5em
+		vertical-align top
+		width 44%
+		img 
+			float left 
+		div 
+			padding .2em
+			h4 
+				color cafe
+				font-size 1em
+				margin-top -10%
+				margin-left 30%
+		a 
+			color rojizo
+			font-size .7em
+			font-weight normal
+			margin-left .7em
+			text-decoration none 
+	h3 
+		background darken(blanco, 6%)
+		color cafe
+		text-align left
+		width 20%
+
+.folletos
+	h3 
+		color rojizo
+	article 
+		div 
+			h4 
+				color rojizo
+
+.libros, .menu_libros
+	display inline-block  
+	height auto
+	margin 0 auto
+	vertical-align top
+	width 65%
+
+.libros 
+	sombras-caja(.3em 0 .1em darken(blanco, 12%))
+	h3
+		width 30%
+	p 
+		font-size .9em
+		font-weight normal
+		margin-left 3%
+		a 
+			color rojizo
+			font-weight bold
+			text-decoration none 
+.mapas 
+	h3 
+		color amarillo
+	article 
+		div 
+			h4 
+				color amarillo
+
+.menu_libros
+	margin-left 1%
+	width 32%
+
+.redes_sociales
+	margin 0 auto 
+	width 95%
+	article 
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		height 80px
+		margin .3em 
+		margin-left 2%
+		img 
+			float left
+			height 70px 
+			margin .3em
+			width 70px
+		div 
+			margin .4em
+			h4 
+				color rojizo
+				font-size .9em
+				margin-left 30%
+			p 
+				font-size .75em
+				font-weight normal
+				margin-left 30%
+
+.suscribete_redes
+	border thin solid lighten(gris, 80%)
+	height 150px
+	margin-left .4em
+	text-align center
+	width 95%
+	h3 
+		color amarillo
+	input[type="text"]
+		background darken(blanco, 6%)
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		color darken(blanco, 80%)
+		margin-top .5em
+		height 30px
+		width 230px
+	input[type="button"]
+		bordes(.2em)
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		height 30px
+		color blanco
+		width 90px
