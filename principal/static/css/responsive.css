@@ -1,4 +1,5 @@
-@media screen and (max-width: 1200px){aside article{margin:0 .25em}
+@media screen and (max-width: 1200px){footer{background:#f00}
+aside article{margin:0 .25em}
 header,nav,.contenedor{width:90%}
 nav li.menu:nth-child(5){width:1%}
 #map_canvas{height:350px;max-width:180px}
@@ -13,7 +14,8 @@ nav li.menu:nth-child(5){width:1%}
 .idiomas{font-size:.8em}
 .proximos-eventos span a{font-size:.9em}
 .suscribete input[type="text"]{width:210px}
-}@media screen and (max-width: 1024px){aside{margin-left:1em;height:130px;text-align:center;width:90%;}
+}@media screen and (max-width: 1024px){footer{background:#008000}
+aside{margin-left:1em;height:130px;text-align:center;width:90%;}
 aside article{margin:0 .7em}
 h2,h3{font-size:1.1em}
 nav li.menu{padding:.8em .5em .8em .5em;}
@@ -47,7 +49,12 @@ nav li.menu:nth-child(5){width:0%}
 .telefonos{height:180px;margin:.3em;width:95%}
 .titulo{font-size:1.5em;width:45%}
 .wcont{font-size:.9em}
-}@media screen and (max-width: 768px){aside,.suscribete{height:180px;width:45%}
+.seccion_sugerencias article > div > p{font-size:.65em}
+.sitios_turisticos h3{width:60%}
+.suscribete_redes input[type="text"]{width:190px}
+.menu_mapas input[type="text"]{max-width:100%}
+}@media screen and (max-width: 768px){footer{background:#00f}
+aside,.suscribete{height:180px;width:45%}
 aside{margin-left:.2em;width:47%}
 .suscribete input[type="text"]{width:200px}
 header,nav,.contenedor{width:95%}
@@ -74,7 +81,12 @@ header,nav,.contenedor{width:95%}
 .principal{height:auto;margin-bottom:.8em;max-width:100%;}
 .recomendaciones img{height:150px;width:90%}
 .titulo{font-size:1.2em;width:40%}
-}@media screen and (max-width: 600px){aside article{margin-left:0}
+.menu_secciones,.secciones{width:100%}
+.seccion_sugerencias article > div > p{font-size:.9em}
+.suscribete_redes{margin:0 auto;}
+.suscribete_redes input[type="text"]{width:300px}
+}@media screen and (max-width: 600px){footer{background:#0ff}
+aside article{margin-left:0}
 header,nav,.contenedor{width:100%}
 nav li.menu{font-size:1em;padding:.7em 1em .7em 1.2em;width:16%;}
 nav li.menu:last-child{margin-left:20%;margin-top:.2em;width:40%}
@@ -93,7 +105,11 @@ nav li.menu:last-child{margin-left:20%;margin-top:.2em;width:40%}
 .social_icons{width:25%}
 .titulo{font-size:1.4em;margin-top:1.6em;width:60%}
 .wcont{width:45%}
-}@media screen and (max-width: 480px){aside,.relatos,.materiales,.suscribete{margin:.3em auto .3em auto;width:100%}
+.mapa,.menu_mapas{width:100%}
+.menu_mapas{margin-bottom:2%;}
+.menu_mapas label{margin-left:5%}
+}@media screen and (max-width: 480px){footer{background:#f0f}
+aside,.relatos,.materiales,.suscribete{margin:.3em auto .3em auto;width:100%}
 aside,.suscribete{height:150px}
 nav li.menu{text-align:center;width:91%;}
 nav li.menu:last-child{margin-left:5%;margin-top:0;width:80%}
@@ -122,7 +138,14 @@ nav li.menu:last-child{margin-left:5%;margin-top:0;width:80%}
 .social_icons img{height:26px;width:26px}
 .telefonos{width:95%}
 .titulo{font-size:1.5em;margin-top:1.6em;width:60%}
-}@media screen and (max-width: 320px){.accesibilidad{height:250px}
+.hoteles,.seccion_restaurantes,.seccion_centros,.seccion_curiosidades,.seccion_pueblos,.seccion_eventos,.compras,.informacion_turistica,.visitabcs,.guias_turisticas{width:95%;height:120px}
+.informacion_turistica,.compras,.visitabcs,.guias_turisticas{height:200px;}
+.informacion_turistica img,.compras img,.visitabcs img,.guias_turisticas img{height:130px;margin-top:.3em}
+.informacion_turistica p,.compras p,.visitabcs p,.guias_turisticas p{margin-left:3%;margin-right:3%}
+.suscribete_redes input[type="text"]{width:270px}
+#forward,#back,#get_route{padding:.5em}
+}@media screen and (max-width: 320px){footer{background:#ff0}
+.accesibilidad{height:250px}
 .buscar{margin-top:-.5em}
 .calendario-eventos input[type="text"]{border:thin solid blanco;position:relative}
 .conf_idiomas{width:100%}
@@ -139,4 +162,8 @@ nav li.menu:last-child{margin-left:5%;margin-top:0;width:80%}
 .social_icons img{height:26px;margin-left:-.1em;width:26px}
 .titulo{font-size:1.2em;margin-top:1.6em}
 .wcont{width:100%}
+.suscribete_redes input[type="text"]{width:240px}
+#forward,#back,#get_route{padding:.3em}
+#steps{font-size:.9em;list-style:none;font-weight:bold}
+.menu_mapas input[type="text"]{width:180px}
 }

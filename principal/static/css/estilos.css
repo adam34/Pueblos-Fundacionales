@@ -107,7 +107,9 @@ header{background:transparent;height:160px}
 .logotipo:hover{cursor:pointer;-ms-transform:rotate(360deg);-moz-transform:rotate(360deg);-o-transform:rotate(360deg);-webkit-transform:rotate(360deg);transform:rotate(360deg);-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out}
 .longdesc{display:none}
 .mapa,.menu_mapas{display:inline-block;margin:0 auto;height:auto;vertical-align:top;width:75%}
-.menu_mapas{margin-left:2%;width:20%}
+.menu_mapas{margin-left:2%;width:20%;}
+.menu_mapas label{color:#1f1f1f}
+.menu_mapas input[type="text"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;width:200px}
 .mapa-misiones{border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;height:430px;margin:.3em auto 2.5em auto;}
 .mapa-misiones h3{color:#88420b}
 .menu-lateral,.principal{background:#f0f0f0;color:#4d4d4d;display:inline-block;height:1640px;margin-right:.2em;vertical-align:top;max-width:45%}

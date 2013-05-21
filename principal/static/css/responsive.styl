@@ -1,5 +1,7 @@
 /* Media-queries 320 480 600 768 1024 1200 */
 @media screen and (max-width: 1200px)
+	footer 
+		background red 
 	aside 
 		article
 			margin 0 .25em 
@@ -42,6 +44,8 @@
 
 
 @media screen and (max-width: 1024px)
+	footer 
+		background green
 	aside 
 		margin-left 1em
 		height 130px
@@ -151,8 +155,23 @@
 		width 45%
 	.wcont
 		font-size .9em
-
+	//Secciones 
+	.seccion_sugerencias
+		article > div > p
+			font-size .65em
+	.sitios_turisticos
+		h3 
+			width 60%
+	.suscribete_redes
+		input[type="text"]
+			width 190px
+	//Mapa
+	.menu_mapas 
+		input[type="text"]
+			max-width 100%
 @media screen and (max-width: 768px)
+	footer 
+		background blue
 	aside, .suscribete 
 		height 180px
 		width 45%
@@ -236,8 +255,19 @@
 	.titulo 
 		font-size 1.2em
 		width 40%
-
+	//Secciones
+	.menu_secciones, .secciones
+		width 100%
+	.seccion_sugerencias
+		article > div > p
+			font-size .9em
+	.suscribete_redes
+		margin 0 auto
+		input[type="text"]
+			width 300px
 @media screen and (max-width: 600px)
+	footer 
+		background cyan
 	aside
 		article
 			margin-left 0
@@ -294,9 +324,17 @@
 		width 60%
 	.wcont
 		width 45%
-
+	//Mapa
+	.mapa, .menu_mapas
+		width 100%
+	.menu_mapas 
+		margin-bottom 2%
+		label 
+			margin-left 5%
 
 @media screen and (max-width: 480px)
+	footer 
+		background magenta
 	aside, .relatos, .materiales, .suscribete
 		margin .3em auto .3em auto
 		width 100%
@@ -377,8 +415,29 @@
 		font-size 1.5em
 		margin-top 1.6em
 		width 60%
-
+	//Secciones
+	.hoteles, .seccion_restaurantes, .seccion_centros, .seccion_curiosidades,
+	.seccion_pueblos, .seccion_eventos, .compras, .informacion_turistica, 
+	.visitabcs, .guias_turisticas
+		width 95%
+		height 120px
+	.informacion_turistica, .compras, .visitabcs, .guias_turisticas
+		height 200px
+		img 
+			height 130px
+			margin-top .3em
+		p
+			margin-left 3%
+			margin-right 3%
+	.suscribete_redes
+		input[type="text"]
+			width 270px
+	//Mapa
+	#forward, #back, #get_route 
+		padding .5em
 @media screen and (max-width: 320px)
+	footer 
+		background yellow
 	.accesibilidad
 		height 250px
 	.buscar 
@@ -425,3 +484,17 @@
 		margin-top 1.6em
 	.wcont
 		width 100%
+	//Secciones 
+	.suscribete_redes
+		input[type="text"]
+			width 240px
+	//Mapa 
+	#forward, #back, #get_route 
+		padding .3em
+	#steps
+		font-size .9em
+		list-style none
+		font-weight bold
+	.menu_mapas
+		input[type="text"]
+			width 180px
