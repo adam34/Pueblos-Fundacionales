@@ -7,8 +7,11 @@ import re
 from django.forms.util import ErrorList
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
+#from django.contrib.admin.widgets import FilteredSelectMultiple
+from administrador.extras.widgets import SelectMultipleCustom
+from django.forms.widgets import *
 
-#Validadores para UserForm
+#----------------------------------Validadores para UserForm------------------------------------------
 def validar_usuario(valor):
 	if len(valor) > 30:
 		raise ValidationError(u'No debe ser mayor de 30 caractares.')
@@ -27,14 +30,13 @@ def validar_nombre(valor):
 			raise ValidationError(u'El campo de nombre(s) no tiene el formato correcto. Asegurese de introducir nombres compuestos sólo por letras, de 3 caracteres como mínimo, separados por un "sólo" espacio y de proporcionar tanto el/los nombre(s) como el/los apellido(s).')
 def validar_apellido(valor):
 	if valor != "":
-		print valor
 		if re.match(r'^([A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})*$'.decode("utf-8"),valor) == None:
 			raise ValidationError(u'El campo de apellido(s) no tiene el formato correcto. Asegurese de introducir nombres compuestos sólo por letras y separados por un "sólo" espacio y de proporcionar tanto el/los nombre(s) como el/los apellido(s).')
 def validar_email(valor):
 	if valor != "":
 		if re.match(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$',valor) == None:
 			raise ValidationError(u'Debe contener solamente números y caracteres, nada más.')
-#Fin de validadores para UserForm
+#----------------------------------Fin de validadores para UserForm--------------------------------
 
 mensajes ={'required':'El campo es obligatorio. No se puede dejar en blanco o sin datos','max_length':'El dato excedió el limite de caracteres para este campo',}
 
@@ -72,6 +74,7 @@ class CustomAutenticacionForm(AuthenticationForm):
 		self.check_for_test_cookie()
 		return self.cleaned_data
 
+#-------------------------------Formularios para el modelo de users--------------------------------
 class UserForm(forms.ModelForm):
 	class Media:
 		js = ('admin/js/users.js',)
@@ -112,13 +115,14 @@ class UserForm(forms.ModelForm):
 		self.fields['email'].label='Correo electrónico'
 		self.fields['email'].help_text='Opcional. Ejemplo: username@server.com'
 
-		self.fields['groups'].widget=forms.SelectMultiple()
+		
+		# self.fields['groups'].widget=forms.MultipleChoiceField(queryset=Group.objects.all(), widget=FilteredSelectMultiple("Integrales", is_stacked=False))
+		self.fields['groups'].widget = forms.SelectMultiple()
 		self.fields['groups'].widget.attrs = {'class':'input-xxlarge'}
+		self.fields['groups'].queryset= Group.objects.all()
 
 		self.fields['user_permissions'].widget=forms.SelectMultiple()
 		self.fields['user_permissions'].widget.attrs = {'class':'input-xxlarge',}
-
-		self.fields['groups'].queryset= Group.objects.all()
 		self.fields['user_permissions'].queryset=Permission.objects.all()
 
 		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Mantenga presionada la tecla "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
@@ -172,3 +176,54 @@ class UserChangeForm(forms.ModelForm):
 
 		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Mantenga presionada la tecla "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+
+#----------------------------Fin de formularios para el modelo de users-----------------------------
+
+#--------------------------------Formularios para el modelo de groups---------------------------------
+class GroupForm(forms.ModelForm):
+	class Media:
+		js = ('admin/js/groups.js',)
+		css = {}
+	class Meta:
+		model=Group
+	def __init__(self, *args, **kwargs):
+		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
+		super(GroupForm, self).__init__(*args, **kwargs)
+		self.fields['permissions'].widget= SelectMultipleCustom()
+		self.fields['permissions'].queryset= Permission.objects.all()
+
+		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+
+	def save(self,commit=True):
+		pass
+
+	def clean(self):
+		pass
+
+class GroupChangeForm(forms.ModelForm):
+	class Media:
+		js = ('admin/js/groups_change.js',)
+		css = {}
+	class Meta:
+		model=Group
+	def __init__(self, *args, **kwargs):
+		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
+		super(GroupForm, self).__init__(*args, **kwargs)	
+		# self.fields['groups'].widget=forms.MultipleChoiceField(queryset=Group.objects.all(), widget=FilteredSelectMultiple("Integrales", is_stacked=False))
+		self.fields['name'].widget.attrs = {'disabled':'true'}
+
+
+		self.fields['permissions'].widget = forms.SelectMultiple()
+		self.fields['permissions'].widget.attrs = {'class':'input-xxlarge'}
+		self.fields['permissions'].queryset= Permission.objects.all()
+
+		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+
+	def save(self,commit=True):
+		pass
+
+	def clean(self):
+		pass
+
+
+#------------------------------Fin de formularios para el modelo de groups------------------------------

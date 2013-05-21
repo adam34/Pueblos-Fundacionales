@@ -21,9 +21,9 @@ import sys
 # mod_wsgi daemon mode with each site in its own daemon process, or use
 # os.environ["DJANGO_SETTINGS_MODULE"] = "pueblos.settings"
 
-# path = 'C:\\Proyectos\\Pueblos' # Cambiar a ruta actual
-# if path not in sys.path:
-#     sys.path.append(path)
+path = 'C:\\Proyectos\\Pueblos-Fundacionales' # Cambiar a ruta actual
+if path not in sys.path:
+    sys.path.append(path)
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "pueblos.settings")
 
