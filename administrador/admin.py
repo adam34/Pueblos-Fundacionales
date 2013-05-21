@@ -19,7 +19,7 @@ class IdiomaAdmin(admin.ModelAdmin):
 	search_fields = ('NOMBRE',)
 	ordering = ['NOMBRE',]
 
-#ModelAdmin de Usuario para el manejo de las paginas para agregar, modificar y mostrar elementos
+#ModelAdmin de Usuarios para el manejo de las paginas para agregar, modificar y mostrar elementos
 class UsuarioAdmin(admin.ModelAdmin):
 	list_display =('username','first_name','last_name','email','is_staff',)
 	def get_form(self, request, obj=None, **kwargs):
@@ -59,7 +59,7 @@ class UsuarioAdmin(admin.ModelAdmin):
         #     super(UsuarioAdmin, self).__init__(*args, **kwargs)
 #Fin del UsuarioAdmin
 
-#ModelAdmin de Usuario para el manejo de las paginas para agregar, modificar y mostrar elementos
+#ModelAdmin de Grupos para el manejo de las paginas para agregar, modificar y mostrar elementos
 class GruposAdmin(admin.ModelAdmin):
 	list_display =('name',)
 	def get_form(self, request, obj=None, **kwargs):
@@ -81,13 +81,33 @@ class GruposAdmin(admin.ModelAdmin):
 					}),
 				)
 		return super(GruposAdmin, self).get_form(request, obj, **kwargs)	
-        # def __init__(self, *args, **kwargs):
-        #     super(UsuarioAdmin, self).__init__(*args, **kwargs)
+#Fin del UsuarioAdmin
+
+#ModelAdmin de Pueblos para el manejo de las paginas para agregar, modificar y mostrar elementos
+class PueblosAdmin(admin.ModelAdmin):
+	list_display =('name',)
+	def get_form(self, request, obj=None, **kwargs):
+		#print dir(self.form._meta.fields)
+		if obj: # obj is not None, so this is a change page
+			pass
+			#kwargs['fields'] = ['username', 'password','password2']
+			self.form=GroupChangeForm
+			self.fieldsets = (
+				(None, {
+					'fields': ('name','permissions'),
+					}),
+				)
+		else: # obj is None, so this is an add page
+			self.form=GroupForm
+			self.fieldsets = (
+				(None, {
+					'fields': ('name','permissions'),
+					}),
+				)
+		return super(GruposAdmin, self).get_form(request, obj, **kwargs)	
 #Fin del UsuarioAdmin
 
 
-
-    #id_groups,id_user_permissions,id_last_login_0,id_date_joined_0
 admin.site.unregister(User)
 admin.site.register(User,UsuarioAdmin)
 

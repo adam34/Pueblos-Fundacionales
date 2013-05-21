@@ -8,8 +8,21 @@
 <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
 {% endblock %}
 
-{% block extrastyle %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
+{% block extrastyle %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
 
+{% if add %}
+    {%put_css opts.verbose_name_plural 'add' %}
+{% else %}
+    {%put_css opts.verbose_name_plural 'change' %}
+{% endif %}
+
+{% if add %}
+    {%put_js opts.verbose_name_plural 'add' %}
+{% else %}
+    {%put_js opts.verbose_name_plural 'change' %}
+{% endif %}
+
+{% endblock %}
 {% block messages %}
 {% if messages %}
 <div class="row-fluid">
@@ -101,11 +114,6 @@
             {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
         </div>
     </div>
-{% if add %}
-    {%put_fns media opts.verbose_name_plural 'add' %}
-{% else %}
-    {%put_fns media opts.verbose_name_plural 'change' %}
-{% endif %}
 
 <script type="text/javascript">
     //event.preventDefault(), event.stopPropagation() y event.stopInmediatePropagation().
