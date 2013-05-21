@@ -76,9 +76,6 @@ class CustomAutenticacionForm(AuthenticationForm):
 
 #-------------------------------Formularios para el modelo de users--------------------------------
 class UserForm(forms.ModelForm):
-	class Media:
-		js = ('admin/js/users.js',)
-		css = {}
 	password2=forms.CharField(widget=forms.PasswordInput,required=True,help_text="Nombre de usuario.",max_length=30,error_messages=mensajes, validators=[validar_contrasena])
 	class Meta:
 		model=User
@@ -118,15 +115,15 @@ class UserForm(forms.ModelForm):
 		
 		# self.fields['groups'].widget=forms.MultipleChoiceField(queryset=Group.objects.all(), widget=FilteredSelectMultiple("Integrales", is_stacked=False))
 		self.fields['groups'].widget = SelectMultipleCustom()
-		self.fields['groups'].widget.attrs = {'class':'input-xxlarge'}
+		# self.fields['groups'].widget.attrs = {'class':'input-xxlarge'}
 		self.fields['groups'].queryset= Group.objects.all()
 
 		self.fields['user_permissions'].widget=SelectMultipleCustom()
 		#self.fields['user_permissions'].widget.attrs = {'class':'input-xxlarge',}
 		self.fields['user_permissions'].queryset=Permission.objects.all()
 
-		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Mantenga presionada la tecla "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
-		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Seleccione los grupos o el grupo en el que desea asignarle.'
+		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
 
 	def save(self,commit=True):
 		user = super(UserForm, self).save(commit=False)
@@ -147,9 +144,6 @@ class UserForm(forms.ModelForm):
 		return cleaned_data
 
 class UserChangeForm(forms.ModelForm):
-	class Media:
-		js = ('admin/js/users_change.js',)
-		css = {}
 	class Meta:
 		model=User
 	def __init__(self, *args, **kwargs):
@@ -174,16 +168,13 @@ class UserChangeForm(forms.ModelForm):
 		self.fields['groups'].queryset= Group.objects.all()
 		self.fields['user_permissions'].queryset=Permission.objects.all()
 
-		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Mantenga presionada la tecla "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
-		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Seleccione los grupos o el grupo en el que desea asignarle.'
+		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
 
 #----------------------------Fin de formularios para el modelo de users-----------------------------
 
 #--------------------------------Formularios para el modelo de groups---------------------------------
 class GroupForm(forms.ModelForm):
-	class Media:
-		js = ('admin/js/groups.js',)
-		css = {}
 	class Meta:
 		model=Group
 	def __init__(self, *args, **kwargs):
@@ -201,9 +192,6 @@ class GroupForm(forms.ModelForm):
 		pass
 
 class GroupChangeForm(forms.ModelForm):
-	class Media:
-		js = ('admin/js/groups_change.js',)
-		css = {}
 	class Meta:
 		model=Group
 	def __init__(self, *args, **kwargs):
@@ -214,10 +202,9 @@ class GroupChangeForm(forms.ModelForm):
 
 
 		self.fields['permissions'].widget = forms.SelectMultiple()
-		self.fields['permissions'].widget.attrs = {'class':'input-xxlarge'}
 		self.fields['permissions'].queryset= Permission.objects.all()
 
-		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los grupos o el grupo en el que desea asignarle.'
 
 	def save(self,commit=True):
 		pass

@@ -30,28 +30,21 @@ class SelectMultipleCustom(SelectMultiple):
     	# return output
         if value is None: value = []  
         
-        if name=='permissions':
+        if name=='permissions' or name=='user_permissions':
             var='Permisos'
         elif name =='groups':
             var='Grupos'
-        elif name=='user_permissions':
-            var='Permisos de usuario'
         else:
             var=name
 
         final_attrs = self.build_attrs(attrs, name=name)
-        output = [format_html('<link href="/static/admin/css/multi-select.css" media="screen" rel="stylesheet" type="text/css">')]
-        output.append(format_html('<select id="searchable_{0}" name="my-select[]" multiple="multiple"{1}>', var,flatatt(final_attrs)))
+        output=[format_html('<select id="searchable_{0}" name="my-select[]" multiple="multiple"{1}>', var,flatatt(final_attrs))]
         options = self.render_options(choices, value)
         if options:
             output.append(options)
         output.append('</select>')
         # import pdb
         # pdb.set_trace()
-        output.append(format_html('<script type="text/javascript" src="/static/admin/js/jquery.multi-select.js"> </script>'))
-        output.append(format_html('<script type="text/javascript" src="/static/admin/js/jquery.quicksearch.js"> </script>'))
-
-
         output.append(mark_safe("""<script type="text/javascript">$("#searchable_%s").multiSelect({selectableHeader: "<input type='text' id='search_%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
 
 
