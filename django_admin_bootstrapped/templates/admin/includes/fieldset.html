@@ -1,3 +1,4 @@
+{% load tags %}
 <fieldset class="_module _aligned" id="fieldset-{{ forloop.counter }}" style="background:transparent">
     {% if fieldset.name %}
     <legend>
@@ -39,7 +40,7 @@
                             {% if not field.is_readonly and field.errors %}<span class="help-inline">{{ field.errors|striptags }}</span>{% endif %}
                             {% if field.field.help_text %}
                                 <span class="help-block">{{ field.field.help_text|safe }}</span>
-                            {% endif %}
+                            {% endif %}                          
                         </div>
                     {% endif %}
                 </div>
