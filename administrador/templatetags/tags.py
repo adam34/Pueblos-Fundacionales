@@ -6,8 +6,8 @@ register = Library()
 @register.simple_tag
 def put_fns(obj,nombre, tipo):
 	#data = nombre , type_template
-	print nombre
-	print tipo
+	# print nombre
+	# print tipo
 	try:
 		js=''
 		if tipo =='add':
@@ -33,7 +33,11 @@ def get_value(obj):
 	return obj
 
 @register.filter
+def get_type(obj):
+	return type(obj)
+
+@register.filter
 def dir_python(obj):
-	print type(obj)
-	print obj
+	#print type(obj)
+	#print obj
 	return dir(obj)

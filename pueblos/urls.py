@@ -10,10 +10,12 @@ urlpatterns = patterns('',
     # url(r'^pueblos/', include('pueblos.foo.urls')),
 
 
-    # Uncomment the admin/doc line below to enable admin documentation:
+    #Vistas para el administrador de contenidos.
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-    # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/vista1', 'administrador.views.vista1'),
+    #Fin de urls para el administrador de contenidos.
+
     url(r'^$', 'principal.views.home'),
     url(r'^secciones/$', 'principal.views.secciones'),
     url(r'^pueblos/$', 'principal.views.pueblos'),
