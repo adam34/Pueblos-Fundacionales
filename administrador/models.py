@@ -33,7 +33,7 @@ class archivo(models.Model):
 	NOMBRE=models.CharField(max_length=20,null=False)
 	DESCRIPCION=models.CharField(max_length=100,null=False)
 	TIPO=models.CharField(max_length=10,null=False,choices=FORMATOS)
-	RUTA=models.FileField(upload_to='/galerias/')
+	RUTA=models.FileField(upload_to='galerias/')
 	def __unicode__(self):
 		return self.NOMBRE
 
@@ -49,13 +49,14 @@ class galeria(models.Model):
 	def __unicode__(self):
 		return self.NOMBRE
 
+#max_digits=5, decimal_places=2
 class pueblo(models.Model):
 	class Meta:
 		verbose_name="pueblo" #Nombre en singular del modelo
 		verbose_name_plural="pueblos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True, null=False)
 	NOMBRE=models.CharField(max_length=30,null=False)
-	GALERIA=models.ForeignKey('galeria',null=False)
+	GALERIA=models.ForeignKey('galeria',null=True)
 	TIPO=models.CharField(max_length=1,null=False)
 	LATITUD=models.CharField(max_length=10,null=False)
 	LONGITUD=models.CharField(max_length=10,null=False)
@@ -106,8 +107,9 @@ class evento(models.Model):
 	NOMBRE=models.CharField(null=False,max_length=50)
 	FECHA=models.DateTimeField(null=False)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
-	LATITUD=models.CharField(null=False,max_length=10)
-	LONGITUD=models.CharField(null=False,max_length=10)
+	IMAGEN=models.ImageField(upload_to='eventos/',null=True)
+	LATITUD=models.CharField(max_length=10,null=False)
+	LONGITUD=models.CharField(max_length=10,null=False)
 	def __unicode__(self):
 		return self.NOMBRE
 
@@ -196,8 +198,9 @@ class sitio_turistico(models.Model):
 	TELEFONOS=models.TextField(null=False)
 	USUARIO=models.ForeignKey(User,unique=True)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
-	LONGITUD=models.CharField(null=False,max_length=10)
-	LATITUD=models.CharField(null=False,max_length=10)
+	IMAGEN=models.ImageField(upload_to='sitios/',null=True)
+	LATITUD=models.CharField(max_length=10,null=False)
+	LONGITUD=models.CharField(max_length=10,null=False)
 	def __unicode__(self):
 		return self.NOMBRE
 

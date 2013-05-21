@@ -29,24 +29,40 @@ class SelectMultipleCustom(SelectMultiple):
     	# output = super(SelectMultipleCustom, self).render(name,value,attrs,choices)
     	# return output
         if value is None: value = []  
+        
+        if name=='permissions':
+            var='Permisos'
+        elif name =='groups':
+            var='Grupos'
+        elif name=='user_permissions':
+            var='Permisos de usuario'
+        else:
+            var=name
+
         final_attrs = self.build_attrs(attrs, name=name)
         output = [format_html('<link href="/static/admin/css/multi-select.css" media="screen" rel="stylesheet" type="text/css">')]
-        output.append(format_html('<select id="searchable" name="my-select[]" multiple="multiple"{0}>', flatatt(final_attrs)))
+        output.append(format_html('<select id="searchable_{0}" name="my-select[]" multiple="multiple"{1}>', var,flatatt(final_attrs)))
         options = self.render_options(choices, value)
         if options:
             output.append(options)
         output.append('</select>')
+        # import pdb
+        # pdb.set_trace()
         output.append(format_html('<script type="text/javascript" src="/static/admin/js/jquery.multi-select.js"> </script>'))
         output.append(format_html('<script type="text/javascript" src="/static/admin/js/jquery.quicksearch.js"> </script>'))
-        output.append(mark_safe("""<script type="text/javascript">$("#searchable").multiSelect({selectableHeader: "<input type='text' id='search' class='span12' autocomplete='off' placeholder='Buscar: comentarios'>"});</script>"""))
-        output.append(mark_safe("""<script type="text/javascript">$('#search').quicksearch($('.ms-elem-selectable', '#ms-searchable' )).on('keydown', function(e){if (e.keyCode == 40)
+
+
+        output.append(mark_safe("""<script type="text/javascript">$("#searchable_%s").multiSelect({selectableHeader: "<input type='text' id='search_%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
+
+
+        output.append(mark_safe("""<script type="text/javascript">$('#search_%s').quicksearch($('.ms-elem-selectable', '#ms-searchable' )).on('keydown', function(e){if (e.keyCode == 40)
         	{\
     			$(this).trigger('focusout');\
-    			$('#searchable').focus();\
+    			$('#searchable_%s').focus();\
     			return false;\
   			}\
 		});\
-		</script>"""))
+		</script>""" % (var,var)))
 
         #jquery.multi-select.js
         return mark_safe('\n'.join(output))

@@ -117,12 +117,12 @@ class UserForm(forms.ModelForm):
 
 		
 		# self.fields['groups'].widget=forms.MultipleChoiceField(queryset=Group.objects.all(), widget=FilteredSelectMultiple("Integrales", is_stacked=False))
-		self.fields['groups'].widget = forms.SelectMultiple()
+		self.fields['groups'].widget = SelectMultipleCustom()
 		self.fields['groups'].widget.attrs = {'class':'input-xxlarge'}
 		self.fields['groups'].queryset= Group.objects.all()
 
-		self.fields['user_permissions'].widget=forms.SelectMultiple()
-		self.fields['user_permissions'].widget.attrs = {'class':'input-xxlarge',}
+		self.fields['user_permissions'].widget=SelectMultipleCustom()
+		#self.fields['user_permissions'].widget.attrs = {'class':'input-xxlarge',}
 		self.fields['user_permissions'].queryset=Permission.objects.all()
 
 		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Mantenga presionada la tecla "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
