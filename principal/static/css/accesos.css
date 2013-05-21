@@ -1,0 +1,12 @@
+.basico,.menu_basico{display:inline-block;height:auto;margin:0 auto;vertical-align:top;width:75%}
+.basico{-ms-box-shadow:.3em 0 .1em #e0e0e0;-moz-box-shadow:.3em 0 .1em #e0e0e0;-o-box-shadow:.3em 0 .1em #e0e0e0;-webkit-box-shadow:.3em 0 .1em #e0e0e0;box-shadow:.3em 0 .1em #e0e0e0;}
+.basico h3{width:30%}
+.contenido_basico_pueblos{text-align:center;}
+.contenido_basico_pueblos img{height:400px;max-width:90%}
+.lista{margin-bottom:3%;}
+.lista ul > li{list-style:none;margin-left:4%;}
+.lista ul > li a{color:#1e6381;text-decoration:none}
+.lista ul > li ul > li.submenu > a{color:#a70325}
+.menu_basico{margin-left:1%;width:12%}
+.submenu{margin-left:2%;}
+.submenu a{color:#a70325}
