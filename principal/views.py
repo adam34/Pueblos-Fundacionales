@@ -19,7 +19,7 @@ def galerias(request):
 def libros(request): 
 	return render_to_response('libros.html')
 
-def accesos(request): 
+def basico(request): 
 	return render_to_response('accesos.html')
 
 def mapa(request): 

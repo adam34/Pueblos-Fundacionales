@@ -14,9 +14,9 @@ from django.forms.widgets import *
 #----------------------------------Validadores para UserForm------------------------------------------
 def validar_usuario(valor):
 	if len(valor) > 30:
-		raise ValidationError(u'No debe ser mayor de 30 caractares.')
+		raise ValidationError(u'No debe ser mayor de 30 caracteres.')
 	if len(valor) < 6:
-		raise ValidationError(u'No debe ser menor de 6 caractares.')
+		raise ValidationError(u'No debe ser menor de 6 caracteres.')
 	if re.match(r'[\w]+$',valor) == None:
 		raise ValidationError(u'Debe contener solamente números y caracteres, nada más.')
 def validar_contrasena(valor):
