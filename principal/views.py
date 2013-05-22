@@ -70,5 +70,7 @@ def eventos(request):
 def galeria(request):
 	return render_to_response('multimedia/galeria.html')
 
-def relatos(request): 
-	return render_to_response('relatos.html')
+def relatos(request):
+	idiomas = idioma.objects.filter(NOMBRE='Español')
+	relatosObjs = relato_idioma.objects.filter(IDIOMA=idiomas[0])
+	return render_to_response('relatos.html',{'relatos':relatosObjs})
