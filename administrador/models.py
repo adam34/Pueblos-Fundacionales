@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from django.db import models
-from django.conf import settings
 from django.contrib.auth.models import User
 from django.conf import settings
 
@@ -56,7 +55,7 @@ class pueblo(models.Model):
 		verbose_name_plural="pueblos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True, null=False)
 	NOMBRE=models.CharField(max_length=30,null=False)
-	GALERIA=models.ForeignKey('galeria',null=True)
+	#GALERIA=models.ForeignKey('galeria',null=True)
 	TIPO=models.CharField(max_length=1,null=False)
 	LATITUD=models.CharField(max_length=10,null=False)
 	LONGITUD=models.CharField(max_length=10,null=False)
@@ -72,7 +71,7 @@ class pueblo_idioma(models.Model):
 	IDIOMA=models.ForeignKey('Idioma',null=False)
 	DESCRIPCION=models.TextField(null=False)
 	def __unicode__(self):
-		return self.ID
+		return self.DESCRIPCION
 
 
 class pueblo_administrador(models.Model):
@@ -84,7 +83,7 @@ class pueblo_administrador(models.Model):
 	ADMINISTRADOR=models.ForeignKey(User,unique=True)
 	ROL=models.CharField(max_length=10,null=False)
 	def __unicode__(self):
-		return self.ID
+		return self.ROL
 
 class comentario_pueblo(models.Model):
 	class Meta:
@@ -97,7 +96,7 @@ class comentario_pueblo(models.Model):
 	FECHA=models.DateTimeField(null=False)
 	VALORACION=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
-		return self.ID
+		return self.FECHA
 
 class evento(models.Model):
 	class Meta:
@@ -123,7 +122,7 @@ class evento_idioma(models.Model):
 	DESCRIPCION=models.TextField(null=False)
 	LUGAR=models.CharField(null=False,max_length=50)
 	def __unicode__(self):
-		return self.ID
+		return self.LUGAR
 
 
 class comentario_evento(models.Model):
@@ -137,7 +136,7 @@ class comentario_evento(models.Model):
 	FECHA=models.DateTimeField(null=False)
 	VALORACION=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
-		return self.ID
+		return self.FECHA
 
 class relato(models.Model):
 	class Meta:
@@ -150,7 +149,7 @@ class relato(models.Model):
 	VALORACION=models.IntegerField(null=True,default=0)
 	APROBADO=models.BooleanField(null=False,default=False)
 	def __unicode__(self):
-		return self.ID
+		return self.FECHA
 
 class relato_idioma(models.Model):
 	class Meta:
@@ -175,7 +174,7 @@ class comentario_relato(models.Model):
 	FECHA=models.DateTimeField(null=False)
 	VALORACION=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
-		return self.ID
+		return self.FECHA
 
 
 class categoria(models.Model):
@@ -212,7 +211,7 @@ class sitio_turistico_idioma(models.Model):
 	IDIOMA =models.ForeignKey('idioma',unique=True)
 	DESCRIPCION=models.TextField(null=False)
 	def __unicode__(self):
-		return self.ID
+		return self.DESCRIPCION
 
 class comentario_sitio(models.Model):
 	class Meta:
@@ -225,7 +224,7 @@ class comentario_sitio(models.Model):
 	FECHA=models.DateTimeField(null=False)
 	VALORACION=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
-		return self.ID
+		return self.DESCRIPCION
 
 
 class contrato(models.Model):
@@ -239,7 +238,7 @@ class contrato(models.Model):
 	DURACION=models.IntegerField(null=True,default=0)
 	NOVECES=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
-		return self.ID
+		return self.DESCRIPCION
 
 class reporte_comentario(models.Model):
 	class Meta:
@@ -251,7 +250,7 @@ class reporte_comentario(models.Model):
 	RAZON=models.TextField(null=False)
 	USUARIO=models.ForeignKey(User,unique=True)
 	def __unicode__(self):
-		return self.ID
+		return self.RAZON
 
 class curiosidad_idioma(models.Model):
 	class Meta:

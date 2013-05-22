@@ -1,4 +1,6 @@
 from django.conf.urls import patterns, include, url
+from django.conf import settings
+
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -9,7 +11,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'pueblos.views.home', name='home'),
     # url(r'^pueblos/', include('pueblos.foo.urls')),
 
-
+    url(r'^upload/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     #Vistas para el administrador de contenidos.
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
