@@ -1,4 +1,5 @@
 # Create your views here.
+# -*- encoding: utf-8 -*-
 import json
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
@@ -62,7 +63,8 @@ def player(request):
 	return render_to_response('multimedia/player.html')
 
 def eventos(request):
-	eventObjs=evento_idioma.objects.all()
+	idiomas = idioma.objects.filter(NOMBRE='Español')
+	eventObjs=evento_idioma.objects.filter(IDIOMA=idiomas[0])
 	return render_to_response('eventos.html',{'eventos':eventObjs})
 
 def galeria(request):
