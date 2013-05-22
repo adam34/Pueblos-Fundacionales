@@ -23,11 +23,11 @@
 
     var id = this.$element.attr('id');
 
-    this.$container = $('<div/>', { 'id': "ms-"+id, 'class': "ms-container" });
-    this.$selectableContainer = $('<div/>', { 'class': 'ms-selectable' });
-    this.$selectionContainer = $('<div/>', { 'class': 'ms-selection' });
-    this.$selectableUl = $('<ul/>', { 'class': "ms-list" });
-    this.$selectionUl = $('<ul/>', { 'class': "ms-list" });
+    this.$container = $('<div/>', { 'id': "ms-"+id, 'class': "ms-container ms-container-"+id });
+    this.$selectableContainer = $('<div/>', { 'class': 'ms-selectable ms-selectable-'+id });
+    this.$selectionContainer = $('<div/>', { 'class': 'ms-selection ms-selection-'+id });
+    this.$selectableUl = $('<ul/>', { 'class': "ms-list ms-list-"+id });
+    this.$selectionUl = $('<ul/>', { 'class': "ms-list ms-list-"+id });
     this.scrollTo = 0;
     this.sanitizeRegexp = new RegExp("\\W+", 'gi');
   };

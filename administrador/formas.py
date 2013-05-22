@@ -160,9 +160,9 @@ class UserChangeForm(forms.ModelForm):
 		self.fields['email'].label='Correo electrónico'
 		self.fields['email'].help_text='Opcional. Ejemplo: username@server.com'
 
-		self.fields['groups'].widget=forms.SelectMultiple()
+		self.fields['groups'].widget=forms.SelectMultipleCustom()
 		self.fields['groups'].widget.attrs = {'class':'input-xxlarge'}
-		self.fields['user_permissions'].widget=forms.SelectMultiple()
+		self.fields['user_permissions'].widget=forms.SelectMultipleCustom()
 		self.fields['user_permissions'].widget.attrs = {'class':'input-xxlarge',}
 
 		self.fields['groups'].queryset= Group.objects.all()
@@ -201,7 +201,7 @@ class GroupChangeForm(forms.ModelForm):
 		self.fields['name'].widget.attrs = {'disabled':'true'}
 
 
-		self.fields['permissions'].widget = forms.SelectMultiple()
+		self.fields['permissions'].widget = forms.SelectMultipleCustom()
 		self.fields['permissions'].queryset= Permission.objects.all()
 
 		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los grupos o el grupo en el que desea asignarle.'
