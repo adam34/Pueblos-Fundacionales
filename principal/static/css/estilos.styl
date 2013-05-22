@@ -749,3 +749,61 @@ header
 		a 
 			color darken(blanco, 50%)
 			text-decoration none
+
+
+// Eventos 
+.events 
+	height auto
+	margin .5em auto
+	text-align center
+	ul > li 
+		//background darken(blanco, 6%)
+		background darken(blanco, 2%)
+		border thin solid lighten(gris, 80%)
+		display inline-block
+		font-size .9em
+		font-weight normal
+		height 400px
+		margin-bottom .5em
+		position relative
+		vertical-align top
+		width 30%
+		text-align left
+		h3 
+			color azul
+		img 
+			height 30%
+
+			margin-top .5em
+			margin-left 3%
+			margin-right 3%
+			width 94%
+		span
+			color rojizo
+			font-weight bold
+			font-size 1em
+			margin-left .5em
+			width 30%
+
+		textarea
+			background darken(blanco, 2%)
+			border thin solid lighten(gris, 80%)
+			bordes(.2em)
+			color darken(blanco, 80%)
+			margin-left 5%
+			margin-right 5%
+			margin-top 10%
+			resize none
+			width 90%
+		input[type="button"]
+			bordes(.2em)
+			background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+			background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+			background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+			background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+			background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+			height 30px
+			margin-left 35%
+			margin-right 35%
+			width 30%
+			color blanco

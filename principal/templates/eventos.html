@@ -127,27 +127,34 @@
 	</div>
 	<section class="contenedor">
 		<section class="contenedor_eventos">
-			<h2>Eventos</h2>
-			<table>
-				<tr>
-					<th>EVENTO</th>
-					<th>PUEBLO</th>
-					<th>FECHA</th>
-					<th>IMAGEN</th>
-					<th>DESCRIPCION</th>
-					<th>LUGAR</th>
-				</tr>
-			{% for evento in eventos  %}
-				<tr>
-					<td>{{evento.EVENTO.NOMBRE}}</td>
-					<td>{{evento.EVENTO.PUEBLO.NOMBRE}}</td>
-					<td>{{evento.EVENTO.FECHA}}</td>
-					<td>{{evento.EVENTO.IMAGEN}}</td>
-					<td>{{evento.DESCRIPCION}}</td>
-					<td>{{evento.LUGAR}}</td>
-				</tr>
-			{% endfor %}
-			</table>
+			<h2 class="events">Eventos</h2>
+			<section class="events">
+				<ul>
+					{% for evento in eventos  %}
+					<li>
+						<img src="/uploads/{{evento.EVENTO.IMAGEN}}">
+						<br>
+						<h3> {{evento.EVENTO.NOMBRE}}</h3>
+						<br>
+						<span>Pueblo:</span>&nbsp; &nbsp;{{evento.EVENTO.PUEBLO.NOMBRE}}
+						<br>
+						<span>Fecha:</span>&nbsp; &nbsp;{{evento.EVENTO.FECHA}}
+						<br>
+						<span>Descripción:</span> &nbsp; &nbsp;{{evento.DESCRIPCION}}
+						<br>
+						<span>Lugar: </span>&nbsp; &nbsp;{{evento.LUGAR}}
+						<form action="#">
+							<textarea rows="4" cols="45" placeholder="Comenta">
+
+							</textarea>
+							<br><br>
+								<input name="enviar" value="Enviar" type="button">
+						</form>
+					</li>
+					{% endfor %}
+				</ul>
+			</section>
+			
 		</section>
 	</section>
 	<footer>
