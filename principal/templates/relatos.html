@@ -128,7 +128,26 @@
 	<section class="contenedor">
 		<section class="contenedor_relatos">
 			<h2>Relatos</h2>
-
+			<table>
+				<tr>
+					<th>USUARIO</th>
+					<th>PUEBLO</th>
+					<th>TITULO</th>
+					<th>DESCRIPCION</th>
+					<th>FECHA</th>
+					<th>VALORACION</th>
+				</tr>
+				{% for relato in relatos %}
+				<tr>
+					<td>{{relato.RELATO.USUARIO.username}}</td>
+					<td>{{relato.RELATO.PUEBLO.NOMBRE}}</td>
+					<td>{{relato.TITULO}}</td>
+					<td>{{relato.DESCRIPCION}}</td>
+					<td>{{relato.RELATO.FECHA}}</td>
+					<td>{{relato.RELATO.VALORACION}}</td>
+				</tr>
+				{% endfor %}
+			</table>
 		</section>
 	</section>
 	<footer>

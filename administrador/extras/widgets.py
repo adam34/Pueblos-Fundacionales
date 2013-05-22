@@ -38,24 +38,24 @@ class SelectMultipleCustom(SelectMultiple):
             var=name
 
         final_attrs = self.build_attrs(attrs, name=name)
-        output=[format_html('<select id="searchable_{0}" name="my-select[]" multiple="multiple"{1}>', var,flatatt(final_attrs))]
+        output=[format_html('<select id="searchable-{0}" name="my-select[]" multiple="multiple"{1}>', var,flatatt(final_attrs))]
         options = self.render_options(choices, value)
         if options:
             output.append(options)
         output.append('</select>')
         # import pdb
         # pdb.set_trace()
-        output.append(mark_safe("""<script type="text/javascript">$("#searchable_%s").multiSelect({selectableHeader: "<input type='text' id='search_%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
+        output.append(mark_safe("""<script type="text/javascript">$("#searchable-%s").multiSelect({selectableHeader: "<input type='text' id='search-%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
 
 
-        output.append(mark_safe("""<script type="text/javascript">$('#search_%s').quicksearch($('.ms-elem-selectable', '#ms-searchable' )).on('keydown', function(e){if (e.keyCode == 40)
+        output.append(mark_safe("""<script type="text/javascript">$('#search-%s').quicksearch($('.ms-elem-selectable-%s', '#ms-searchable-%s' )).on('keydown', function(e){if (e.keyCode == 40)
         	{\
     			$(this).trigger('focusout');\
-    			$('#searchable_%s').focus();\
+    			$('#searchable-%s').focus();\
     			return false;\
   			}\
 		});\
-		</script>""" % (var,var)))
+		</script>""" % (var,var,var,var)))
 
         #jquery.multi-select.js
         return mark_safe('\n'.join(output))

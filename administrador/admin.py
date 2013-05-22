@@ -8,7 +8,7 @@ from django.contrib.auth.models import User,Group
 
 # admin.site.login_form = CustomAutenticacionForm
 
-# #print admin.site.get_urls()
+# # #print admin.site.get_urls()
 
 # #ModelAdmin de Idiomas para el manejo de las paginas para agregar, modificar y mostrar elementos
 # class IdiomaAdmin(admin.ModelAdmin):
@@ -110,11 +110,10 @@ from django.contrib.auth.models import User,Group
 
 # admin.site.unregister(User)
 # admin.site.register(User,UsuarioAdmin)
-
 # admin.site.unregister(Group)
 # admin.site.register(Group,GruposAdmin)
-
 # admin.site.register(idioma,IdiomaAdmin)
+
 admin.site.register(idioma)
 admin.site.register(archivo)
 admin.site.register(galeria)
