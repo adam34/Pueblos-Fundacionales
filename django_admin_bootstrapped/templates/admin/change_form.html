@@ -119,9 +119,9 @@
     //event.preventDefault(), event.stopPropagation() y event.stopInmediatePropagation().
     $(function(){
         $(".{{ opts.verbose_name_plural|capfirst }}").on('click',cargar);
-        $('input[name="_addanother"]').on('click',guardar_form);
-        $('input[name="_continue"]').on('click',guardar_form);
-        $('input[name="_save"]').on('click',guardar_form);
+        // $('input[name="_addanother"]').on('click',guardar_form);
+        // $('input[name="_continue"]').on('click',guardar_form);
+        // $('input[name="_save"]').on('click',guardar_form);
         $('.historylink').on('click',historial);
         function guardar_form(e)
         {

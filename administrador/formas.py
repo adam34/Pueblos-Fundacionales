@@ -113,7 +113,6 @@ class UserForm(forms.ModelForm):
 		self.fields['email'].help_text='Opcional. Ejemplo: username@server.com'
 
 		
-		# self.fields['groups'].widget=forms.MultipleChoiceField(queryset=Group.objects.all(), widget=FilteredSelectMultiple("Integrales", is_stacked=False))
 		self.fields['groups'].widget = SelectMultipleCustom()
 		# self.fields['groups'].widget.attrs = {'class':'input-xxlarge'}
 		self.fields['groups'].queryset= Group.objects.all()
@@ -121,6 +120,8 @@ class UserForm(forms.ModelForm):
 		self.fields['user_permissions'].widget=SelectMultipleCustom()
 		#self.fields['user_permissions'].widget.attrs = {'class':'input-xxlarge',}
 		self.fields['user_permissions'].queryset=Permission.objects.all()
+
+		self.fields['is_active'].help_text=' Especifica si el usuario esta activo o bloqueado'
 
 		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Seleccione los grupos o el grupo en el que desea asignarle.'
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
@@ -160,9 +161,9 @@ class UserChangeForm(forms.ModelForm):
 		self.fields['email'].label='Correo electrónico'
 		self.fields['email'].help_text='Opcional. Ejemplo: username@server.com'
 
-		self.fields['groups'].widget=forms.SelectMultipleCustom()
+		self.fields['groups'].widget=SelectMultipleCustom()
 		self.fields['groups'].widget.attrs = {'class':'input-xxlarge'}
-		self.fields['user_permissions'].widget=forms.SelectMultipleCustom()
+		self.fields['user_permissions'].widget=SelectMultipleCustom()
 		self.fields['user_permissions'].widget.attrs = {'class':'input-xxlarge',}
 
 		self.fields['groups'].queryset= Group.objects.all()
