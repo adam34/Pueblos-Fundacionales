@@ -10,7 +10,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'pueblos.views.home', name='home'),
     # url(r'^pueblos/', include('pueblos.foo.urls')),
-
+    # url(r'^ckeditor/', include('ckeditor.urls')),
     url(r'^uploads/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
     #Vistas para el administrador de contenidos.
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

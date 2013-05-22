@@ -11,6 +11,8 @@ from django.contrib.auth import authenticate
 from administrador.extras.widgets import SelectMultipleCustom
 from django.forms.widgets import *
 
+
+from ckeditor.widgets import CKEditorWidget
 #----------------------------------Validadores para UserForm------------------------------------------
 def validar_usuario(valor):
 	if len(valor) > 30:
@@ -224,6 +226,10 @@ class PuebloForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(PuebloForm, self).__init__(*args, **kwargs)
+		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
+		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
+		# self.fields['DESCRIPCION'].widget=CKEditorWidget(config_name='ckeditor1')
+		
 		# self.fields['permissions'].widget= SelectMultipleCustom()
 		# self.fields['permissions'].queryset= Permission.objects.all()
 
