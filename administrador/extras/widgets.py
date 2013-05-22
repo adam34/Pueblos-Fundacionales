@@ -48,14 +48,8 @@ class SelectMultipleCustom(SelectMultiple):
         output.append(mark_safe("""<script type="text/javascript">$("#searchable-%s").multiSelect({selectableHeader: "<input type='text' id='search-%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
 
 
-        output.append(mark_safe("""<script type="text/javascript">$('#search-%s').quicksearch($('.ms-elem-selectable-%s', '#ms-searchable-%s' )).on('keydown', function(e){if (e.keyCode == 40)
-        	{\
-    			$(this).trigger('focusout');\
-    			$('#searchable-%s').focus();\
-    			return false;\
-  			}\
-		});\
-		</script>""" % (var,var,var,var)))
+        output.append(mark_safe("""<script type="text/javascript">$('#search-%s').quicksearch('.ms-selectable-%s .ms-list .ms-elem-selectable');\
+        </script>""" % (var,var)))
 
         #jquery.multi-select.js
         return mark_safe('\n'.join(output))

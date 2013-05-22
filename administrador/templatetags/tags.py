@@ -30,13 +30,19 @@ def put_js(nombre, tipo):
 			js=('/static/admin/js/users.js','/static/admin/js/jquery.multi-select.js','/static/admin/js/jquery.quicksearch.js',)
 		elif nombre =='grupos':
 			js=('/static/admin/js/grupos.js','/static/admin/js/jquery.multi-select.js','/static/admin/js/jquery.quicksearch.js',)
+		elif nombre =='pueblos':
+			js=('/static/ckeditor/ckeditor/ckeditor.js',)
+			print js
 	elif tipo == 'change':
 		if nombre =='users':
 			js=('/static/admin/js/users.js','/static/admin/js/jquery.multi-select.js','/static/admin/js/jquery.quicksearch.js',)
 		elif nombre =='grupos':
 			js=('/static/admin/js/grupos.js','/static/admin/js/jquery.multi-select.js','/static/admin/js/jquery.quicksearch.js',)
+		elif nombre =='pueblos':
+			js=('/static/ckeditor/ckeditor/ckeditor.js',)
+			print js
 	if js is None:
-		return ()
+		return
 	else:
 		obj = Media()
 		obj._css={}
@@ -60,7 +66,7 @@ def put_css(nombre, tipo):
 		elif nombre =='grupos':
 			css={'all':('/static/admin/css/multi-select.css',),}
 	if css is None:
-		return ()
+		return
 	else:
 
 		obj = Media()
