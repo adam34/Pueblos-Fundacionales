@@ -69,3 +69,6 @@ def eventos(request):
 
 def galeria(request):
 	return render_to_response('multimedia/galeria.html')
+
+def relatos(request): 
+	return render_to_response('relatos.html')

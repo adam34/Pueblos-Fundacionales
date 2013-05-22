@@ -126,35 +126,9 @@
 		</div>
 	</div>
 	<section class="contenedor">
-		<section class="contenedor_eventos">
-			<h2 class="eventos-h2">Eventos</h2>
-			<section class="events">
-				<ul>
-					{% for evento in eventos  %}
-					<li>
-						<img src="/uploads/{{evento.EVENTO.IMAGEN}}">
-						<br>
-						<h3> {{evento.EVENTO.NOMBRE}}</h3>
-						<br>
-						<span>Pueblo:</span>&nbsp; &nbsp;{{evento.EVENTO.PUEBLO.NOMBRE}}
-						<br>
-						<span>Fecha:</span>&nbsp; &nbsp;{{evento.EVENTO.FECHA}}
-						<br>
-						<span>Descripción:</span> &nbsp; &nbsp;{{evento.DESCRIPCION}}
-						<br>
-						<span>Lugar: </span>&nbsp; &nbsp;{{evento.LUGAR}}
-						<form action="#">
-							<textarea rows="4" cols="45" placeholder="Comenta">
+		<section class="contenedor_relatos">
+			<h2>Relatos</h2>
 
-							</textarea>
-							<br><br>
-								<input name="enviar" value="Enviar" type="button">
-						</form>
-					</li>
-					{% endfor %}
-				</ul>
-			</section>
-			
 		</section>
 	</section>
 	<footer>

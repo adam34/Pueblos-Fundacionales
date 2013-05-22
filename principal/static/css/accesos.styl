@@ -1,50 +1,41 @@
-.contenido_accesos 
-	background blanco
-	height 750px
-	margin .5em auto
-	width 80%
+@import "_var"
+@import "_mixins"
 
-.contenido_secciones_pueblos, .menu_secciones_pueblos
-	background darken(blanco, 20%)
-	display inline-block
-	height 600px
+.basico, .menu_basico
+	display inline-block  
+	height auto
+	margin 0 auto
 	vertical-align top
-	width 35%
+	width 75%
 
-.contenido_secciones_pueblos
-	width 63%
+.basico 
+	sombras-caja(.3em 0 .1em darken(blanco, 12%))
+	h3
+		width 30%
+
+.contenido_basico_pueblos
 	text-align center
 	img 
-		height 230px
-		width 230px
-	p 
-		font-size 1.5em
-		margin 1em auto
+		height 400px
+		max-width 90%
 
-.menu_accesos, .pueblos_accesos
-	background darken(azul, 10%)
-	display inline-block
-	height 700px
-	vertical-align top
-	width 24%
 
-.menu_secciones_pueblos
-	font-size .9em
-	ul 
-		margin-top .6em
-		list-style none
-	li 
-		margin-left .5em
-		margin-top .2em
+.lista 
+	margin-bottom 3%
+	ul > li 
+		list-style none 
+		margin-left 4%
 		a 
-			color darken(blanco, 70%)
-			text-decoration none
-			&:hover 
-				color azul 
-		li 
-			margin-left 1em
+			color azul
+			text-decoration none 
+		ul > li.submenu > a 
+			color rojizo
 
-.pueblos_accesos
-	background darken(blanco, 10%)
-	margin-left .2em
-	width 75%
+.menu_basico
+	margin-left 1%
+	width 12%
+
+.submenu 
+	margin-left 2%
+	a 
+		color rojizo
