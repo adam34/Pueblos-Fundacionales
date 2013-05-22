@@ -11,6 +11,8 @@ from django.contrib.auth import authenticate
 from administrador.extras.widgets import SelectMultipleCustom
 from django.forms.widgets import *
 
+
+from ckeditor.widgets import CKEditorWidget
 #----------------------------------Validadores para UserForm------------------------------------------
 def validar_usuario(valor):
 	if len(valor) > 30:
@@ -113,7 +115,6 @@ class UserForm(forms.ModelForm):
 		self.fields['email'].help_text='Opcional. Ejemplo: username@server.com'
 
 		
-		# self.fields['groups'].widget=forms.MultipleChoiceField(queryset=Group.objects.all(), widget=FilteredSelectMultiple("Integrales", is_stacked=False))
 		self.fields['groups'].widget = SelectMultipleCustom()
 		# self.fields['groups'].widget.attrs = {'class':'input-xxlarge'}
 		self.fields['groups'].queryset= Group.objects.all()
@@ -121,6 +122,8 @@ class UserForm(forms.ModelForm):
 		self.fields['user_permissions'].widget=SelectMultipleCustom()
 		#self.fields['user_permissions'].widget.attrs = {'class':'input-xxlarge',}
 		self.fields['user_permissions'].queryset=Permission.objects.all()
+
+		self.fields['is_active'].help_text=' Especifica si el usuario esta activo o bloqueado'
 
 		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Seleccione los grupos o el grupo en el que desea asignarle.'
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
@@ -160,9 +163,9 @@ class UserChangeForm(forms.ModelForm):
 		self.fields['email'].label='Correo electrónico'
 		self.fields['email'].help_text='Opcional. Ejemplo: username@server.com'
 
-		self.fields['groups'].widget=forms.SelectMultipleCustom()
+		self.fields['groups'].widget=SelectMultipleCustom()
 		self.fields['groups'].widget.attrs = {'class':'input-xxlarge'}
-		self.fields['user_permissions'].widget=forms.SelectMultipleCustom()
+		self.fields['user_permissions'].widget=SelectMultipleCustom()
 		self.fields['user_permissions'].widget.attrs = {'class':'input-xxlarge',}
 
 		self.fields['groups'].queryset= Group.objects.all()
@@ -212,5 +215,47 @@ class GroupChangeForm(forms.ModelForm):
 	def clean(self):
 		pass
 
-
 #------------------------------Fin de formularios para el modelo de groups------------------------------
+
+
+#------------------------------Formularios para el modelo de pueblos------------------------------
+
+class PuebloForm(forms.ModelForm):
+	class Meta:
+		model=pueblo
+	def __init__(self, *args, **kwargs):
+		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
+		super(PuebloForm, self).__init__(*args, **kwargs)
+		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
+		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
+		# self.fields['DESCRIPCION'].widget=CKEditorWidget(config_name='ckeditor1')
+		
+		# self.fields['permissions'].widget= SelectMultipleCustom()
+		# self.fields['permissions'].queryset= Permission.objects.all()
+
+		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+
+	# def save(self,commit=True):
+	# 	pass
+
+	# def clean(self):
+	# 	pass
+
+class PuebloChangeForm(forms.ModelForm):
+	class Meta:
+		model=pueblo
+	def __init__(self, *args, **kwargs):
+		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
+		super(PuebloChangeForm, self).__init__(*args, **kwargs)
+		# self.fields['permissions'].widget= SelectMultipleCustom()
+		# self.fields['permissions'].queryset= Permission.objects.all()
+
+		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+
+	# def save(self,commit=True):
+	# 	pass
+
+	# def clean(self):
+	# 	pass
+
+#------------------------------Fin de formularios para el modelo de pueblos------------------------------

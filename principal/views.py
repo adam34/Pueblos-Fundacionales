@@ -63,14 +63,12 @@ def player(request):
 	return render_to_response('multimedia/player.html')
 
 def eventos(request):
-	idiomas = idioma.objects.filter(NOMBRE='Español')
-	eventObjs=evento_idioma.objects.filter(IDIOMA=idiomas[0])
-	return render_to_response('eventos.html',{'eventos':eventObjs})
+	eventos=evento.objects.all()
+	return render_to_response('eventos.html',{'eventos':eventos})
 
 def galeria(request):
 	return render_to_response('multimedia/galeria.html')
 
 def relatos(request):
-	idiomas = idioma.objects.filter(NOMBRE='Español')
-	relatosObjs = relato_idioma.objects.filter(IDIOMA=idiomas[0])
-	return render_to_response('relatos.html',{'relatos':relatosObjs})
+	relatos = relato.objects.all()
+	return render_to_response('relatos.html',{'relatos':relatos})

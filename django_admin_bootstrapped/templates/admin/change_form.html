@@ -42,7 +42,6 @@
 {% block breadcrumbs %}
 <ul class="breadcrumb">
 <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> <span class="divider">/</span></li>
-<li><a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ app_label|capfirst|escape }}</a> <span class="divider">/</span></li>
 <li>{% if has_change_permission %}<a href="#{{ opts.verbose_name_plural|capfirst }}" class="{{ opts.verbose_name_plural|capfirst }}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %} <span class="divider">/</span></li>
 <li>{% if add %}{% trans 'Add' %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}</li>
 </ul>
@@ -119,9 +118,9 @@
     //event.preventDefault(), event.stopPropagation() y event.stopInmediatePropagation().
     $(function(){
         $(".{{ opts.verbose_name_plural|capfirst }}").on('click',cargar);
-        $('input[name="_addanother"]').on('click',guardar_form);
-        $('input[name="_continue"]').on('click',guardar_form);
-        $('input[name="_save"]').on('click',guardar_form);
+        // $('input[name="_addanother"]').on('click',guardar_form);
+        // $('input[name="_continue"]').on('click',guardar_form);
+        // $('input[name="_save"]').on('click',guardar_form);
         $('.historylink').on('click',historial);
         function guardar_form(e)
         {

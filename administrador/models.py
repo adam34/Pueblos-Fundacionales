@@ -59,6 +59,7 @@ class pueblo(models.Model):
 		verbose_name_plural="pueblos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	NOMBRE=models.CharField(max_length=30,null=False)
+	DESCRIPCION=models.TextField(null=False)
 	#GALERIA=models.ForeignKey('galeria',null=True)
 	TIPO=models.CharField(max_length=1,null=False,choices=TIPOS_PUEBLOS)
 	LATITUD=models.CharField(max_length=12,null=False)
@@ -75,7 +76,7 @@ class pueblo_idioma(models.Model):
 	IDIOMA=models.ForeignKey('Idioma',null=False)
 	DESCRIPCION=models.TextField(null=False)
 	def __unicode__(self):
-		return self.DESCRIPCION
+		return self.PUEBLO.NOMBRE+" || "+self.DESCRIPCION
 
 
 class pueblo_administrador(models.Model):
@@ -110,6 +111,8 @@ class evento(models.Model):
 	NOMBRE=models.CharField(null=False,max_length=50)
 	FECHA=models.DateTimeField(null=False)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
+	DESCRIPCION=models.TextField(null=False)
+	LUGAR=models.CharField(null=False,max_length=50)
 	IMAGEN=models.ImageField(upload_to='eventos/',null=True)
 	LATITUD=models.CharField(max_length=10,null=False)
 	LONGITUD=models.CharField(max_length=10,null=False)
@@ -149,6 +152,8 @@ class relato(models.Model):
 	ID=models.AutoField(primary_key=True)
 	USUARIO=models.ForeignKey(User,null=False)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
+	TITULO=models.CharField(null=False,max_length=30)
+	DESCRIPCION=models.TextField(null=False)
 	FECHA=models.DateTimeField(null=False)
 	VALORACION=models.IntegerField(null=True,default=0)
 	APROBADO=models.BooleanField(null=False,default=False)
@@ -197,6 +202,7 @@ class sitio_turistico(models.Model):
 	ID=models.AutoField(primary_key=True)
 	NOMBRE=models.CharField(null=False,max_length=50)
 	DIRECCION=models.TextField(null=False)
+	DESCRIPCION=models.TextField(null=False)
 	CATEGORIA=models.ForeignKey('categoria',null=False)
 	TELEFONOS=models.TextField(null=False)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
@@ -272,4 +278,6 @@ class curiosidad(models.Model):
 		verbose_name="curiosidad" #Nombre en singular del modelo
 		verbose_name_plural="curiosidades " #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
+	TITULO=models.CharField(null=False,max_length=30)
+	DESCRIPCION=models.TextField(null=False)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
