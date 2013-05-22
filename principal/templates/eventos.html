@@ -128,6 +128,26 @@
 	<section class="contenedor">
 		<section class="contenedor_eventos">
 			<h2>Eventos</h2>
+			<table>
+				<tr>
+					<th>EVENTO</th>
+					<th>PUEBLO</th>
+					<th>FECHA</th>
+					<th>IMAGEN</th>
+					<th>DESCRIPCION</th>
+					<th>LUGAR</th>
+				</tr>
+			{% for evento in eventos  %}
+				<tr>
+					<td>{{evento.EVENTO.NOMBRE}}</td>
+					<td>{{evento.EVENTO.PUEBLO.NOMBRE}}</td>
+					<td>{{evento.EVENTO.FECHA}}</td>
+					<td>{{evento.EVENTO.IMAGEN}}</td>
+					<td>{{evento.DESCRIPCION}}</td>
+					<td>{{evento.LUGAR}}</td>
+				</tr>
+			{% endfor %}
+			</table>
 		</section>
 	</section>
 	<footer>

@@ -3,6 +3,9 @@ import json
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.contrib.auth.models import User
+from administrador.models import *
+
 
 def home(request): 
 	return render_to_response('index.html')
@@ -59,7 +62,8 @@ def player(request):
 	return render_to_response('multimedia/player.html')
 
 def eventos(request):
-	return render_to_response('eventos.html')
+	eventObjs=evento_idioma.objects.all()
+	return render_to_response('eventos.html',{'eventos':eventObjs})
 
 def galeria(request):
 	return render_to_response('multimedia/galeria.html')
