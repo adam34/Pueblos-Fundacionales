@@ -213,5 +213,43 @@ class GroupChangeForm(forms.ModelForm):
 	def clean(self):
 		pass
 
-
 #------------------------------Fin de formularios para el modelo de groups------------------------------
+
+
+#------------------------------Formularios para el modelo de pueblos------------------------------
+
+class PuebloForm(forms.ModelForm):
+	class Meta:
+		model=pueblo
+	def __init__(self, *args, **kwargs):
+		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
+		super(PuebloForm, self).__init__(*args, **kwargs)
+		# self.fields['permissions'].widget= SelectMultipleCustom()
+		# self.fields['permissions'].queryset= Permission.objects.all()
+
+		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+
+	# def save(self,commit=True):
+	# 	pass
+
+	# def clean(self):
+	# 	pass
+
+class PuebloChangeForm(forms.ModelForm):
+	class Meta:
+		model=pueblo
+	def __init__(self, *args, **kwargs):
+		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
+		super(PuebloChangeForm, self).__init__(*args, **kwargs)
+		# self.fields['permissions'].widget= SelectMultipleCustom()
+		# self.fields['permissions'].queryset= Permission.objects.all()
+
+		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+
+	# def save(self,commit=True):
+	# 	pass
+
+	# def clean(self):
+	# 	pass
+
+#------------------------------Fin de formularios para el modelo de pueblos------------------------------
