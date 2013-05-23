@@ -2,6 +2,7 @@
 {% load i18n admin_static admin_list bootstrapped_goodies_tags %}
 {% load url from future %}
 {% load admin_urls %}
+{% load tags %}
 
 {% block extrastyle %}
   {{ block.super }}
@@ -132,6 +133,37 @@
     {% pagination cl %}
 {% endblock %}
 </form>
+
+{% if  cl.opts.verbose_name_plural|cmp_str:'pueblos' %}
+    {{'Entro al if'}}
+    <form id='pueblos' action='/admin/administrador/pueblos/' method='POST'>
+    {% csrf_token %}
+        <input type='hidden' name='pueblos' id='pueblo' value=''>
+    </form>
+    <script type="text/javascript">
+    $("#result_list a").on('click',modificar);
+    function modificar(e)
+    {
+        var elemento=e.target;
+        var ref=elemento.href;
+        var nombre = elemento.innerText;
+        if(nombre!="")
+        {
+            $('input#pueblo').val(nombre)
+            $('form#pueblos').submit()
+            return false;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    </script>
+{% else %}
+    {{'Entro al else'}}
+{% endif %}
+
 {% endblock %}
 
 
