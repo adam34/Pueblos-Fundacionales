@@ -74,4 +74,5 @@ def relatos(request):
 	return render_to_response('relatos.html',{'relatos':relatos})
 
 def sitiosT(request):
-	return render_to_response('sitios_turisticos.html')
+	sitios = sitio_turistico.objects.all()
+	return render_to_response('sitios_turisticos.html',{'sitios':sitios})
