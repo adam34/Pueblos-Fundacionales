@@ -1,7 +1,9 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_static bootstrapped_goodies_tags %}
 
-{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />{% endblock %}
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />
+<link rel="stylesheet" type="text/css" href="/static/admin/css/estilos.css">
+{% endblock %}
 
 {% block coltype %}colMS{% endblock %}
 
@@ -15,27 +17,70 @@
 
 {% block object-tools %}
 <ul class="nav">
-    <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans "Applications" %} <b class="caret"></b></a>
-        <ul class="dropdown-menu" role="menu">
-            {% for app in app_list %}
-            <li class="dropdown-submenu">
-                <a href="#">{% render_with_template_if_exist app.name|lower|add:"/admin_app_name.html" app.name %}</a>
-                <ul class="dropdown-menu">
-                {% for model in app.models %}
-                    <li>
-                        {% if model.admin_url %}
-                            <a href="{{ model.admin_url }}">{{ model.name }}</a>
-                        {% else %}
-                            {{ model.name }}
-                        {% endif %}
-                    </li>
-                {% endfor %}
-                </ul>
-            </li>
-            {% endfor %}
+    <li class="active"><a href="/admin/">Inicio</a></li>
+    <ul class="nav nav-pills">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Control de usuarios
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <!-- links -->
+          <li>
+            <a href="/admin/auth/group">Grupos</a>
+          </li>
+          <li>
+            <a href="/admin/auth/user">Usuarios</a>
+          </li>
         </ul>
-    </li>
+      </li>
+    </ul>
+    <ul class="nav nav-pills">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Pueblos
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <!-- links -->
+          <li>
+            <a href="administrador/pueblo/">Pueblos</a>
+          </li>
+          <li>
+            <a href="#">Curiosidades</a>
+          </li>
+          <li>
+            <a href="#">Eventos</a>
+          </li>
+          <li>
+            <a href="#">Relatos</a>
+          </li>          
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav nav-pills">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Sitios turísticos
+            <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <!-- links -->
+          <li>
+            <a href="#">Categorias</a>
+          </li>
+          <li>
+            <a href="#">Contratos</a>
+          </li>        
+        </ul>
+      </li>
+    </ul>
+    <li><a href="#">Idiomas</a></li>
+    <li><a href="#">Galerías</a></li>
+    <li><a href="#">Administrador de archivos</a></li>
+    <li><a href="#">Configuración del sitio</a></li>
+    <li><a href="/admin/acerca_de">Acerca de</a></li>
+
 </ul>
 {% endblock %}
 
@@ -43,39 +88,54 @@
 {% block content %}
 <div class="row-fluid">
     <div id="content-main" class="span12">
-
-        <div class="tabbable">
-            {% for app in app_list %}
-                {% include "admin/bootstrapped_extra/app_name.html" %}
-                {% render_with_template_if_exist app.name|lower|add:"/admin_app_description.html" "" %}
-                <table summary="{% blocktrans with name=app.name %}Models available in the {{ name }} application.{% endblocktrans %}" class="table table-striped table-bordered">
-                {% for model in app.models %}
-                    <tr>
-                        <th scope="row">
-                            {% if model.admin_url %}
-                            <a href="{{ model.admin_url }}">{{ model.name }}</a>
-                            {% else %}
-                            {{ model.name }}
-                            {% endif %}
-
-                            {% if model.add_url or model.admin_url%}
-                            <div class="pull-right">
-                                {% if model.add_url %}
-                                <a href="{{ model.add_url }}" class="btn btn-mini addlink"><i class="icon-plus"></i> {% trans 'Add' %}</a>
-                                {% endif %}
-                                {% if model.admin_url %}
-                                <a href="{{ model.admin_url }}" class="btn btn-mini changelink"><i class="icon-edit"></i> {% trans 'Change' %}</a>
-                                {% endif %}
-                            </div>
-                            {% endif %}
-                        </th>
-                    </tr>
-                {% endfor %}
-                </table>
-            {% empty %}
-                <p>{% trans "You don't have permission to edit anything." %}</p>
-            {% endfor %}
-        </div>
+      <div class="span7">
+        <span class="label">Relatos enviados.</span>
+        <br/>
+        <br/>
+        <table class="table table_special table-condensed">
+          <tr id='headers'>
+            <th>Usuario</th>
+            <th>Pueblo</th>
+            <th>Fecha de recibido</th>
+          </tr>
+          <tr>
+            <td>Algo1</td>
+            <td>Algo1</td>
+            <td>Algo1</td>
+          </tr>
+        </table>
+        <br/>
+        <br/>
+        <span class="label">Reportes enviados</span>
+        <br/>
+        <br/>
+        <table class="table table_special table-condensed">
+          <tr class="success">
+            <th>Remitente</th>
+            <th>Sección</th>
+            <th>Fecha de envio</th>
+          </tr>
+          <tr>
+            <td>Algo1</td>
+            <td>Algo1</td>
+            <td>Algo1</td>
+          </tr>
+        </table>
+      </div>
+      <div class="span3 offset2">
+        <span class="label">Ultimos accesos del usuario</span>
+        <br/>
+        <br/>
+        <table class="table table_special table-condensed">
+          <tr>
+            <th>Accesos</th>
+          </tr>
+          <tr>
+            <td>Algo1</td>
+          </tr>
+        </table>
+        <!--Body content-->
+      </div>
     </div>
 </div>
 {% endblock %}

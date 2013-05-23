@@ -89,7 +89,7 @@
                         {% url 'django-admindocs-docroot' as docsroot %}
                         {% if docsroot %}
                         <li class="divider-vertical"></li>
-                        <li><a href="{{ docsroot }}">{% trans 'Documentation' %}</a></li>
+                        <li><a href="{{ docsroot }}">Ayuda</a></li>
                         {% endif %}
                         {% endblock %}
                         {% endif %}
@@ -115,7 +115,7 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     {% block pretitle %}{% endblock %}
-                    {% block content_title %}{% if title %}<a class="brand">{% render_with_template_if_exist title|lower|add:"/admin_app_name.html" title %}</a>{% endif %}{% endblock %}
+                    {% block content_title %}{% endblock %}
                     {% block object-tools %}{% endblock %}
                 </div>
             </div>

@@ -78,6 +78,9 @@ class CustomAutenticacionForm(AuthenticationForm):
 #-------------------------------Formularios para el modelo de users--------------------------------
 class UserForm(forms.ModelForm):
 	password2=forms.CharField(widget=forms.PasswordInput,required=True,help_text="Nombre de usuario.",max_length=30,error_messages=mensajes, validators=[validar_contrasena])
+	class Media:
+		css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/users.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
 	class Meta:
 		model=User
 	def __init__(self, *args, **kwargs):
@@ -128,26 +131,31 @@ class UserForm(forms.ModelForm):
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
 
 	def save(self,commit=True):
-		user = super(UserForm, self).save(commit=False)
-		user.set_password(self.cleaned_data["password"])
-		if commit:
-			user.save(commit)
-		return user
+		pass
+		# user = super(UserForm, self).save(commit=False)
+		# user.set_password(self.cleaned_data["password"])
+		# if commit:
+		# 	user.save(commit)
+		# return user
 
 	def clean(self):
-		super(UserForm, self).clean()
-		cleaned_data = self.cleaned_data
-		password1 = cleaned_data.get("password")
-		password2 = cleaned_data.get("password2")
-		if password1!=password2:
-			if not self._errors.has_key('password2'):
-				self._errors['password2']= ErrorList([u"Las contraseñas no pueden ser diferentes."])
-				#raise ValidationError(u'Las contraseñas no pueden ser diferentes.')
-		return cleaned_data
+		pass
+		# super(UserForm, self).clean()
+		# cleaned_data = self.cleaned_data
+		# password1 = cleaned_data.get("password")
+		# password2 = cleaned_data.get("password2")
+		# if password1!=password2:
+		# 	if not self._errors.has_key('password2'):
+		# 		self._errors['password2']= ErrorList([u"Las contraseñas no pueden ser diferentes."])
+		# 		#raise ValidationError(u'Las contraseñas no pueden ser diferentes.')
+		# return cleaned_data
 
 class UserChangeForm(forms.ModelForm):
 	class Meta:
 		model=User
+	class Media:
+		css={'all':('/static/admin/css/multi-select.css',),}
+		js=('admin/js/users.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
 	def __init__(self, *args, **kwargs):
 		super(UserChangeForm, self).__init__(*args, **kwargs)
 		self.fields['username'].help_text=''
@@ -179,6 +187,9 @@ class UserChangeForm(forms.ModelForm):
 class GroupForm(forms.ModelForm):
 	class Meta:
 		model=Group
+	class Media:
+		css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/grupos.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(GroupForm, self).__init__(*args, **kwargs)
@@ -196,6 +207,9 @@ class GroupForm(forms.ModelForm):
 class GroupChangeForm(forms.ModelForm):
 	class Meta:
 		model=Group
+	class Media:
+		css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/grupos.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(GroupForm, self).__init__(*args, **kwargs)	
