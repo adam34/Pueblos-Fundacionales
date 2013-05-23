@@ -1,16 +1,6 @@
 #widgets.py
 from __future__ import unicode_literals
-from django.forms import *
 
-# class multiSelectBox(Widget):
-#     def render(self, name, value, attrs=None):
-#         """
-#         Returns this Widget rendered as HTML, as a Unicode string.
-
-#         The 'value' given is not guaranteed to be valid input, so subclass
-#         implementations should program defensively.
-#         """
-#         raise NotImplementedError
 
 #ESTAS LINEAS DE CODIGO SON PARA DEPURACION
 # import pdb
@@ -22,7 +12,8 @@ from django.utils.safestring import mark_safe
 from django.forms.util import flatatt
 from django.utils.html import conditional_escape, format_html, format_html_join
 from itertools import chain
-from django.utils.encoding import force_text
+from django.forms import *
+from django.forms.widgets import *
 
 class SelectMultipleCustom(SelectMultiple):
     def render(self, name, value, attrs=None, choices=()):
@@ -80,3 +71,40 @@ class SelectMultipleCustom(SelectMultiple):
             else:
                 output.append(self.render_option(selected_choices, option_value, option_label))
         return '\n'.join(output)
+
+class TextAreaEditor(Textarea):
+    
+    def render(self, name, value, attrs=None):
+        if value is None: value = ''
+
+        final_attrs = self.build_attrs(attrs, name=name)
+        format=flatatt(final_attrs)
+        output=[format_html("""<link rel="stylesheet" href="/static/tinymce/js/tinymce/skins/lightgray/skin.min.css">""")]
+        output.append(format_html("""<script src="/static/tinymce/js/tinymce/tinymce.min.js"></script>"""))
+        output.append(format_html("""<script type="text/javascript">"""))
+        output.append(mark_safe("""tinymce.init({
+            selector: "textarea",
+            theme: "modern",
+            width: 300,
+            height: 300,
+            plugins: [
+                 "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                 "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                 "save table contextmenu directionality emoticons template paste textcolor"
+           ],
+           toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons", 
+           style_formats: [
+                {title: 'Bold text', inline: 'b'},
+                {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
+                {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
+                {title: 'Example 1', inline: 'span', classes: 'example1'},
+                {title: 'Example 2', inline: 'span', classes: 'example2'},
+                {title: 'Table styles'},
+                {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
+            ]
+            });"""))
+        output.append(format_html("""</script>"""))
+        #output.append(format_html('<textarea{0}>\r\n{1}</textarea>',format,force_text(value)))
+        output.append(format_html('<textarea>\r\n</textarea>'))
+
+        return mark_safe('\n'.join(output))

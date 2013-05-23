@@ -8,11 +8,14 @@ from django.forms.util import ErrorList
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 #from django.contrib.admin.widgets import FilteredSelectMultiple
-from administrador.extras.widgets import SelectMultipleCustom
+from administrador.extras.widgets import SelectMultipleCustom,TextAreaEditor
 from django.forms.widgets import *
 
 
+<<<<<<< HEAD
 #from ckeditor.widgets import CKEditorWidget
+=======
+>>>>>>> 93ae16459e686d9642f515e74ccf127c4678b48f
 #----------------------------------Validadores para UserForm------------------------------------------
 def validar_usuario(valor):
 	if len(valor) > 30:
@@ -228,8 +231,7 @@ class PuebloForm(forms.ModelForm):
 		super(PuebloForm, self).__init__(*args, **kwargs)
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
 		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
-		# self.fields['DESCRIPCION'].widget=CKEditorWidget(config_name='ckeditor1')
-		
+		self.fields['DESCRIPCION'].widget = TextAreaEditor()
 		# self.fields['permissions'].widget= SelectMultipleCustom()
 		# self.fields['permissions'].queryset= Permission.objects.all()
 

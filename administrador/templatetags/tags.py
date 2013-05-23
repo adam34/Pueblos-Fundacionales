@@ -31,16 +31,16 @@ def put_js(nombre, tipo):
 		elif nombre =='grupos':
 			js=('/static/admin/js/grupos.js','/static/admin/js/jquery.multi-select.js','/static/admin/js/jquery.quicksearch.js',)
 		elif nombre =='pueblos':
-			js=('/static/ckeditor/ckeditor/ckeditor.js',)
-			print js
+			pass
+			# js=('/static/tiny_mce/tiny_mce.js',)
 	elif tipo == 'change':
 		if nombre =='users':
 			js=('/static/admin/js/users.js','/static/admin/js/jquery.multi-select.js','/static/admin/js/jquery.quicksearch.js',)
 		elif nombre =='grupos':
 			js=('/static/admin/js/grupos.js','/static/admin/js/jquery.multi-select.js','/static/admin/js/jquery.quicksearch.js',)
 		elif nombre =='pueblos':
-			js=('/static/ckeditor/ckeditor/ckeditor.js',)
-			print js
+			pass
+			# js=('/static/tiny_mce/tiny_mce.js',)
 	if js is None:
 		return
 	else:
