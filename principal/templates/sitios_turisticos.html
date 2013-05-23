@@ -128,28 +128,26 @@
 	<section class="contenedor">
 		<section class="contenedor_eventos">
 			<h2 class="eventos-h2">Sitios Turísticos</h2>
-			<table>
-				<tr>
-					<th>NOMBRE</th>
-					<th>DIRECCION</th>
-					<th>DESCRIPCION</th>
-					<th>CATEGORIA</th>
-					<th>TELEFONOS</th>
-					<th>PUEBLO</th>
-					<th>IMAGEN</th>
-				</tr>
-				{% for sitio in sitios %}
-				<tr>
-					<td>{{sitio.NOMBRE}}</td>
-					<td>{{sitio.DIRECCION}}</td>
-					<td>{{sitio.DESCRIPCION}}</td>
-					<td>{{sitio.CATEGORIA}}</td>
-					<td>{{sitio.TELEFONOS}}</td>
-					<td>{{sitio.PUEBLO.NOMBRE}}</td>
-					<td><img src="/uploads/{{sitio.IMAGEN}}"></td>
-				</tr>
-				{% endfor %}
-			</table>
+			<section class="sites_t">
+				<ul>
+					{% for sitio in sitios  %}
+					<li>
+						<h3> {{sitio.NOMBRE}}</h3>
+						<br>
+						<img src="/uploads/{{sitio.IMAGEN}}">
+						<br>
+						<br><br>
+						<div>{{sitio.DESCRIPCION}}</div>
+						<br>
+						<div><span>Dirección: </span>{{sitio.DIRECCION}} en {{sitio.PUEBLO.NOMBRE}}</div>
+						<br>
+						<div><span>Teléfonos: </span>{{sitio.TELEFONOS}}</div>
+						<br>
+						<div id="etiquetas"><span>Etiquetas: </span>{{sitio.CATEGORIA}}</div>
+					</li>
+					{% endfor %}
+				</ul>
+			</section>
 		</section>
 	</section>
 	<footer>
