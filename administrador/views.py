@@ -36,3 +36,6 @@ def vista_ajax1(request):
 			return HttpResponse("false1")
 	else:
 		return HttpResponse("No datos para ti.")
+
+def acerca_de(request):
+	return render_to_response('admin/acerca_de.html')

@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     #Vistas para el administrador de contenidos.
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^admin/vista1', 'administrador.views.vista1'),
+    url(r'^admin/acerca_de', 'administrador.views.acerca_de'),
     #Fin de urls para el administrador de contenidos.
 
     url(r'^$', 'principal.views.home'),

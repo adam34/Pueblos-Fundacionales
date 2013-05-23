@@ -1,51 +1,30 @@
+{% extends "admin/base_site.html" %}
 {% load i18n admin_static admin_modify bootstrapped_goodies_tags %}
 {% load url from future %}
 {% load admin_urls %}
-{% load tags %}
 
-{% block extrahead %}
+{% block extrahead %}{{ block.super }}
 {% url 'admin:jsi18n' as jsi18nurl %}
 <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+{{ media }}
 {% endblock %}
 
-{% block extrastyle %}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />
+{% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}" />{% endblock %}
 
-{% if add %}
-    {%put_css opts.verbose_name_plural 'add' %}
-{% else %}
-    {%put_css opts.verbose_name_plural 'change' %}
-{% endif %}
+{% block coltype %}{% if ordered_objects %}colMS{% else %}colM{% endif %}{% endblock %}
 
-{% if add %}
-    {%put_js opts.verbose_name_plural 'add' %}
-{% else %}
-    {%put_js opts.verbose_name_plural 'change' %}
-{% endif %}
+{% block bodyclass %}{{ opts.app_label }}-{{ opts.object_name.lower }} change-form{% endblock %}
 
-{% endblock %}
-{% block messages %}
-{% if messages %}
-<div class="row-fluid">
-    <div class="span12">
-        <div class="alert alert-info">
-            <ul class="unstyled">
-                {% for message in messages %}
-                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-</div>
-{% endif %}
-{% endblock messages %}
-
+{% if not is_popup %}
 {% block breadcrumbs %}
 <ul class="breadcrumb">
 <li><a href="{% url 'admin:index' %}">{% trans 'Home' %}</a> <span class="divider">/</span></li>
-<li>{% if has_change_permission %}<a href="#{{ opts.verbose_name_plural|capfirst }}" class="{{ opts.verbose_name_plural|capfirst }}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %} <span class="divider">/</span></li>
+</a> <span class="divider">/</span></li>
+<li>{% if has_change_permission %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %} <span class="divider">/</span></li>
 <li>{% if add %}{% trans 'Add' %} {{ opts.verbose_name }}{% else %}{{ original|truncatewords:"18" }}{% endif %}</li>
 </ul>
 {% endblock %}
+{% endif %}
 
 {% block object-tools %}
 {% if change %}{% if not is_popup %}
@@ -65,8 +44,8 @@
 {% endwith %}
 
 
-<form class="form-horizontal" {% if has_file_field %}enctype="multipart/form-data" {% endif %} id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
-    <div class="alert alert-warning">Los campos en <strong>negritas</strong> son obligatorios.</div>
+<form class="form-horizontal" {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
+    <div class="alert alert-warning">{% blocktrans %}Fields in <strong>bold</strong> are required.{% endblocktrans %}</div>
     {% if errors %}
     <div class="alert alert-error">
         {% blocktrans count counter=errors|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
@@ -107,157 +86,10 @@
             </div>
         </div>
     </div>
-</form>
     <div class="row-fluid">
         <div class="form-actions">
             {% block submit_buttons_bottom %}{% submit_row %}{% endblock %}
         </div>
     </div>
-
-<script type="text/javascript">
-    //event.preventDefault(), event.stopPropagation() y event.stopInmediatePropagation().
-    $(function(){
-        $(".{{ opts.verbose_name_plural|capfirst }}").on('click',cargar);
-        // $('input[name="_addanother"]').on('click',guardar_form);
-        // $('input[name="_continue"]').on('click',guardar_form);
-        // $('input[name="_save"]').on('click',guardar_form);
-        $('.historylink').on('click',historial);
-        function guardar_form(e)
-        {
-            {% if add %}
-            agregar(e,'#{{ opts.module_name }}_form',"{% url opts|admin_urlname:'add' %}");
-            {% else %}
-            agregar(e,'#{{ opts.module_name }}_form',"{{ opts.app_label }}/{{ opts.verbose_name }}/{{object_id}}/");
-            {% endif %}
-        }
-        function historial(e)
-        {
-            var elemento=e.target;
-            console.log(elemento);
-            var ref=elemento.href;
-            var cadena=ref.split('history');
-            ref=cadena[0]+"{{ opts.app_label }}/"+"{{ opts.verbose_name }}/"+"{{object_id}}"+"/history/"
-            $.ajax({
-                async:false,
-                url:ref,
-                data:{csrfmiddlewaretoken:'{{csrf_token}}'},
-                type:'POST',
-                //dataType:
-                success:function(response)
-                {
-                    if(response!='')
-                    {
-                        $('#content-main').hide(500,function()
-                            {
-                                $('#content-main').html(response);
-                                $('#content-main').show(1000);
-                            });
-                    }
-                    else
-                    {
-                        alert('No hubo respuesta por parte del servidor.');
-                    }
-                },
-                error:function(jqXHR, status, error)
-                {
-                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
-                },
-                // complete:function(jqXHR, status)
-                // {
-                //     alert(jqXHR.responseText+'\n'+status)
-                // },
-            });
-            return false;
-        }
-        $('.deletelink').on('click',eliminar);
-        function eliminar(e)
-        {
-            var elemento=e.target;
-            console.log(elemento);
-            var ref=elemento.href;
-            var cadena=ref.split('delete');
-            ref=cadena[0]+"{{ opts.app_label }}/"+"{{ opts.verbose_name }}/"+"{{object_id}}"+"/delete/"
-            var res=confirm("¿Esta seguro que desea eliminar este registro? Una vez eliminado ya no se podra recuperar.");
-            if(res==true)
-            {
-                $.ajax({
-                    async:false,
-                    url:ref,
-                    data:{csrfmiddlewaretoken:'{{csrf_token}}'},
-                    type:'POST',
-                    //dataType:
-                    success:function(response)
-                    {
-                        if(response!='')
-                        {
-                            $('#content-main').hide(500,function()
-                                {
-                                    $('#content-main').html(response);
-                                    $('#content-main').show(1000);
-                                });
-                        }
-                        else
-                        {
-                            alert('No hubo respuesta por parte del servidor.');
-                        }
-                    },
-                    error:function(jqXHR, status, error)
-                    {
-                        alert(jqXHR.responseText+'\n'+status+'\n'+ error);
-                    },
-                    // complete:function(jqXHR, status)
-                    // {
-                    //     alert(jqXHR.responseText+'\n'+status)
-                    // },
-                });
-            }
-            else{}
-            return false;            
-        }
-        $('.add-another').on('click',agregar_otros);
-        function agregar_otros(e)
-        {
-            debugger;
-            var elemento=e.target;
-            var ref=elemento.href;
-            $.ajax({
-                async:false,
-                url:ref,
-                data:{csrfmiddlewaretoken:'{{csrf_token}}'},
-                type:'GET',
-                //dataType:
-                success:function(response)
-                {
-                    if(response!='')
-                    {
-                        //$('body').removeClass();
-                        //$('body').addClass('_change-list')
-                        $('#content-main').hide(500,function()
-                            {
-                                $('#content-main').html(response);
-                                $('#content-main').show(1000);
-                            });
-                        //class:_change-list
-                        //class: dashboard
-                    }
-                    else
-                    {
-                        alert('No hubo respuesta por parte del servidor.');
-                    }
-                },
-                error:function(jqXHR, status, error)
-                {
-                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
-                },
-                // complete:function(jqXHR, status)
-                // {
-                //     alert(jqXHR.responseText+'\n'+status)
-                // },
-            });
-            return false;
-        }    
-
-    });
-</script>
-
+</form>
 {% endblock %}

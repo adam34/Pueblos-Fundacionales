@@ -22,6 +22,8 @@ from django.contrib.auth.models import User,Group
 # #ModelAdmin de Usuarios para el manejo de las paginas para agregar, modificar y mostrar elementos
 # class UsuarioAdmin(admin.ModelAdmin):
 # 	list_display =('username','first_name','last_name','email','is_staff',)
+# 	search_fields = ['username',]
+# 	list_per_page = 10
 # 	def get_form(self, request, obj=None, **kwargs):
 # 		#print dir(self.form._meta.fields)
 # 		if obj: # obj is not None, so this is a change page
@@ -62,6 +64,7 @@ from django.contrib.auth.models import User,Group
 # #ModelAdmin de Grupos para el manejo de las paginas para agregar, modificar y mostrar elementos
 # class GruposAdmin(admin.ModelAdmin):
 # 	list_display =('name',)
+# 	list_per_page = 10
 # 	def get_form(self, request, obj=None, **kwargs):
 # 		#print dir(self.form._meta.fields)
 # 		if obj: # obj is not None, so this is a change page
@@ -86,6 +89,9 @@ from django.contrib.auth.models import User,Group
 # #ModelAdmin de Pueblos para el manejo de las paginas para agregar, modificar y mostrar elementos
 # class PueblosAdmin(admin.ModelAdmin):
 # 	list_display =('NOMBRE','TIPO')
+# 	list_per_page = 10
+# 	list_filter = ('TIPO',)
+# 	search_fields = ['NOMBRE',]
 # 	def get_form(self, request, obj=None, **kwargs):
 # 		#print dir(self.form._meta.fields)
 # 		if obj: # obj is not None, so this is a change page
@@ -94,7 +100,7 @@ from django.contrib.auth.models import User,Group
 # 			self.form=PuebloChangeForm
 # 			self.fieldsets = (
 # 				(None, {
-# 					'fields': ('NOMBRE','TIPO','DESCRIPCION','LATITUD','LONGITUD',),
+# 					'fields': ('NOMBRE','TIPO','DESCRIPCION',),
 # 					}),
 # 				)
 # 		else: # obj is None, so this is an add page
@@ -120,7 +126,6 @@ admin.site.register(pueblo)
 
 admin.site.register(archivo)
 admin.site.register(galeria)
-
 admin.site.register(pueblo_idioma)
 admin.site.register(pueblo_administrador)
 admin.site.register(comentario_pueblo)
