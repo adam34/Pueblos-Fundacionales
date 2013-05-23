@@ -26,7 +26,9 @@
 .secciones p{font-size:.9em;font-weight:bold;font-weight:normal;margin-left:3%;}
 .secciones p a{color:#a70325;font-weight:bold;text-decoration:none}
 .menu_secciones{margin-left:1%;width:32%}
-.sitios_turisticos{border:thin solid #d6d6d6;margin:0 auto;max-width:95%}
+.sitios_turisticos{border:thin solid #d6d6d6;margin:0 auto;max-width:95%;}
+.sitios_turisticos a{color:#1e6381;font-weight:normal;text-decoration:none;}
+.sitios_turisticos a span{font-weight:bold}
 .suscribete_redes{border:thin solid #d6d6d6;height:150px;margin-left:.4em;text-align:center;width:95%;}
 .suscribete_redes h3{color:#ce8610}
 .suscribete_redes input[type="text"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;width:230px}

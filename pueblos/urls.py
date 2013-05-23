@@ -41,4 +41,5 @@ urlpatterns = patterns('',
     url(r'^eventos/$', 'principal.views.eventos'),
     url(r'^multimedia/galeria/$', 'principal.views.galeria'),
     url(r'^relatos/$', 'principal.views.relatos'),
+    url(r'^sitios_turisticos/$', 'principal.views.sitiosT'),
 )
