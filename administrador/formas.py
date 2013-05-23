@@ -12,10 +12,6 @@ from administrador.extras.widgets import SelectMultipleCustom,TextAreaEditor
 from django.forms.widgets import *
 
 
-<<<<<<< HEAD
-#from ckeditor.widgets import CKEditorWidget
-=======
->>>>>>> 93ae16459e686d9642f515e74ccf127c4678b48f
 #----------------------------------Validadores para UserForm------------------------------------------
 def validar_usuario(valor):
 	if len(valor) > 30:
@@ -117,7 +113,7 @@ class UserForm(forms.ModelForm):
 		self.fields['email'].label='Correo electrónico'
 		self.fields['email'].help_text='Opcional. Ejemplo: username@server.com'
 
-		
+
 		self.fields['groups'].widget = SelectMultipleCustom()
 		# self.fields['groups'].widget.attrs = {'class':'input-xxlarge'}
 		self.fields['groups'].queryset= Group.objects.all()
