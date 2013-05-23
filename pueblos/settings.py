@@ -129,29 +129,17 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django_admin_bootstrapped',
+    #'django_admin_bootstrapped',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    # 'ckeditor',
     'principal',
     'administrador',
     #'social_auth',
 )
 
-# CKEDITOR_UPLOAD_PATH = os.path.join(MEDIA_ROOT,'ckeditor')
-# CKEDITOR_UPLOAD_PREFIX = "ckeditor/"
-# CKEDITOR_CONFIGS = {
-#     'ckeditor1': {
-#         'toolbar': 'Full',
-#     },
-#     'default': {
-#         'toolbar': 'Full',
-#         'height': 300,
-#         'width': 300,
-#     },
-# }
+
 
 # AUTHENTICATION_BACKENDS = (
 #     'social_auth.backends.facebook.FacebookBackend',
