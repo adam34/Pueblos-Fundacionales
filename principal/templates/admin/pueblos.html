@@ -1,0 +1,176 @@
+<html lang="es">
+    <head>
+        <title>Administrador del sistema de Pueblos Fundacionales</title>
+        <meta charset="”utf-8”">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="NONE,NOARCHIVE">
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css">
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/estilos.css">
+        <!-- Le styles, placed after extrastyle to correctly override default styling -->
+        <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/static/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/static/admin/css/overrides.css">
+        <!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css" /> -->
+        <script type="text/javascript">window.__admin_media_prefix__ = "/static/admin/";</script><style type="text/css"></style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="/static/admin/js/jquery-1.9.1.min.js"><\/script>')</script>
+        <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript">
+    //<![CDATA[
+                (function($) {
+                    $(document).ready(function() {
+                        $('input[type="submit"]').addClass('btn');
+                    });
+                }(jQuery));
+        //]]>
+        </script>
+    </head>
+    {% load i18n %}
+    <body class="dashboard">
+        <!-- Container -->
+        <div class="container-fluid">  
+            <!-- Header -->
+            <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="navbar-inner">
+                    <div class="container-fluid">
+                        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </a>             
+                        <a class="brand" href="/admin/">Administrador del Sistema de Pueblos Fundacionales</a>
+                        <div class="nav-collapse collapse pull-right">
+                            <ul class="nav">  
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bienvenido, <strong>root</strong> <b class="caret"></b></a>
+                                    <ul class="dropdown-menu pull-right">       
+                                        <li><a href="/admin/password_change/">Cambiar contraseña</a></li>
+                                        <li><a href="/admin/logout/">Cerrar sesión</a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown" id="recent-actions-module">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Recent Actions' %} <b class="caret"></b></a>
+                                    {% load log %}
+                                    {% get_admin_log 10 as admin_log for_user user %}
+                                    <ul class="dropdown-menu pull-right">
+                                        {% for entry in admin_log %}
+                                        <li class="{% if entry.is_addition %}addlink{% endif %}{% if entry.is_change %}changelink{% endif %}{% if entry.is_deletion %}deletelink{% endif %}">
+                                            <a href="{% if entry.is_deletion or not entry.get_admin_url %}#{% else %}{% url 'admin:index' %}{{ entry.get_admin_url }}{% endif %}">
+                                                <i class="icon-{% if entry.is_addition %}plus{% endif %}{% if entry.is_change %}edit{% endif %}{% if entry.is_deletion %}remove{% endif %}"></i>
+                                                {{ entry.object_repr }}
+                                                {% if entry.content_type %}
+                                                <span class="mini quiet">({% filter capfirst %}{% trans entry.content_type.name %}{% endfilter %})</span>
+                                                {% else %}
+                                                <span class="mini quiet">({% trans 'Unknown content' %})</span>
+                                                {% endif %}
+                                            </a>
+                                        </li>
+                                        {% empty %}
+                                        <li class="disabled"><a href="#">{% trans 'None available' %}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                <li class="divider-vertical"></li>
+                                <li><a href="/admin/doc/">Ayuda</a></li>
+                            </ul>
+                        </div><!--/.nav-collapse -->
+                    </div>
+                </div>
+            </div>
+            <!-- END Header -->
+            <div class="row-fluid">
+                <div class="span12">        
+                    <ul class="breadcrumb">
+                    <li><a href='/admin/'>Inicio</a></li>
+                    <li><span class="divider">/</span></li>
+                    <li><a href='/admin/administrador/pueblo/'>Pueblos</a></li>
+                    <li><span class="divider">/</span></li>
+                    <li>{{pueblos}}</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Content -->
+            <div id="content" class="colMS">
+                <div class="row-fluid">
+                    <div class="navbar">
+                        <div class="navbar-inner">         
+                            <ul class="nav">
+                                <li class="active"><a href="/admin/">Inicio</a></li>
+                                <ul class="nav nav-pills">
+                                  <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        Control de usuarios
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                      <!-- links -->
+                                      <li>
+                                        <a href="/admin/auth/group">Grupos</a>
+                                      </li>
+                                      <li>
+                                        <a href="/admin/auth/user">Usuarios</a>
+                                      </li>
+                                    </ul>
+                                  </li>
+                                </ul>
+                                <ul class="nav nav-pills">
+                                  <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        Pueblos
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                      <!-- links -->
+                                      <li>
+                                        <a href="administrador/pueblo/">Pueblos</a>
+                                      </li>
+                                      <li>
+                                        <a href="#">Curiosidades</a>
+                                      </li>
+                                      <li>
+                                        <a href="#">Eventos</a>
+                                      </li>
+                                      <li>
+                                        <a href="#">Relatos</a>
+                                      </li>          
+                                    </ul>
+                                  </li>
+                                </ul>
+                                <ul class="nav nav-pills">
+                                  <li class="dropdown">
+                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                        Sitios turísticos
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                      <!-- links -->
+                                      <li>
+                                        <a href="#">Categorias</a>
+                                      </li>
+                                      <li>
+                                        <a href="#">Contratos</a>
+                                      </li>        
+                                    </ul>
+                                  </li>
+                                </ul>
+                                <li><a href="#">Idiomas</a></li>
+                                <li><a href="#">Galerías</a></li>
+                                <li><a href="#">Administrador de archivos</a></li>
+                                <li><a href="#">Configuración del sitio</a></li>
+                                <li><a href="/admin/acerca_de">Acerca de</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>       
+                <div class="row-fluid">
+                    <div id="content-main" class="span12">
+                        <!-- Aquí es donde se debe colocar el codigo para el diseño de la pagina -->
+                        <p>Parte meramente.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- END Content -->
+            <footer id="footer"></footer>
+        </div>
+        <!-- END Container -->
+    </body>
+</html>
