@@ -12,7 +12,7 @@ from administrador.extras.widgets import SelectMultipleCustom
 from django.forms.widgets import *
 
 
-from ckeditor.widgets import CKEditorWidget
+#from ckeditor.widgets import CKEditorWidget
 #----------------------------------Validadores para UserForm------------------------------------------
 def validar_usuario(valor):
 	if len(valor) > 30:

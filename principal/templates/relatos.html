@@ -127,27 +127,52 @@
 	</div>
 	<section class="contenedor">
 		<section class="contenedor_relatos">
-			<h2>Relatos</h2>
-			<table>
-				<tr>
-					<th>USUARIO</th>
-					<th>PUEBLO</th>
-					<th>TITULO</th>
-					<th>DESCRIPCION</th>
-					<th>FECHA</th>
-					<th>VALORACION</th>
-				</tr>
-				{% for relato in relatos %}
-				<tr>
-					<td>{{relato.RELATO.USUARIO.username}}</td>
-					<td>{{relato.RELATO.PUEBLO.NOMBRE}}</td>
-					<td>{{relato.TITULO}}</td>
-					<td>{{relato.DESCRIPCION}}</td>
-					<td>{{relato.RELATO.FECHA}}</td>
-					<td>{{relato.RELATO.VALORACION}}</td>
-				</tr>
-				{% endfor %}
-			</table>
+			<section class="story">
+				<h2>Relatos</h2>
+				<ul>
+					{% for relato in relatos  %}
+					<li>
+						<h3> {{relato.TITULO}}</h3>
+						<br>
+						<span>Autor:</span>&nbsp; &nbsp;{{relato.USUARIO.username}}
+						<br>
+						<span>Fecha:</span>&nbsp; &nbsp;{{relato.FECHA}}
+						<br>
+						<span>Descripción:</span> &nbsp; &nbsp;<p>{{relato.DESCRIPCION}}</p>
+						<br><br>
+						<span>Valoración: </span>
+						<span class="plus">
+							<img src="/static/img/heart.png" alt="" title="Me gustó">
+						</span>
+						<span class="plus">
+							<img src="/static/img/heart-broken.png" alt="" title="No me gustó">
+						</span>
+							
+						<span aria-hidden="true" class="icon-heart-broken minus"></span>
+						&nbsp; &nbsp;<span>Puntos acumulados: {{relato.VALORACION}}	</span>
+
+						<form action="#">
+							<textarea rows="4" cols="45" placeholder="Comenta">
+
+							</textarea>
+							<br><br>
+								<input name="enviar" value="Comentar" type="button">
+						</form>
+
+					</li>
+					{% endfor %}
+				</ul>
+			</section>
+			<section class="menu_story">
+				<h3>Mejores relatos</h3>
+				<p>
+					{% for relato in relatos  %}
+						<span>Mejor historia del mes</span>
+						<br>
+						<h4> {{relato.TITULO}}</h4>
+					{% endfor %}
+				</p>
+			</section>
 		</section>
 	</section>
 	<footer>
