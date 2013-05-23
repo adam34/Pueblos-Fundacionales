@@ -8,7 +8,7 @@ from django.forms.util import ErrorList
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 #from django.contrib.admin.widgets import FilteredSelectMultiple
-from administrador.extras.widgets import SelectMultipleCustom,TextAreaEditor
+from administrador.extras.widgets import SelectMultipleCustom
 from django.forms.widgets import *
 
 
@@ -220,14 +220,16 @@ class GroupChangeForm(forms.ModelForm):
 #------------------------------Formularios para el modelo de pueblos------------------------------
 
 class PuebloForm(forms.ModelForm):
+	MAPA = forms.DecimalField()
 	class Meta:
 		model=pueblo
+		fields = ['NOMBRE','TIPO','DESCRIPCION']
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(PuebloForm, self).__init__(*args, **kwargs)
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
 		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
-		self.fields['DESCRIPCION'].widget = TextAreaEditor()
+
 		# self.fields['permissions'].widget= SelectMultipleCustom()
 		# self.fields['permissions'].queryset= Permission.objects.all()
 

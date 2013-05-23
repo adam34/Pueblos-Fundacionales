@@ -92,7 +92,7 @@
     <li><a href="#">Galerías</a></li>
     <li><a href="#">Administrador de archivos</a></li>
     <li><a href="#">Configuración del sitio</a></li>
-    <li><a href="#">Acerca de</a></li>
+    <li><a href="#" class='acerca_de'>Acerca de</a></li>
 
 </ul>
 {% endblock %}
@@ -181,6 +181,7 @@
       {% for app in app_list %} {% for model in app.models %}
       $('.{{model.name|cut:" "}}').on('click',cargar);
       {% endfor %}{% endfor %}
+      $('.acerca_de').on('click',cargar);
     }
     function cargar(e)
     {
@@ -191,6 +192,10 @@
             ruta='{{model.admin_url}}';
         }
         {% endfor %}{% endfor %}
+        if(e.target.className=='acerca_de')
+        {
+          ruta='/admin/acerca_de'
+        }
 
         if(ruta!="")
         {
