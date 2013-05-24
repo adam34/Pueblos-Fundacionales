@@ -8,7 +8,7 @@ from django.forms.util import ErrorList
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 #from django.contrib.admin.widgets import FilteredSelectMultiple
-from administrador.extras.widgets import SelectMultipleCustom,MapInput
+from administrador.extras.widgets import SelectMultipleCustom,MapInput,AccordionMultipleTextbox
 from django.forms.widgets import *
 
 
@@ -245,6 +245,8 @@ class PuebloForm(forms.ModelForm):
 		super(PuebloForm, self).__init__(*args, **kwargs)
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
 		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox()
+		self.fields['DESCRIPCION'].help_text ="Obligatorio. El campo del idioma del sistema debe ser llenado (Español)."
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
 		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"span12 vTextField"})

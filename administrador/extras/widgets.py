@@ -1,6 +1,7 @@
 #widgets.py
+# -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-
+from administrador.models import idioma
 
 #ESTAS LINEAS DE CODIGO SON PARA DEPURACION
 # import pdb
@@ -13,7 +14,7 @@ from django.forms.util import flatatt
 from django.utils.html import conditional_escape, format_html, format_html_join
 from itertools import chain
 from django.forms import *
-from django.forms.widgets import Input,SelectMultiple
+from django.forms.widgets import Input,SelectMultiple,Widget
 
 class SelectMultipleCustom(SelectMultiple):
     def render(self, name, value, attrs=None, choices=()):
@@ -148,7 +149,121 @@ class MapInput(Input):
         #     # Only add the 'value' attribute if a value is non-empty.
         #     final_attrs['value'] = force_text(self._format_value(value))
         return mark_safe('\n'.join(output))
+class AccordionMultipleTextbox(Widget):
+    def render(self, name, value, attrs=None):
+        if value is None: value = ''
+        # output= [mark_safe("""
+        # <div class="accordion" id="accordion2">
+        #     <div class="accordion-group">
+        #         <div class="accordion-heading">
+        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        #                 Español
+        #             </a>
+        #         </div>
+        #         <div id="collapseOne" class="accordion-body collapse in">
+        #             <div class="accordion-inner">
+        #                 <textarea> </textarea>
+        #             </div>
+        #         </div>
+        #     </div>
+        #     <div class="accordion-group">
+        #         <div class="accordion-heading">
+        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+        #                 Inglés
+        #             </a>
+        #         </div>
+        #         <div id="collapseTwo" class="accordion-body collapse">
+        #             <div class="accordion-inner">
+        #                 <textarea> </textarea>
+        #             </div>
+        #         </div>
+        #     </div>
+        #     <div class="accordion-group">
+        #         <div class="accordion-heading">
+        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+        #                 Aléman
+        #             </a>
+        #         </div>
+        #         <div id="collapseThree" class="accordion-body collapse">
+        #             <div class="accordion-inner">
+        #                 <textarea> </textarea>
+        #             </div>
+        #         </div>
+        #     </div>
+        # </div>
+        # """)]
 
+        # output= [mark_safe("""
+        # <div class='row'>
+        #     <div class='span8'>
+        #         <ul class="nav nav-tabs" id="myTab">
+        #             <li class="active"><a href="#home">Español</a></li>
+        #             <li><a href="#profile">Inglés</a></li>
+        #             <li><a href="#messages">Aléman</a></li>
+        #             <li><a href="#settings">Portugues</a></li>
+        #         </ul>
+
+        #         <div class="tab-content">
+        #             <div class="tab-pane active" id="home">
+        #                 <textarea class='vTextField span12' rows='10'>aaaa</textarea>
+        #             </div>
+        #             <div class="tab-pane" id="profile">
+        #                 <textarea class='vTextField span12' rows='10'>bbbb</textarea>
+        #             </div>
+        #             <div class="tab-pane" id="messages">
+        #                 <textarea class='vTextField span12' rows='10'>cccc</textarea>
+        #             </div>
+        #             <div class="tab-pane" id="settings">
+        #                 <textarea class='vTextField span12' rows='10'>dddd</textarea>
+        #             </div>
+        #         </div>
+        #         <script>
+        #         $(function () {
+        #             $('#myTab a:first').tab('show');
+        #         })
+        #         $('#myTab a').click(function (e) {
+        #           e.preventDefault();
+        #           $(this).tab('show');
+        #         })
+        #         </script>
+        #     </div>
+        # </div>
+        # """)]
+        idiomas=idioma.objects.all()
+        output= [mark_safe("""<div class='row'>""")]
+        output.append(mark_safe("""<div class='span8'>"""))
+        output.append(mark_safe("""<ul class="nav nav-tabs" id="%s_descripcion">""" % (name)))
+        output.append(mark_safe("""<li class="active"><a href="#Español">Español</a></li>"""))
+        for idiom in idiomas:
+            output.append(mark_safe("<li><a href='#"+idiom.NOMBRE+"'>"+idiom.NOMBRE+"</a></li>"))
+        output.append(mark_safe("""</ul>"""))
+        output.append(mark_safe("""<div class="tab-content">"""))
+        output.append(mark_safe("""
+                <div class='tab-pane active' id='Español'>
+                    <textarea class='vTextField span12' rows='10' placeholder='Descripción en Español'></textarea>
+                </div>
+            """))
+        for idiom in idiomas:
+            output.append(mark_safe("""
+                    <div class='tab-pane' id='"""+idiom.NOMBRE+"""'>
+                        <textarea class='vTextField span12' rows='10' placeholder=' Descripción en """+idiom.NOMBRE+"""'></textarea>
+                    </div>
+                """))
+        output.append(mark_safe("""</div>"""))
+        output.append(mark_safe("""
+            <script>
+                $(function () {
+                    $('#%s_descripcion a:first').tab('show');
+                })
+                $('#%s_descripcion a').click(function (e) {
+                  e.preventDefault();
+                  $(this).tab('show');
+                })
+                </script>
+            </div>
+        </div>
+        """ % (name,name)))
+        return mark_safe('\n'.join(output))
 
 
 # class TextAreaEditor(Textarea):
