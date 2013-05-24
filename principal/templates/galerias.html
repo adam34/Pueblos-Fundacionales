@@ -137,7 +137,7 @@
 						<img src="/static/img/album.png" alt="">
 						<br>
 						<span>Galería: </span>
-							<a href="#" id="gal">{{galeria.NOMBRE}}</a>
+							<a href="#" class="gal">{{galeria.NOMBRE}}</a>
 						<br>
 						<span>Descripción: </span>{{galeria.DESCRIPCION}}
 					</li>
@@ -232,7 +232,7 @@
 				});
 			});
 		});
-		$('#gal').on('click', obtener);
+		$('.gal').on('click', obtener);
 		function obtener(e) {
 			var elemento = e.target;
 			var galeria = elemento.innerHTML;
