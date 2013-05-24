@@ -43,9 +43,6 @@ urlpatterns = patterns('',
     url(r'^multimedia/galeria/$', 'principal.views.galeria_2'),
     url(r'^relatos/$', 'principal.views.relatos'),
     url(r'^sitios_turisticos/$', 'principal.views.sitiosT'),
-<<<<<<< HEAD
-     url(r'^busqueda/$', 'principal.views.busqueda'),
-=======
+    url(r'^busqueda/$', 'principal.views.busqueda'),
     url(r'^galerias_ajax/$','principal.views.galerias_ajax')
->>>>>>> a694186c517321ca7b8f85954680dcb0013e07c2
 )
