@@ -13,7 +13,7 @@ from django.forms.util import flatatt
 from django.utils.html import conditional_escape, format_html, format_html_join
 from itertools import chain
 from django.forms import *
-from django.forms.widgets import *
+from django.forms.widgets import Input,SelectMultiple
 
 class SelectMultipleCustom(SelectMultiple):
     def render(self, name, value, attrs=None, choices=()):
@@ -71,6 +71,62 @@ class SelectMultipleCustom(SelectMultiple):
             else:
                 output.append(self.render_option(selected_choices, option_value, option_label))
         return '\n'.join(output)
+
+class MapInput(Input):
+    def render(self, name, value, attrs=None):
+        if value is None:
+            value = ''
+        final_attrs = self.build_attrs(attrs, type=self.input_type, name=name)
+        final_attrs['type'] ='text'
+        final_attrs['style'] = 'margin:0 0 10px 0;'
+    
+        output = [format_html("""<script src="http://maps.google.com/maps/api/js?sensor=true"></script>""")]
+
+        output.append(format_html("""<script src="/static/js/gmaps.js"></script>"""))
+        output.append(format_html("""<div class="span8">"""))
+        output.append(format_html("""<div class="row">"""))
+        output.append(format_html('<input{0} placeholder="Buscar: Ciudad, Estado, Pais" />', flatatt(final_attrs)))
+        output.append(format_html("""</div>"""))
+        output.append(format_html("""<div class="row">"""))
+        output.append(format_html("""<div id='mapa' class='span10'></div>"""))
+        output.append(mark_safe("""<script> new GMaps(
+            {
+            div: '#mapa', 
+            height : '400px',
+            lat: 24.143131,
+            lng: -110.31106,
+        });
+        GMaps.geocode({
+          address: $('#id_MAPA').val(),
+          callback: function(results, status) {
+            if (status == 'OK') {
+              var latlng = results[0].geometry.location;
+              map.setCenter(latlng.lat(), latlng.lng());
+              map.addMarker({
+                lat: latlng.lat(),
+                lng: latlng.lng()
+              });
+            }
+            }
+        });
+        $('#id_MAPA').on('keypress',clic);
+        function clic(e)
+        {
+            if(e.charCode=13)
+            {
+                GMaps.geocode();
+                return false;
+            }
+        }
+        </script>"""))
+        output.append(format_html("""</div>"""))
+        output.append(format_html("""</div>"""))
+        # if value != '':
+        #     # Only add the 'value' attribute if a value is non-empty.
+        #     final_attrs['value'] = force_text(self._format_value(value))
+        return mark_safe('\n'.join(output))
+
+
 
 # class TextAreaEditor(Textarea):
     

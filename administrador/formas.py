@@ -8,7 +8,7 @@ from django.forms.util import ErrorList
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 #from django.contrib.admin.widgets import FilteredSelectMultiple
-from administrador.extras.widgets import SelectMultipleCustom
+from administrador.extras.widgets import SelectMultipleCustom,MapInput
 from django.forms.widgets import *
 
 
@@ -234,7 +234,9 @@ class GroupChangeForm(forms.ModelForm):
 #------------------------------Formularios para el modelo de pueblos------------------------------
 
 class PuebloForm(forms.ModelForm):
-	MAPA = forms.DecimalField()
+	MAPA = forms.CharField()
+	LATITUD = forms.CharField()
+	LONGITUD = forms.CharField()
 	class Meta:
 		model=pueblo
 		fields = ['NOMBRE','TIPO','DESCRIPCION']
@@ -243,7 +245,9 @@ class PuebloForm(forms.ModelForm):
 		super(PuebloForm, self).__init__(*args, **kwargs)
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
 		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
-
+		self.fields['LATITUD'].widget = HiddenInput()
+		self.fields['LONGITUD'].widget = HiddenInput()
+		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"vTextField"})
 		# self.fields['permissions'].widget= SelectMultipleCustom()
 		# self.fields['permissions'].queryset= Permission.objects.all()
 

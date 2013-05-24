@@ -268,6 +268,7 @@ class votacion(models.Model):
 	ID=models.AutoField(primary_key=True)
 	COMENTARIO=models.IntegerField(null=True,default=0)
 	VOTACION = models.BooleanField(null=False)
+	USUARIO=models.ForeignKey(User,null=False)
 	def __unicode__(self):
 		return self.VOTACION	
 
