@@ -247,7 +247,7 @@ class PuebloForm(forms.ModelForm):
 		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
-		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"vTextField"})
+		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"span12 vTextField"})
 		# self.fields['permissions'].widget= SelectMultipleCustom()
 		# self.fields['permissions'].queryset= Permission.objects.all()
 
