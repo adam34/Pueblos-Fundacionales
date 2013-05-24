@@ -130,6 +130,22 @@
 	<section class="contenedor">
 		<section class="pueblos">
 			<h2>Galería</h2>
+			<table id='tabla1'>
+				<tr>
+					<th>Galerías</th>
+					<th>Descripción</th>
+				</tr>
+				{% for galeria in galerias %}
+				<tr>
+					<td><a href="#">{{galeria.NOMBRE}}</a></td>
+					<td>{{galeria.DESCRIPCION}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+			<br>
+			<br>
+			<table id='tabla2'>
+			</table>
 		</section>
 		<section class="pueblos_menu">
 		</section>
@@ -176,7 +192,6 @@
 			</section>
 		</section>
 	</footer>
-
 	<!-- jQuery -->
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 	<!-- jQuery Mobile -->
@@ -212,6 +227,53 @@
 				});
 			});
 		});
+		$('#tabla1 td a').on('click',obtener);
+		function obtener(e)
+		{
+            var elemento=e.target;
+            var galeria=elemento.innerHTML;
+            $.ajax({
+                async:false,
+                url:"/galerias_ajax/",
+                data:{csrfmiddlewaretoken:'{{csrf_token}}','galeria':galeria},
+                type:'POST',
+                //dataType:
+                success:function(response)
+                {
+                    if(response!='')
+                    {
+                    	response.archivos;
+                    	html="<tr>\n"+
+                    	"<th>\n"+
+                    		"Imagen \n"+
+                    	"</th> \n"+
+                    	"</tr> \n";
+                    	for(i=0; i<response.archivos.length;i++)
+                    	{
+                    		html+="<tr> \n";
+                    		html+="<td> \n";
+                    		html+="<img src='"+response.archivos[i]+"'> \n";
+                    		html+="<td> \n";
+                    		html+="</tr> \n";
+                    	}
+                    	$('table#tabla2').html(html);
+                    }
+                    else
+                    {
+                        alert('No hubo respuesta por parte del servidor.');
+                    }
+                },
+                error:function(jqXHR, status, error)
+                {
+                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+                },
+                // complete:function(jqXHR, status)
+                // {
+                //     alert(jqXHR.responseText+'\n'+status)
+                // },
+            });
+			return false;
+		}
 	</script>
 </body>
 

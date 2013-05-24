@@ -15,7 +15,8 @@ urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin/acerca_de/', 'administrador.views.acerca_de'),
-    url(r'^admin/administrador/pueblos/', 'administrador.views.pueblos'),
+    url(r'^admin/administrador/config/', 'administrador.views.config'),
+    
     #Fin de urls para el administrador de contenidos.
 
     url(r'^$', 'principal.views.home'),
@@ -39,8 +40,12 @@ urlpatterns = patterns('',
     url(r'^multimedia/$', 'principal.views.multimedia'),
     url(r'^multimedia/player/$', 'principal.views.player'),
     url(r'^eventos/$', 'principal.views.eventos'),
-    url(r'^multimedia/galeria/$', 'principal.views.galeria'),
+    url(r'^multimedia/galeria/$', 'principal.views.galeria_2'),
     url(r'^relatos/$', 'principal.views.relatos'),
     url(r'^sitios_turisticos/$', 'principal.views.sitiosT'),
+<<<<<<< HEAD
      url(r'^busqueda/$', 'principal.views.busqueda'),
+=======
+    url(r'^galerias_ajax/$','principal.views.galerias_ajax')
+>>>>>>> a694186c517321ca7b8f85954680dcb0013e07c2
 )

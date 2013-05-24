@@ -38,8 +38,8 @@ class archivo(models.Model):
 
 class galeria(models.Model):
 	class Meta:
-		verbose_name="galeria" #Nombre en singular del modelo
-		verbose_name_plural="galerias" #Nombre en plural del modelo
+		verbose_name="galería" #Nombre en singular del modelo
+		verbose_name_plural="galerías" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	NOMBRE=models.CharField(max_length=40,null=False)
 	DESCRIPCION=models.CharField(max_length=100,null=False)
@@ -260,6 +260,16 @@ class reporte_comentario(models.Model):
 	USUARIO=models.ForeignKey(User,null=False)
 	def __unicode__(self):
 		return self.RAZON
+
+class votacion(models.Model):
+	class Meta:
+		verbose_name="votacion" #Nombre en singular del modelo
+		verbose_name_plural="votaciones" #Nombre en plural del modelo
+	ID=models.AutoField(primary_key=True)
+	COMENTARIO=models.IntegerField(null=True,default=0)
+	VOTACION = models.BooleanField(null=False)
+	def __unicode__(self):
+		return self.VOTACION	
 
 class curiosidad_idioma(models.Model):
 	class Meta:
