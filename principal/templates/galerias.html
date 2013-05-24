@@ -130,20 +130,21 @@
 	<section class="contenedor">
 		<section class="pueblos">
 			<h2>Galería</h2>
+			{% for galeria in galerias %}
 			<section class="gallery">
 				<ul>
-					{% for galeria in galerias %}
+					
 					<li>
 						<img src="/static/img/album.png" alt="">
 						<br>
 						<span>Galería: </span>
-							<a href="#" id="gal">{{galeria.NOMBRE}}</a>
+							<a href="#" class="gal">{{galeria.NOMBRE}}</a>
 						<br>
 						<span>Descripción: </span>{{galeria.DESCRIPCION}}
 					</li>
-					{% endfor %}
 				</ul>
 			</section>
+				{% endfor %}
 			<section id="album">
 				<section id="album_form"></section>
 			</section>
@@ -232,7 +233,7 @@
 				});
 			});
 		});
-		$('#gal').on('click', obtener);
+		$('.gal').on('click', obtener);
 		function obtener(e) {
 			var elemento = e.target;
 			var galeria = elemento.innerHTML;
