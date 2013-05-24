@@ -6,7 +6,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from administrador.models import *
-
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 def home(request): 
 	return render_to_response('index.html')
@@ -17,8 +18,30 @@ def secciones(request):
 def pueblos(request): 
 	return render_to_response('pueblos.html')
 
-def galerias(request): 
-	return render_to_response('galerias.html')
+def galerias(request):
+	objs=galeria.objects.all()
+	return render_to_response('galerias.html',RequestContext(request,{'galerias':objs}))
+
+def galerias_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if request.POST.__contains__('galeria'):
+				nombre = request.POST['galeria']
+				galer=galeria.objects.filter(NOMBRE=nombre)[0]
+				archivos = galer.ARCHIVOS.all()
+				dicc = {}
+				dicc['archivos'] =[]
+				for arc in archivos:
+					dicc['archivos'].append(arc.RUTA.url)
+				return HttpResponse(json.dumps(dicc),mimetype='application/json')
+			else:
+				return HttpResponse(json.dumps({'archivos':None}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'archivos':None}),mimetype='application/json')
+	else:
+		raise Http404
 
 def libros(request): 
 	return render_to_response('libros.html')
@@ -66,7 +89,7 @@ def eventos(request):
 	eventos=evento.objects.all()
 	return render_to_response('eventos.html',{'eventos':eventos})
 
-def galeria(request):
+def galeria_2(request):
 	return render_to_response('multimedia/galeria.html')
 
 def relatos(request):

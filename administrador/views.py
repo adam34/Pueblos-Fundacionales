@@ -43,15 +43,20 @@ def vista_ajax1(request):
 def acerca_de(request):
 	return render_to_response('admin/acerca_de.html')
 
-def pueblos(request):
-	# import pdb
-	# pdb.set_trace()
-	dicc = {'user':request.user}
-	if request.POST.__contains__('pueblos'):
-		nombre = request.POST['pueblos']
-		village = pueblo.objects.filter(NOMBRE= nombre)
-		dicc['pueblos'] = nombre
-		dicc['village'] = village
-		return render_to_response('admin/pueblos.html',dicc)
-	else:
-		raise Http404
+def config(request):
+	return render_to_response('admin/config.html',{'user':request.user})
+
+# def pueblos(request):
+# 	dicc = {'user':request.user}
+# 	if request.POST.__contains__('pueblos'):
+# 		nombre = request.POST['pueblos']
+# 		village = pueblo.objects.filter(NOMBRE= nombre)
+# 		dicc['pueblos'] = nombre
+# 		dicc['village'] = village
+# 		return render_to_response('admin/pueblos.html',dicc)
+# 	else:
+# 		raise Http404
+
+
+
+

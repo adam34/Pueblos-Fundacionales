@@ -45,10 +45,10 @@
 
 
 <form class="form-horizontal" {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
-    <div class="alert alert-warning">{% blocktrans %}Fields in <strong>bold</strong> are required.{% endblocktrans %}</div>
+    <div class="alert alert-warning">Los campos en <strong>negritas</strong> son obligatorios.</div>
     {% if errors %}
     <div class="alert alert-error">
-        {% blocktrans count counter=errors|length %}Please correct the error below.{% plural %}Please correct the errors below.{% endblocktrans %}
+        {% blocktrans count counter=errors|length %}Por favor, corrije el siguiente error.{% plural %}Por favor, corrije los siguientes errores.{% endblocktrans %}
         {{ adminform.form.non_field_errors }}
     </div>
     {% endif %}
