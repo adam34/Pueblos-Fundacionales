@@ -130,24 +130,29 @@
 	<section class="contenedor">
 		<section class="pueblos">
 			<h2>Galería</h2>
-			<table id='tabla1'>
-				<tr>
-					<th>Galerías</th>
-					<th>Descripción</th>
-				</tr>
-				{% for galeria in galerias %}
-				<tr>
-					<td><a href="#">{{galeria.NOMBRE}}</a></td>
-					<td>{{galeria.DESCRIPCION}}</td>
-				</tr>
-				{% endfor %}
-			</table>
-			<br>
-			<br>
-			<table id='tabla2'>
-			</table>
+			<section class="gallery">
+				<ul>
+					{% for galeria in galerias %}
+					<li>
+						<img src="/static/img/album.png" alt="">
+						<br>
+						<span>Galería: </span>
+							<a href="#" id="gal">{{galeria.NOMBRE}}</a>
+						<br>
+						<span>Descripción: </span>{{galeria.DESCRIPCION}}
+					</li>
+					{% endfor %}
+				</ul>
+			</section>
+			<section id="album">
+				<section id="album_form"></section>
+			</section>
 		</section>
 		<section class="pueblos_menu">
+			<h3>Galerías</h3>
+			{% for galeria in galerias %}
+				<p>{{galeria.NOMBRE}}</p>
+			{% endfor %}
 		</section>
 	</section>
 	<footer>
@@ -227,43 +232,45 @@
 				});
 			});
 		});
-		$('#tabla1 td a').on('click',obtener);
-		function obtener(e)
-		{
-            var elemento=e.target;
-            var galeria=elemento.innerHTML;
-            $.ajax({
-                async:false,
+		$('#gal').on('click', obtener);
+		function obtener(e) {
+			var elemento = e.target;
+			var galeria = elemento.innerHTML;
+			$.ajax({
+				 async:false,
                 url:"/galerias_ajax/",
                 data:{csrfmiddlewaretoken:'{{csrf_token}}','galeria':galeria},
                 type:'POST',
                 //dataType:
                 success:function(response)
                 {
-                    if(response!='')
+                	if(response!='')
                     {
                     	response.archivos;
-                    	html="<tr>\n"+
-                    	"<th>\n"+
-                    		"Imagen \n"+
-                    	"</th> \n"+
-                    	"</tr> \n";
+                    	html = "<ul>\n"+
+                    	"</ul>\n";
                     	for(i=0; i<response.archivos.length;i++)
                     	{
-                    		html+="<tr> \n";
-                    		html+="<td> \n";
+                    		html+="<li> \n";
+                    		html+="<a href='"+response.archivos[i]+"' target='_blank'>\n";
                     		html+="<img src='"+response.archivos[i]+"'> \n";
-                    		html+="<td> \n";
-                    		html+="</tr> \n";
+                    		html+="</a>\n";
+                    		html+="</li> \n";
                     	}
-                    	$('table#tabla2').html(html);
+                    	$('section#album').html(html);
+
+                    	$('section#album').on('click', function(){
+                    		$(this).css({
+                    			width:'100%'
+                    		});
+                    	});
                     }
                     else
                     {
                         alert('No hubo respuesta por parte del servidor.');
                     }
                 },
-                error:function(jqXHR, status, error)
+                 error:function(jqXHR, status, error)
                 {
                     alert(jqXHR.responseText+'\n'+status+'\n'+ error);
                 },
