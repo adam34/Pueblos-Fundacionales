@@ -100,7 +100,7 @@ class PueblosAdmin(admin.ModelAdmin):
 			self.form=PuebloChangeForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','TIPO','DESCRIPCION',),
+					'fields': ('NOMBRE','TIPO','DESCRIPCION','MAPA','LATITUD','LONGITUD',),
 					}),
 				)
 		else: # obj is None, so this is an add page

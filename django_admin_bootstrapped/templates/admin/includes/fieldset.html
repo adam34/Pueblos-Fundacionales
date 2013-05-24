@@ -1,3 +1,4 @@
+{% load tags  %}
 <fieldset class="_module _aligned" id="fieldset-{{ forloop.counter }}" style="background:transparent">
     {% if fieldset.name %}
     <legend>
@@ -15,6 +16,7 @@
     {% if fieldset.description %}
         <div class="description">{{ fieldset.description|safe }}</div>
     {% endif %}
+
     {% for line in fieldset %}
         <div class="control-group {% if line.fields|length_is:'1' and line.errors %} error{% endif %}{% for field in line %}{% if field.field.name %} field-{{ field.field.name }}{% endif %}{% endfor %}">
             {% for field in line %}
@@ -26,6 +28,8 @@
                             {{ field.field }}
                         </div>
                     </div>
+                    {% elif field.field.is_hidden %}
+                        {{ field.field }}
                     {% else %}
                         <div class="control-label">
                             {{ field.label_tag }}
