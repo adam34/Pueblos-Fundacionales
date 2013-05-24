@@ -1,3 +1,10 @@
+#cosasqds,#expresiones,#frases,#proy_b{border:thin solid #d9d9d9;display:none;height:auto;width:80%}
+#expresiones ul li,#frases ul li{color:#1e6381;font-weight:normal;list-style:none;margin:2% 10%;}
+#expresiones ul li span,#frases ul li span{color:#ce8610;font-weight:bold}
+#cosasqds p{margin:2% 10%;font-weight:normal;text-align:justify}
+#proy_b p{color:#ce8610;font-size:1.2em;font-weight:bold;font-weight:bold;text-align:center;margin:2% 10%;}
+#proy_b p span{color:#4c2506;font-size:.9em;font-weight:bold}
+#proy_b ul li{color:#a70325;font-weight:normal;list-style:square;margin:2% 10%}
 .basico,.menu_basico{display:inline-block;height:auto;margin:0 auto;vertical-align:top;width:75%}
 .basico{-ms-box-shadow:.3em 0 .1em #e0e0e0;-moz-box-shadow:.3em 0 .1em #e0e0e0;-o-box-shadow:.3em 0 .1em #e0e0e0;-webkit-box-shadow:.3em 0 .1em #e0e0e0;box-shadow:.3em 0 .1em #e0e0e0;}
 .basico h3{width:30%}
