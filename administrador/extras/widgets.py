@@ -246,7 +246,7 @@ class AccordionMultipleTextbox(Widget):
         for idiom in idiomas:
             output.append(mark_safe("""
                     <div class='tab-pane' id='"""+idiom.NOMBRE+"""'>
-                        <textarea class='vTextField span12' rows='10' placeholder=' Descripción en """+idiom.NOMBRE+"""'></textarea>
+                        <textarea class='vTextField span12' rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'></textarea>
                     </div>
                 """))
         output.append(mark_safe("""</div>"""))

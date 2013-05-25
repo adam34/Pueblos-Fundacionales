@@ -75,6 +75,30 @@ class CustomAutenticacionForm(AuthenticationForm):
 		self.check_for_test_cookie()
 		return self.cleaned_data
 
+class ConfiguracionForm(forms.Form):
+	NOMBRE_SITIO = forms.CharField(max_length=30,min_length=4,required=True, label='Nombre del sitio: ',help_text='Obligatorio. Texto que se mostrara como nombre del sitio')
+	PIE_PAGINA = forms.CharField(max_length=30,min_length=4,required=True, label='Pie de pagina: ',help_text='Obligatorio.Texto que se mostrara en el pie de la pagina del sitio')
+	COMENTARIOS_SITIOS=forms.BooleanField(initial=True, label='Comentarios para sitios: ')
+	COMENTARIOS_PUEBLOS=forms.BooleanField(initial=True, label='Comentarios para pueblos: ')
+	COMENTARIOS_EVENTOS=forms.BooleanField(initial=True, label='Comentarios para eventos: ')
+	COMENTARIOS_RELATOS=forms.BooleanField(initial=True, label='Comentarios para relatos: ')
+	# class Meta:
+		# model=pueblo
+	# def __init__(self, *args, **kwargs):
+		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
+		# super(PuebloChangeForm, self).__init__(*args, **kwargs)
+		# self.fields['permissions'].widget= SelectMultipleCustom()
+		# self.fields['permissions'].queryset= Permission.objects.all()
+
+		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+
+	# def save(self,commit=True):
+	# 	pass
+
+	# def clean(self):
+	# 	pass
+
+
 #-------------------------------Formularios para el modelo de users--------------------------------
 class UserForm(forms.ModelForm):
 	password2=forms.CharField(widget=forms.PasswordInput,required=True,help_text="Nombre de usuario.",max_length=30,error_messages=mensajes, validators=[validar_contrasena])
@@ -212,12 +236,12 @@ class GroupChangeForm(forms.ModelForm):
 		js=('admin/js/grupos.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
-		super(GroupForm, self).__init__(*args, **kwargs)	
+		super(GroupChangeForm, self).__init__(*args, **kwargs)	
 		# self.fields['groups'].widget=forms.MultipleChoiceField(queryset=Group.objects.all(), widget=FilteredSelectMultiple("Integrales", is_stacked=False))
 		self.fields['name'].widget.attrs = {'disabled':'true'}
 
 
-		self.fields['permissions'].widget = forms.SelectMultipleCustom()
+		self.fields['permissions'].widget = SelectMultipleCustom()
 		self.fields['permissions'].queryset= Permission.objects.all()
 
 		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los grupos o el grupo en el que desea asignarle.'
@@ -278,4 +302,4 @@ class PuebloChangeForm(forms.ModelForm):
 	# def clean(self):
 	# 	pass
 
-#------------------------------Fin de formularios para el modelo de pueblos------------------------------
+#------------------------------Fin de formularios para el modelo de pueblos----------------------

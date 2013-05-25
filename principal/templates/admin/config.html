@@ -82,8 +82,6 @@
                     <ul class="breadcrumb">
                     <li><a href='/admin/'>Inicio</a></li>
                     <li><span class="divider">/</span></li>
-                    <li><a href='/admin/administrador/pueblo/'>Pueblos</a></li>
-                    <li><span class="divider">/</span></li>
                     <li>Configuración del sitio</li>
                     <li>{{pueblos}}</a></li>
                     </ul>
@@ -94,7 +92,130 @@
                 <div class="row-fluid">
                     <div id="content-main" class="span12">
                         <!-- Aquí es donde se debe colocar el codigo para el diseño de la pagina -->
-                        <p>Parte meramente.</p>
+                        <form class="form-horizontal" action="" method="post" id="form_configuracion">
+                            {% csrf_token %}
+                            <div class="alert alert-warning">Los campos en <strong>negritas</strong> son obligatorios.</div>
+                            {% if form.errors %}
+                            <div class="alert alert-error">
+                                Por favor, corrija el(los) siguiente(s) error(es).
+                            </div>
+                            {% endif %}
+                            <div class="row-fluid">
+                            </div>
+                            <div class="row-fluid">
+                                <fieldset class="_module _aligned" id="fieldset-1">
+                                    <legend>        
+                                        <a data-toggle="collapse" data-target="#fieldset-1 .fields">Datos generales del sistema&nbsp;  
+                                            <span class="btn btn-mini">
+                                                <i class="icon-resize-full"></i>
+                                            </span>
+                                        </a>
+                                    </legend>
+                                    <div class="control-group {% if form.NOMBRE_SITIO.errors %}errors {% endif %} field-NOMBRE_SITIO">
+                                        <div class="control-label">
+                                            {{ form.NOMBRE_SITIO.label_tag }}
+                                        </div>
+                                        <div class="controls">
+                                            {{form.NOMBRE_SITIO}}
+                                            {% if form.NOMBRE_SITIO.errors %}
+                                            <span class="help-inline">{{ form.NOMBRE_SITIO.errors|striptags }}</span>
+                                            {% endif %}
+                                            {% if form.NOMBRE_SITIO.help_text %}
+                                                <span class="help-block">{{ form.NOMBRE_SITIO.help_text|safe }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="control-group {% if form.PIE_PAGINA.errors %}errors {% endif %} field-PIE_PAGINA">
+                                        <div class="control-label">
+                                            {{ form.PIE_PAGINA.label_tag }}
+                                        </div>
+                                        <div class="controls">
+                                            {{form.PIE_PAGINA}}
+                                            {% if form.PIE_PAGINA.errors %}
+                                            <span class="help-inline">{{ form.PIE_PAGINA.errors|striptags }}</span>
+                                            {% endif %}
+                                            {% if form.PIE_PAGINA.help_text %}
+                                                <span class="help-block">{{ form.PIE_PAGINA.help_text|safe }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <fieldset class="_module _aligned" id="fieldset-2">
+                                <legend>        
+                                    <a data-toggle="collapse" data-target="#fieldset-2 .fields">Control de comentarios&nbsp;  
+                                        <span class="btn btn-mini">
+                                            <i class="icon-resize-full"></i>
+                                        </span>
+                                    </a>
+                                </legend>
+                                    <div class="control-group {% if form.COMENTARIOS_SITIOS.errors %}errors {% endif %} field-COMENTARIOS_SITIOS">
+                                        <div class="control-label">
+                                            {{ form.COMENTARIOS_SITIOS.label_tag }}
+                                        </div>
+                                        <div class="controls">
+                                            {{form.COMENTARIOS_SITIOS}}
+                                            {% if form.COMENTARIOS_SITIOS.errors %}
+                                            <span class="help-inline">{{ form.COMENTARIOS_SITIOS.errors|striptags }}</span>
+                                            {% endif %}
+                                            {% if form.COMENTARIOS_SITIOS.help_text %}
+                                                <span class="help-block">{{ form.COMENTARIOS_SITIOS.help_text|safe }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="control-group {% if form.COMENTARIOS_PUEBLOS.errors %}errors {% endif %} field-COMENTARIOS_PUEBLOS">
+                                        <div class="control-label">
+                                            {{ form.COMENTARIOS_PUEBLOS.label_tag }}
+                                        </div>
+                                        <div class="controls">
+                                            {{form.COMENTARIOS_PUEBLOS}}
+                                            {% if form.COMENTARIOS_PUEBLOS.errors %}
+                                            <span class="help-inline">{{ form.COMENTARIOS_PUEBLOS.errors|striptags }}</span>
+                                            {% endif %}
+                                            {% if form.COMENTARIOS_PUEBLOS.help_text %}
+                                                <span class="help-block">{{ form.COMENTARIOS_PUEBLOS.help_text|safe }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="control-group {% if form.COMENTARIOS_EVENTOS.errors %}errors {% endif %} field-COMENTARIOS_EVENTOS">
+                                        <div class="control-label">
+                                            {{ form.COMENTARIOS_EVENTOS.label_tag }}
+                                        </div>
+                                        <div class="controls">
+                                            {{form.COMENTARIOS_EVENTOS}}
+                                            {% if form.COMENTARIOS_EVENTOS.errors %}
+                                            <span class="help-inline">{{ form.COMENTARIOS_EVENTOS.errors|striptags }}</span>
+                                            {% endif %}
+                                            {% if form.COMENTARIOS_EVENTOS.help_text %}
+                                                <span class="help-block">{{ form.COMENTARIOS_EVENTOS.help_text|safe }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                    <div class="control-group {% if form.COMENTARIOS_RELATOS.errors %}errors {% endif %} field-COMENTARIOS_RELATOS">
+                                        <div class="control-label">
+                                            {{ form.COMENTARIOS_RELATOS.label_tag }}
+                                        </div>
+                                        <div class="controls">
+                                            {{form.COMENTARIOS_RELATOS}}
+                                            {% if form.COMENTARIOS_RELATOS.errors %}
+                                            <span class="help-inline">{{ form.COMENTARIOS_RELATOS.errors|striptags }}</span>
+                                            {% endif %}
+                                            {% if form.COMENTARIOS_RELATOS.help_text %}
+                                                <span class="help-block">{{ form.COMENTARIOS_RELATOS.help_text|safe }}</span>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="form-actions">
+                                    <div class="pull-left"></div>
+                                    <div class="pull-right">
+                                        <input type="submit" value="Guardar y continuar editando" class="btn" name="_continue">
+                                        <input type="submit" value="Guardar" class="btn btn-primary default" name="_save">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

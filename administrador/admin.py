@@ -111,7 +111,37 @@ class PueblosAdmin(admin.ModelAdmin):
 			# 		}),
 			# 	)
 		return super(PueblosAdmin, self).get_form(request, obj, **kwargs)	
-#Fin del UsuarioAdmin
+#Fin del PueblosAdmin
+
+#ArchivosAdmin
+class ArchivosAdmin(admin.ModelAdmin):
+	list_display =('NOMBRE','DESCRIPCION','RUTA')
+	list_per_page = 10
+	search_fields = ['NOMBRE',]
+	# def get_form(self, request, obj=None, **kwargs):
+	# 	#print dir(self.form._meta.fields)
+	# 	if obj: # obj is not None, so this is a change page
+	# 		pass
+	# 		#kwargs['fields'] = ['username', 'password','password2']
+	# 		self.form=PuebloChangeForm
+	# 		self.fieldsets = (
+	# 			(None, {
+	# 				'fields': ('NOMBRE','TIPO','DESCRIPCION','MAPA','LATITUD','LONGITUD',),
+	# 				}),
+	# 			)
+	# 	else: # obj is None, so this is an add page
+	# 		self.form=PuebloForm
+	# 		# self.fieldsets = (
+	# 		# 	(None, {
+	# 		# 		'fields': ('name','permissions'),
+	# 		# 		}),
+	# 		# 	)
+	# 	return super(PueblosAdmin, self).get_form(request, obj, **kwargs)	
+#Fin ArchivosAdmin
+# admin.site.register(idioma)
+# admin.site.register(pueblo)
+# admin.site.register(archivo)
+
 
 
 admin.site.unregister(User)
@@ -121,10 +151,7 @@ admin.site.register(Group,GruposAdmin)
 admin.site.register(idioma,IdiomasAdmin)
 admin.site.register(pueblo,PueblosAdmin)
 
-# admin.site.register(idioma)
-# admin.site.register(pueblo)
-
-admin.site.register(archivo)
+admin.site.register(archivo,ArchivosAdmin)
 admin.site.register(galeria)
 admin.site.register(pueblo_idioma)
 admin.site.register(pueblo_administrador)
