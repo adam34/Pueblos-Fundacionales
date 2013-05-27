@@ -130,9 +130,10 @@
 	<section class="contenedor">
 		<section class="pueblos">
 			<h2>Galería</h2>
+			{% for galeria in galerias %}
 			<section class="gallery">
 				<ul>
-					{% for galeria in galerias %}
+					
 					<li>
 						<img src="/static/img/album.png" alt="">
 						<br>
@@ -141,9 +142,9 @@
 						<br>
 						<span>Descripción: </span>{{galeria.DESCRIPCION}}
 					</li>
-					{% endfor %}
 				</ul>
 			</section>
+				{% endfor %}
 			<section id="album">
 				<section id="album_form"></section>
 			</section>

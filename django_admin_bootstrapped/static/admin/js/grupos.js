@@ -6,7 +6,7 @@ $(function()
     //Codigo que registra el evento de keypress a los campos del form.
 	var $elem=$('form');
 	var id=$elem.attr('id');
-	if(id=='user_form')
+	if(id=='group_form')
 	{
 		$('#id_username').on('keypress',validar_nombre_usuario);
 		function validar_nombre_usuario(e)
