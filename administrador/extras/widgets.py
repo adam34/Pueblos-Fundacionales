@@ -29,21 +29,171 @@ class SelectMultipleCustom(SelectMultiple):
         else:
             var=name
 
-        final_attrs = self.build_attrs(attrs, name=name)
-        output=[format_html('<select id="searchable-{0}" name="my-select[]" multiple="multiple"{1}>', var,flatatt(final_attrs))]
+        attrs['class']='vTextField span4'
+        attrs['style']='height:300px ;'
+        attrs2={}
+        attrs2.update(attrs)
+        attrs2['style']+=" margin:0 60px 0 0;"
+        attrs3={}
+        attrs3.update(attrs2)
+        attrs3['style']+=" display:none;"
+        final_attrs = self.build_attrs(attrs3, name=name)
+        
+        output = []
+        
+        output.append (format_html("<div class='container'>"))
+        output.append (format_html("<div class='row-fluid'>"))
+        output.append(format_html("<input type='text' id='search-{0}' class='span3' style='margin:0 0 10px 0;' autocomplete='off' placeholder='Buscar: {1}'>",var,var))
+        output.append(format_html("</div>"))
+
+        output.append(format_html("""<div class='row-fluid' style="background: transparent url('/static/admin/img/switch.png') no-repeat 390px 120px;">"""))
+        
+        output.append(format_html('<select id="selectable-copia-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
         options = self.render_options(choices, value)
         if options:
             output.append(options)
         output.append('</select>')
-        # import pdb
-        # pdb.set_trace()
-        output.append(mark_safe("""<script type="text/javascript">$("#searchable-%s").multiSelect({selectableHeader: "<input type='text' id='search-%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
 
+        final_attrs = self.build_attrs(attrs2, name=name)
+        output.append(format_html('<select id="selectable-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
+        options = self.render_options(choices, value)
+        if options:
+            output.append(options)
+        output.append('</select>')
+        
+        final_attrs = self.build_attrs(attrs, name=name)
+        output.append(format_html('<select id="selection-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
+        output.append('</select>')
 
-        output.append(mark_safe("""<script type="text/javascript">$('#search-%s').quicksearch('.ms-selectable-%s .ms-list .ms-elem-selectable');\
-        </script>""" % (var,var)))
+        # output.append(mark_safe("""<script type="text/javascript">$("#searchable-%s").multiSelect({selectableHeader: "<input type='text' id='search-%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
+        tupla = [var for i in range(46)]
+        tupla = tuple(tupla)
+        output.append(mark_safe("""<script type="text/javascript">
+            $('#search-%s').on('keypress',filtrar_%s);
+            $('#search-%s').on('keyup',filtrar_%s);
+            function filtrar_%s(e)
+            {
+                filtro = $(this).val();
+                $selected = $($("#selectable-%s")[0]);
+                $copia = $($("#selectable-copia-%s")[0]);
+                $("#selectable-%s .selectable-elem").detach()
+                hijos = $copia.children();
+                if(filtro!='')
+                {
+                    exp = /^[\w ]+$/
+                    if(exp.test(filtro))
+                    {
+                        for(x=0;x<hijos.length;x++)
+                        {
+                            chr=hijos[x].innerHTML;
+                            if(chr.indexOf(filtro)!=-1)
+                            {
+                                temp = $('#selection-%s option[value='+hijos[x].value+']');
+                                if(temp.length==0)
+                                {
+                                    $nodo = $(hijos[x].cloneNode(true));
+                                    //$nodo.on('mouseover',seleccionar_%s);
+                                    //$nodo.on('click',cargar_%s);
+                                    //nodo.addEventListener('onmouseover',seleccionar_%s);
+                                    //nodo.onmouseover = seleccionar_%s;
+                                    //nodo.addEventListener('click',cargar_%s);
+                                    //nodo.click = cargar_%s;
+                                    $selected.append($nodo);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for(x=0;x<hijos.length;x++)
+                    {
+                        temp = $('#selection-%s option[value='+hijos[x].value+']');
+                        if(temp.length==0)
+                        {
+                            $nodo = $(hijos[x].cloneNode(true));
+                            $nodo.on('mouseover',seleccionar_%s);
+                            $nodo.on('click',cargar_%s);
+                            $selected.append($nodo);
+                        }
+                    }
+                }
 
-        #jquery.multi-select.js
+            }
+            $('#selectable-%s .selectable-elem').on('click',cargar_%s);
+            $("#selectable-copia-%s .selectable-elem").on('click',cargar_%s);
+            function cargar_%s(e)
+            {
+                elemento = e.target;
+                $nuevo = $(document.createElement("option"));
+                $nuevo.addClass('selection-elem');
+                $nuevo.val(elemento.value);
+                $nuevo.html(elemento.innerHTML);
+                $nuevo.on('mouseover',seleccionar2_%s);
+                $nuevo.on('click',devolver_%s);
+                
+                $('#selectable-%s option[value='+elemento.value+']').remove();
+                $('#selection-%s').append($nuevo);
+
+            }
+            $('#selectable-%s .selectable-elem').on('mouseover',seleccionar_%s);
+            $("#selectable-copia-%s .selectable-elem").on('click',seleccionar_%s);
+            function seleccionar_%s(e)
+            {
+                elems = $("#selectable-%s .selectable-elem[selected='true']");
+                for(x=0; x<elems.length;x++)
+                {
+                    elems[x].removeAttribute("selected");
+                }
+                elemento = e.target;
+                elemento.setAttribute("selected","true");
+
+                parent = $("#selectable-%s")
+                parent.blur()
+                parent.focus()
+
+                return false;
+            }
+
+            $('#selection-%s .selection-elem').on('mouseover',seleccionar2_%s);
+            function seleccionar2_%s(e)
+            {
+                elems = $("#selection-%s .selection-elem[selected='true']");
+                for(x=0; x<elems.length;x++)
+                {
+                    elems[x].removeAttribute("selected");
+                }
+                elemento = e.target;
+                elemento.setAttribute("selected","true");
+
+                parent = $("#selection-%s")
+                parent.blur()
+                parent.focus()
+
+                return false;
+            }
+
+            $('#selection-%s .selection-elem').on('click',devolver_%s);
+            function devolver_%s(e)
+            {
+                elemento = e.target;
+
+                $nuevo = $(document.createElement("option"));
+                $nuevo.addClass('selectable-elem');
+                $nuevo.val(elemento.value);
+                $nuevo.html(elemento.innerHTML);
+                $nuevo.on('mouseover',seleccionar_%s);
+                $nuevo.on('click',cargar_%s);
+                
+                $('#selection-%s option[value='+elemento.value+']').remove();
+                $('#selectable-%s').append($nuevo);
+            }
+            </script>
+            """% tupla))
+    
+        
+        output.append(format_html("</div>"))
+        output.append(format_html("</div>"))
         return mark_safe('\n'.join(output))
 
     def render_option(self, selected_choices, option_value, option_label):
@@ -55,7 +205,7 @@ class SelectMultipleCustom(SelectMultiple):
                 selected_choices.remove(option_value)
         else:
             selected_html = ''
-        return format_html('<option value="{0}"{1}>{2}</option>',
+        return format_html('<option class="selectable-elem" value="{0}"{1}>{2}</option>',
                            option_value,
                            selected_html,
                            force_text(option_label))

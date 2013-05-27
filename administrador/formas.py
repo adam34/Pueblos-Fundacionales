@@ -220,7 +220,7 @@ class GroupForm(forms.ModelForm):
 		self.fields['permissions'].widget= SelectMultipleCustom()
 		self.fields['permissions'].queryset= Permission.objects.all()
 
-		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos.'
 
 	def save(self,commit=True):
 		pass
@@ -244,7 +244,7 @@ class GroupChangeForm(forms.ModelForm):
 		self.fields['permissions'].widget = SelectMultipleCustom()
 		self.fields['permissions'].queryset= Permission.objects.all()
 
-		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los grupos o el grupo en el que desea asignarle.'
+		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos. Los permisos de la lista de la derecha son los que se asociaran al grupo.'
 
 	def save(self,commit=True):
 		pass
