@@ -79,6 +79,6 @@ def get_type(obj):
 
 @register.filter
 def dir_python(obj):
-	#print type(obj)
-	#print obj
+	import pdb
+	pdb.set_trace()
 	return dir(obj)

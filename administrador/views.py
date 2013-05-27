@@ -44,7 +44,13 @@ def acerca_de(request):
 	return render_to_response('admin/acerca_de.html')
 
 def config(request):
-	return render_to_response('admin/config.html',{'user':request.user})
+	# import pdb
+	# pdb.set_trace()
+	if request.user.is_authenticated():
+		forma =ConfiguracionForm()
+		return render_to_response('admin/config.html',RequestContext(request,{'user':request.user,'form':forma}))
+	else:
+		return redirect('admin/')
 
 # def pueblos(request):
 # 	dicc = {'user':request.user}

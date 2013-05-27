@@ -19,19 +19,9 @@ class archivo(models.Model):
 	class Meta:
 		verbose_name="archivo" #Nombre en singular del modelo
 		verbose_name_plural="archivos" #Nombre en plural del modelo
-	FORMATOS=(
-		('BMP','BMP'),
-		('JPG','JPG'),
-		('PNG','PNG'),
-		('TIFF','TIFF'),
-		('MP3','MP3'),
-		('WAV','WAV'),
-		('MP4','MP4'),
-	)
 	ID=models.AutoField(primary_key=True)
 	NOMBRE=models.CharField(max_length=20,null=False)
 	DESCRIPCION=models.CharField(max_length=100,null=False)
-	TIPO=models.CharField(max_length=10,null=False,choices=FORMATOS)
 	RUTA=models.FileField(upload_to='galerias/')
 	def __unicode__(self):
 		return self.NOMBRE

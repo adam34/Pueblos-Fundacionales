@@ -1,6 +1,7 @@
 #widgets.py
+# -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
-
+from administrador.models import idioma
 
 #ESTAS LINEAS DE CODIGO SON PARA DEPURACION
 # import pdb
@@ -13,7 +14,7 @@ from django.forms.util import flatatt
 from django.utils.html import conditional_escape, format_html, format_html_join
 from itertools import chain
 from django.forms import *
-from django.forms.widgets import Input,SelectMultiple
+from django.forms.widgets import Input,SelectMultiple,Widget
 
 class SelectMultipleCustom(SelectMultiple):
     def render(self, name, value, attrs=None, choices=()):
@@ -28,21 +29,171 @@ class SelectMultipleCustom(SelectMultiple):
         else:
             var=name
 
-        final_attrs = self.build_attrs(attrs, name=name)
-        output=[format_html('<select id="searchable-{0}" name="my-select[]" multiple="multiple"{1}>', var,flatatt(final_attrs))]
+        attrs['class']='vTextField span4'
+        attrs['style']='height:300px ;'
+        attrs2={}
+        attrs2.update(attrs)
+        attrs2['style']+=" margin:0 60px 0 0;"
+        attrs3={}
+        attrs3.update(attrs2)
+        attrs3['style']+=" display:none;"
+        final_attrs = self.build_attrs(attrs3, name=name)
+        
+        output = []
+        
+        output.append (format_html("<div class='container'>"))
+        output.append (format_html("<div class='row-fluid'>"))
+        output.append(format_html("<input type='text' id='search-{0}' class='span3' style='margin:0 0 10px 0;' autocomplete='off' placeholder='Buscar: {1}'>",var,var))
+        output.append(format_html("</div>"))
+
+        output.append(format_html("""<div class='row-fluid' style="background: transparent url('/static/admin/img/switch.png') no-repeat 390px 120px;">"""))
+        
+        output.append(format_html('<select id="selectable-copia-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
         options = self.render_options(choices, value)
         if options:
             output.append(options)
         output.append('</select>')
-        # import pdb
-        # pdb.set_trace()
-        output.append(mark_safe("""<script type="text/javascript">$("#searchable-%s").multiSelect({selectableHeader: "<input type='text' id='search-%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
 
+        final_attrs = self.build_attrs(attrs2, name=name)
+        output.append(format_html('<select id="selectable-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
+        options = self.render_options(choices, value)
+        if options:
+            output.append(options)
+        output.append('</select>')
+        
+        final_attrs = self.build_attrs(attrs, name=name)
+        output.append(format_html('<select id="selection-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
+        output.append('</select>')
 
-        output.append(mark_safe("""<script type="text/javascript">$('#search-%s').quicksearch('.ms-selectable-%s .ms-list .ms-elem-selectable');\
-        </script>""" % (var,var)))
+        # output.append(mark_safe("""<script type="text/javascript">$("#searchable-%s").multiSelect({selectableHeader: "<input type='text' id='search-%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
+        tupla = [var for i in range(46)]
+        tupla = tuple(tupla)
+        output.append(mark_safe("""<script type="text/javascript">
+            $('#search-%s').on('keypress',filtrar_%s);
+            $('#search-%s').on('keyup',filtrar_%s);
+            function filtrar_%s(e)
+            {
+                filtro = $(this).val();
+                $selected = $($("#selectable-%s")[0]);
+                $copia = $($("#selectable-copia-%s")[0]);
+                $("#selectable-%s .selectable-elem").detach()
+                hijos = $copia.children();
+                if(filtro!='')
+                {
+                    exp = /^[\w ]+$/
+                    if(exp.test(filtro))
+                    {
+                        for(x=0;x<hijos.length;x++)
+                        {
+                            chr=hijos[x].innerHTML;
+                            if(chr.indexOf(filtro)!=-1)
+                            {
+                                temp = $('#selection-%s option[value='+hijos[x].value+']');
+                                if(temp.length==0)
+                                {
+                                    $nodo = $(hijos[x].cloneNode(true));
+                                    //$nodo.on('mouseover',seleccionar_%s);
+                                    //$nodo.on('click',cargar_%s);
+                                    //nodo.addEventListener('onmouseover',seleccionar_%s);
+                                    //nodo.onmouseover = seleccionar_%s;
+                                    //nodo.addEventListener('click',cargar_%s);
+                                    //nodo.click = cargar_%s;
+                                    $selected.append($nodo);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    for(x=0;x<hijos.length;x++)
+                    {
+                        temp = $('#selection-%s option[value='+hijos[x].value+']');
+                        if(temp.length==0)
+                        {
+                            $nodo = $(hijos[x].cloneNode(true));
+                            $nodo.on('mouseover',seleccionar_%s);
+                            $nodo.on('click',cargar_%s);
+                            $selected.append($nodo);
+                        }
+                    }
+                }
 
-        #jquery.multi-select.js
+            }
+            $('#selectable-%s .selectable-elem').on('click',cargar_%s);
+            $("#selectable-copia-%s .selectable-elem").on('click',cargar_%s);
+            function cargar_%s(e)
+            {
+                elemento = e.target;
+                $nuevo = $(document.createElement("option"));
+                $nuevo.addClass('selection-elem');
+                $nuevo.val(elemento.value);
+                $nuevo.html(elemento.innerHTML);
+                $nuevo.on('mouseover',seleccionar2_%s);
+                $nuevo.on('click',devolver_%s);
+                
+                $('#selectable-%s option[value='+elemento.value+']').remove();
+                $('#selection-%s').append($nuevo);
+
+            }
+            $('#selectable-%s .selectable-elem').on('mouseover',seleccionar_%s);
+            $("#selectable-copia-%s .selectable-elem").on('click',seleccionar_%s);
+            function seleccionar_%s(e)
+            {
+                elems = $("#selectable-%s .selectable-elem[selected='true']");
+                for(x=0; x<elems.length;x++)
+                {
+                    elems[x].removeAttribute("selected");
+                }
+                elemento = e.target;
+                elemento.setAttribute("selected","true");
+
+                parent = $("#selectable-%s")
+                parent.blur()
+                parent.focus()
+
+                return false;
+            }
+
+            $('#selection-%s .selection-elem').on('mouseover',seleccionar2_%s);
+            function seleccionar2_%s(e)
+            {
+                elems = $("#selection-%s .selection-elem[selected='true']");
+                for(x=0; x<elems.length;x++)
+                {
+                    elems[x].removeAttribute("selected");
+                }
+                elemento = e.target;
+                elemento.setAttribute("selected","true");
+
+                parent = $("#selection-%s")
+                parent.blur()
+                parent.focus()
+
+                return false;
+            }
+
+            $('#selection-%s .selection-elem').on('click',devolver_%s);
+            function devolver_%s(e)
+            {
+                elemento = e.target;
+
+                $nuevo = $(document.createElement("option"));
+                $nuevo.addClass('selectable-elem');
+                $nuevo.val(elemento.value);
+                $nuevo.html(elemento.innerHTML);
+                $nuevo.on('mouseover',seleccionar_%s);
+                $nuevo.on('click',cargar_%s);
+                
+                $('#selection-%s option[value='+elemento.value+']').remove();
+                $('#selectable-%s').append($nuevo);
+            }
+            </script>
+            """% tupla))
+    
+        
+        output.append(format_html("</div>"))
+        output.append(format_html("</div>"))
         return mark_safe('\n'.join(output))
 
     def render_option(self, selected_choices, option_value, option_label):
@@ -54,7 +205,7 @@ class SelectMultipleCustom(SelectMultiple):
                 selected_choices.remove(option_value)
         else:
             selected_html = ''
-        return format_html('<option value="{0}"{1}>{2}</option>',
+        return format_html('<option class="selectable-elem" value="{0}"{1}>{2}</option>',
                            option_value,
                            selected_html,
                            force_text(option_label))
@@ -85,47 +236,184 @@ class MapInput(Input):
         output.append(format_html("""<script src="/static/js/gmaps.js"></script>"""))
         output.append(format_html("""<div class="span8">"""))
         output.append(format_html("""<div class="row">"""))
+        output.append(format_html("""<div class='span5'>"""))
         output.append(format_html('<input{0} placeholder="Buscar: Ciudad, Estado, Pais" />', flatatt(final_attrs)))
+        output.append(format_html("""</div>"""))
+        output.append(format_html("""<div class='span3'>"""))
+        output.append(format_html("""<button id='bt-eliminar' class="btn btn-danger">Eliminar marca</button>"""))
+        output.append(format_html("""</div>"""))
         output.append(format_html("""</div>"""))
         output.append(format_html("""<div class="row">"""))
         output.append(format_html("""<div id='mapa' class='span10'></div>"""))
-        output.append(mark_safe("""<script> new GMaps(
+        output.append(mark_safe("""<script> map = new GMaps(
             {
             div: '#mapa', 
             height : '400px',
-            lat: 24.143131,
+            lat: 24.143131 ,
             lng: -110.31106,
-        });
-        GMaps.geocode({
-          address: $('#id_MAPA').val(),
-          callback: function(results, status) {
-            if (status == 'OK') {
-              var latlng = results[0].geometry.location;
-              map.setCenter(latlng.lat(), latlng.lng());
-              map.addMarker({
-                lat: latlng.lat(),
-                lng: latlng.lng()
-              });
-            }
-            }
+            click: function mapa_click(e) {
+                if(map.markers.length>0)
+                {
+                    map.removeMarkers()
+                }
+                map.addMarker({
+                    lat: e.latLng.lat(),
+                    lng: e.latLng.lng()
+                });
+            },
         });
         $('#id_MAPA').on('keypress',clic);
         function clic(e)
         {
-            if(e.charCode=13)
+            if(e.charCode==13)
             {
-                GMaps.geocode();
+                GMaps.geocode({
+                  address: $('#id_MAPA').val(),
+                  callback: function(results, status) {
+                    if (status == 'OK') {
+                      var latlng = results[0].geometry.location;
+                      map.setCenter(latlng.lat(), latlng.lng());
+                      map.addMarker({
+                        lat: latlng.lat(),
+                        lng: latlng.lng()
+                      });
+                    }
+                    }
+                });
                 return false;
             }
         }
-        </script>"""))
-        output.append(format_html("""</div>"""))
-        output.append(format_html("""</div>"""))
+        $('#bt-eliminar').on('click',eliminar_marca)
+        function eliminar_marca(e)
+        {
+            if(map.markers.length>0)
+            {
+                map.removeMarkers()
+            }
+            return false;
+        }
+        </script>
+        </div>
+        </div>"""))
         # if value != '':
         #     # Only add the 'value' attribute if a value is non-empty.
         #     final_attrs['value'] = force_text(self._format_value(value))
         return mark_safe('\n'.join(output))
+class AccordionMultipleTextbox(Widget):
+    def render(self, name, value, attrs=None):
+        if value is None: value = ''
+        # output= [mark_safe("""
+        # <div class="accordion" id="accordion2">
+        #     <div class="accordion-group">
+        #         <div class="accordion-heading">
+        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        #                 Español
+        #             </a>
+        #         </div>
+        #         <div id="collapseOne" class="accordion-body collapse in">
+        #             <div class="accordion-inner">
+        #                 <textarea> </textarea>
+        #             </div>
+        #         </div>
+        #     </div>
+        #     <div class="accordion-group">
+        #         <div class="accordion-heading">
+        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+        #                 Inglés
+        #             </a>
+        #         </div>
+        #         <div id="collapseTwo" class="accordion-body collapse">
+        #             <div class="accordion-inner">
+        #                 <textarea> </textarea>
+        #             </div>
+        #         </div>
+        #     </div>
+        #     <div class="accordion-group">
+        #         <div class="accordion-heading">
+        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
+        #                 Aléman
+        #             </a>
+        #         </div>
+        #         <div id="collapseThree" class="accordion-body collapse">
+        #             <div class="accordion-inner">
+        #                 <textarea> </textarea>
+        #             </div>
+        #         </div>
+        #     </div>
+        # </div>
+        # """)]
 
+        # output= [mark_safe("""
+        # <div class='row'>
+        #     <div class='span8'>
+        #         <ul class="nav nav-tabs" id="myTab">
+        #             <li class="active"><a href="#home">Español</a></li>
+        #             <li><a href="#profile">Inglés</a></li>
+        #             <li><a href="#messages">Aléman</a></li>
+        #             <li><a href="#settings">Portugues</a></li>
+        #         </ul>
+
+        #         <div class="tab-content">
+        #             <div class="tab-pane active" id="home">
+        #                 <textarea class='vTextField span12' rows='10'>aaaa</textarea>
+        #             </div>
+        #             <div class="tab-pane" id="profile">
+        #                 <textarea class='vTextField span12' rows='10'>bbbb</textarea>
+        #             </div>
+        #             <div class="tab-pane" id="messages">
+        #                 <textarea class='vTextField span12' rows='10'>cccc</textarea>
+        #             </div>
+        #             <div class="tab-pane" id="settings">
+        #                 <textarea class='vTextField span12' rows='10'>dddd</textarea>
+        #             </div>
+        #         </div>
+        #         <script>
+        #         $(function () {
+        #             $('#myTab a:first').tab('show');
+        #         })
+        #         $('#myTab a').click(function (e) {
+        #           e.preventDefault();
+        #           $(this).tab('show');
+        #         })
+        #         </script>
+        #     </div>
+        # </div>
+        # """)]
+        idiomas=idioma.objects.all()
+        output= [mark_safe("""<div class='row'>""")]
+        output.append(mark_safe("""<div class='span8'>"""))
+        output.append(mark_safe("""<ul class="nav nav-tabs" id="%s_descripcion">""" % (name)))
+        output.append(mark_safe("""<li class="active"><a href="#Español">Español</a></li>"""))
+        for idiom in idiomas:
+            output.append(mark_safe("<li><a href='#"+idiom.NOMBRE+"'>"+idiom.NOMBRE+"</a></li>"))
+        output.append(mark_safe("""</ul>"""))
+        output.append(mark_safe("""<div class="tab-content">"""))
+        output.append(mark_safe("""
+                <div class='tab-pane active' id='Español'>
+                    <textarea class='vTextField span12' rows='10' placeholder='Descripción en Español'></textarea>
+                </div>
+            """))
+        for idiom in idiomas:
+            output.append(mark_safe("""
+                    <div class='tab-pane' id='"""+idiom.NOMBRE+"""'>
+                        <textarea class='vTextField span12' rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'></textarea>
+                    </div>
+                """))
+        output.append(mark_safe("""</div>"""))
+        output.append(mark_safe("""
+            <script>
+                $(function () {
+                    $('#%s_descripcion a:first').tab('show');
+                })
+                $('#%s_descripcion a').click(function (e) {
+                  e.preventDefault();
+                  $(this).tab('show');
+                })
+                </script>
+            </div>
+        </div>
+        """ % (name,name)))
+        return mark_safe('\n'.join(output))
 
 
 # class TextAreaEditor(Textarea):

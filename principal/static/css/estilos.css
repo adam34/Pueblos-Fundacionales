@@ -184,7 +184,11 @@ header{background:transparent;height:160px}
 .sites_t span{color:#1e6381;font-weight:bold}
 .sites_t div{margin:0 2%;text-align:left}
 .sites_t #etiquetas{text-align:right}
+<<<<<<< HEAD
 .gallery{border:thin solid #d9d9d9;-ms-border-radius:.4em;-moz-border-radius:.4em;-webkit-border-radius:.4em;-o-border-radius:.4em;border-radius:.4em;display:inline-block;height:auto;margin:0 2% 1em 2%;text-align:center;vertical-align:top;width:45%;}
+=======
+.gallery{border:thin solid #d9d9d9;-ms-border-radius:.4em;-moz-border-radius:.4em;-webkit-border-radius:.4em;-o-border-radius:.4em;border-radius:.4em;height:auto;margin:0 auto 1em auto;text-align:center;width:90%;}
+>>>>>>> upstream/master
 .gallery span{color:#1e6381}
 .gallery ul{list-style:none;}
 .gallery ul li{font-weight:normal;}
