@@ -159,7 +159,7 @@ header{background:transparent;height:160px}
 .wcont li{list-style:none;}
 .wcont li a{color:#808080;text-decoration:none}
 .events{height:auto;margin:.5em auto;text-align:center;}
-.events ul > li{background:#fafafa;border:thin solid #d6d6d6;display:inline-block;font-size:.9em;font-weight:bold;font-weight:normal;height:400px;margin-bottom:.5em;position:relative;vertical-align:top;width:30%;text-align:left;}
+.events ul > li{background:#fafafa;border:thin solid #d6d6d6;display:inline-block;font-size:.9em;font-weight:bold;font-weight:normal;height:auto;margin-bottom:.5em;position:relative;vertical-align:top;width:30%;text-align:left;}
 .events ul > li h3{color:#1e6381}
 .events ul > li img{height:30%;margin-top:.5em;margin-left:3%;margin-right:3%;width:94%}
 .events ul > li span{color:#a70325;font-weight:bold;font-size:1em;font-weight:bold;margin-left:.5em;width:30%}
