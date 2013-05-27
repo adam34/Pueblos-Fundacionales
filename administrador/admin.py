@@ -12,9 +12,6 @@ admin.site.login_form = CustomAutenticacionForm
 
 #ModelAdmin de Idiomas para el manejo de las paginas para agregar, modificar y mostrar elementos
 class IdiomasAdmin(admin.ModelAdmin):
-	class Media:
-		js = ('admin/js/idiomas.js',) #No preocuparse por agregar la referencia "static" al directorio.
-		css = {}
 	list_per_page = 5
 	search_fields = ('NOMBRE',)
 	ordering = ['NOMBRE',]

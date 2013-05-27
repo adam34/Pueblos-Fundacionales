@@ -212,8 +212,7 @@ class GroupForm(forms.ModelForm):
 	class Meta:
 		model=Group
 	class Media:
-		css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/grupos.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
+		js=('admin/js/grupos.js',)
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(GroupForm, self).__init__(*args, **kwargs)
@@ -232,8 +231,8 @@ class GroupChangeForm(forms.ModelForm):
 	class Meta:
 		model=Group
 	class Media:
-		css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/grupos.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
+		#css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/grupos_change.js',)
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(GroupChangeForm, self).__init__(*args, **kwargs)	
