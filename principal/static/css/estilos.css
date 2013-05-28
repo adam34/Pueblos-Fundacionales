@@ -168,6 +168,7 @@ header{background:transparent;height:160px}
 .menu_story,.story{display:inline-block;vertical-align:top;width:18%}
 .menu_story p{font-size:.9em;font-weight:bold;text-align:center;width:100%}
 .menu_story h4{color:#1e6381;font-size:1em;font-weight:bold;margin-top:.5em;text-align:center}
+.menu_story a{background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#fff;left:40px;padding:10px;position:relative;text-decoration:none;top:20px}
 .story{height:auto;margin:.5em auto;text-align:center;width:80%;}
 .story ul > li{background:#fafafa;border:thin solid #d6d6d6;display:inline-block;font-size:.9em;font-weight:bold;font-weight:normal;height:400px;margin-bottom:.5em;position:relative;vertical-align:top;width:80%;text-align:left;}
 .story ul > li span{color:#1e6381;font-weight:bold;margin-left:5%}
@@ -193,8 +194,8 @@ header{background:transparent;height:160px}
 #album img{-ms-border-radius:.4em;-moz-border-radius:.4em;-webkit-border-radius:.4em;-o-border-radius:.4em;border-radius:.4em;height:200px;width:100%;-ms-transition:all 1s ease-out;-moz-transition:all 1s ease-out;-o-transition:all 1s ease-out;-webkit-transition:all 1s ease-out;transition:all 1s ease-out;}
 #album img:hover{cursor:pointer;-webkit-transform:scale(2.7);transform:scale(2.7);-webkit-transition:all 2s ease-out;transition:all 2s ease-out}
 .hoteles{height:auto;margin:.5em auto;width:95%}
-.hoteles_4{height:auto;padding-bottom:2em;text-align:center}
-.estrellas{border:thin solid #ccc;display:inline-block;height:120px;margin-top:.5em;vertical-align:top;width:48%}
+.hoteles_4{height:auto;padding-bottom:2em}
+.estrellas{border:thin solid #ccc;display:inline-block;height:120px;margin-top:.5em;vertical-align:top;width:70%}
 .img_hoteles,.desc_hoteles,.costo_hoteles{display:inline-block;vertical-align:middle;width:21%}
 .costo_hoteles p{color:#1e6381;font-size:.8em;font-weight:bold;margin-bottom:.5em;}
 .costo_hoteles p span{color:#ce8610;font-size:1.1em;font-weight:bold}
@@ -205,3 +206,14 @@ header{background:transparent;height:160px}
 .desc_hoteles p.desc{color:#a70325;font-size:.8em;font-weight:bold;margin-left:1em}
 .desc_hoteles span{color:#1e6381;font-size:.8em;font-weight:bold;left:80px;position:relative;top:10px}
 .img_hoteles img{height:120px;width:120px}
+.modalDialog_R{position:fixed;font-family:Arial,Helvetica,sans-serif;background:rgba(0,0,0,0.8);bottom:0;display:none;height:100%;opacity:0;-webkit-transition:opacity 400ms ease-in;-moz-transition:opacity 400ms ease-in;transition:opacity 400ms ease-in;top:100;right:-100;width:100%;z-index:99999;}
+.modalDialog_R:target{opacity:1}
+.modalDialog_R > div{background:#fff;-ms-border-radius:10px;-moz-border-radius:10px;-webkit-border-radius:10px;-o-border-radius:10px;border-radius:10px;position:relative;height:380px;margin:10% auto;padding:5px 20px 13px 20px;width:700px}
+.formulario_r{border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#666;display:inline-block;height:375px;padding-right:10px;vertical-align:top;width:95%;}
+.formulario_r a{color:#a70325;font-size:.8em;font-weight:bold;float:right;text-decoration:none}
+.formulario_r input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);color:#fff;height:30px;margin-left:45%;width:90px}
+.formulario_r input[type="text"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;margin-left:1em;height:30px;width:260px}
+.formulario_r label{margin-left:1em}
+.formulario_r textarea{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-bottom:.5em;margin-left:13%;overflow-y:scroll;resize:none}
+.formulario_r span{font-size:.8em;font-weight:bold;margin-left:10%}
+.formulario_r span#nota{color:#a70325;font-size:.8em;font-weight:bold}

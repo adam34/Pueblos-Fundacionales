@@ -172,9 +172,32 @@
 						<h4> {{relato.TITULO}}</h4>
 					{% endfor %}
 				</p>
+				<a id="aRelato" href="#relatoNuevo">Escribir relato</a>
 			</section>
 		</section>
 	</section>
+	<!-- Sección de Login --> 
+	<div id="relatoNuevo" class="modalDialog_R">
+		<div>
+			<a href="#close" title="Close" class="close">X</a>
+			<section class="formulario_r">
+				<h2>Escribe tu relato</h2>
+				<form action="#">
+					<span>Instrucciones:</span><br>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Introduce un título para tu relato</span><br>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En el recuadro grande comienza a escribir la historia </span><br><br>
+					<span id="nota">
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Nota: Después de enviar tu relato será previamente revisado]
+					</span><br>
+					<label for="email">Título: </label><input id="email" type="text" placeholder="&nbsp;Introduce un título para tu relato" required>
+					<br><br>
+					<textarea name="relatos" id="" cols="80" rows="5"></textarea>
+					<br>
+					<input name="enviar" value="Entrar" type="button">
+				</form>
+			</section>
+		</div>
+	</div>
 	<footer>
 		<section class="footer_container">
 			<section class="footer_wrap">
@@ -238,6 +261,11 @@
 		$(function(){
 			$('#ingresa').on("click", function(){
 				$('.modalDialog').show(function(){
+					$(this).fadeIn(5000)
+				});
+			});
+			$('#aRelato').on("click", function(){
+				$('.modalDialog_R').show(function(){
 					$(this).fadeIn(5000)
 				});
 			});
