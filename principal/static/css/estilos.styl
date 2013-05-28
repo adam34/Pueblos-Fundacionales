@@ -917,7 +917,7 @@ header
 	border thin solid darken(blanco, 15%)
 	bordes(.4em)
 	display inline-block
-	height 450px
+	height 150px
 	margin 0 2% 1em 2%
 	text-align center
 	vertical-align top 
@@ -927,6 +927,7 @@ header
 	ul 
 		list-style none 
 		li 
+
 			font-weight normal
 			a 
 				color rojizo
@@ -954,5 +955,70 @@ header
 			-webkit-transition all 2s ease-out
 			transition all 2s ease-out
 
+//Sección de Alojamiento
+.hoteles
+	height auto
+	margin .5em auto
+	width 95%
 
+.hoteles_4
+	height auto
+	padding-bottom 2em
+	text-align center
+
+.estrellas 
+	border thin solid darken(blanco, 20%)
+	display inline-block
+	height 120px
+	margin-top .5em
+	vertical-align top 
+	width 48%
+
+.img_hoteles, .desc_hoteles, .costo_hoteles
+	display inline-block
+	vertical-align middle
+	width 21%
+
+.costo_hoteles
+	p 
+		color azul
+		font-size .8em
+		margin-bottom .5em
+		span 
+			color amarillo
+			font-size 1.1em
+	a 
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		bordes(.2em)
+		color blanco
+		margin-top 1em
+		padding 5px 
+		text-decoration none 
+
+.desc_hoteles
+	width 55%
+	h4 
+		color azul
+		font-size 1.2em
+	p.habitaciones 
+		color amarillo
+		font-size .9em
+	p.desc 
+		color rojizo
+		font-size .8em
+		margin-left 1em
+	span 
+		color azul
+		font-size .8em
+		left 80px
+		position relative
+		top 10px 
+
+.img_hoteles img 
+	height 120px 
+	width 120px 
 
