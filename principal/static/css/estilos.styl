@@ -824,7 +824,19 @@ header
 		font-size 1em
 		margin-top .5em
 		text-align center
-
+	a 
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		bordes(.2em)
+		color blanco
+		left 40px
+		padding 10px
+		position relative
+		text-decoration none
+		top 20px
 .story  
 	height auto
 	margin .5em auto
@@ -964,7 +976,7 @@ header
 .hoteles_4
 	height auto
 	padding-bottom 2em
-	text-align center
+	
 
 .estrellas 
 	border thin solid darken(blanco, 20%)
@@ -972,7 +984,7 @@ header
 	height 120px
 	margin-top .5em
 	vertical-align top 
-	width 48%
+	width 70%
 
 .img_hoteles, .desc_hoteles, .costo_hoteles
 	display inline-block
@@ -1022,3 +1034,81 @@ header
 	height 120px 
 	width 120px 
 
+
+//Relatos 
+.modalDialog_R 
+	position fixed
+	font-family Arial, Helvetica, sans-serif 
+	background rgba(0, 0, 0, .8)
+	bottom 0 
+	display none
+	height 100%
+	opacity 0
+	transicion_modal()
+	top 100
+	right -100
+	width 100%
+	z-index 99999
+	&:target 
+		opacity 1
+	
+.modalDialog_R > div 
+	background blanco
+	bordes(10px)
+	position relative 
+	height 380px 
+	margin 10% auto
+	padding 5px 20px 13px 20px
+	width 700px
+.formulario_r
+	border thin solid lighten(gris, 80%)
+	bordes(.2em)
+	color darken(blanco, 60%)
+	display inline-block
+	height 375px
+	padding-right 10px
+	//text-align center
+	vertical-align top
+	width 95%
+	a 
+		color rojizo
+		font-size .8em
+		float right
+		text-decoration none
+	input[type="button"]
+		bordes(.2em)
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		color blanco
+		height 30px
+		margin-left 45%
+		width 90px
+	input[type="text"]
+		background darken(blanco, 6%)
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		color darken(blanco, 80%)
+		margin-top .5em
+		margin-left 1em
+		height 30px
+		width 260px
+	label 
+		margin-left 1em
+	textarea 
+		background darken(blanco, 6%)
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		color darken(blanco, 80%)
+		margin-bottom .5em
+		margin-left 13%
+		overflow-y scroll
+		resize none
+	span 
+		font-size .8em
+		margin-left 10%
+	span#nota 
+		color rojizo
+		font-size .8em 
