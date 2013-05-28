@@ -123,8 +123,8 @@ class ConfiguracionForm(forms.Form):
 class UserForm(forms.ModelForm):
 	password2=forms.CharField(widget=forms.PasswordInput,required=True,help_text="Nombre de usuario.",max_length=30,error_messages=mensajes, validators=[validar_contrasena])
 	class Media:
-		css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/users.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
+		# css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/users.js',)
 	class Meta:
 		model=User
 	def __init__(self, *args, **kwargs):
@@ -175,32 +175,30 @@ class UserForm(forms.ModelForm):
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
 
 	def save(self,commit=True):
-		pass
-		# user = super(UserForm, self).save(commit=False)
-		# user.set_password(self.cleaned_data["password"])
-		# if commit:
-		# 	user.save(commit)
-		# return user
+		user = super(UserForm, self).save(commit=False)
+		user.set_password(self.cleaned_data["password"])
+		if commit:
+			user.save(commit)
+		return user
 
 	def clean(self):
-		pass
-		# super(UserForm, self).clean()
-		# cleaned_data = self.cleaned_data
-		# password1 = cleaned_data.get("password")
-		# password2 = cleaned_data.get("password2")
-		# if password1!=password2:
-		# 	if not self._errors.has_key('password2'):
-		# 		self._errors['password2']= ErrorList([u"Las contraseñas no pueden ser diferentes."])
-		# 		#raise ValidationError(u'Las contraseñas no pueden ser diferentes.')
-		#return cleaned_data
+		super(UserForm, self).clean()
+		cleaned_data = self.cleaned_data
+		password1 = cleaned_data.get("password")
+		password2 = cleaned_data.get("password2")
+		if password1!=password2:
+			if not self._errors.has_key('password2'):
+				self._errors['password2']= ErrorList([u"Las contraseñas no pueden ser diferentes."])
+				#raise ValidationError(u'Las contraseñas no pueden ser diferentes.')
+		return cleaned_data
 
 
 class UserChangeForm(forms.ModelForm):
 	class Meta:
 		model=User
 	class Media:
-		css={'all':('/static/admin/css/multi-select.css',),}
-		js=('admin/js/users.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
+		# css={'all':('/static/admin/css/multi-select.css',),}
+		js=('admin/js/users.js',)
 	def __init__(self, *args, **kwargs):
 		super(UserChangeForm, self).__init__(*args, **kwargs)
 		self.fields['username'].help_text=''
@@ -225,6 +223,18 @@ class UserChangeForm(forms.ModelForm):
 
 		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Seleccione los grupos o el grupo en el que desea asignarle.'
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
+	
+	def save(self,commit=True):
+		user = super(UserForm, self).save(commit=False)
+		if commit:
+			user.save(commit)
+		return user
+
+	def clean(self):
+		super(UserForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
+
 
 #----------------------------Fin de formularios para el modelo de users-----------------------------
 
@@ -245,15 +255,11 @@ class GroupForm(forms.ModelForm):
 		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos.'
 
 	def save(self,commit=True):
-		import pdb
-		pdb.set_trace()
-		nombre = self.cleaned_data['name']
-		if self.cleaned_data.__contains__('permissions'):
-			permisos =self.cleaned_data['permissions']
-			grupo = Group(name=nombre,permissions=permisos)
-		else:
-			grupo = Group(name=nombre)
-		grupo.save(commit=True)
+		grupo = super(GroupForm, self).save(commit=False)
+		if commit:
+			grupo.save(commit)
+		return grupo
+
 
 	def clean(self):
 		super(GroupForm, self).clean()
@@ -269,7 +275,7 @@ class GroupChangeForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(GroupChangeForm, self).__init__(*args, **kwargs)
-		self.fields['name'].widget.attrs = {'disabled':'true'}
+		self.fields['name'].widget.attrs = {'readonly':'true'}
 		self.fields['name'].validators=[validar_nombre_grupo];
 		self.fields['permissions'].widget= SelectMultipleCustom()
 		self.fields['permissions'].queryset= Permission.objects.all()
@@ -277,15 +283,21 @@ class GroupChangeForm(forms.ModelForm):
 		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos.'
 
 	def save(self,commit=True):
-		pass
+		grupo = super(GroupChangeForm, self).save(commit=False)
+		if commit:
+			grupo.save(commit)
+		return grupo
+
 
 	def clean(self):
-		pass
+		super(GroupChangeForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
 
-#------------------------------Fin de formularios para el modelo de groups------------------------------
+#------------------------------Fin de formularios para el modelo de groups-----------------------
 
 
-#------------------------------Formularios para el modelo de pueblos------------------------------
+#------------------------------Formularios para el modelo de pueblos-----------------------------
 
 class PuebloForm(forms.ModelForm):
 	MAPA = forms.CharField()
@@ -309,11 +321,17 @@ class PuebloForm(forms.ModelForm):
 
 		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
 
-	# def save(self,commit=True):
-	# 	pass
+	def save(self,commit=True):
+		pueblo = super(PuebloForm, self).save(commit=False)
+		if commit:
+			pueblo.save(commit)
+		return pueblo
 
-	# def clean(self):
-	# 	pass
+
+	def clean(self):
+		super(PuebloForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
 
 class PuebloChangeForm(forms.ModelForm):
 	class Meta:
@@ -326,10 +344,16 @@ class PuebloChangeForm(forms.ModelForm):
 
 		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
 
-	# def save(self,commit=True):
-	# 	pass
+	def save(self,commit=True):
+		pueblo = super(PuebloChangeForm, self).save(commit=False)
+		if commit:
+			pueblo.save(commit)
+		return pueblo
 
-	# def clean(self):
-	# 	pass
+
+	def clean(self):
+		super(PuebloChangeForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
 
 #------------------------------Fin de formularios para el modelo de pueblos----------------------

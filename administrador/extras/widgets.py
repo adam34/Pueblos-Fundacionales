@@ -49,14 +49,17 @@ class SelectMultipleCustom(SelectMultiple):
         output.append(format_html("""<div class='row-fluid' style="background: transparent url('/static/admin/img/switch.png') no-repeat 390px 120px;">"""))
         
         output.append(format_html('<select id="selectable-copia-{0}" multiple="multiple"{1}>', name,flatatt(final_attrs)))
-        options = self.render_options(choices, value)
+        options = self.render_options(choices, value,'3','selectable-elem')
         if options:
             output.append(options)
         output.append('</select>')
 
+        # import pdb
+        # pdb.set_trace()
+        
         final_attrs = self.build_attrs(attrs2, name=name)
         output.append(format_html('<select id="selectable-{0}" multiple="multiple"{1}>', name,flatatt(final_attrs)))
-        options = self.render_options(choices, value)
+        options = self.render_options(choices, value,'1','selectable-elem')
         if options:
             output.append(options)
         output.append('</select>')
@@ -64,6 +67,9 @@ class SelectMultipleCustom(SelectMultiple):
         attrs['name'] = name
         final_attrs = self.build_attrs(attrs, name=name)
         output.append(format_html('<select id="selection-{0}" multiple="multiple"{1}>', name,flatatt(final_attrs)))
+        options = self.render_options(choices, value,'2','selection-elem')
+        if options:
+            output.append(options)
         output.append('</select>')
 
         # output.append(mark_safe("""<script type="text/javascript">$("#searchable-%s").multiSelect({selectableHeader: "<input type='text' id='search-%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
@@ -198,31 +204,28 @@ class SelectMultipleCustom(SelectMultiple):
         output.append(format_html("</div>"))
         return mark_safe('\n'.join(output))
 
-    def render_option(self, selected_choices, option_value, option_label):
+    def render_option(self, selected_choices, option_value, option_label,className):
         option_value = force_text(option_value)
-        if option_value in selected_choices:
-            selected_html = mark_safe(' selected="selected"')
-            if not self.allow_multiple_selected:
-                # Only allow for a single selection.
-                selected_choices.remove(option_value)
-        else:
-            selected_html = ''
-        return format_html('<option class="selectable-elem" value="{0}"{1}>{2}</option>',
-                           option_value,
-                           selected_html,
-                           force_text(option_label))
-    def render_options(self, choices, selected_choices):
+        return format_html('<option class="{0}" value="{1}">{2}</option>',
+            className,
+            option_value,
+            force_text(option_label))
+    def render_options(self, choices, selected_choices,exclude,className):
         # Normalize to strings.
         selected_choices = set(force_text(v) for v in selected_choices)
         output = []
         for option_value, option_label in chain(self.choices, choices):
-            if isinstance(option_label, (list, tuple)):
-                output.append(format_html('<optgroup label="{0}">', force_text(option_value)))
-                for option in option_label:
-                    output.append(self.render_option(selected_choices, *option))
-                output.append('</optgroup>')
-            else:
-                output.append(self.render_option(selected_choices, option_value, option_label))
+            if exclude=='1': #Se excluyen los elementos que no esten seleccionados
+                if not str(option_value) in selected_choices:
+                    output.append(self.render_option(selected_choices, option_value, option_label, className))
+            elif exclude=='2':#Se excluyen los elementos que esten seleccionados
+                if str(option_value) in selected_choices:
+                    output.append(self.render_option(selected_choices, option_value, 
+                            option_label,className))
+            else: #Se incluyen todos elementos
+                output.append(self.render_option(selected_choices, option_value, 
+                        option_label,className))
+
         return '\n'.join(output)
     def build_attrs(self, extra_attrs=None, **kwargs):
         "Helper function for building an attribute dictionary."
