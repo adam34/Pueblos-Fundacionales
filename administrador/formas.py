@@ -245,11 +245,17 @@ class GroupForm(forms.ModelForm):
 		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos.'
 
 	def save(self,commit=True):
-		pass
-
-	def clean(self):
 		import pdb
 		pdb.set_trace()
+		nombre = self.cleaned_data['name']
+		if self.cleaned_data.__contains__('permissions'):
+			permisos =self.cleaned_data['permissions']
+			grupo = Group(name=nombre,permissions=permisos)
+		else:
+			grupo = Group(name=nombre)
+		grupo.save(commit=True)
+
+	def clean(self):
 		super(GroupForm, self).clean()
 		cleaned_data = self.cleaned_data
 		return cleaned_data
