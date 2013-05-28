@@ -1,12 +1,17 @@
 #footer{border:thin solid #a70325;background:#141414;position:relative;float:left;margin:0 auto;width:120}
-.hoteles,.seccion_restaurantes,.seccion_centros,.seccion_curiosidades,.seccion_pueblos,.seccion_eventos,.compras,.informacion_turistica,.visitabcs,.guias_turisticas{display:inline-block;vertical-align:top;width:45%}
-.hoteles,.seccion_restaurantes,.seccion_centros,.seccion_curiosidades,.seccion_pueblos,.seccion_eventos{border:thin solid #d6d6d6;height:150px;margin-left:2%;margin-top:2%;margin-bottom:2%;}
-.hoteles h4,.seccion_restaurantes h4,.seccion_centros h4,.seccion_curiosidades h4,.seccion_pueblos h4,.seccion_eventos h4{color:#1e6381;font-size:1.2em;font-weight:bold;margin-left:2%}
-.hoteles ul,.seccion_restaurantes ul,.seccion_centros ul,.seccion_curiosidades ul,.seccion_pueblos ul,.seccion_eventos ul{list-style:none;}
-.hoteles ul li,.seccion_restaurantes ul li,.seccion_centros ul li,.seccion_curiosidades ul li,.seccion_pueblos ul li,.seccion_eventos ul li{color:#1e6381;font-weight:normal;margin:0 auto;margin-left:10%}
-.informacion_turistica,.compras,.visitabcs,.guias_turisticas{border:thin solid #d6d6d6;font-size:.9em;font-weight:bold;height:250px;margin:2%;text-align:center;}
-.informacion_turistica h4,.compras h4,.visitabcs h4,.guias_turisticas h4{color:#1e6381;font-size:1.1em;font-weight:bold}
-.informacion_turistica img,.compras img,.visitabcs img,.guias_turisticas img{height:150px;width:150px}
+.hoteles,.seccion_restaurantes,.seccion_centros,.seccion_curiosidades,.seccion_pueblos,.seccion_eventos,.compras,.informacion_turistica,.visitabcs,.guias_turisticas,.seccion_catalogo{display:inline-block;vertical-align:top;width:45%}
+.hoteles,.seccion_restaurantes,.seccion_centros,.seccion_curiosidades,.seccion_pueblos,.seccion_eventos,.seccion_catalogo{border:thin solid #d6d6d6;height:180px;margin-left:2%;margin-top:2%;margin-bottom:2%;}
+.hoteles h4,.seccion_restaurantes h4,.seccion_centros h4,.seccion_curiosidades h4,.seccion_pueblos h4,.seccion_eventos h4,.seccion_catalogo h4{color:#1e6381;font-size:1.2em;font-weight:bold;margin-left:2%}
+.hoteles ul,.seccion_restaurantes ul,.seccion_centros ul,.seccion_curiosidades ul,.seccion_pueblos ul,.seccion_eventos ul,.seccion_catalogo ul{list-style:none;}
+.hoteles ul li,.seccion_restaurantes ul li,.seccion_centros ul li,.seccion_curiosidades ul li,.seccion_pueblos ul li,.seccion_eventos ul li,.seccion_catalogo ul li{color:#1e6381;font-weight:normal;margin:0 auto;margin-left:10%}
+.hoteles a.entrar,.seccion_restaurantes a.entrar,.seccion_pueblos a.entrar,.seccion_eventos a.entrar,.seccion_curiosidades a.entrar,.seccion_centros a.entrar,.seccion_catalogo a.entrar{background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#fff;height:10px;left:30%;padding:10px;position:relative}
+.hoteles a.entrar{top:25px}
+.seccion_restaurantes a.entrar,.seccion_eventos a.entrar,.seccion_catalogo a.entrar{top:82px}
+.seccion_pueblos a.entrar{top:25px}
+.seccion_curiosidades a.entrar,.seccion_centros a.entrar{top:65px}
+.visitabcs,.guias_turisticas{border:thin solid #d6d6d6;font-size:.9em;font-weight:bold;height:250px;margin:2%;text-align:center;}
+.visitabcs h4 a,.guias_turisticas h4 a{font-size:1.1em;font-weight:bold;color:#1e6381;text-decoration:none}
+.visitabcs img,.guias_turisticas img{height:150px;width:150px}
 .menu_turistico{border:thin solid #d6d6d6;margin:2% auto;width:95%}
 .pueblos_secciones{background:#e6e6e6;width:75%}
 .seccion_sugerencias{margin:0 auto;width:95%;}

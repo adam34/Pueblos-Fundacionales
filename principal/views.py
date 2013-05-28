@@ -18,6 +18,9 @@ def secciones(request):
 def pueblos(request): 
 	return render_to_response('pueblos.html')
 
+def curiosidades(request): 
+	return render_to_response('curiosidades.html')
+
 def galerias(request):
 	objs=galeria.objects.all()
 	return render_to_response('galerias.html',RequestContext(request,{'galerias':objs}))

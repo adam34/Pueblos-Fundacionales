@@ -44,5 +44,6 @@ urlpatterns = patterns('',
     url(r'^relatos/$', 'principal.views.relatos'),
     url(r'^sitios_turisticos/$', 'principal.views.sitiosT'),
     url(r'^busqueda/$', 'principal.views.busqueda'),
+     url(r'^curiosidades/$', 'principal.views.curiosidades'),
     url(r'^galerias_ajax/$','principal.views.galerias_ajax')
 )
