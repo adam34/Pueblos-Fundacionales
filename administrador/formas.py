@@ -12,7 +12,10 @@ from administrador.extras.widgets import SelectMultipleCustom,MapInput,Accordion
 from django.forms.widgets import *
 
 
-#----------------------------------Validadores para UserForm------------------------------------------
+	# import pdb
+	# pdb.set_trace()
+
+#----------------------------------Validadores------------------------------------------------
 def validar_usuario(valor):
 	if len(valor) > 30:
 		raise ValidationError(u'No debe ser mayor de 30 caracteres.')
@@ -37,16 +40,33 @@ def validar_email(valor):
 	if valor != "":
 		if re.match(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$',valor) == None:
 			raise ValidationError(u'Debe contener solamente números y caracteres, nada más.')
-#----------------------------------Fin de validadores para UserForm--------------------------------
+
+
+def validar_nombre_grupo(valor):
+	if len(valor) > 30:
+		raise ValidationError(u'No debe ser mayor de 30 caracteres.')
+	if len(valor) < 4:
+		raise ValidationError(u'No debe ser menor de 4 caracteres.')
+	if re.match(r'[\w ]+$',valor) == None:
+		raise ValidationError(u'Debe contener solamente números y caracteres, nada más.')
+
+#----------------------------------Fin de validadores-----------------------------------------
+
+#----------------------------------------Metodos especiales------------------------------------
+
+
+
+#--------------------------------------Fin de metodos especiales-------------------------------
 
 mensajes ={'required':'El campo es obligatorio. No se puede dejar en blanco o sin datos','max_length':'El dato excedió el limite de caracteres para este campo',}
 
-#------------------------------------------Codigo de los forms -------------------------------------------
-errores_login={
-	'min_length': ("Error del tipo min_length."),
-	'max_length': ("Error del tipo max_length."),
-}
+#------------------------------------------Codigo de los forms ----------------------------------
+
 class CustomAutenticacionForm(AuthenticationForm):
+	errores_login={
+		'min_length': ("Error del tipo min_length."),
+		'max_length': ("Error del tipo max_length."),
+	}
 	username = forms.CharField(min_length=4,max_length=30,error_messages=errores_login)
 	password = forms.CharField(min_length=4,max_length=30, widget=forms.PasswordInput,error_messages=errores_login)
 	error_messages = {
@@ -172,7 +192,8 @@ class UserForm(forms.ModelForm):
 		# 	if not self._errors.has_key('password2'):
 		# 		self._errors['password2']= ErrorList([u"Las contraseñas no pueden ser diferentes."])
 		# 		#raise ValidationError(u'Las contraseñas no pueden ser diferentes.')
-		# return cleaned_data
+		#return cleaned_data
+
 
 class UserChangeForm(forms.ModelForm):
 	class Meta:
@@ -216,6 +237,8 @@ class GroupForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(GroupForm, self).__init__(*args, **kwargs)
+		self.fields['name'].help_text="Obligatorio. Nombre del grupo. Se aceptan sólo letras con un solo espacio de separación entre las palabras y longitud mínima de 4 y máxima de 30 caracteres."
+		self.fields['name'].validators=[validar_nombre_grupo];
 		self.fields['permissions'].widget= SelectMultipleCustom()
 		self.fields['permissions'].queryset= Permission.objects.all()
 
@@ -225,25 +248,27 @@ class GroupForm(forms.ModelForm):
 		pass
 
 	def clean(self):
-		pass
+		import pdb
+		pdb.set_trace()
+		super(GroupForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
 
 class GroupChangeForm(forms.ModelForm):
 	class Meta:
 		model=Group
 	class Media:
 		#css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/grupos_change.js',)
+		js=('admin/js/grupos.js',)
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
-		super(GroupChangeForm, self).__init__(*args, **kwargs)	
-		# self.fields['groups'].widget=forms.MultipleChoiceField(queryset=Group.objects.all(), widget=FilteredSelectMultiple("Integrales", is_stacked=False))
+		super(GroupChangeForm, self).__init__(*args, **kwargs)
 		self.fields['name'].widget.attrs = {'disabled':'true'}
-
-
-		self.fields['permissions'].widget = SelectMultipleCustom()
+		self.fields['name'].validators=[validar_nombre_grupo];
+		self.fields['permissions'].widget= SelectMultipleCustom()
 		self.fields['permissions'].queryset= Permission.objects.all()
 
-		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos. Los permisos de la lista de la derecha son los que se asociaran al grupo.'
+		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos.'
 
 	def save(self,commit=True):
 		pass

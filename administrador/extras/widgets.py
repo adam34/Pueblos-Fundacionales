@@ -43,30 +43,31 @@ class SelectMultipleCustom(SelectMultiple):
         
         output.append (format_html("<div class='container'>"))
         output.append (format_html("<div class='row-fluid'>"))
-        output.append(format_html("<input type='text' id='search-{0}' class='span3' style='margin:0 0 10px 0;' autocomplete='off' placeholder='Buscar: {1}'>",var,var))
+        output.append(format_html("<input type='text' id='search-{0}' class='span3' style='margin:0 0 10px 0;' autocomplete='off' placeholder='Buscar: {1}'>",name,var))
         output.append(format_html("</div>"))
 
         output.append(format_html("""<div class='row-fluid' style="background: transparent url('/static/admin/img/switch.png') no-repeat 390px 120px;">"""))
         
-        output.append(format_html('<select id="selectable-copia-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
+        output.append(format_html('<select id="selectable-copia-{0}" multiple="multiple"{1}>', name,flatatt(final_attrs)))
         options = self.render_options(choices, value)
         if options:
             output.append(options)
         output.append('</select>')
 
         final_attrs = self.build_attrs(attrs2, name=name)
-        output.append(format_html('<select id="selectable-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
+        output.append(format_html('<select id="selectable-{0}" multiple="multiple"{1}>', name,flatatt(final_attrs)))
         options = self.render_options(choices, value)
         if options:
             output.append(options)
         output.append('</select>')
         
+        attrs['name'] = name
         final_attrs = self.build_attrs(attrs, name=name)
-        output.append(format_html('<select id="selection-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
+        output.append(format_html('<select id="selection-{0}" multiple="multiple"{1}>', name,flatatt(final_attrs)))
         output.append('</select>')
 
         # output.append(mark_safe("""<script type="text/javascript">$("#searchable-%s").multiSelect({selectableHeader: "<input type='text' id='search-%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
-        tupla = [var for i in range(46)]
+        tupla = [name for i in range(47)]
         tupla = tuple(tupla)
         output.append(mark_safe("""<script type="text/javascript">
             $('#search-%s').on('keypress',filtrar_%s);
@@ -127,6 +128,7 @@ class SelectMultipleCustom(SelectMultiple):
                 elemento = e.target;
                 $nuevo = $(document.createElement("option"));
                 $nuevo.addClass('selection-elem');
+                $nuevo.attr('name','%s');
                 $nuevo.val(elemento.value);
                 $nuevo.html(elemento.innerHTML);
                 $nuevo.on('mouseover',seleccionar2_%s);
@@ -222,6 +224,12 @@ class SelectMultipleCustom(SelectMultiple):
             else:
                 output.append(self.render_option(selected_choices, option_value, option_label))
         return '\n'.join(output)
+    def build_attrs(self, extra_attrs=None, **kwargs):
+        "Helper function for building an attribute dictionary."
+        attrs = {}
+        if extra_attrs:
+            attrs.update(extra_attrs)
+        return attrs
 
 class MapInput(Input):
     def render(self, name, value, attrs=None):
