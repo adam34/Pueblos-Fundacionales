@@ -7,6 +7,7 @@ function mostrarPueblos(){
 	$("#libro_loreto").on("click", libreria);
 	$("#player").on("click", contenido_multimedia);
 	$("#galeria").on("click", contenido_multimedia);
+	$("#audio").on("click", contenido_multimedia);
 	//Información básica
 	$("#cosas").on("click", contenidoBasico)
 	$("#exp").on("click", expresiones)
