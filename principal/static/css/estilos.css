@@ -173,7 +173,7 @@ header{background:transparent;height:160px}
 .story ul > li{background:#fafafa;border:thin solid #d6d6d6;display:inline-block;font-size:.9em;font-weight:bold;font-weight:normal;height:400px;margin-bottom:.5em;position:relative;vertical-align:top;width:80%;text-align:left;}
 .story ul > li span{color:#1e6381;font-weight:bold;margin-left:5%}
 .story ul > li p{margin:1.5em 5%;text-align:justify}
-.story ul > li textarea{background:#fafafa;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-left:5%;margin-right:5%;margin-top:1%;resize:none;width:90%}
+.story ul > li textarea{background:#fafafa;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-left:5%;margin-right:5%;margin-top:1%;overflow-y:scroll;resize:none;width:90%}
 .story ul > li input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);height:30px;margin-left:35%;margin-right:35%;width:30%;color:#fff}
 .story ul > li .plus,.story ul > li .minus{margin:0 .5em;}
 .story ul > li .plus img,.story ul > li .minus img{height:18px;width:18px}
