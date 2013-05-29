@@ -21,6 +21,15 @@ def pueblos(request):
 def curiosidades(request): 
 	return render_to_response('curiosidades.html')
 
+def masvisto(request): 
+	return render_to_response('mas-visto.html')
+
+def descubrabcs(request): 
+	return render_to_response('descubra-bcs.html')
+
+def bcsdesconocida(request): 
+	return render_to_response('bcs-desconocida.html')
+
 def galerias(request):
 	objs=galeria.objects.all()
 	return render_to_response('galerias.html',RequestContext(request,{'galerias':objs}))
