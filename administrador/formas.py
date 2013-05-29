@@ -303,6 +303,9 @@ class PuebloForm(forms.ModelForm):
 	MAPA = forms.CharField()
 	LATITUD = forms.CharField()
 	LONGITUD = forms.CharField()
+	class Media:
+		#css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/pueblos.js',)
 	class Meta:
 		model=pueblo
 		fields = ['NOMBRE','TIPO','DESCRIPCION']
@@ -336,6 +339,9 @@ class PuebloForm(forms.ModelForm):
 class PuebloChangeForm(forms.ModelForm):
 	class Meta:
 		model=pueblo
+	class Media:
+		#css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/pueblos_change.js',)
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(PuebloChangeForm, self).__init__(*args, **kwargs)

@@ -393,7 +393,7 @@ class AccordionMultipleTextbox(Widget):
         idiomas=idioma.objects.all()
         output= [mark_safe("""<div class='row'>""")]
         output.append(mark_safe("""<div class='span8'>"""))
-        output.append(mark_safe("""<ul class="nav nav-tabs" id="%s_descripcion">""" % (name)))
+        output.append(mark_safe("""<ul class="nav nav-tabs" id="ul_%s">""" % (name)))
         output.append(mark_safe("""<li class="active"><a href="#Español">Español</a></li>"""))
         for idiom in idiomas:
             output.append(mark_safe("<li><a href='#"+idiom.NOMBRE+"'>"+idiom.NOMBRE+"</a></li>"))
@@ -414,9 +414,9 @@ class AccordionMultipleTextbox(Widget):
         output.append(mark_safe("""
             <script>
                 $(function () {
-                    $('#%s_descripcion a:first').tab('show');
+                    $('#ul_%s a:first').tab('show');
                 })
-                $('#%s_descripcion a').click(function (e) {
+                $('#ul_%s a').click(function (e) {
                   e.preventDefault();
                   $(this).tab('show');
                 })

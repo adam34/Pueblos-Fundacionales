@@ -6,13 +6,13 @@ $(function()
     //Codigo que registra el evento de keypress a los campos del form.
 	var $elem=$('form');
 	var id=$elem.attr('id');
-	if(id=='group_form')
+	if(id=='pueblo_form')
 	{
-		$('#id_name').on('keypress',validar_nombre_grupo);
+		$('#id_NOMBRE').on('keypress',validar_nombre_pueblo);
         $('input[name="_addanother"]').on('click',agregar);
         $('input[name="_continue"]').on('click',agregar);
         $('input[name="_save"]').on('click',agregar);
-		function validar_nombre_grupo(e)
+		function validar_nombre_pueblo(e)
 		{
             $temp=$('#id_name');
             if($temp.val().length>30)
@@ -30,6 +30,26 @@ $(function()
 				return false;
 			}
 		}
+        $('.field-DESCRIPCION .controls .tab-pane').each(function(index,value)
+            {
+                $valor = $(value);
+                id = $valor.attr('id')
+                $textbox = $algo.find('textarea');
+                $textbox.on('keypress',validar_idiomas)
+                function validar_idiomas(e)
+                {
+                    var patt=/[\wñÑáéíóúÁÉÍÓÚ ]+/;
+                    caracter = String.fromCharCode(e.charCode);
+                    if(!patt.test(caracter))
+                    {
+                        //e.preventDefault();Metodo para evitar que se guarde el valor en el input
+                        //e.preventDefault() 
+                        //e.stopPropagation()
+                        return false;
+                    }
+                }
+            }
+        });
 	}
     else
     {
@@ -73,18 +93,33 @@ function validar_formulario_grupo()
     {
         errores.push('La longitud del nombre de usuario no puede ser menor de 4 caracteres.');
     }
-    $permisos = $('#selection-permissions .selection-elem');
-    $('#selection-permissions').blur();
-    if($permisos.length>0)
+    if($("#id_TIPO").value()=="")
     {
-        $permisos.each(function(index,value){
-            $valor = $(value);
-            $valor.attr('selected','true');
-            $valor.off('click');
-            $valor.off('mouseover');
-        });
+        errores.push('Seleccione un tipo de pueblo, por favor.');   
     }
+    if($('div#Español textarea').val()=="")
+    {
+        errores.push('Es necesaria una descripción del pueblo en el idioma original (Español).');
+    }
+    $('.field-DESCRIPCION .controls .tab-pane').each(function(index,value)
+        {
+            $valor = $(value);
+            id = $valor.attr('id')
+            texto = $algo.find('textarea').val();
 
+            if(texto!="")
+            {
+                var patt=/[\wñÑáéíóúÁÉÍÓÚ ]+/;
+                if(!patt.test(texto))
+                {
+                    //e.preventDefault();Metodo para evitar que se guarde el valor en el input
+                    //e.preventDefault() 
+                    //e.stopPropagation()
+                    errores.push('Sólo se aceptan los caracteres de la A a la Z (mayúscula y minúscula), del 0 al 9 y _ ('+id+').');
+                }
+            }
+        }
+    });
     return errores;
 }
 
