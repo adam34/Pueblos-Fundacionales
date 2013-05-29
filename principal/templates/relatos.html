@@ -76,7 +76,7 @@
 	<nav>
 		<ul>
 			<li class="menu">
-				<a href="#">Inicio</a>
+				<a href="/">Inicio</a>
 			</li>
 			<li class="menu">
 				<a href="/secciones/">Secciones</a>
@@ -252,12 +252,19 @@
 	 <!-- Slider Camera -->
     <script src='/static/scripts/camera.min.js'></script> 
     <script>
+    	
 		$(function(){		
 			$('#camera_wrap_1').camera({
 				height : '300px',
 				thumbnails: true,
 			});
 		});
+		$close = $('.close');
+		$el = $('.modalDialog_R');
+		function onClickClose(e) {
+            e.preventDefault();
+            self.$el.fadeOut('fast');
+        }
 		$(function(){
 			$('#ingresa').on("click", function(){
 				$('.modalDialog').show(function(){
@@ -265,21 +272,12 @@
 				});
 			});
 			$('#aRelato').on("click", function(){
-				$('.modalDialog_R').show(function(){
+				$el.show(function(){
 					$(this).fadeIn(5000)
 				});
 			});
-			$('.close').on("click", function(){
-				$('.modalDialog').hide(function(){
-					$(this).css({
-						WebkitTransition : 'opacity 400ms ease-in-out',
-    					MozTransition    : 'opacity 400ms ease-in-out',
-    					MsTransition     : 'opacity 400ms ease-in-out',
-    					OTransition      : 'opacity 400ms ease-in-out',
-    					transition       : 'opacity 400ms sease-in-out'
-					});
-				});
-			});
+			
+			$close.on('click', onClickClose);
 		});
 	</script>
 </body>
