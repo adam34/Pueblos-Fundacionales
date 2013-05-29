@@ -14,47 +14,38 @@ $(function()
         $('input[name="_save"]').on('click',agregar);
 		function validar_nombre_pueblo(e)
 		{
-            $temp=$('#id_name');
-            if($temp.val().length>30)
-            {
-                return false;
-            }
+            $temp=$(e.target);
+            texto= $temp.val();
 			//var patt=new RegExp("[A-Za-z0-9]+");
 			var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ ]+/;
 			var caracter = String.fromCharCode(e.charCode);
 			if(!patt.test(caracter))
 			{
-				//e.preventDefault();Metodo para evitar que se guarde el valor en el input
-				//e.preventDefault() 
-				//e.stopPropagation()
 				return false;
 			}
-		}
-        $('.field-DESCRIPCION .controls .tab-pane').each(function(index,value)
+            texto=texto+caracter;
+            if(texto.length>30)
             {
-                $valor = $(value);
-                id = $valor.attr('id')
-                $textbox = $algo.find('textarea');
-                $textbox.on('keypress',validar_idiomas)
-                function validar_idiomas(e)
-                {
-                    var patt=/[\wñÑáéíóúÁÉÍÓÚ ]+/;
-                    caracter = String.fromCharCode(e.charCode);
-                    if(!patt.test(caracter))
-                    {
-                        //e.preventDefault();Metodo para evitar que se guarde el valor en el input
-                        //e.preventDefault() 
-                        //e.stopPropagation()
-                        return false;
-                    }
-                }
+                return false;
             }
-        });
+		}
 	}
     else
     {
         alert('Error inesperado al tratar de asociar los eventos al formulario correcto. Contacte a su administrador para mayores informes.')
     }
+    tinymce.init({
+        selector: "textarea",
+        theme: "modern",
+        width: 700,
+        height: 300,
+        plugins: [
+             "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+             "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+             "save table contextmenu directionality emoticons template paste textcolor"
+       ],
+       toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons", 
+     });
 });
 //Metodo utilizado para controlar el guardado de los datos con el servidor por Ajax.
 function agregar(e,form,ruta)
@@ -84,7 +75,7 @@ function validar_formulario_grupo()
     //Se validan los campos de username, password, password2, nombre(s),apellido(s) y email
     //Se valida el username
     var errores = new Array();
-    str1=$('#id_name').val();
+    str1=$('#id_NOMBRE').val();
     if(str1.length>30)
     {
         errores.push('La longitud del nombre de usuario no puede ser mayor a 30 caracteres.');
@@ -93,7 +84,7 @@ function validar_formulario_grupo()
     {
         errores.push('La longitud del nombre de usuario no puede ser menor de 4 caracteres.');
     }
-    if($("#id_TIPO").value()=="")
+    if($("#id_TIPO").val()=="")
     {
         errores.push('Seleccione un tipo de pueblo, por favor.');   
     }
@@ -101,25 +92,34 @@ function validar_formulario_grupo()
     {
         errores.push('Es necesaria una descripción del pueblo en el idioma original (Español).');
     }
-    $('.field-DESCRIPCION .controls .tab-pane').each(function(index,value)
+    if(errores.length==0)
+    {
+        $editors =$(tinymce.editors);
+        $editors.each(function(index,value)
         {
-            $valor = $(value);
-            id = $valor.attr('id')
-            texto = $algo.find('textarea').val();
-
-            if(texto!="")
+            contenido = value.getContent();
+            if(contenido!="")
             {
-                var patt=/[\wñÑáéíóúÁÉÍÓÚ ]+/;
-                if(!patt.test(texto))
+                $control=$(value.getElement())
+                $control.val(contenido);
+
+            }
+        });
+        if(map!=undefined)
+        {
+            cantidad = map.markers.length;
+            if(cantidad!=0)
+            {
+                for(i=0;i<cantidad;i++)
                 {
-                    //e.preventDefault();Metodo para evitar que se guarde el valor en el input
-                    //e.preventDefault() 
-                    //e.stopPropagation()
-                    errores.push('Sólo se aceptan los caracteres de la A a la Z (mayúscula y minúscula), del 0 al 9 y _ ('+id+').');
+                    latitud= map.markers[i].position.lat();
+                    longitud= map.markers[i].position.lng();
+                    $('#id_LATITUD').val(latitud);
+                    $('#id_LONGITUD').val(longitud);
                 }
             }
         }
-    });
+    }
     return errores;
 }
 

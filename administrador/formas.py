@@ -300,40 +300,64 @@ class GroupChangeForm(forms.ModelForm):
 #------------------------------Formularios para el modelo de pueblos-----------------------------
 
 class PuebloForm(forms.ModelForm):
-	MAPA = forms.CharField()
-	LATITUD = forms.CharField()
-	LONGITUD = forms.CharField()
+	HISTORIA = forms.CharField(required=False)
+	CULTURA = forms.CharField(required=False)
+	COMIDA = forms.CharField(required=False)
+	DATOS = forms.CharField(required=False)
+	MAPA = forms.CharField(required=False)
+	LATITUD = forms.CharField(required=False)
+	LONGITUD = forms.CharField(required=False)
 	class Media:
 		#css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/pueblos.js',)
+		js=('admin/js/pueblos.js','tinymce/js/tinymce/tinymce.min.js')
 	class Meta:
 		model=pueblo
-		fields = ['NOMBRE','TIPO','DESCRIPCION']
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(PuebloForm, self).__init__(*args, **kwargs)
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
 		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox()
-		self.fields['DESCRIPCION'].help_text ="Obligatorio. El campo del idioma del sistema debe ser llenado (Español)."
+		self.fields['HISTORIA'].widget=AccordionMultipleTextbox()
+		self.fields['CULTURA'].widget=AccordionMultipleTextbox()
+		self.fields['COMIDA'].widget=AccordionMultipleTextbox()
+		self.fields['DATOS'].widget=AccordionMultipleTextbox()
+
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
 		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"span12 vTextField"})
-		# self.fields['permissions'].widget= SelectMultipleCustom()
-		# self.fields['permissions'].queryset= Permission.objects.all()
-
-		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
 
 	def save(self,commit=True):
+		import pdb
+		pdb.set_trace()
 		pueblo = super(PuebloForm, self).save(commit=False)
+
+		idiomas = idioma.objects.all()
+		for idiom in idiomas:
+			#HISTORIA
+			#CULTURA
+			#COMIDAS
+			#DATOS
+			pass
+
 		if commit:
 			pueblo.save(commit)
 		return pueblo
 
-
 	def clean(self):
+		import pdb
+		pdb.set_trace()
 		super(PuebloForm, self).clean()
 		cleaned_data = self.cleaned_data
+
+		latitud = cleaned_data["LATITUD"]
+		if latitud !="":
+			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,8})$',latitud) == None:
+				self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
+		longitud = cleaned_data["LONGITUD"]
+		if longitud !="":
+			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,8})$',longitud) == None:
+				if not self._errors.has_key('MAPA'):
+					self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
 		return cleaned_data
 
 class PuebloChangeForm(forms.ModelForm):

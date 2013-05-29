@@ -313,101 +313,25 @@ class MapInput(Input):
 class AccordionMultipleTextbox(Widget):
     def render(self, name, value, attrs=None):
         if value is None: value = ''
-        # output= [mark_safe("""
-        # <div class="accordion" id="accordion2">
-        #     <div class="accordion-group">
-        #         <div class="accordion-heading">
-        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-        #                 Español
-        #             </a>
-        #         </div>
-        #         <div id="collapseOne" class="accordion-body collapse in">
-        #             <div class="accordion-inner">
-        #                 <textarea> </textarea>
-        #             </div>
-        #         </div>
-        #     </div>
-        #     <div class="accordion-group">
-        #         <div class="accordion-heading">
-        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-        #                 Inglés
-        #             </a>
-        #         </div>
-        #         <div id="collapseTwo" class="accordion-body collapse">
-        #             <div class="accordion-inner">
-        #                 <textarea> </textarea>
-        #             </div>
-        #         </div>
-        #     </div>
-        #     <div class="accordion-group">
-        #         <div class="accordion-heading">
-        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-        #                 Aléman
-        #             </a>
-        #         </div>
-        #         <div id="collapseThree" class="accordion-body collapse">
-        #             <div class="accordion-inner">
-        #                 <textarea> </textarea>
-        #             </div>
-        #         </div>
-        #     </div>
-        # </div>
-        # """)]
 
-        # output= [mark_safe("""
-        # <div class='row'>
-        #     <div class='span8'>
-        #         <ul class="nav nav-tabs" id="myTab">
-        #             <li class="active"><a href="#home">Español</a></li>
-        #             <li><a href="#profile">Inglés</a></li>
-        #             <li><a href="#messages">Aléman</a></li>
-        #             <li><a href="#settings">Portugues</a></li>
-        #         </ul>
-
-        #         <div class="tab-content">
-        #             <div class="tab-pane active" id="home">
-        #                 <textarea class='vTextField span12' rows='10'>aaaa</textarea>
-        #             </div>
-        #             <div class="tab-pane" id="profile">
-        #                 <textarea class='vTextField span12' rows='10'>bbbb</textarea>
-        #             </div>
-        #             <div class="tab-pane" id="messages">
-        #                 <textarea class='vTextField span12' rows='10'>cccc</textarea>
-        #             </div>
-        #             <div class="tab-pane" id="settings">
-        #                 <textarea class='vTextField span12' rows='10'>dddd</textarea>
-        #             </div>
-        #         </div>
-        #         <script>
-        #         $(function () {
-        #             $('#myTab a:first').tab('show');
-        #         })
-        #         $('#myTab a').click(function (e) {
-        #           e.preventDefault();
-        #           $(this).tab('show');
-        #         })
-        #         </script>
-        #     </div>
-        # </div>
-        # """)]
         idiomas=idioma.objects.all()
         output= [mark_safe("""<div class='row'>""")]
         output.append(mark_safe("""<div class='span8'>"""))
         output.append(mark_safe("""<ul class="nav nav-tabs" id="ul_%s">""" % (name)))
-        output.append(mark_safe("""<li class="active"><a href="#Español">Español</a></li>"""))
+        output.append(mark_safe("""<li class="active"><a href="#"""+name+"""_Español">Español</a></li>"""))
         for idiom in idiomas:
-            output.append(mark_safe("<li><a href='#"+idiom.NOMBRE+"'>"+idiom.NOMBRE+"</a></li>"))
+            output.append(mark_safe("<li><a href='#"+name+"_"+idiom.NOMBRE+"'>"+idiom.NOMBRE+"</a></li>"))
         output.append(mark_safe("""</ul>"""))
         output.append(mark_safe("""<div class="tab-content">"""))
         output.append(mark_safe("""
-                <div class='tab-pane active' id='Español'>
-                    <textarea class='vTextField span12' rows='10' placeholder='Descripción en Español'></textarea>
+                <div class='tab-pane active' id='"""+name+"""_Español'>
+                    <textarea class='vTextField span12' name='"""+name+"""_Español' rows='10' placeholder='Descripción en Español'></textarea>
                 </div>
             """))
         for idiom in idiomas:
             output.append(mark_safe("""
-                    <div class='tab-pane' id='"""+idiom.NOMBRE+"""'>
-                        <textarea class='vTextField span12' rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'></textarea>
+                    <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
+                        <textarea class='vTextField span12' name="""+name+"""_"""+idiom.NOMBRE+""" rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'></textarea>
                     </div>
                 """))
         output.append(mark_safe("""</div>"""))

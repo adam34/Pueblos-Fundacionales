@@ -97,16 +97,51 @@ class PueblosAdmin(admin.ModelAdmin):
 			self.form=PuebloChangeForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','TIPO','DESCRIPCION','MAPA','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','TIPO','LATITUD','LONGITUD',),
+					}),
+				('Historia', {
+					'fields': ('HISTORIA',)
+					}),
+				('Cultura', {
+					'fields': ('CULTURA',)
+					}),
+				('Comida', {
+					'fields': ('COMIDA',)
+					}),
+				('DATOS', {
+					'fields': ('DATOS',)
+					}),
+				('MAPA', {
+					'fields': ('MAPA',)
 					}),
 				)
 		else: # obj is None, so this is an add page
 			self.form=PuebloForm
-			# self.fieldsets = (
-			# 	(None, {
-			# 		'fields': ('name','permissions'),
-			# 		}),
-			# 	)
+			self.fieldsets = (
+				(None, {
+					'fields': ('NOMBRE','TIPO','LATITUD','LONGITUD',),
+					}),
+				('Historia', {
+					'classes': ('collapse',),
+					'fields': ('HISTORIA',)
+					}),
+				('Cultura', {
+					'classes': ('collapse',),
+					'fields': ('CULTURA',)
+					}),
+				('Comida', {
+					'classes': ('collapse',),
+					'fields': ('COMIDA',)
+					}),
+				('Datos', {
+					'classes': ('collapse',),
+					'fields': ('DATOS',)
+					}),
+				('Mapa', {
+					'classes': ('collapse',),
+					'fields': ('MAPA',)
+					}),
+				)
 		return super(PueblosAdmin, self).get_form(request, obj, **kwargs)	
 #Fin del PueblosAdmin
 
