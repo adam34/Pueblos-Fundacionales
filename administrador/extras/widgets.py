@@ -38,8 +38,10 @@ class SelectMultipleCustom(SelectMultiple):
         attrs3.update(attrs2)
         attrs3['style']+=" display:none;"
         final_attrs = self.build_attrs(attrs3, name=name)
-        
         output = []
+        
+        import pdb
+        pdb.set_trace()
         
         output.append (format_html("<div class='container'>"))
         output.append (format_html("<div class='row-fluid'>"))
@@ -318,14 +320,14 @@ class AccordionMultipleTextbox(Widget):
         output= [mark_safe("""<div class='row'>""")]
         output.append(mark_safe("""<div class='span8'>"""))
         output.append(mark_safe("""<ul class="nav nav-tabs" id="ul_%s">""" % (name)))
-        output.append(mark_safe("""<li class="active"><a href="#"""+name+"""_Español">Español</a></li>"""))
+        output.append(mark_safe("""<li class="active"><a href="#"""+name+"""">Español</a></li>"""))
         for idiom in idiomas:
             output.append(mark_safe("<li><a href='#"+name+"_"+idiom.NOMBRE+"'>"+idiom.NOMBRE+"</a></li>"))
         output.append(mark_safe("""</ul>"""))
         output.append(mark_safe("""<div class="tab-content">"""))
         output.append(mark_safe("""
-                <div class='tab-pane active' id='"""+name+"""_Español'>
-                    <textarea class='vTextField span12' name='"""+name+"""_Español' rows='10' placeholder='Descripción en Español'></textarea>
+                <div class='tab-pane active' id='"""+name+"""'>
+                    <textarea class='vTextField span12' name='"""+name+"""' rows='10' placeholder='Descripción en Español'></textarea>
                 </div>
             """))
         for idiom in idiomas:

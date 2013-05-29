@@ -248,10 +248,11 @@ class GroupForm(forms.ModelForm):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(GroupForm, self).__init__(*args, **kwargs)
 		self.fields['name'].help_text="Obligatorio. Nombre del grupo. Se aceptan sólo letras con un solo espacio de separación entre las palabras y longitud mínima de 4 y máxima de 30 caracteres."
+		import pdb
+		pdb.set_trace()
 		self.fields['name'].validators=[validar_nombre_grupo];
 		self.fields['permissions'].widget= SelectMultipleCustom()
 		self.fields['permissions'].queryset= Permission.objects.all()
-
 		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos.'
 
 	def save(self,commit=True):
@@ -300,6 +301,7 @@ class GroupChangeForm(forms.ModelForm):
 #------------------------------Formularios para el modelo de pueblos-----------------------------
 
 class PuebloForm(forms.ModelForm):
+	ADMINISTRADORES = forms.MultipleChoiceField(label='Administradores ')
 	HISTORIA = forms.CharField(required=False)
 	CULTURA = forms.CharField(required=False)
 	COMIDA = forms.CharField(required=False)
@@ -317,6 +319,11 @@ class PuebloForm(forms.ModelForm):
 		super(PuebloForm, self).__init__(*args, **kwargs)
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
 		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
+		import pdb
+		pdb.set_trace()
+		self.fields['ADMINISTRADORES'].widget = SelectMultipleCustom()
+		#self.fields['ADMINISTRADORES'].queryset = User.objects.exclude(username='root')
+		self.fields['ADMINISTRADORES'].queryset = Permission.objects.all()
 		self.fields['HISTORIA'].widget=AccordionMultipleTextbox()
 		self.fields['CULTURA'].widget=AccordionMultipleTextbox()
 		self.fields['COMIDA'].widget=AccordionMultipleTextbox()
@@ -330,17 +337,38 @@ class PuebloForm(forms.ModelForm):
 		import pdb
 		pdb.set_trace()
 		pueblo = super(PuebloForm, self).save(commit=False)
-
+		pueblo.HISTORIA=self.data['HISTORIA']
+		pueblo.CULTURA=self.data['CULTURA']
+		pueblo.COMIDA=self.data['COMIDA']
+		pueblo.DATOS=self.data['DATOS']
+		if commit:
+			pueblo.save(commit)
+		
 		idiomas = idioma.objects.all()
 		for idiom in idiomas:
+			nombre="HISTORIA_"+idiom.NOMBRE
+			historia=""
+			cultura=""
+			comida=""
+			datos=""
+			if self.data.__contains__(nombre):
+				historia=self.data[nombre]
+			nombre="CULTURA_"+idiom.NOMBRE
+			if self.data.__contains__(nombre):
+				cultura=self.data[nombre]
+			nombre="COMIDA_"+idiom.NOMBRE
+			if self.data.__contains__(nombre):
+				comida=self.data[nombre]
+			nombre="DATOS_"+idiom.NOMBRE
+			if self.data.__contains__(nombre):
+				datos=self.data[nombre]
+			
+			if historia != "" or cultura !="" or comida != "" or datos !="":
+				pass
 			#HISTORIA
 			#CULTURA
 			#COMIDAS
 			#DATOS
-			pass
-
-		if commit:
-			pueblo.save(commit)
 		return pueblo
 
 	def clean(self):
@@ -351,11 +379,11 @@ class PuebloForm(forms.ModelForm):
 
 		latitud = cleaned_data["LATITUD"]
 		if latitud !="":
-			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,8})$',latitud) == None:
+			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,16})$',latitud) == None:
 				self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
 		longitud = cleaned_data["LONGITUD"]
 		if longitud !="":
-			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,8})$',longitud) == None:
+			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,16})$',longitud) == None:
 				if not self._errors.has_key('MAPA'):
 					self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
 		return cleaned_data

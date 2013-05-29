@@ -119,7 +119,7 @@ class PueblosAdmin(admin.ModelAdmin):
 			self.form=PuebloForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','TIPO','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','TIPO','ADMINISTRADORES','LATITUD','LONGITUD',),
 					}),
 				('Historia', {
 					'classes': ('collapse',),

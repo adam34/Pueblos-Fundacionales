@@ -55,8 +55,8 @@ class pueblo(models.Model):
 	DATOS =models.TextField(null=False)
 	#GALERIA=models.ForeignKey('galeria',null=True)
 	TIPO=models.CharField(max_length=1,null=False,choices=TIPOS_PUEBLOS)
-	LATITUD=models.CharField(max_length=12,null=False)
-	LONGITUD=models.CharField(max_length=12,null=False)
+	LATITUD=models.CharField(max_length=20,null=False)
+	LONGITUD=models.CharField(max_length=20,null=False)
 	def __unicode__(self):
 		return self.NOMBRE
 

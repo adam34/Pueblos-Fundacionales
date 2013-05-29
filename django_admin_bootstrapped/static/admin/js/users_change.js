@@ -54,7 +54,7 @@ function agregar(e,form,ruta)
 {
     var arreglo=validar_formulario_usuario();
     if(arreglo.length==0)
-    if(true)
+    //if(true)
     {
         forma=$(form);
         var datos="";
