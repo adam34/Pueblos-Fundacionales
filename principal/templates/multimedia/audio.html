@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+
+</head>
+<body>
+	<audio preload></audio>
+	<h2>Canciones</h2>
+	<div id="wrapper_a">
+      
+      <ol>
+        <li>
+        	<a href="#" data-src="/static/audiojs/001 - La flor de pitahaya.mp3">La flor de pitahaya</a>
+        </li>
+        <li>
+        	<a href="#" data-src="/static/audiojs/002 - la cuera.mp3">La Cuera</a>
+        </li>
+        <li>
+        	<a href="#" data-src="/static/audiojs/003 - los caneros.mp3">Los Cañeros</a>
+        </li>
+        <li>
+        	<a href="#" data-src="/static/audiojs/004 - la suegra.mp3">La Suegra</a>
+        </li>
+        <li>
+        	<a href="#" data-src="/static/audiojs/005 - el tupé.mp3">El Tupé</a>
+        </li>
+        <li>
+        	<a href="#" data-src="/static/audiojs/006 - las calabazas.mp3">Las Calabazas</a>
+        </li>
+        <li>
+        	<a href="#" data-src="/static/audiojs/007 - la alegria.mp3">La Alegría</a>
+        </li>
+        <li>
+        	<a href="#" data-src="/static/audiojs/008 - puerto de ilusion.mp3">Puerto de Ilusión</a>
+        </li>
+        <li>
+        	<a href="#" data-src="/static/audiojs/009 - la yuca.mp3">La Yuca</a>
+        </li>
+        <li>
+        	<a href="#" data-src="/static/audiojs/010 - el apasionado.mp3">El Apasionado</a>
+        </li>
+        <li>
+        	<a href="#" data-src="/static/audiojs/011 - el cheveran.mp3">El Cheverán</a>
+        </li>
+         <li>
+        	<a href="#" data-src="/static/audiojs/012 - el conejo.mp3">El Conejo</a>
+        </li>
+      </ol>
+    </div>
+    <div id="shortcuts">
+      <div>
+        <h3>Teclas rápidas</h3>
+        <p><em>&rarr;</em> Siguiente canción</p>
+        <p><em>&larr;</em> Anterior canción</p>
+        <p><em>Espacio</em> Play/pausa</p>
+      </div>
+    </div>
+	<!-- Plugin -->
+    <script src="/static/audiojs/audio.min.js"></script>
+	<script>
+      $(function() { 
+        // Setup the player to autoplay the next track
+        var a = audiojs.createAll({
+          trackEnded: function() {
+            var next = $('ol li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.addClass('playing').siblings().removeClass('playing');
+            audio.load($('a', next).attr('data-src'));
+            audio.play();
+          }
+        });
+        
+        // Load in the first track
+        var audio = a[0];
+            first = $('ol a').attr('data-src');
+        $('ol li').first().addClass('playing');
+        audio.load(first);
+
+        // Load in a track on click
+        $('ol li').click(function(e) {
+          e.preventDefault();
+          $(this).addClass('playing').siblings().removeClass('playing');
+          audio.load($('a', this).attr('data-src'));
+          audio.play();
+        });
+        // Atajos
+        $(document).keydown(function(e) {
+          var unicode = e.charCode ? e.charCode : e.keyCode;
+             // Flecha derecha
+          if (unicode == 39) {
+            var next = $('li.playing').next();
+            if (!next.length) next = $('ol li').first();
+            next.click();
+            // Flecha izquierda
+          } else if (unicode == 37) {
+            var prev = $('li.playing').prev();
+            if (!prev.length) prev = $('ol li').last();
+            prev.click();
+            // Barra o espacio
+          } else if (unicode == 32) {
+            audio.playPause();
+          }
+        })
+      });
+    </script>
+</body>
+</html>

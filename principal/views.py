@@ -88,6 +88,9 @@ def multimedia(request):
 def player(request):
 	return render_to_response('multimedia/player.html')
 
+def audio(request):
+	return render_to_response('multimedia/audio.html')
+
 def eventos(request):
 	eventos=evento.objects.all()
 	return render_to_response('eventos.html',{'eventos':eventos})

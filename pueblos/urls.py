@@ -39,11 +39,12 @@ urlpatterns = patterns('',
     url(r'^libreria/libro_purisima/$', 'principal.views.libro_p'),
     url(r'^multimedia/$', 'principal.views.multimedia'),
     url(r'^multimedia/player/$', 'principal.views.player'),
+    url(r'^multimedia/audio/$', 'principal.views.audio'),
     url(r'^eventos/$', 'principal.views.eventos'),
     url(r'^multimedia/galeria/$', 'principal.views.galeria_2'),
     url(r'^relatos/$', 'principal.views.relatos'),
     url(r'^sitios_turisticos/$', 'principal.views.sitiosT'),
     url(r'^busqueda/$', 'principal.views.busqueda'),
-     url(r'^curiosidades/$', 'principal.views.curiosidades'),
+    url(r'^curiosidades/$', 'principal.views.curiosidades'),
     url(r'^galerias_ajax/$','principal.views.galerias_ajax')
 )
