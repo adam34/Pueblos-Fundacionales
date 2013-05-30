@@ -301,7 +301,7 @@ class GroupChangeForm(forms.ModelForm):
 #------------------------------Formularios para el modelo de pueblos-----------------------------
 
 class PuebloForm(forms.ModelForm):
-	ADMINISTRADORES = forms.MultipleChoiceField(label='Administradores ')
+	# ADMINISTRADORES = forms.ModelMultipleChoiceField(label='Administradores ',queryset = User.objects.exclude(username='root'), widget = SelectMultipleCustom())
 	HISTORIA = forms.CharField(required=False)
 	CULTURA = forms.CharField(required=False)
 	COMIDA = forms.CharField(required=False)
@@ -319,11 +319,11 @@ class PuebloForm(forms.ModelForm):
 		super(PuebloForm, self).__init__(*args, **kwargs)
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
 		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
-		import pdb
-		pdb.set_trace()
-		self.fields['ADMINISTRADORES'].widget = SelectMultipleCustom()
+		# import pdb
+		# pdb.set_trace()
+		#self.fields['ADMINISTRADORES'].widget = SelectMultipleCustom()
 		#self.fields['ADMINISTRADORES'].queryset = User.objects.exclude(username='root')
-		self.fields['ADMINISTRADORES'].queryset = Permission.objects.all()
+
 		self.fields['HISTORIA'].widget=AccordionMultipleTextbox()
 		self.fields['CULTURA'].widget=AccordionMultipleTextbox()
 		self.fields['COMIDA'].widget=AccordionMultipleTextbox()
@@ -341,9 +341,10 @@ class PuebloForm(forms.ModelForm):
 		pueblo.CULTURA=self.data['CULTURA']
 		pueblo.COMIDA=self.data['COMIDA']
 		pueblo.DATOS=self.data['DATOS']
-		if commit:
-			pueblo.save(commit)
-		
+		# if commit:
+		# 	pueblo.save(commit)
+		pueblo.save()
+
 		idiomas = idioma.objects.all()
 		for idiom in idiomas:
 			nombre="HISTORIA_"+idiom.NOMBRE
@@ -363,8 +364,15 @@ class PuebloForm(forms.ModelForm):
 			if self.data.__contains__(nombre):
 				datos=self.data[nombre]
 			
-			if historia != "" or cultura !="" or comida != "" or datos !="":
-				pass
+			if (historia != "" or cultura !="" or comida != "" or datos !=""):
+				pueb_idiom = pueblo_idioma()
+				pueb_idiom.PUEBLO = pueblo
+				pueb_idiom.IDIOMA = idiom
+				pueb_idiom.HISTORIA = historia
+				pueb_idiom.CULTURA = cultura
+				pueb_idiom.COMIDA = comida
+				pueb_idiom.DATOS = datos
+				pueb_idiom.save(commit)
 			#HISTORIA
 			#CULTURA
 			#COMIDAS
@@ -389,18 +397,64 @@ class PuebloForm(forms.ModelForm):
 		return cleaned_data
 
 class PuebloChangeForm(forms.ModelForm):
+	HISTORIA = forms.CharField(required=False)
+	CULTURA = forms.CharField(required=False)
+	COMIDA = forms.CharField(required=False)
+	DATOS = forms.CharField(required=False)
+	MAPA = forms.CharField(required=False)
+	LATITUD = forms.CharField(required=False)
+	LONGITUD = forms.CharField(required=False)
 	class Meta:
 		model=pueblo
 	class Media:
 		#css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/pueblos_change.js',)
+		js=('admin/js/pueblos.js','tinymce/js/tinymce/tinymce.min.js')
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(PuebloChangeForm, self).__init__(*args, **kwargs)
-		# self.fields['permissions'].widget= SelectMultipleCustom()
-		# self.fields['permissions'].queryset= Permission.objects.all()
+		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
+		self.fields['NOMBRE'].widget.attrs = {'readonly':'true'}
+		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
+		# import pdb
+		# pdb.set_trace()
 
-		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+		obj = kwargs['instance']
+		pueb_idioms=pueblo_idioma.objects.get(PUEBLO=obj)
+		historia = {u'Español' : obj.HISTORIA}
+		cultura = {u'Español' : obj.CULTURA}
+		datos = {u'Español' : obj.DATOS}
+		comida = {u'Español': obj.COMIDA}
+		if isinstance(pueb_idioms,pueblo_idioma):
+			historia[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.HISTORIA
+			cultura[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.CULTURA
+			datos[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.DATOS
+			comida[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.COMIDA
+		elif isinstance(pueb_idioms,list):
+			for pueb_idiom in pueb_idioms:
+				historia[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.HISTORIA
+				cultura[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.CULTURA
+				datos[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.DATOS
+				comida[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.COMIDA
+		
+		self.fields['HISTORIA'].widget=AccordionMultipleTextbox(data=historia)
+		self.fields['HISTORIA'].initial = historia
+		self.fields['CULTURA'].widget=AccordionMultipleTextbox(data=cultura)
+		self.fields['CULTURA'].initial = cultura
+		self.fields['COMIDA'].widget=AccordionMultipleTextbox(data=comida)
+		self.fields['COMIDA'].initial = datos
+		self.fields['DATOS'].widget=AccordionMultipleTextbox(data=datos)
+		self.fields['DATOS'].initial = comida
+
+		self.fields['LATITUD'].widget = HiddenInput()
+		self.fields['LONGITUD'].widget = HiddenInput()
+		coordenadas= {}
+		if (obj.LATITUD is not None and obj.LONGITUD is not None):
+			coordenadas['LATITUD'] = obj.LATITUD
+			coordenadas['LONGITUD'] = obj.LONGITUD
+		else:
+			coordenadas['LATITUD'] = ""
+			coordenadas['LONGITUD'] = ""
+		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"span12 vTextField"},data=coordenadas)
 
 	def save(self,commit=True):
 		pueblo = super(PuebloChangeForm, self).save(commit=False)

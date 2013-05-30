@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
 from administrador.models import idioma
-
+from django import forms
 #ESTAS LINEAS DE CODIGO SON PARA DEPURACION
 # import pdb
 # pdb.set_trace()
@@ -40,8 +40,8 @@ class SelectMultipleCustom(SelectMultiple):
         final_attrs = self.build_attrs(attrs3, name=name)
         output = []
         
-        import pdb
-        pdb.set_trace()
+        # import pdb
+        # pdb.set_trace()
         
         output.append (format_html("<div class='container'>"))
         output.append (format_html("<div class='row-fluid'>"))
@@ -237,6 +237,13 @@ class SelectMultipleCustom(SelectMultiple):
         return attrs
 
 class MapInput(Input):
+    datos = {}
+    def __init__(self, attrs=None, data=None):
+        super(MapInput, self).__init__(attrs=attrs)
+        if isinstance(data,dict):
+            self.datos = data
+        else:
+            self.datos=None
     def render(self, name, value, attrs=None):
         if value is None:
             value = ''
@@ -308,14 +315,46 @@ class MapInput(Input):
         </script>
         </div>
         </div>"""))
-        # if value != '':
-        #     # Only add the 'value' attribute if a value is non-empty.
-        #     final_attrs['value'] = force_text(self._format_value(value))
+        # import pdb
+        # pdb.set_trace()
+        band=False
+        if self.datos is not None:
+            if (self.datos.__contains__('LATITUD') and self.datos.__contains__('LONGITUD')):
+                if (self.datos['LATITUD'] != "" and self.datos['LONGITUD']!=""):
+                    latitud= self.datos['LATITUD']
+                    longitud = self.datos['LONGITUD']
+                    band=True
+                else:
+                    band=False
+            else:
+                band=False
+        else:
+            band=False
+        
+        if band:
+            output.append(mark_safe("""<script>
+                    map.setCenter("""+latitud+""", """+longitud+""");
+                    map.addMarker({
+                        lat: """+latitud+""",
+                        lng: """+longitud+"""
+                    });
+                </script>
+                """))
         return mark_safe('\n'.join(output))
 class AccordionMultipleTextbox(Widget):
+    datos = {}
+    def __init__(self, attrs=None, data=None):
+        super(AccordionMultipleTextbox, self).__init__(attrs=attrs)
+        if isinstance(data,dict):
+            self.datos = data
+        else:
+            self.datos=None
+
     def render(self, name, value, attrs=None):
         if value is None: value = ''
-
+        
+        # import pdb
+        # pdb.set_trace()
         idiomas=idioma.objects.all()
         output= [mark_safe("""<div class='row'>""")]
         output.append(mark_safe("""<div class='span8'>"""))
@@ -325,17 +364,57 @@ class AccordionMultipleTextbox(Widget):
             output.append(mark_safe("<li><a href='#"+name+"_"+idiom.NOMBRE+"'>"+idiom.NOMBRE+"</a></li>"))
         output.append(mark_safe("""</ul>"""))
         output.append(mark_safe("""<div class="tab-content">"""))
-        output.append(mark_safe("""
-                <div class='tab-pane active' id='"""+name+"""'>
-                    <textarea class='vTextField span12' name='"""+name+"""' rows='10' placeholder='Descripción en Español'></textarea>
-                </div>
-            """))
-        for idiom in idiomas:
+        
+        band=False
+        if self.datos is not None:
+            if self.datos.__contains__(u'Español'):
+                if self.datos[u'Español'] != "":
+                    band=True
+                else:
+                    band=False
+            else:
+                band=False
+        else:
+            band=False
+
+        if band:
             output.append(mark_safe("""
-                    <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
-                        <textarea class='vTextField span12' name="""+name+"""_"""+idiom.NOMBRE+""" rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'></textarea>
+                    <div class='tab-pane active' id='"""+name+"""'>
+                        <textarea class='vTextField span12' name='"""+name+"""' rows='10' placeholder='Descripción en Español'>"""+self.datos[u'Español']+"""
+                        </textarea>
                     </div>
                 """))
+        else:
+            output.append(mark_safe("""
+                    <div class='tab-pane active' id='"""+name+"""'>
+                        <textarea class='vTextField span12' name='"""+name+"""' rows='10' placeholder='Descripción en Español'></textarea>
+                    </div>
+                """))
+        for idiom in idiomas:
+            band=False
+            if self.datos is not None:
+                if self.datos.__contains__(idiom.NOMBRE):
+                    if self.datos[idiom.NOMBRE] != "":
+                        band=True
+                    else:
+                        band=False
+                else:
+                    band=False
+            else:
+                band=False
+            if band:
+                output.append(mark_safe("""
+                        <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
+                            <textarea class='vTextField span12' name="""+name+"""_"""+idiom.NOMBRE+""" rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'>"""+self.datos[idiom.NOMBRE]+"""
+                            </textarea>
+                        </div>
+                    """))
+            else:                
+                output.append(mark_safe("""
+                        <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
+                            <textarea class='vTextField span12' name="""+name+"""_"""+idiom.NOMBRE+""" rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'></textarea>
+                        </div>
+                    """))
         output.append(mark_safe("""</div>"""))
         output.append(mark_safe("""
             <script>
@@ -351,40 +430,3 @@ class AccordionMultipleTextbox(Widget):
         </div>
         """ % (name,name)))
         return mark_safe('\n'.join(output))
-
-
-# class TextAreaEditor(Textarea):
-    
-#     def render(self, name, value, attrs=None):
-#         if value is None: value = ''
-
-#         final_attrs = self.build_attrs(attrs, name=name)
-#         format=flatatt(final_attrs)
-#         output=[format_html("""<link rel="stylesheet" href="/static/tinymce/js/tinymce/skins/lightgray/skin.min.css">""")]
-#         output.append(format_html("""<script src="/static/tinymce/js/tinymce/tinymce.min.js"></script>"""))
-#         output.append(format_html("""<script type="text/javascript">"""))
-#         output.append(mark_safe("""tinymce.init({
-#             selector: "textarea_%s",
-#             theme: "modern",
-#             width: 300,
-#             height: 300,
-#             plugins: [
-#                  "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-#                  "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-#                  "save table contextmenu directionality emoticons template paste textcolor"
-#            ],
-#            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons", 
-#            style_formats: [
-#                 {title: 'Bold text', inline: 'b'},
-#                 {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
-#                 {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
-#                 {title: 'Example 1', inline: 'span', classes: 'example1'},
-#                 {title: 'Example 2', inline: 'span', classes: 'example2'},
-#                 {title: 'Table styles'},
-#                 {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
-#             ]
-#             });"""%(name)))
-#         output.append(format_html("""</script>"""))
-#         output.append(format_html('<textarea{0}>\r\n{1}</textarea>',format,force_text(value)))
-
-#         return mark_safe('\n'.join(output))

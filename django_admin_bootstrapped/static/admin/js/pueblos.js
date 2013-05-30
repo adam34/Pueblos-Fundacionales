@@ -1,4 +1,4 @@
-//Grupos.js con funciones para los forms de users.
+//pueblos.js con funciones para los forms de pueblos
 
 //Funciones para el modelo de idiomas
 $(function()
@@ -46,6 +46,17 @@ $(function()
        ],
        toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons", 
      });
+    $editors =$(tinymce.editors);
+    $editors.each(function(index,value){
+        $control=$(value.getElement())
+        contenido = $control.val();
+        if(contenido!="")
+        {
+            value.setContent(contenido);
+            $control.val('')
+        }
+    });
+
 });
 //Metodo utilizado para controlar el guardado de los datos con el servidor por Ajax.
 function agregar(e,form,ruta)
@@ -87,6 +98,10 @@ function validar_formulario_grupo()
     if($("#id_TIPO").val()=="")
     {
         errores.push('Seleccione un tipo de pueblo, por favor.');   
+    }
+    if($("#id_ADMINISTRADOR").val()=="")
+    {
+        errores.push('Seleccione a un usuario para que sea el administrador del pueblo.');
     }
     if($('div#Español textarea').val()=="")
     {

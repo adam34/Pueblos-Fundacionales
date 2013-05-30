@@ -97,21 +97,26 @@ class PueblosAdmin(admin.ModelAdmin):
 			self.form=PuebloChangeForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','TIPO','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','TIPO','ADMINISTRADOR','LATITUD','LONGITUD',),
 					}),
 				('Historia', {
+					'classes': ('collapse',),
 					'fields': ('HISTORIA',)
 					}),
 				('Cultura', {
+					'classes': ('collapse',),
 					'fields': ('CULTURA',)
 					}),
 				('Comida', {
+					'classes': ('collapse',),
 					'fields': ('COMIDA',)
 					}),
-				('DATOS', {
+				('Datos', {
+					'classes': ('collapse',),
 					'fields': ('DATOS',)
 					}),
-				('MAPA', {
+				('Mapa', {
+					'classes': ('collapse',),
 					'fields': ('MAPA',)
 					}),
 				)
@@ -119,7 +124,7 @@ class PueblosAdmin(admin.ModelAdmin):
 			self.form=PuebloForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','TIPO','ADMINISTRADORES','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','TIPO','ADMINISTRADOR','LATITUD','LONGITUD',),
 					}),
 				('Historia', {
 					'classes': ('collapse',),
@@ -186,7 +191,6 @@ admin.site.register(pueblo,PueblosAdmin)
 admin.site.register(archivo,ArchivosAdmin)
 admin.site.register(galeria)
 admin.site.register(pueblo_idioma)
-admin.site.register(pueblo_administrador)
 admin.site.register(comentario_pueblo)
 admin.site.register(evento)
 admin.site.register(evento_idioma)
