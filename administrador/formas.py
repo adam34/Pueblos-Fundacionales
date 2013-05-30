@@ -12,7 +12,10 @@ from administrador.extras.widgets import SelectMultipleCustom,MapInput,Accordion
 from django.forms.widgets import *
 
 
-#----------------------------------Validadores para UserForm------------------------------------------
+	# import pdb
+	# pdb.set_trace()
+
+#----------------------------------Validadores------------------------------------------------
 def validar_usuario(valor):
 	if len(valor) > 30:
 		raise ValidationError(u'No debe ser mayor de 30 caracteres.')
@@ -37,16 +40,33 @@ def validar_email(valor):
 	if valor != "":
 		if re.match(r'^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$',valor) == None:
 			raise ValidationError(u'Debe contener solamente números y caracteres, nada más.')
-#----------------------------------Fin de validadores para UserForm--------------------------------
+
+
+def validar_nombre_grupo(valor):
+	if len(valor) > 30:
+		raise ValidationError(u'No debe ser mayor de 30 caracteres.')
+	if len(valor) < 4:
+		raise ValidationError(u'No debe ser menor de 4 caracteres.')
+	if re.match(r'[\w ]+$',valor) == None:
+		raise ValidationError(u'Debe contener solamente números y caracteres, nada más.')
+
+#----------------------------------Fin de validadores-----------------------------------------
+
+#----------------------------------------Metodos especiales------------------------------------
+
+
+
+#--------------------------------------Fin de metodos especiales-------------------------------
 
 mensajes ={'required':'El campo es obligatorio. No se puede dejar en blanco o sin datos','max_length':'El dato excedió el limite de caracteres para este campo',}
 
-#------------------------------------------Codigo de los forms -------------------------------------------
-errores_login={
-	'min_length': ("Error del tipo min_length."),
-	'max_length': ("Error del tipo max_length."),
-}
+#------------------------------------------Codigo de los forms ----------------------------------
+
 class CustomAutenticacionForm(AuthenticationForm):
+	errores_login={
+		'min_length': ("Error del tipo min_length."),
+		'max_length': ("Error del tipo max_length."),
+	}
 	username = forms.CharField(min_length=4,max_length=30,error_messages=errores_login)
 	password = forms.CharField(min_length=4,max_length=30, widget=forms.PasswordInput,error_messages=errores_login)
 	error_messages = {
@@ -103,8 +123,8 @@ class ConfiguracionForm(forms.Form):
 class UserForm(forms.ModelForm):
 	password2=forms.CharField(widget=forms.PasswordInput,required=True,help_text="Nombre de usuario.",max_length=30,error_messages=mensajes, validators=[validar_contrasena])
 	class Media:
-		css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/users.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
+		# css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/users.js',)
 	class Meta:
 		model=User
 	def __init__(self, *args, **kwargs):
@@ -155,31 +175,30 @@ class UserForm(forms.ModelForm):
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
 
 	def save(self,commit=True):
-		pass
-		# user = super(UserForm, self).save(commit=False)
-		# user.set_password(self.cleaned_data["password"])
-		# if commit:
-		# 	user.save(commit)
-		# return user
+		user = super(UserForm, self).save(commit=False)
+		user.set_password(self.cleaned_data["password"])
+		if commit:
+			user.save(commit)
+		return user
 
 	def clean(self):
-		pass
-		# super(UserForm, self).clean()
-		# cleaned_data = self.cleaned_data
-		# password1 = cleaned_data.get("password")
-		# password2 = cleaned_data.get("password2")
-		# if password1!=password2:
-		# 	if not self._errors.has_key('password2'):
-		# 		self._errors['password2']= ErrorList([u"Las contraseñas no pueden ser diferentes."])
-		# 		#raise ValidationError(u'Las contraseñas no pueden ser diferentes.')
-		# return cleaned_data
+		super(UserForm, self).clean()
+		cleaned_data = self.cleaned_data
+		password1 = cleaned_data.get("password")
+		password2 = cleaned_data.get("password2")
+		if password1!=password2:
+			if not self._errors.has_key('password2'):
+				self._errors['password2']= ErrorList([u"Las contraseñas no pueden ser diferentes."])
+				#raise ValidationError(u'Las contraseñas no pueden ser diferentes.')
+		return cleaned_data
+
 
 class UserChangeForm(forms.ModelForm):
 	class Meta:
 		model=User
 	class Media:
-		css={'all':('/static/admin/css/multi-select.css',),}
-		js=('admin/js/users.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
+		# css={'all':('/static/admin/css/multi-select.css',),}
+		js=('admin/js/users.js',)
 	def __init__(self, *args, **kwargs):
 		super(UserChangeForm, self).__init__(*args, **kwargs)
 		self.fields['username'].help_text=''
@@ -204,6 +223,18 @@ class UserChangeForm(forms.ModelForm):
 
 		self.fields['groups'].help_text='Los grupos a los que pertenece este usuario. Un usuario obtendrá todos los permisos concedidos para cada uno de su grupo. Seleccione los grupos o el grupo en el que desea asignarle.'
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
+	
+	def save(self,commit=True):
+		user = super(UserForm, self).save(commit=False)
+		if commit:
+			user.save(commit)
+		return user
+
+	def clean(self):
+		super(UserForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
+
 
 #----------------------------Fin de formularios para el modelo de users-----------------------------
 
@@ -212,94 +243,229 @@ class GroupForm(forms.ModelForm):
 	class Meta:
 		model=Group
 	class Media:
-		css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/grupos.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
+		js=('admin/js/grupos.js',)
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(GroupForm, self).__init__(*args, **kwargs)
+		self.fields['name'].help_text="Obligatorio. Nombre del grupo. Se aceptan sólo letras con un solo espacio de separación entre las palabras y longitud mínima de 4 y máxima de 30 caracteres."
+		import pdb
+		pdb.set_trace()
+		self.fields['name'].validators=[validar_nombre_grupo];
+		self.fields['permissions'].widget= SelectMultipleCustom()
+		self.fields['permissions'].queryset= Permission.objects.all()
+		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos.'
+
+	def save(self,commit=True):
+		grupo = super(GroupForm, self).save(commit=False)
+		if commit:
+			grupo.save(commit)
+		return grupo
+
+
+	def clean(self):
+		super(GroupForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
+
+class GroupChangeForm(forms.ModelForm):
+	class Meta:
+		model=Group
+	class Media:
+		#css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/grupos.js',)
+	def __init__(self, *args, **kwargs):
+		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
+		super(GroupChangeForm, self).__init__(*args, **kwargs)
+		self.fields['name'].widget.attrs = {'readonly':'true'}
+		self.fields['name'].validators=[validar_nombre_grupo];
 		self.fields['permissions'].widget= SelectMultipleCustom()
 		self.fields['permissions'].queryset= Permission.objects.all()
 
 		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos.'
 
 	def save(self,commit=True):
-		pass
+		grupo = super(GroupChangeForm, self).save(commit=False)
+		if commit:
+			grupo.save(commit)
+		return grupo
+
 
 	def clean(self):
-		pass
+		super(GroupChangeForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
 
-class GroupChangeForm(forms.ModelForm):
-	class Meta:
-		model=Group
-	class Media:
-		css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/grupos.js','admin/js/jquery.multi-select.js','admin/js/jquery.quicksearch.js',)
-	def __init__(self, *args, **kwargs):
-		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
-		super(GroupChangeForm, self).__init__(*args, **kwargs)	
-		# self.fields['groups'].widget=forms.MultipleChoiceField(queryset=Group.objects.all(), widget=FilteredSelectMultiple("Integrales", is_stacked=False))
-		self.fields['name'].widget.attrs = {'disabled':'true'}
+#------------------------------Fin de formularios para el modelo de groups-----------------------
 
 
-		self.fields['permissions'].widget = SelectMultipleCustom()
-		self.fields['permissions'].queryset= Permission.objects.all()
-
-		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos. Los permisos de la lista de la derecha son los que se asociaran al grupo.'
-
-	def save(self,commit=True):
-		pass
-
-	def clean(self):
-		pass
-
-#------------------------------Fin de formularios para el modelo de groups------------------------------
-
-
-#------------------------------Formularios para el modelo de pueblos------------------------------
+#------------------------------Formularios para el modelo de pueblos-----------------------------
 
 class PuebloForm(forms.ModelForm):
-	MAPA = forms.CharField()
-	LATITUD = forms.CharField()
-	LONGITUD = forms.CharField()
+	# ADMINISTRADORES = forms.ModelMultipleChoiceField(label='Administradores ',queryset = User.objects.exclude(username='root'), widget = SelectMultipleCustom())
+	HISTORIA = forms.CharField(required=False)
+	CULTURA = forms.CharField(required=False)
+	COMIDA = forms.CharField(required=False)
+	DATOS = forms.CharField(required=False)
+	MAPA = forms.CharField(required=False)
+	LATITUD = forms.CharField(required=False)
+	LONGITUD = forms.CharField(required=False)
+	class Media:
+		#css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/pueblos.js','tinymce/js/tinymce/tinymce.min.js')
 	class Meta:
 		model=pueblo
-		fields = ['NOMBRE','TIPO','DESCRIPCION']
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(PuebloForm, self).__init__(*args, **kwargs)
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
 		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox()
-		self.fields['DESCRIPCION'].help_text ="Obligatorio. El campo del idioma del sistema debe ser llenado (Español)."
+		# import pdb
+		# pdb.set_trace()
+		#self.fields['ADMINISTRADORES'].widget = SelectMultipleCustom()
+		#self.fields['ADMINISTRADORES'].queryset = User.objects.exclude(username='root')
+
+		self.fields['HISTORIA'].widget=AccordionMultipleTextbox()
+		self.fields['CULTURA'].widget=AccordionMultipleTextbox()
+		self.fields['COMIDA'].widget=AccordionMultipleTextbox()
+		self.fields['DATOS'].widget=AccordionMultipleTextbox()
+
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
 		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"span12 vTextField"})
-		# self.fields['permissions'].widget= SelectMultipleCustom()
-		# self.fields['permissions'].queryset= Permission.objects.all()
 
-		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+	def save(self,commit=True):
+		import pdb
+		pdb.set_trace()
+		pueblo = super(PuebloForm, self).save(commit=False)
+		pueblo.HISTORIA=self.data['HISTORIA']
+		pueblo.CULTURA=self.data['CULTURA']
+		pueblo.COMIDA=self.data['COMIDA']
+		pueblo.DATOS=self.data['DATOS']
+		# if commit:
+		# 	pueblo.save(commit)
+		pueblo.save()
 
-	# def save(self,commit=True):
-	# 	pass
+		idiomas = idioma.objects.all()
+		for idiom in idiomas:
+			nombre="HISTORIA_"+idiom.NOMBRE
+			historia=""
+			cultura=""
+			comida=""
+			datos=""
+			if self.data.__contains__(nombre):
+				historia=self.data[nombre]
+			nombre="CULTURA_"+idiom.NOMBRE
+			if self.data.__contains__(nombre):
+				cultura=self.data[nombre]
+			nombre="COMIDA_"+idiom.NOMBRE
+			if self.data.__contains__(nombre):
+				comida=self.data[nombre]
+			nombre="DATOS_"+idiom.NOMBRE
+			if self.data.__contains__(nombre):
+				datos=self.data[nombre]
+			
+			if (historia != "" or cultura !="" or comida != "" or datos !=""):
+				pueb_idiom = pueblo_idioma()
+				pueb_idiom.PUEBLO = pueblo
+				pueb_idiom.IDIOMA = idiom
+				pueb_idiom.HISTORIA = historia
+				pueb_idiom.CULTURA = cultura
+				pueb_idiom.COMIDA = comida
+				pueb_idiom.DATOS = datos
+				pueb_idiom.save(commit)
+			#HISTORIA
+			#CULTURA
+			#COMIDAS
+			#DATOS
+		return pueblo
 
-	# def clean(self):
-	# 	pass
+	def clean(self):
+		import pdb
+		pdb.set_trace()
+		super(PuebloForm, self).clean()
+		cleaned_data = self.cleaned_data
+
+		latitud = cleaned_data["LATITUD"]
+		if latitud !="":
+			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,16})$',latitud) == None:
+				self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
+		longitud = cleaned_data["LONGITUD"]
+		if longitud !="":
+			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,16})$',longitud) == None:
+				if not self._errors.has_key('MAPA'):
+					self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
+		return cleaned_data
 
 class PuebloChangeForm(forms.ModelForm):
+	HISTORIA = forms.CharField(required=False)
+	CULTURA = forms.CharField(required=False)
+	COMIDA = forms.CharField(required=False)
+	DATOS = forms.CharField(required=False)
+	MAPA = forms.CharField(required=False)
+	LATITUD = forms.CharField(required=False)
+	LONGITUD = forms.CharField(required=False)
 	class Meta:
 		model=pueblo
+	class Media:
+		#css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/pueblos.js','tinymce/js/tinymce/tinymce.min.js')
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(PuebloChangeForm, self).__init__(*args, **kwargs)
-		# self.fields['permissions'].widget= SelectMultipleCustom()
-		# self.fields['permissions'].queryset= Permission.objects.all()
+		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del pueblo a registrar."
+		self.fields['NOMBRE'].widget.attrs = {'readonly':'true'}
+		self.fields['TIPO'].help_text= "Obligatorio. Clase de pueblo a registrar en el sistema."
+		# import pdb
+		# pdb.set_trace()
 
-		# self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Mantenga presionada "Control", o "Command" en una Mac, para seleccionar más de una de las opciones.'
+		obj = kwargs['instance']
+		pueb_idioms=pueblo_idioma.objects.get(PUEBLO=obj)
+		historia = {u'Español' : obj.HISTORIA}
+		cultura = {u'Español' : obj.CULTURA}
+		datos = {u'Español' : obj.DATOS}
+		comida = {u'Español': obj.COMIDA}
+		if isinstance(pueb_idioms,pueblo_idioma):
+			historia[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.HISTORIA
+			cultura[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.CULTURA
+			datos[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.DATOS
+			comida[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.COMIDA
+		elif isinstance(pueb_idioms,list):
+			for pueb_idiom in pueb_idioms:
+				historia[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.HISTORIA
+				cultura[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.CULTURA
+				datos[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.DATOS
+				comida[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.COMIDA
+		
+		self.fields['HISTORIA'].widget=AccordionMultipleTextbox(data=historia)
+		self.fields['HISTORIA'].initial = historia
+		self.fields['CULTURA'].widget=AccordionMultipleTextbox(data=cultura)
+		self.fields['CULTURA'].initial = cultura
+		self.fields['COMIDA'].widget=AccordionMultipleTextbox(data=comida)
+		self.fields['COMIDA'].initial = datos
+		self.fields['DATOS'].widget=AccordionMultipleTextbox(data=datos)
+		self.fields['DATOS'].initial = comida
 
-	# def save(self,commit=True):
-	# 	pass
+		self.fields['LATITUD'].widget = HiddenInput()
+		self.fields['LONGITUD'].widget = HiddenInput()
+		coordenadas= {}
+		if (obj.LATITUD is not None and obj.LONGITUD is not None):
+			coordenadas['LATITUD'] = obj.LATITUD
+			coordenadas['LONGITUD'] = obj.LONGITUD
+		else:
+			coordenadas['LATITUD'] = ""
+			coordenadas['LONGITUD'] = ""
+		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"span12 vTextField"},data=coordenadas)
 
-	# def clean(self):
-	# 	pass
+	def save(self,commit=True):
+		pueblo = super(PuebloChangeForm, self).save(commit=False)
+		if commit:
+			pueblo.save(commit)
+		return pueblo
+
+
+	def clean(self):
+		super(PuebloChangeForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
 
 #------------------------------Fin de formularios para el modelo de pueblos----------------------

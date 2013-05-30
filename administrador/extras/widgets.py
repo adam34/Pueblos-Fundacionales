@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
 from administrador.models import idioma
-
+from django import forms
 #ESTAS LINEAS DE CODIGO SON PARA DEPURACION
 # import pdb
 # pdb.set_trace()
@@ -38,35 +38,44 @@ class SelectMultipleCustom(SelectMultiple):
         attrs3.update(attrs2)
         attrs3['style']+=" display:none;"
         final_attrs = self.build_attrs(attrs3, name=name)
-        
         output = []
+        
+        # import pdb
+        # pdb.set_trace()
         
         output.append (format_html("<div class='container'>"))
         output.append (format_html("<div class='row-fluid'>"))
-        output.append(format_html("<input type='text' id='search-{0}' class='span3' style='margin:0 0 10px 0;' autocomplete='off' placeholder='Buscar: {1}'>",var,var))
+        output.append(format_html("<input type='text' id='search-{0}' class='span3' style='margin:0 0 10px 0;' autocomplete='off' placeholder='Buscar: {1}'>",name,var))
         output.append(format_html("</div>"))
 
         output.append(format_html("""<div class='row-fluid' style="background: transparent url('/static/admin/img/switch.png') no-repeat 390px 120px;">"""))
         
-        output.append(format_html('<select id="selectable-copia-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
-        options = self.render_options(choices, value)
+        output.append(format_html('<select id="selectable-copia-{0}" multiple="multiple"{1}>', name,flatatt(final_attrs)))
+        options = self.render_options(choices, value,'3','selectable-elem')
         if options:
             output.append(options)
         output.append('</select>')
 
+        # import pdb
+        # pdb.set_trace()
+        
         final_attrs = self.build_attrs(attrs2, name=name)
-        output.append(format_html('<select id="selectable-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
-        options = self.render_options(choices, value)
+        output.append(format_html('<select id="selectable-{0}" multiple="multiple"{1}>', name,flatatt(final_attrs)))
+        options = self.render_options(choices, value,'1','selectable-elem')
         if options:
             output.append(options)
         output.append('</select>')
         
+        attrs['name'] = name
         final_attrs = self.build_attrs(attrs, name=name)
-        output.append(format_html('<select id="selection-{0}" multiple="multiple"{1}>', var,flatatt(final_attrs)))
+        output.append(format_html('<select id="selection-{0}" multiple="multiple"{1}>', name,flatatt(final_attrs)))
+        options = self.render_options(choices, value,'2','selection-elem')
+        if options:
+            output.append(options)
         output.append('</select>')
 
         # output.append(mark_safe("""<script type="text/javascript">$("#searchable-%s").multiSelect({selectableHeader: "<input type='text' id='search-%s' class='span12' autocomplete='off' placeholder='Buscar: %s'>"});</script>""" % (var,var,var)))
-        tupla = [var for i in range(46)]
+        tupla = [name for i in range(47)]
         tupla = tuple(tupla)
         output.append(mark_safe("""<script type="text/javascript">
             $('#search-%s').on('keypress',filtrar_%s);
@@ -127,6 +136,7 @@ class SelectMultipleCustom(SelectMultiple):
                 elemento = e.target;
                 $nuevo = $(document.createElement("option"));
                 $nuevo.addClass('selection-elem');
+                $nuevo.attr('name','%s');
                 $nuevo.val(elemento.value);
                 $nuevo.html(elemento.innerHTML);
                 $nuevo.on('mouseover',seleccionar2_%s);
@@ -196,34 +206,44 @@ class SelectMultipleCustom(SelectMultiple):
         output.append(format_html("</div>"))
         return mark_safe('\n'.join(output))
 
-    def render_option(self, selected_choices, option_value, option_label):
+    def render_option(self, selected_choices, option_value, option_label,className):
         option_value = force_text(option_value)
-        if option_value in selected_choices:
-            selected_html = mark_safe(' selected="selected"')
-            if not self.allow_multiple_selected:
-                # Only allow for a single selection.
-                selected_choices.remove(option_value)
-        else:
-            selected_html = ''
-        return format_html('<option class="selectable-elem" value="{0}"{1}>{2}</option>',
-                           option_value,
-                           selected_html,
-                           force_text(option_label))
-    def render_options(self, choices, selected_choices):
+        return format_html('<option class="{0}" value="{1}">{2}</option>',
+            className,
+            option_value,
+            force_text(option_label))
+    def render_options(self, choices, selected_choices,exclude,className):
         # Normalize to strings.
         selected_choices = set(force_text(v) for v in selected_choices)
         output = []
         for option_value, option_label in chain(self.choices, choices):
-            if isinstance(option_label, (list, tuple)):
-                output.append(format_html('<optgroup label="{0}">', force_text(option_value)))
-                for option in option_label:
-                    output.append(self.render_option(selected_choices, *option))
-                output.append('</optgroup>')
-            else:
-                output.append(self.render_option(selected_choices, option_value, option_label))
+            if exclude=='1': #Se excluyen los elementos que no esten seleccionados
+                if not str(option_value) in selected_choices:
+                    output.append(self.render_option(selected_choices, option_value, option_label, className))
+            elif exclude=='2':#Se excluyen los elementos que esten seleccionados
+                if str(option_value) in selected_choices:
+                    output.append(self.render_option(selected_choices, option_value, 
+                            option_label,className))
+            else: #Se incluyen todos elementos
+                output.append(self.render_option(selected_choices, option_value, 
+                        option_label,className))
+
         return '\n'.join(output)
+    def build_attrs(self, extra_attrs=None, **kwargs):
+        "Helper function for building an attribute dictionary."
+        attrs = {}
+        if extra_attrs:
+            attrs.update(extra_attrs)
+        return attrs
 
 class MapInput(Input):
+    datos = {}
+    def __init__(self, attrs=None, data=None):
+        super(MapInput, self).__init__(attrs=attrs)
+        if isinstance(data,dict):
+            self.datos = data
+        else:
+            self.datos=None
     def render(self, name, value, attrs=None):
         if value is None:
             value = ''
@@ -295,117 +315,113 @@ class MapInput(Input):
         </script>
         </div>
         </div>"""))
-        # if value != '':
-        #     # Only add the 'value' attribute if a value is non-empty.
-        #     final_attrs['value'] = force_text(self._format_value(value))
+        # import pdb
+        # pdb.set_trace()
+        band=False
+        if self.datos is not None:
+            if (self.datos.__contains__('LATITUD') and self.datos.__contains__('LONGITUD')):
+                if (self.datos['LATITUD'] != "" and self.datos['LONGITUD']!=""):
+                    latitud= self.datos['LATITUD']
+                    longitud = self.datos['LONGITUD']
+                    band=True
+                else:
+                    band=False
+            else:
+                band=False
+        else:
+            band=False
+        
+        if band:
+            output.append(mark_safe("""<script>
+                    map.setCenter("""+latitud+""", """+longitud+""");
+                    map.addMarker({
+                        lat: """+latitud+""",
+                        lng: """+longitud+"""
+                    });
+                </script>
+                """))
         return mark_safe('\n'.join(output))
 class AccordionMultipleTextbox(Widget):
+    datos = {}
+    def __init__(self, attrs=None, data=None):
+        super(AccordionMultipleTextbox, self).__init__(attrs=attrs)
+        if isinstance(data,dict):
+            self.datos = data
+        else:
+            self.datos=None
+
     def render(self, name, value, attrs=None):
         if value is None: value = ''
-        # output= [mark_safe("""
-        # <div class="accordion" id="accordion2">
-        #     <div class="accordion-group">
-        #         <div class="accordion-heading">
-        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
-        #                 Español
-        #             </a>
-        #         </div>
-        #         <div id="collapseOne" class="accordion-body collapse in">
-        #             <div class="accordion-inner">
-        #                 <textarea> </textarea>
-        #             </div>
-        #         </div>
-        #     </div>
-        #     <div class="accordion-group">
-        #         <div class="accordion-heading">
-        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
-        #                 Inglés
-        #             </a>
-        #         </div>
-        #         <div id="collapseTwo" class="accordion-body collapse">
-        #             <div class="accordion-inner">
-        #                 <textarea> </textarea>
-        #             </div>
-        #         </div>
-        #     </div>
-        #     <div class="accordion-group">
-        #         <div class="accordion-heading">
-        #             <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">
-        #                 Aléman
-        #             </a>
-        #         </div>
-        #         <div id="collapseThree" class="accordion-body collapse">
-        #             <div class="accordion-inner">
-        #                 <textarea> </textarea>
-        #             </div>
-        #         </div>
-        #     </div>
-        # </div>
-        # """)]
-
-        # output= [mark_safe("""
-        # <div class='row'>
-        #     <div class='span8'>
-        #         <ul class="nav nav-tabs" id="myTab">
-        #             <li class="active"><a href="#home">Español</a></li>
-        #             <li><a href="#profile">Inglés</a></li>
-        #             <li><a href="#messages">Aléman</a></li>
-        #             <li><a href="#settings">Portugues</a></li>
-        #         </ul>
-
-        #         <div class="tab-content">
-        #             <div class="tab-pane active" id="home">
-        #                 <textarea class='vTextField span12' rows='10'>aaaa</textarea>
-        #             </div>
-        #             <div class="tab-pane" id="profile">
-        #                 <textarea class='vTextField span12' rows='10'>bbbb</textarea>
-        #             </div>
-        #             <div class="tab-pane" id="messages">
-        #                 <textarea class='vTextField span12' rows='10'>cccc</textarea>
-        #             </div>
-        #             <div class="tab-pane" id="settings">
-        #                 <textarea class='vTextField span12' rows='10'>dddd</textarea>
-        #             </div>
-        #         </div>
-        #         <script>
-        #         $(function () {
-        #             $('#myTab a:first').tab('show');
-        #         })
-        #         $('#myTab a').click(function (e) {
-        #           e.preventDefault();
-        #           $(this).tab('show');
-        #         })
-        #         </script>
-        #     </div>
-        # </div>
-        # """)]
+        
+        # import pdb
+        # pdb.set_trace()
         idiomas=idioma.objects.all()
         output= [mark_safe("""<div class='row'>""")]
         output.append(mark_safe("""<div class='span8'>"""))
-        output.append(mark_safe("""<ul class="nav nav-tabs" id="%s_descripcion">""" % (name)))
-        output.append(mark_safe("""<li class="active"><a href="#Español">Español</a></li>"""))
+        output.append(mark_safe("""<ul class="nav nav-tabs" id="ul_%s">""" % (name)))
+        output.append(mark_safe("""<li class="active"><a href="#"""+name+"""">Español</a></li>"""))
         for idiom in idiomas:
-            output.append(mark_safe("<li><a href='#"+idiom.NOMBRE+"'>"+idiom.NOMBRE+"</a></li>"))
+            output.append(mark_safe("<li><a href='#"+name+"_"+idiom.NOMBRE+"'>"+idiom.NOMBRE+"</a></li>"))
         output.append(mark_safe("""</ul>"""))
         output.append(mark_safe("""<div class="tab-content">"""))
-        output.append(mark_safe("""
-                <div class='tab-pane active' id='Español'>
-                    <textarea class='vTextField span12' rows='10' placeholder='Descripción en Español'></textarea>
-                </div>
-            """))
-        for idiom in idiomas:
+        
+        band=False
+        if self.datos is not None:
+            if self.datos.__contains__(u'Español'):
+                if self.datos[u'Español'] != "":
+                    band=True
+                else:
+                    band=False
+            else:
+                band=False
+        else:
+            band=False
+
+        if band:
             output.append(mark_safe("""
-                    <div class='tab-pane' id='"""+idiom.NOMBRE+"""'>
-                        <textarea class='vTextField span12' rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'></textarea>
+                    <div class='tab-pane active' id='"""+name+"""'>
+                        <textarea class='vTextField span12' name='"""+name+"""' rows='10' placeholder='Descripción en Español'>"""+self.datos[u'Español']+"""
+                        </textarea>
                     </div>
                 """))
+        else:
+            output.append(mark_safe("""
+                    <div class='tab-pane active' id='"""+name+"""'>
+                        <textarea class='vTextField span12' name='"""+name+"""' rows='10' placeholder='Descripción en Español'></textarea>
+                    </div>
+                """))
+        for idiom in idiomas:
+            band=False
+            if self.datos is not None:
+                if self.datos.__contains__(idiom.NOMBRE):
+                    if self.datos[idiom.NOMBRE] != "":
+                        band=True
+                    else:
+                        band=False
+                else:
+                    band=False
+            else:
+                band=False
+            if band:
+                output.append(mark_safe("""
+                        <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
+                            <textarea class='vTextField span12' name="""+name+"""_"""+idiom.NOMBRE+""" rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'>"""+self.datos[idiom.NOMBRE]+"""
+                            </textarea>
+                        </div>
+                    """))
+            else:                
+                output.append(mark_safe("""
+                        <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
+                            <textarea class='vTextField span12' name="""+name+"""_"""+idiom.NOMBRE+""" rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'></textarea>
+                        </div>
+                    """))
         output.append(mark_safe("""</div>"""))
         output.append(mark_safe("""
             <script>
                 $(function () {
-                    $('#%s_descripcion a:first').tab('show');
+                    $('#ul_%s a:first').tab('show');
                 })
-                $('#%s_descripcion a').click(function (e) {
+                $('#ul_%s a').click(function (e) {
                   e.preventDefault();
                   $(this).tab('show');
                 })
@@ -414,40 +430,3 @@ class AccordionMultipleTextbox(Widget):
         </div>
         """ % (name,name)))
         return mark_safe('\n'.join(output))
-
-
-# class TextAreaEditor(Textarea):
-    
-#     def render(self, name, value, attrs=None):
-#         if value is None: value = ''
-
-#         final_attrs = self.build_attrs(attrs, name=name)
-#         format=flatatt(final_attrs)
-#         output=[format_html("""<link rel="stylesheet" href="/static/tinymce/js/tinymce/skins/lightgray/skin.min.css">""")]
-#         output.append(format_html("""<script src="/static/tinymce/js/tinymce/tinymce.min.js"></script>"""))
-#         output.append(format_html("""<script type="text/javascript">"""))
-#         output.append(mark_safe("""tinymce.init({
-#             selector: "textarea_%s",
-#             theme: "modern",
-#             width: 300,
-#             height: 300,
-#             plugins: [
-#                  "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-#                  "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-#                  "save table contextmenu directionality emoticons template paste textcolor"
-#            ],
-#            toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | l      ink image | print preview media fullpage | forecolor backcolor emoticons", 
-#            style_formats: [
-#                 {title: 'Bold text', inline: 'b'},
-#                 {title: 'Red text', inline: 'span', styles: {color: '#ff0000'}},
-#                 {title: 'Red header', block: 'h1', styles: {color: '#ff0000'}},
-#                 {title: 'Example 1', inline: 'span', classes: 'example1'},
-#                 {title: 'Example 2', inline: 'span', classes: 'example2'},
-#                 {title: 'Table styles'},
-#                 {title: 'Table row 1', selector: 'tr', classes: 'tablerow1'}
-#             ]
-#             });"""%(name)))
-#         output.append(format_html("""</script>"""))
-#         output.append(format_html('<textarea{0}>\r\n{1}</textarea>',format,force_text(value)))
-
-#         return mark_safe('\n'.join(output))

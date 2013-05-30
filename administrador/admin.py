@@ -12,9 +12,6 @@ admin.site.login_form = CustomAutenticacionForm
 
 #ModelAdmin de Idiomas para el manejo de las paginas para agregar, modificar y mostrar elementos
 class IdiomasAdmin(admin.ModelAdmin):
-	class Media:
-		js = ('admin/js/idiomas.js',) #No preocuparse por agregar la referencia "static" al directorio.
-		css = {}
 	list_per_page = 5
 	search_fields = ('NOMBRE',)
 	ordering = ['NOMBRE',]
@@ -100,16 +97,56 @@ class PueblosAdmin(admin.ModelAdmin):
 			self.form=PuebloChangeForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','TIPO','DESCRIPCION','MAPA','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','TIPO','ADMINISTRADOR','LATITUD','LONGITUD',),
+					}),
+				('Historia', {
+					'classes': ('collapse',),
+					'fields': ('HISTORIA',)
+					}),
+				('Cultura', {
+					'classes': ('collapse',),
+					'fields': ('CULTURA',)
+					}),
+				('Comida', {
+					'classes': ('collapse',),
+					'fields': ('COMIDA',)
+					}),
+				('Datos', {
+					'classes': ('collapse',),
+					'fields': ('DATOS',)
+					}),
+				('Mapa', {
+					'classes': ('collapse',),
+					'fields': ('MAPA',)
 					}),
 				)
 		else: # obj is None, so this is an add page
 			self.form=PuebloForm
-			# self.fieldsets = (
-			# 	(None, {
-			# 		'fields': ('name','permissions'),
-			# 		}),
-			# 	)
+			self.fieldsets = (
+				(None, {
+					'fields': ('NOMBRE','TIPO','ADMINISTRADOR','LATITUD','LONGITUD',),
+					}),
+				('Historia', {
+					'classes': ('collapse',),
+					'fields': ('HISTORIA',)
+					}),
+				('Cultura', {
+					'classes': ('collapse',),
+					'fields': ('CULTURA',)
+					}),
+				('Comida', {
+					'classes': ('collapse',),
+					'fields': ('COMIDA',)
+					}),
+				('Datos', {
+					'classes': ('collapse',),
+					'fields': ('DATOS',)
+					}),
+				('Mapa', {
+					'classes': ('collapse',),
+					'fields': ('MAPA',)
+					}),
+				)
 		return super(PueblosAdmin, self).get_form(request, obj, **kwargs)	
 #Fin del PueblosAdmin
 
@@ -154,7 +191,6 @@ admin.site.register(pueblo,PueblosAdmin)
 admin.site.register(archivo,ArchivosAdmin)
 admin.site.register(galeria)
 admin.site.register(pueblo_idioma)
-admin.site.register(pueblo_administrador)
 admin.site.register(comentario_pueblo)
 admin.site.register(evento)
 admin.site.register(evento_idioma)

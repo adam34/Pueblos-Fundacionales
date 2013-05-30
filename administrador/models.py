@@ -49,11 +49,15 @@ class pueblo(models.Model):
 		verbose_name_plural="pueblos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	NOMBRE=models.CharField(max_length=30,null=False)
-	DESCRIPCION=models.TextField(null=False)
+	ADMINISTRADOR = models.ForeignKey(User,unique=True,null=False)
+	HISTORIA = models.TextField(null=False)
+	CULTURA = models.TextField(null=False)
+	COMIDA = models.TextField(null=False)
+	DATOS =models.TextField(null=False)
 	#GALERIA=models.ForeignKey('galeria',null=True)
 	TIPO=models.CharField(max_length=1,null=False,choices=TIPOS_PUEBLOS)
-	LATITUD=models.CharField(max_length=12,null=False)
-	LONGITUD=models.CharField(max_length=12,null=False)
+	LATITUD=models.CharField(max_length=20,null=False)
+	LONGITUD=models.CharField(max_length=20,null=False)
 	def __unicode__(self):
 		return self.NOMBRE
 
@@ -64,21 +68,12 @@ class pueblo_idioma(models.Model):
 	ID=models.AutoField(primary_key=True)
 	PUEBLO=models.ForeignKey('Pueblo',null=False)
 	IDIOMA=models.ForeignKey('Idioma',null=False)
-	DESCRIPCION=models.TextField(null=False)
+	HISTORIA = models.TextField(null=False)
+	CULTURA = models.TextField(null=False)
+	COMIDA = models.TextField(null=False)
+	DATOS =models.TextField(null=False)
 	def __unicode__(self):
-		return self.PUEBLO.NOMBRE+" || "+self.DESCRIPCION
-
-
-class pueblo_administrador(models.Model):
-	class Meta:
-		verbose_name="pueblo_administrador" #Nombre en singular del modelo
-		verbose_name_plural="pueblo_administradores" #Nombre en plural del modelo
-	ID=models.AutoField(primary_key=True)
-	PUEBLO=models.ForeignKey('pueblo',null=False)
-	ADMINISTRADOR=models.ForeignKey(User,unique=True)
-	ROL=models.CharField(max_length=10,null=False)
-	def __unicode__(self):
-		return self.ROL
+		return self.PUEBLO.NOMBRE
 
 class comentario_pueblo(models.Model):
 	class Meta:

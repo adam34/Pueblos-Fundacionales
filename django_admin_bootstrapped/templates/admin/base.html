@@ -147,6 +147,26 @@
     {% block footer %}<footer id="footer"></footer>{% endblock %}
 </div>
 <!-- END Container -->
+<div id="modal_sitio" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="titulo-modal">Encabezado de la ventana emergente</h3>
+  </div>
+  <div id='cuerpo-modal' class="modal-body">
+    <p>Ejemplo de una ventana modal</p>
+  </div>
+  <div class="modal-footer">
+    <button id='boton-aceptar' class="btn btn-primary">Aceptar</button>
+  </div>
+</div>
+<script type="text/javascript">
+    $('#boton-aceptar').on('click',cerrar)
+    function cerrar(e)
+    {
+      $('#modal_sitio').modal('hide');
+    }
+</script>
+
 
 </body>
 </html>
