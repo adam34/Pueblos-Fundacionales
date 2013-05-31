@@ -21,7 +21,7 @@ class archivo(models.Model):
 		verbose_name_plural="archivos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	NOMBRE=models.CharField(max_length=20,null=False)
-	DESCRIPCION=models.CharField(max_length=100,null=False)
+	DESCRIPCION=models.CharField(max_length=100,null=False, blank=True)
 	RUTA=models.FileField(upload_to='galerias/')
 	def __unicode__(self):
 		return self.NOMBRE
@@ -99,8 +99,8 @@ class evento(models.Model):
 	DESCRIPCION=models.TextField(null=False)
 	LUGAR=models.CharField(null=False,max_length=50)
 	IMAGEN=models.ImageField(upload_to='eventos/',null=True)
-	LATITUD=models.CharField(max_length=10,null=False)
-	LONGITUD=models.CharField(max_length=10,null=False)
+	LATITUD=models.CharField(max_length=20,null=False)
+	LONGITUD=models.CharField(max_length=20,null=False)
 	def __unicode__(self):
 		return self.NOMBRE
 
@@ -139,7 +139,7 @@ class relato(models.Model):
 	PUEBLO=models.ForeignKey('pueblo',null=False)
 	TITULO=models.CharField(null=False,max_length=30)
 	DESCRIPCION=models.TextField(null=False)
-	FECHA=models.DateTimeField(null=False)
+	FECHA=models.DateTimeField(null=True,blank=True)
 	VALORACION=models.IntegerField(null=True,default=0)
 	APROBADO=models.BooleanField(null=False,default=False)
 	def __unicode__(self):
@@ -186,14 +186,15 @@ class sitio_turistico(models.Model):
 		verbose_name_plural="sitios turisticos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	NOMBRE=models.CharField(null=False,max_length=50)
-	DIRECCION=models.TextField(null=False)
+	DIRECCION=models.CharField(null=False,max_length=50)
 	DESCRIPCION=models.TextField(null=False)
 	CATEGORIA=models.ForeignKey('categoria',null=False)
-	TELEFONOS=models.TextField(null=False)
+	TELEFONOS=models.TextField(null=True)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
 	IMAGEN=models.ImageField(upload_to='sitios/',null=True)
-	LATITUD=models.CharField(max_length=10,null=False)
-	LONGITUD=models.CharField(max_length=10,null=False)
+	PRECIO= models.DecimalField(max_digits=7,decimal_places=2, null=True, default=0.00)
+	LATITUD=models.CharField(max_length=20,null=False)
+	LONGITUD=models.CharField(max_length=20,null=False)
 	def __unicode__(self):
 		return self.NOMBRE
 
@@ -227,12 +228,14 @@ class contrato(models.Model):
 		verbose_name_plural="contratos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	SITIO=models.ForeignKey('sitio_turistico',null=False)
-	DESCRIPCION=models.CharField(null=False,max_length=30)
-	FECHA_INICIO=models.DateTimeField(null=False)
+	OBSERVACION=models.CharField(null=True,max_length=30)
+	FECHA_INICIO=models.DateField(null=False)
 	DURACION=models.IntegerField(null=True,default=0)
 	NOVECES=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
-		return self.DESCRIPCION
+		return self.SITIO.NOMBRE+" ,contrato: "+str(self.ID)
+	def get_Sitio(self):
+		return self.SITIO.NOMBRE
 
 class reporte_comentario(models.Model):
 	class Meta:
@@ -277,3 +280,5 @@ class curiosidad(models.Model):
 	TITULO=models.CharField(null=False,max_length=30)
 	DESCRIPCION=models.TextField(null=False)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
+	def __unicode__(self):
+		return self.TITULO

@@ -39,76 +39,21 @@ function agregar(e,form,ruta)
 {
     alert('Se ejecuto el agregar del idiomas.js');
     var arreglo = validar_nombre_idioma();
-    if(arreglo.length==0)
+    if(arreglo.length!=0)
     {
-        a=10;
-        form=$(form);
-        var datos="";
-        if(e.target.name=='_addanother')
-        {
-            datos="&_addanother=submit"
-        }
-        else if(e.target.name=='_continue')
-        {
-            datos="&_continue=submit"
-        }
-        else if(e.target.name=='_save')
-        {
-            datos="&_save=submit"
-        }
-        else
-        {
-            alert('Ocurrió un error inesperado al momento de guardar/modificar/guardar y continuar el registro. Contacte al administrador.')
-            return false;
-        }
-        if(ruta!='')
-        {
-            $.ajax({
-                async:false,
-                url:ruta,
-                data:form.serialize()+datos,
-                type:'POST',
-                //dataType:
-                success:function(response)
-                {
-                    if(response!='')
-                    {
-                        $('#content-main').hide(500,function()
-                            {
-                                $('#content-main').html(response);
-                                $('#content-main').show(1000);
-                            });
-                    }
-                    else
-                    {
-                        alert('No hubo respuesta por parte del servidor.');
-                    }
-                },
-                error:function(jqXHR, status, error)
-                {
-                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
-                },
-                // complete:function(jqXHR, status)
-                // {
-                //     alert(jqXHR.responseText+'\n'+status)
-                // },
-            });
-        }
-        else
-        {
-            alert('Error inesperado al tratar de cargar el modulo deseado. Consulte a su administrador.');
-        }
-    }
-    else
-    {
-        var str='Ocurrieron los siguientes errores en el formulario: \n';
+        var str='<p>Ocurrieron los siguientes errores en el formulario:</p> \n';
         var x;
         for(x=0;x<arreglo.length;x++)
         {
-            str+="error ["+x+"]: "+arreglo[x]+"\n";
+            str+="<p>Error ["+x+"]: "+arreglo[x]+"<p>\n";
 
         }
-        alert(str);
+        $('#cuerpo-modal').html(str);
+        $('#titulo-modal').html('Errores en el formulario de usuarios.')
+        $('#modal_sitio').modal('show',{
+            keyboard: true
+        });
+        return false;
     }
 }
 function validar_nombre_idioma()

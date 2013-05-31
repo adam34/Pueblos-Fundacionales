@@ -355,6 +355,7 @@ class AccordionMultipleTextbox(Widget):
         
         # import pdb
         # pdb.set_trace()
+        attrs_finales = flatatt(self.attrs)
         idiomas=idioma.objects.all()
         output= [mark_safe("""<div class='row'>""")]
         output.append(mark_safe("""<div class='span8'>"""))
@@ -380,16 +381,16 @@ class AccordionMultipleTextbox(Widget):
         if band:
             output.append(mark_safe("""
                     <div class='tab-pane active' id='"""+name+"""'>
-                        <textarea class='vTextField span12' name='"""+name+"""' rows='10' placeholder='Descripción en Español'>"""+self.datos[u'Español']+"""
+                        <textarea name='"""+name+"""' %s placeholder='Descripción en Español'>"""+self.datos[u'Español']+"""
                         </textarea>
                     </div>
-                """))
+                """) % attrs_finales)
         else:
             output.append(mark_safe("""
                     <div class='tab-pane active' id='"""+name+"""'>
-                        <textarea class='vTextField span12' name='"""+name+"""' rows='10' placeholder='Descripción en Español'></textarea>
+                        <textarea name='"""+name+"""' %s placeholder='Descripción en Español'></textarea>
                     </div>
-                """))
+                """)% attrs_finales)
         for idiom in idiomas:
             band=False
             if self.datos is not None:
@@ -405,16 +406,107 @@ class AccordionMultipleTextbox(Widget):
             if band:
                 output.append(mark_safe("""
                         <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
-                            <textarea class='vTextField span12' name="""+name+"""_"""+idiom.NOMBRE+""" rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'>"""+self.datos[idiom.NOMBRE]+"""
+                            <textarea name="""+name+"""_"""+idiom.NOMBRE+""" placeholder='Descripción en """+idiom.NOMBRE+"""'  %s>"""+self.datos[idiom.NOMBRE]+"""
                             </textarea>
+                        </div>
+                    """) % attrs_finales )
+            else:                
+                output.append(mark_safe("""
+                        <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
+                            <textarea name="""+name+"""_"""+idiom.NOMBRE+""" placeholder='Descripción en """+idiom.NOMBRE+"""' %s></textarea>
+                        </div>
+                    """) % attrs_finales)
+        output.append(mark_safe("""</div>"""))
+        output.append(mark_safe("""
+            <script>
+                $(function () {
+                    $('#ul_%s a:first').tab('show');
+                })
+                $('#ul_%s a').click(function (e) {
+                  e.preventDefault();
+                  $(this).tab('show');
+                })
+                </script>
+            </div>
+        </div>
+        """ % (name,name)))
+        return mark_safe('\n'.join(output))
+
+
+
+class AccordionMultiplesSimpleTextbox(Widget):
+    datos = {}
+    def __init__(self, attrs=None, data=None):
+        super(AccordionMultiplesSimpleTextbox, self).__init__(attrs=attrs)
+        if isinstance(data,dict):
+            self.datos = data
+        else:
+            self.datos=None
+
+    def render(self, name, value, attrs=None):
+        if value is None: value = ''
+        
+        # import pdb
+        # pdb.set_trace()
+        attrs_finales = flatatt(self.attrs)
+        idiomas=idioma.objects.all()
+        output= [mark_safe("""<div class='row'>""")]
+        output.append(mark_safe("""<div class='span8'>"""))
+        output.append(mark_safe("""<ul class="nav nav-tabs" id="ul_%s">""" % (name)))
+        output.append(mark_safe("""<li class="active"><a href="#"""+name+"""">Español</a></li>"""))
+        for idiom in idiomas:
+            output.append(mark_safe("<li><a href='#"+name+"_"+idiom.NOMBRE+"'>"+idiom.NOMBRE+"</a></li>"))
+        output.append(mark_safe("""</ul>"""))
+        output.append(mark_safe("""<div class="tab-content">"""))
+        
+        band=False
+        if self.datos is not None:
+            if self.datos.__contains__(u'Español'):
+                if self.datos[u'Español'] != "":
+                    band=True
+                else:
+                    band=False
+            else:
+                band=False
+        else:
+            band=False
+
+        if band:
+            output.append(mark_safe("""
+                    <div class='tab-pane active' id='"""+name+"""'>
+                        <input type='text' class='vTextField span6' name='"""+name+"""' placeholder='Descripción en Español' value='"""+self.datos[u'Español']+"""' %s>
+                    </div>
+                """ % attrs_finales))
+        else:
+            output.append(mark_safe("""
+                    <div class='tab-pane active' id='"""+name+"""'>
+                        <input type='text' class='vTextField span6' name='"""+name+"""' value='' placeholder='Descripción en Español' %s>
+                    </div>
+                """ % attrs_finales))
+        for idiom in idiomas:
+            band=False
+            if self.datos is not None:
+                if self.datos.__contains__(idiom.NOMBRE):
+                    if self.datos[idiom.NOMBRE] != "":
+                        band=True
+                    else:
+                        band=False
+                else:
+                    band=False
+            else:
+                band=False
+            if band:
+                output.append(mark_safe("""
+                        <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
+                            <input type='text' class='vTextField span6' name="""+name+"""_"""+idiom.NOMBRE+""" placeholder='Descripción en """+idiom.NOMBRE+"""' value='"""+self.datos[idiom.NOMBRE]+"""' %s attrs_finales>
                         </div>
                     """))
             else:                
                 output.append(mark_safe("""
                         <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
-                            <textarea class='vTextField span12' name="""+name+"""_"""+idiom.NOMBRE+""" rows='10' placeholder='Descripción en """+idiom.NOMBRE+"""'></textarea>
+                            <input type='text' class='vTextField span6' name="""+name+"""_"""+idiom.NOMBRE+""" value='' placeholder='Descripción en """+idiom.NOMBRE+"""' %s>
                         </div>
-                    """))
+                    """ % attrs_finales))
         output.append(mark_safe("""</div>"""))
         output.append(mark_safe("""
             <script>
