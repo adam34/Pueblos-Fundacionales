@@ -243,8 +243,9 @@ class reporte_comentario(models.Model):
 		verbose_name_plural="reportes_comentarios" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	CLASE_COMENTARIO=models.CharField(null=False,max_length=1)
-	COMENTARIO=models.IntegerField(null=True,default=0)
+	COMENTARIO=models.IntegerField(null=True,default=0) #Cambiar a PositiveIntegerField
 	RAZON=models.TextField(null=False)
+	FECHA=models.DateTimeField(null=True,blank=True)
 	USUARIO=models.ForeignKey(User,null=False)
 	def __unicode__(self):
 		return self.RAZON

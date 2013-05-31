@@ -1,6 +1,9 @@
 #archivo de templatetags llamado tags.py
 from django.template import Library
 from django.forms.widgets import Media
+from administrador.models import *
+from django.utils.safestring import mark_safe
+from django.utils.html import conditional_escape, format_html, format_html_join
 
 register = Library()
 #Es una metodo para obtener un elemento de una lista
@@ -57,6 +60,76 @@ register = Library()
 # 		obj._js=()
 # 		return obj.render()
 
+@register.simple_tag
+def mostrar_relatos():
+	relatos=relato.objects.filter(APROBADO=0)
+	html = []
+	for rel in relatos:
+		html.append(mark_safe("""
+		<tr>
+				<td><a href='/admin/administrador/relato/"""+str(rel.ID)+"""/'>"""+rel.USUARIO.username+"""</a></td>
+				<td>"""+rel.PUEBLO.NOMBRE+"""</td>
+				<td>"""+rel.FECHA.strftime("%d/%m/%Y %H:%M:%S")+"""</td>
+		</tr>
+			""")
+			)
+	if len(html)>0:
+		return mark_safe('\n'.join(html))
+	else:
+		return
+
+@register.simple_tag
+def mostrar_reportes():
+	import pdb
+	pdb.set_trace()
+	reportes=reporte_comentario.objects.all()
+	html = []	
+	for reporte in reportes:
+		tipo=""
+		comentario= None
+		if reporte.CLASE_COMENTARIO=='P':
+			tipo='Pueblo'
+			try:
+				comentario=comentario_pueblo.objects.get(ID=reporte.COMENTARIO)
+			except comentario_pueblo.DoesNotExist, e:
+				pass
+		elif reporte.CLASE_COMENTARIO=='R':
+			tipo='Relato'
+			try:
+				comentario=comentario_relato.objects.get(ID=reporte.COMENTARIO)
+			except comentario_relato.DoesNotExist, e:
+				pass
+		elif reporte.CLASE_COMENTARIO=='E':
+			tipo='Evento'
+			try:
+				comentario=comentario_evento.objects.get(ID=reporte.COMENTARIO)
+			except comentario_evento.DoesNotExist, e:
+				pass
+		elif reporte.CLASE_COMENTARIO=='S':
+			tipo='Sitio'
+			try:
+				comentario=comentario_sitio.objects.get(ID=reporte.COMENTARIO)
+			except comentario_sitio.DoesNotExist, e:
+				pass
+		else:
+			tipo='Error'
+		html.append(mark_safe("""
+		<tr>
+				<td><a href='/admin/administrador/reporte_comentario/"""+str(reporte.ID)+"""/'>"""+reporte.USUARIO.username+"""</a></td>
+				<td>"""+tipo+"""</td>
+				<td>"""+reporte.FECHA.strftime("%d/%m/%Y %H:%M:%S")+"""</td>
+		</tr>
+			""")
+			)
+	if len(html)>0:
+		return mark_safe('\n'.join(html))
+	else:
+		return
+
+
+
+
+
 @register.filter
 def cmp_str(var1, valor1):
 	# import pdb
@@ -67,7 +140,6 @@ def cmp_str(var1, valor1):
 		return True
 	else:
 		return False
-
 
 @register.filter
 def get_value(obj):

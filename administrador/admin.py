@@ -426,6 +426,7 @@ admin.site.unregister(User)
 admin.site.register(User,UsuarioAdmin)
 admin.site.unregister(Group)
 admin.site.register(Group,GruposAdmin)
+admin.site.register(reporte_comentario)
 
 admin.site.register(idioma,IdiomasAdmin)
 admin.site.register(pueblo,PueblosAdmin)
@@ -442,5 +443,3 @@ admin.site.register(comentario_pueblo)
 admin.site.register(comentario_evento)
 admin.site.register(comentario_relato)
 admin.site.register(comentario_sitio)
-
-admin.site.register(reporte_comentario)
