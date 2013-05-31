@@ -54,10 +54,11 @@ class pueblo(models.Model):
 	CULTURA = models.TextField(null=False)
 	COMIDA = models.TextField(null=False)
 	DATOS =models.TextField(null=False)
-	#GALERIA=models.ForeignKey('galeria',null=True)
+	GALERIA = models.ForeignKey('galeria',null=False)
 	TIPO=models.CharField(max_length=1,null=False,choices=TIPOS_PUEBLOS)
 	LATITUD=models.CharField(max_length=20,null=False)
 	LONGITUD=models.CharField(max_length=20,null=False)
+	VISITAS=models.PositiveIntegerField(null=False,default=0,blank=True)
 	def __unicode__(self):
 		return self.NOMBRE
 
@@ -283,3 +284,11 @@ class curiosidad(models.Model):
 	PUEBLO=models.ForeignKey('pueblo',null=False)
 	def __unicode__(self):
 		return self.TITULO
+
+class login(models.Model):
+	class Meta:
+		verbose_name="Acceso" #Nombre en singular del modelo
+		verbose_name_plural="Accesos " #Nombre en plural del modelo
+	ID=models.AutoField(primary_key=True)
+	USUARIO = models.ForeignKey(User,null=False)
+	FECHA = models.DateTimeField(null=True,blank=True)

@@ -92,6 +92,14 @@ class CustomAutenticacionForm(AuthenticationForm):
 				raise forms.ValidationError(self.error_messages['inactive'])
 			elif not self.user_cache.is_staff:
 				raise forms.ValidationError(self.error_messages['no_staff'])
+			else:
+				access=login()
+				access.USUARIO=self.user_cache
+				access.FECHA=datetime.datetime.now()
+				try:
+					access.save()
+				except Exception,e:
+					pass
 		self.check_for_test_cookie()
 		return self.cleaned_data
 
@@ -225,13 +233,13 @@ class UserChangeForm(forms.ModelForm):
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
 	
 	def save(self,commit=True):
-		user = super(UserForm, self).save(commit=False)
+		user = super(UserChangeForm, self).save(commit=False)
 		if commit:
 			user.save(commit)
 		return user
 
 	def clean(self):
-		super(UserForm, self).clean()
+		super(UserChangeForm, self).clean()
 		cleaned_data = self.cleaned_data
 		return cleaned_data
 
@@ -438,7 +446,7 @@ class PuebloChangeForm(forms.ModelForm):
 					cultura[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.CULTURA
 					datos[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.DATOS
 					comida[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.COMIDA	
-		except pueb_idiom.DoesNotExist,e:
+		except pueblo_idioma.DoesNotExist,e:
 			pass
 		self.fields['HISTORIA'].widget=AccordionMultipleTextbox(data=historia)
 		self.fields['CULTURA'].widget=AccordionMultipleTextbox(data=cultura)

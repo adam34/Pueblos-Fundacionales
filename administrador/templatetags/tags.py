@@ -62,7 +62,7 @@ register = Library()
 
 @register.simple_tag
 def mostrar_relatos():
-	relatos=relato.objects.filter(APROBADO=0)
+	relatos=relato.objects.filter(APROBADO=0).order_by('-FECHA')
 	html = []
 	for rel in relatos:
 		html.append(mark_safe("""
@@ -80,9 +80,9 @@ def mostrar_relatos():
 
 @register.simple_tag
 def mostrar_reportes():
-	import pdb
-	pdb.set_trace()
-	reportes=reporte_comentario.objects.all()
+	# import pdb
+	# pdb.set_trace()
+	reportes=reporte_comentario.objects.all().order_by('-FECHA')
 	html = []	
 	for reporte in reportes:
 		tipo=""
@@ -126,7 +126,27 @@ def mostrar_reportes():
 	else:
 		return
 
-
+@register.simple_tag
+def mostrar_logins(user):
+	# import pdb
+	# pdb.set_trace()
+	if user.is_superuser:
+		access=login.objects.all().order_by('-FECHA')[:10]
+	else:
+		access=login.objects.filter(USUARIO=user).order_by('-FECHA')[:10]
+	html = []
+	for acc in access:
+		html.append(mark_safe("""
+		<tr>
+				<td><a href='/admin/administrador/login/"""+str(acc.ID)+"""/'>"""+acc.USUARIO.username+"""</a></td>
+				<td>"""+acc.FECHA.strftime("%d/%m/%Y %H:%M:%S")+"""</td>
+		</tr>
+			""")
+			)
+	if len(html)>0:
+		return mark_safe('\n'.join(html))
+	else:
+		return
 
 
 
