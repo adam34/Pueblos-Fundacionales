@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 import json
 
 def home(request): 
-	return render_to_response('index.html')
+	return render_to_response('index.html',RequestContext(request))
 
 def secciones(request): 
 	return render_to_response('secciones.html')
