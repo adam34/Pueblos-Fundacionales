@@ -1,35 +1,34 @@
-//Grupos.js con funciones para los forms de users.
+//categorias.js con funciones para los forms de eventos
 
-//Funciones para el modelo de idiomas
+//Funciones para el modelo de contratos
 $(function()
 {
     //Codigo que registra el evento de keypress a los campos del form.
 	var $elem=$('form');
 	var id=$elem.attr('id');
-	if(id=='group_form')
+	if(id=='categoria_form')
 	{
-		$('#id_name').on('keypress',validar_nombre_grupo);
         $('input[name="_addanother"]').on('click',agregar);
         $('input[name="_continue"]').on('click',agregar);
         $('input[name="_save"]').on('click',agregar);
-		function validar_nombre_grupo(e)
-		{
-            $temp=$('#id_name');
-            if($temp.val().length>30)
+        $('#id_NOMBRE').on('keypress',validar_nombre_pueblo);
+        function validar_nombre_pueblo(e)
+        {
+            $temp=$(e.target);
+            texto= $temp.val();
+            //var patt=new RegExp("[A-Za-z0-9]+");
+            var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ0-9 ]+/;
+            var caracter = String.fromCharCode(e.charCode);
+            if(!patt.test(caracter))
             {
                 return false;
             }
-			//var patt=new RegExp("[A-Za-z0-9]+");
-			var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ ]+/;
-			var caracter = String.fromCharCode(e.charCode);
-			if(!patt.test(caracter))
-			{
-				//e.preventDefault();Metodo para evitar que se guarde el valor en el input
-				//e.preventDefault() 
-				//e.stopPropagation()
-				return false;
-			}
-		}
+            texto=texto+caracter;
+            if(texto.length>30)
+            {
+                return false;
+            }
+        }
 	}
     else
     {
@@ -39,7 +38,7 @@ $(function()
 //Metodo utilizado para controlar el guardado de los datos con el servidor por Ajax.
 function agregar(e,form,ruta)
 {
-    var arreglo=validar_formulario_grupo();
+    var arreglo=validar_formulario();
     if(arreglo.length!=0)
     //if(false)
     {
@@ -59,40 +58,26 @@ function agregar(e,form,ruta)
     }
 
 }
-function validar_formulario_grupo()
+function validar_formulario()
 {
     //Se validan los campos de username, password, password2, nombre(s),apellido(s) y email
     //Se valida el username
     var errores = new Array();
-    str1=$('#id_name').val();
-    if(str1.length>30)
+
+    valor=$('#id_NOMBRE').val();
+    if(valor.length<4)
     {
-        errores.push('La longitud del nombre de usuario no puede ser mayor a 30 caracteres.');
+        errores.push('El tamaño del nombre no puede ser menor de 4 caracteres.');
     }
-    if(str1.length<4)
+    if(valor.length>30)
     {
-        errores.push('La longitud del nombre de usuario no puede ser menor de 4 caracteres.');
+        errores.push('El tamaño del nombre no puede ser mayor de 30 caracteres.');
     }
     patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})*$/;
-    if(!patt.test(str1))
+    if(!patt.test(valor))
     {
         errores.push('El campo de nombre(s) no tiene el formato correcto. Asegurese de introducir nombres compuestos sólo por letras, de 3 caracteres como mínimo, separados por un "sólo" espacio y de proporcionar tanto el/los nombre(s) como el/los apellido(s).');
     }
-    if(errores==0)
-    {
-        $permisos = $('#selection-permissions .selection-elem');
-        $('#selection-permissions').blur();
-        if($permisos.length>0)
-        {
-            $permisos.each(function(index,value){
-                $valor = $(value);
-                $valor.attr('selected','true');
-                $valor.off('click');
-                $valor.off('mouseover');
-            });
-        }
-    }
-
     return errores;
 }
 

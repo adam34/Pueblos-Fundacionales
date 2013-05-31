@@ -1,62 +1,39 @@
-//pueblos.js con funciones para los forms de pueblos
+//eventos.js con funciones para los forms de eventos
 
-//Funciones para el modelo de idiomas
+//Funciones para el modelo de eventos
 $(function()
 {
     //Codigo que registra el evento de keypress a los campos del form.
 	var $elem=$('form');
 	var id=$elem.attr('id');
-	if(id=='pueblo_form')
+	if(id=='sitio_turistico_form')
 	{
-		$('#id_NOMBRE').on('keypress',validar_nombre_pueblo);
         $('input[name="_addanother"]').on('click',agregar);
         $('input[name="_continue"]').on('click',agregar);
         $('input[name="_save"]').on('click',agregar);
-		function validar_nombre_pueblo(e)
-		{
+        $('#id_NOMBRE').on('keypress',validar_nombre_pueblo);
+        function validar_nombre_pueblo(e)
+        {
             $temp=$(e.target);
             texto= $temp.val();
-			//var patt=new RegExp("[A-Za-z0-9]+");
-			var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ ]+/;
-			var caracter = String.fromCharCode(e.charCode);
-			if(!patt.test(caracter))
-			{
-				return false;
-			}
+            //var patt=new RegExp("[A-Za-z0-9]+");
+            var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ0-9 ]+/;
+            var caracter = String.fromCharCode(e.charCode);
+            if(!patt.test(caracter))
+            {
+                return false;
+            }
             texto=texto+caracter;
             if(texto.length>30)
             {
                 return false;
             }
-		}
+        }
 	}
     else
     {
         alert('Error inesperado al tratar de asociar los eventos al formulario correcto. Contacte a su administrador para mayores informes.')
     }
-    tinymce.init({
-        selector: "textarea",
-        theme: "modern",
-        width: 700,
-        height: 300,
-        plugins: [
-             "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-             "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-             "save table contextmenu directionality emoticons template paste textcolor"
-       ],
-       toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons", 
-     });
-    $editors =$(tinymce.editors);
-    $editors.each(function(index,value){
-        $control=$(value.getElement())
-        contenido = $control.val();
-        if(contenido!="")
-        {
-            value.setContent(contenido);
-            $control.val('')
-        }
-    });
-
 });
 //Metodo utilizado para controlar el guardado de los datos con el servidor por Ajax.
 function agregar(e,form,ruta)
@@ -86,41 +63,49 @@ function validar_formulario()
     //Se validan los campos de username, password, password2, nombre(s),apellido(s) y email
     //Se valida el username
     var errores = new Array();
-    str1=$('#id_NOMBRE').val();
-    if(str1.length>30)
+
+    valor=$('#id_NOMBRE').val();
+    if(valor.length<4)
     {
-        errores.push('La longitud del nombre de usuario no puede ser mayor a 30 caracteres.');
+        errores.push('El tamaño del nombre no puede ser menor de 4 caracteres.');
     }
-    if(str1.length<4)
+    if(valor.length>30)
     {
-        errores.push('La longitud del nombre de usuario no puede ser menor de 4 caracteres.');
+        errores.push('El tamaño del nombre no puede ser mayor de 30 caracteres.');
     }
-    patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ]{2,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ]{2,})*$/;
-    if(!patt.test(str1))
+    patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})*$/;
+    if(!patt.test(valor))
     {
         errores.push('El campo de nombre(s) no tiene el formato correcto. Asegurese de introducir nombres compuestos sólo por letras, de 3 caracteres como mínimo, separados por un "sólo" espacio y de proporcionar tanto el/los nombre(s) como el/los apellido(s).');
     }
-    if($("#id_TIPO").val()=="")
+    if($("#id_PUEBLO").val()=="")
     {
-        errores.push('Seleccione un tipo de pueblo, por favor.');   
+        errores.push('Seleccione un pueblo por favor.');
     }
-    if($("#id_ADMINISTRADOR").val()=="")
+    if($("#id_CATEGORIA").val()=="")
     {
-        errores.push('Seleccione a un usuario para que sea el administrador del pueblo.');
+        errores.push('Seleccione un pueblo por favor.');
+    }
+
+    if($("input[name='DESCRIPCION']").val()=="")
+    {
+        errores.push('Es obligatorio introducir una descripción en el idioma original del sistema.');
+    }
+    if($("#id_DIRECCION").val()=="")
+    {
+        errores.push('Es obligatorio introducir una dirección para el sitio.');
+    }
+    precio = $("#id_PRECIO").val()
+    if(precio!="")
+    {
+        patt= /^([0-9]{1,5}).([0-9]{2})$/;
+        if(!patt.test(precio))
+        {
+            errores.push('Formato del precio incorrecto. El formato correcto puede tener de 1 a 5 digitos a la izquierda del "." y de 1 a 2 decimales.');
+        }
     }
     if(errores.length==0)
     {
-        $editors =$(tinymce.editors);
-        $editors.each(function(index,value)
-        {
-            contenido = value.getContent();
-            if(contenido!="")
-            {
-                $control=$(value.getElement())
-                $control.val(contenido);
-
-            }
-        });
         if(map!=undefined)
         {
             cantidad = map.markers.length;
@@ -136,6 +121,7 @@ function validar_formulario()
             }
         }
     }
+
     return errores;
 }
 
