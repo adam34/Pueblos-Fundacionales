@@ -18,6 +18,9 @@ def secciones(request):
 def pueblos(request): 
 	return render_to_response('pueblos.html')
 
+def politicas(request): 
+	return render_to_response('politicas.html')
+
 def curiosidades(request): 
 	return render_to_response('curiosidades.html')
 

@@ -44,10 +44,10 @@ header{background:transparent;height:160px}
 #twitter,#facebook{background:#1e62a9;-ms-border-radius:.5em;-moz-border-radius:.5em;-webkit-border-radius:.5em;-o-border-radius:.5em;border-radius:.5em;cursor:pointer;height:40px;width:85%}
 #twitter{background:#1ec4fe}
 #weatherslider{margin-top:1.4em;height:310px;width:88%}
-.accesibilidad{border:thin solid #d6d6d6;height:220px;margin:.5em auto;}
-.accesibilidad a{color:#25799d;text-decoration:none}
-.accesibilidad img{float:left;margin-left:.5em;margin-right:.5em}
-.accesibilidad p{font-size:.8em;font-weight:bold;margin:.3em 3em;text-align:justify}
+.politicas{border:thin solid #d6d6d6;height:220px;margin:.5em auto;}
+.politicas a{color:#25799d;text-decoration:none}
+.politicas img{float:left;margin-left:.5em;margin-right:.5em}
+.politicas p{font-size:.8em;font-weight:bold;margin:.3em 3em;text-align:justify}
 .acceso,.formulario{border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;display:inline-block;height:280px;padding-right:10px;vertical-align:top;width:35%}
 .acceso{font-size:.9em;font-weight:bold;}
 .acceso h2{font-size:1.3em;font-weight:bold}
@@ -221,7 +221,15 @@ header{background:transparent;height:160px}
 .menu_multimedia{margin-left:1.5em;width:20%;}
 .menu_multimedia a{background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#fff;margin-left:.5em;padding:12px 25px;text-decoration:none}
 .contenido_multimedia{height:450px;margin:0 auto;width:95%}
+#wrapper_a{text-align:center;}
 #wrapper_a ol{list-style:none;margin-top:.5em}
-#wrapper_a li a{font-size:.9em;font-weight:bold;margin-top:.8em}
+#wrapper_a li a{color:#1e6381;font-size:.9em;font-weight:bold;margin-top:.8em;text-decoration:none}
 audio{left:300px;top:10px;float:left;position:relative}
-#shortcuts div p{display:inline-block;vertical-align:top;width:30%}
+#shortcuts{margin:0 auto;width:90%;}
+#shortcuts div p{color:#a70325;display:inline-block;vertical-align:top;width:30%}
+.uso{margin:0 auto;width:95%;}
+.uso h2{color:#a70325}
+.uso h4{color:#ce8610;font-size:1.1em;font-weight:bold;margin-top:.8em}
+.uso p{font-size:.9em;font-weight:bold;margin:.9em 0;text-align:justify;width:95%}
+.uso ul{list-style:none}
+.uso li{font-size:.9em;font-weight:bold;margin-left:2em;margin-top:.3em;text-align:justify;width:92%}
