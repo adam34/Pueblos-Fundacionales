@@ -1,5 +1,6 @@
 {% extends "admin/base_site.html" %}
 {% load i18n admin_static bootstrapped_goodies_tags %}
+{% load tags %}
 
 {% block extrastyle %}{{ block.super }}<link rel="stylesheet" type="text/css" href="{% static "admin/css/dashboard.css" %}" />
 <link rel="stylesheet" type="text/css" href="/static/admin/css/estilos.css">
@@ -92,7 +93,7 @@
 <div class="row-fluid">
     <div id="content-main" class="span12">
       <div class="span7">
-        <span class="label">Relatos enviados.</span>
+        <span class="label label-info">Relatos enviados.</span>
         <br/>
         <br/>
         <table class="table table_special table-condensed">
@@ -101,15 +102,11 @@
             <th>Pueblo</th>
             <th>Fecha de recibido</th>
           </tr>
-          <tr>
-            <td>Algo1</td>
-            <td>Algo1</td>
-            <td>Algo1</td>
-          </tr>
+            {% mostrar_relatos %}
         </table>
         <br/>
         <br/>
-        <span class="label">Reportes enviados</span>
+        <span class="label label-important">Reportes enviados</span>
         <br/>
         <br/>
         <table class="table table_special table-condensed">
@@ -118,11 +115,7 @@
             <th>Sección</th>
             <th>Fecha de envio</th>
           </tr>
-          <tr>
-            <td>Algo1</td>
-            <td>Algo1</td>
-            <td>Algo1</td>
-          </tr>
+            {% mostrar_reportes %}
         </table>
       </div>
       <div class="span3 offset2">
@@ -133,9 +126,7 @@
           <tr>
             <th>Accesos</th>
           </tr>
-          <tr>
-            <td>Algo1</td>
-          </tr>
+          {% mostrar_logins user %}
         </table>
         <!--Body content-->
       </div>

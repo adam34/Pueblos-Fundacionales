@@ -104,6 +104,10 @@ function validar_formulario()
     {
         errores.push('Seleccione un tipo de pueblo, por favor.');   
     }
+    if($("#id_GALERIA").val()=="")
+    {
+        errores.push('Seleccione una galería, por favor.');
+    }
     if($("#id_ADMINISTRADOR").val()=="")
     {
         errores.push('Seleccione a un usuario para que sea el administrador del pueblo.');

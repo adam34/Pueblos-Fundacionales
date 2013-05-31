@@ -91,7 +91,7 @@ class PueblosAdmin(admin.ModelAdmin):
 			self.form=PuebloChangeForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','TIPO','ADMINISTRADOR','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','TIPO','GALERIA','ADMINISTRADOR','LATITUD','LONGITUD',),
 					}),
 				('Historia', {
 					'classes': ('collapse',),
@@ -118,7 +118,7 @@ class PueblosAdmin(admin.ModelAdmin):
 			self.form=PuebloForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','TIPO','ADMINISTRADOR','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','TIPO','GALERIA','ADMINISTRADOR','LATITUD','LONGITUD',),
 					}),
 				('Historia', {
 					'classes': ('collapse',),
@@ -234,11 +234,9 @@ class RelatosAdmin(admin.ModelAdmin):
 					'fields': ('USUARIO','PUEBLO','FECHA_P',),
 					}),
 				('Titulo', {
-					'classes': ('collapse',),
 					'fields': ('TITULO',)
 					}),
 				('Descripción', {
-					'classes': ('collapse',),
 					'fields': ('DESCRIPCION',)
 					}),
 				(None, {
@@ -252,11 +250,9 @@ class RelatosAdmin(admin.ModelAdmin):
 					'fields': ('USUARIO','PUEBLO','FECHA_P',),
 					}),
 				('Titulo', {
-					'classes': ('collapse',),
 					'fields': ('TITULO',)
 					}),
 				('Descripción', {
-					'classes': ('collapse',),
 					'fields': ('DESCRIPCION',)
 					}),
 				(None, {
@@ -437,10 +433,10 @@ admin.site.register(categoria,CategoriasAdmin)
 admin.site.register(contrato,ContratosAdmin)
 admin.site.register(galeria,GaleriasAdmin)
 admin.site.register(archivo,ArchivosAdmin)
+admin.site.register(login)
+admin.site.register(reporte_comentario)
 
 admin.site.register(comentario_pueblo)
 admin.site.register(comentario_evento)
 admin.site.register(comentario_relato)
 admin.site.register(comentario_sitio)
-
-admin.site.register(reporte_comentario)

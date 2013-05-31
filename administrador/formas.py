@@ -92,6 +92,14 @@ class CustomAutenticacionForm(AuthenticationForm):
 				raise forms.ValidationError(self.error_messages['inactive'])
 			elif not self.user_cache.is_staff:
 				raise forms.ValidationError(self.error_messages['no_staff'])
+			else:
+				access=login()
+				access.USUARIO=self.user_cache
+				access.FECHA=datetime.datetime.now()
+				try:
+					access.save()
+				except Exception,e:
+					pass
 		self.check_for_test_cookie()
 		return self.cleaned_data
 
@@ -225,13 +233,13 @@ class UserChangeForm(forms.ModelForm):
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
 	
 	def save(self,commit=True):
-		user = super(UserForm, self).save(commit=False)
+		user = super(UserChangeForm, self).save(commit=False)
 		if commit:
 			user.save(commit)
 		return user
 
 	def clean(self):
-		super(UserForm, self).clean()
+		super(UserChangeForm, self).clean()
 		cleaned_data = self.cleaned_data
 		return cleaned_data
 
@@ -438,7 +446,7 @@ class PuebloChangeForm(forms.ModelForm):
 					cultura[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.CULTURA
 					datos[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.DATOS
 					comida[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.COMIDA	
-		except pueb_idiom.DoesNotExist,e:
+		except pueblo_idioma.DoesNotExist,e:
 			pass
 		self.fields['HISTORIA'].widget=AccordionMultipleTextbox(data=historia)
 		self.fields['CULTURA'].widget=AccordionMultipleTextbox(data=cultura)
@@ -850,8 +858,8 @@ class RelatosForm(forms.ModelForm):
 
 
 	def save(self,commit=True):
-		import pdb
-		pdb.set_trace()
+		# import pdb
+		# pdb.set_trace()
 		relato = super(RelatosForm, self).save(commit=False)
 		if self.data.__contains__('FECHA_P'):
 			fecha=self.data['FECHA_P']
@@ -882,8 +890,8 @@ class RelatosForm(forms.ModelForm):
 		return relato
 
 	def clean(self):
-		import pdb
-		pdb.set_trace()
+		# import pdb
+		# pdb.set_trace()
 		super(RelatosForm, self).clean()
 		cleaned_data = self.cleaned_data
 		return cleaned_data
@@ -922,8 +930,8 @@ class RelatosChangeForm(forms.ModelForm):
 		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(data=descripcion,attrs = {'rows':'3','class':'vTextField span8'})
 
 	def save(self,commit=True):
-		import pdb
-		pdb.set_trace()
+		# import pdb
+		# pdb.set_trace()
 		relato = super(RelatosChangeForm, self).save(commit=False)
 		if self.data.__contains__('FECHA_P'):
 			fecha=self.data['FECHA_P']
@@ -999,8 +1007,8 @@ class SitiosTuristicosForm(forms.ModelForm):
 
 
 	def save(self,commit=True):
-		import pdb
-		pdb.set_trace()
+		# import pdb
+		# pdb.set_trace()
 		sitio = super(SitiosTuristicosForm, self).save(commit=False)	
 		sitio.save()
 		idiomas = idioma.objects.all()
@@ -1019,8 +1027,8 @@ class SitiosTuristicosForm(forms.ModelForm):
 		return sitio
 
 	def clean(self):
-		import pdb
-		pdb.set_trace()
+		# import pdb
+		# pdb.set_trace()
 		super(SitiosTuristicosForm, self).clean()
 		cleaned_data = self.cleaned_data
 
