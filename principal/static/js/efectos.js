@@ -9,11 +9,11 @@ function mostrarPueblos(){
 	$("#galeria").on("click", contenido_multimedia);
 	$("#audio").on("click", contenido_multimedia);
 	//Información básica
-	$("#cosas").on("click", contenidoBasico)
-	$("#exp").on("click", expresiones)
-	$("#fra").on("click", frases)
-	$("#proy").on("click", proyecto)
-
+	$("#cosas").on("click", contenidoBasico);
+	$("#exp").on("click", expresiones);
+	$("#fra").on("click", frases);
+	$("#proy").on("click", proyecto);
+	$("#registro").on("click", formulario);
 }
 
 function quePueblos(enlace){
@@ -59,4 +59,10 @@ function proyecto(enlace){
 	enlace.preventDefault();
 	base =$(this).attr("id");
 	$("#proy_b").toggle('slow');
+}
+
+function formulario(enlace){
+	enlace.preventDefault();
+	$("#contenedor_form > form").css({'display':'none'});
+	$("#contenedor_form").load(".acceso");
 }

@@ -122,6 +122,83 @@ header
 	transform()
 	width 15px
 
+#olvido_form
+	display none
+	input[type="button"]
+		bordes(.2em)
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		color blanco
+		height 30px
+		width 120px
+	input[type="text"], input[type="password"]
+		background darken(blanco, 6%)
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		color darken(blanco, 80%)
+		margin-top .5em
+		height 30px
+		width 290px
+	input[type="text"]
+		margin-left 3.3em
+	label 
+		margin-left 1.3em
+
+.acceso 
+	display none
+	text-align left 
+	input[type="button"]
+		bordes(.2em)
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		color blanco
+		height 30px
+		margin-left 50%
+		width 90px
+	input[type="text"], input[type="password"]
+		background darken(blanco, 6%)
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		color darken(blanco, 80%)
+		margin-top .5em
+		height 30px
+		width 290px
+	input[type="text"]
+		margin-left 0
+	label 
+		margin-left 20%
+	label#passwordd
+		margin-right .5em
+
+#contenedor_form
+	input[type="button"]
+		bordes(.2em)
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		color blanco
+		height 30px
+		width 90px
+	input[type="text"], input[type="password"]
+		background darken(blanco, 6%)
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		color darken(blanco, 80%)
+		margin-top .5em
+		height 30px
+		width 290px
+	input[type="text"]
+		margin-left 3.3em
+	label 
+		margin-left 1.3em
 #locations 
 	float left
 	list-style none
@@ -194,6 +271,7 @@ header
 	width 88%
 
 /*Clases */
+
 .politicas
 	border thin solid lighten(gris, 80%)
 	height 220px
@@ -210,33 +288,6 @@ header
 		margin .3em 3em
 		text-align justify
 
-.acceso, .formulario
-	border thin solid lighten(gris, 80%)
-	bordes(.2em)
-	display inline-block
-	height 280px
-	padding-right 10px
-	vertical-align top
-	width 35%
-
-
-.acceso 
-	font-size .9em
-	h2 
-		font-size 1.3em
-	div 
-		color blanco
-		margin .5em auto
-		img 
-			margin-left .5em
-			margin-top .3em
-			vertical-align middle
-	p 
-		margin 1em 1.5em
-		font-size .8em
-		a 
-			color rojizo
-			text-decoration none 
 .row 
 	margin 1em auto
 	text-align center
@@ -415,37 +466,19 @@ header
 	margin 0 auto
 	width 80%
 
-.formulario 
+.formulario
+	border thin solid lighten(gris, 80%)
+	bordes(.2em)
 	color darken(blanco, 60%)
+	height 320px
+	padding-right 10px
 	text-align center
-	width 60%
-	a 
+	width 95%
+	span 
 		color rojizo
+		cursor pointer
 		font-size .8em
 		float right
-		text-decoration none
-	input[type="button"]
-		bordes(.2em)
-		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
-		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
-		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
-		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
-		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
-		color blanco
-		height 30px
-		width 90px
-	input[type="text"], input[type="password"]
-		background darken(blanco, 6%)
-		border thin solid lighten(gris, 80%)
-		bordes(.2em)
-		color darken(blanco, 80%)
-		margin-top .5em
-		height 30px
-		width 230px
-	input[type="text"]
-		margin-left 3em
-	label 
-		margin-left 1em
 
 .idiomas, .social_icons 
 	display inline-block
@@ -583,7 +616,7 @@ header
 	background blanco
 	bordes(10px)
 	position relative 
-	height 280px 
+	height auto 
 	margin 10% auto
 	padding 5px 20px 13px 20px
 	width 700px
