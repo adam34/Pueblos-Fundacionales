@@ -27,7 +27,7 @@ $(document).on("ready", function(){
           e.preventDefault();
             route.forward();
             if(route.step_count < route.steps_length)
-              $('#steps').append('<li>'+route.steps[route.step_count].instructions+'</li>');
+              $('#steps').append('<li">'+route.steps[route.step_count].instructions+'</li>'+'<br/>');
           });
         });
         $('#back').click(function(e){
@@ -92,14 +92,14 @@ $(document).on("ready", function(){
         }
     });
     //Mi casa xD 
-    map.addMarker({
+    /*map.addMarker({
       lat: 24.13570,
       lng: -110.33032,
       title: 'Mi casa',
       click: function(e) {
           alert('Esta es mi casa.');
       }
-    });
+    });*/
     //Sierra de San Francisco
     map.addMarker({
       lat: 27.597500,

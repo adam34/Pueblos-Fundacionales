@@ -170,6 +170,48 @@
 			</section>
 		</section>
 	</section>
+	<footer>
+		<section class="footer_container">
+			<section class="footer_wrap">
+			<section class="wcont">
+				<h4 class="title">Patrocinadores</h4>
+				<ul>
+					<li><a href="#" title="link 1">Link #1</a></li>
+					<li><a href="#" title="link 2">Link #2</a></li>
+					<li><a href="#" title="link 3">Link #3</a></li>
+					<li><a href="#" title="link 4">Link #4</a></li>
+				</ul>
+			</section>
+			<section class="wcont">
+				<h4 class="title">Colaboradores</h4>
+				<ul>
+					<li><a href="#" title="link 1">Link #1</a></li>
+					<li><a href="#" title="link 2">Link #2</a></li>
+					<li><a href="#" title="link 3">Link #3</a></li>
+					<li><a href="#" title="link 4">Link #4</a></li>
+				</ul>
+			</section>
+			<section class="wcont">
+				<h4 class="title">Enlaces de interés</h4>
+				<ul>
+					<li><a href="#" title="link 1">Link #1</a></li>
+					<li><a href="#" title="link 2">Link #2</a></li>
+					<li><a href="#" title="link 3">Link #3</a></li>
+					<li><a href="#" title="link 4">Link #4</a></li>
+				</ul>
+			</section>
+			<section class="wcont">
+				<h4 class="title">Contacto</h4>
+				<ul>
+					<li><a href="#" title="link 1">Link #1</a></li>
+					<li><a href="#" title="link 2">Link #2</a></li>
+					<li><a href="#" title="link 3">Link #3</a></li>
+					<li><a href="#" title="link 4">Link #4</a></li>
+				</ul>
+			</section>
+		</section>
+		</section>
+	</footer>
 	<!-- jQuery -->
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 	<!-- jQuery Mobile -->
@@ -181,30 +223,26 @@
 	 <!-- Slider Camera -->
     <script src='/static/scripts/camera.min.js'></script> 
     <script src='/static/js/efectos.js'></script> 
-    <script>
+     <script>
 		$(function(){		
 			$('#camera_wrap_1').camera({
 				height : '300px',
 				thumbnails: true,
 			});
 		});
+		$el = $('.modalDialog');
+		$close = $('.close');
+		function onClickClose(e) {
+            e.preventDefault();
+            self.$el.fadeOut('fast');
+        }
 		$(function(){
 			$('#ingresa').on("click", function(){
 				$('.modalDialog').show(function(){
 					$(this).fadeIn(5000)
 				});
 			});
-			$('.close').on("click", function(){
-				$('.modalDialog').hide(function(){
-					$(this).css({
-						WebkitTransition : 'opacity 400ms ease-in-out',
-    					MozTransition    : 'opacity 400ms ease-in-out',
-    					MsTransition     : 'opacity 400ms ease-in-out',
-    					OTransition      : 'opacity 400ms ease-in-out',
-    					transition       : 'opacity 400ms sease-in-out'
-					});
-				});
-			});
+			$close.on('click', onClickClose);
 		});
 	</script>
 	<script>
