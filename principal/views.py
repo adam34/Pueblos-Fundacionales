@@ -13,7 +13,7 @@ from administrador.models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import get_language_info,ugettext as _
 from django.views import i18n
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate,logout
 import json
 
 
@@ -27,27 +27,35 @@ def login_ajax(request):
 	# pdb.set_trace()
 	if request.is_ajax():
 		if request.POST:
-			if (request.POST.__contains__('usuario') and request.POST.__contains__('password')):
-				username = request.POST['usuario']
-				password = request.POST['password']
-				if username and password:
-					request.user = authenticate(username=username,
-													password=password)
-					if request.user is not None:
-						if not request.user.is_active:
-							return HttpResponse(json.dumps({'respuesta':'noActivo'}),mimetype='application/json')
+			if not request.user.is_authenticated():
+				if (request.POST.__contains__('usuario') and request.POST.__contains__('password')):
+					username = request.POST['usuario']
+					password = request.POST['password']
+					if username and password:
+						request.user = authenticate(username=username,
+														password=password)
+						if request.user is not None:
+							if not request.user.is_active:
+								return HttpResponse(json.dumps({'respuesta':'noActivo'}),mimetype='application/json')
+							else:
+								return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
 						else:
-							return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
-					else:
-							return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')
-
+								return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')
+				else:
+					return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
 			else:
-				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+				return HttpResponse(json.dumps({'respuesta':'noAccion'}),mimetype='application/json')
 		else:
 			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
 	else:
 		raise Http404
 	pass
+
+def logout_ajax(request):
+	if request.is_ajax():
+		logout(request)
+	else
+		raise Http404
 
 def secciones(request): 
 	return render_to_response('secciones.html')
