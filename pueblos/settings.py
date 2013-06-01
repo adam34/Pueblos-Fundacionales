@@ -41,6 +41,13 @@ TIME_ZONE = 'America/Mazatlan'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'es-MX'
 
+ugettext = lambda s: s
+
+LANGUAGES = (
+    ('es', ugettext('Español')),
+    ('en', ugettext('Ingles')),
+)
+
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -120,6 +127,11 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+)
+
+TEMPLATE_CONTEXT_PROCESSORS =(
+    'django.core.context_processors.i18n',
+    'django.contrib.auth.context_processors.auth',
 )
 
 INSTALLED_APPS = (

@@ -1,16 +1,27 @@
 # Create your views here.
 # -*- encoding: utf-8 -*-
+	# import pdb
+	# pdb.set_trace()
 import json
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
+from django.conf import settings
+
 from administrador.models import *
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.translation import get_language_info,ugettext as _
+from django.views import i18n
 import json
 
 def home(request): 
+	# import pdb
+	# pdb.set_trace()
 	return render_to_response('index.html',RequestContext(request))
+
+def login_ajax(request):
+	pass
 
 def secciones(request): 
 	return render_to_response('secciones.html')

@@ -1,6 +1,6 @@
 <!-- Pagina base.html-->
 <!doctype html>
-<html lang="es">
+<html>
 <head>
 	<meta charset="UTF-8">
 	<title>Pueblos Fundacionales</title>
@@ -35,11 +35,11 @@
 			</a>
 			<div class="esp">
 				<img src="/static/img/bandera.png" alt="Español">
-				<a href="#">Español</a>
+				<a href="/?language=es">Español</a>
 			</div>
 			<div class="eng">
 				<img src="/static/img/ingles.png" alt="Español">
-				<a href="#">Inglés</a>
+				<a href="/?language=en">Inglés</a>
 			</div>
 		</div>
 		<div class="social_icons">
@@ -108,8 +108,8 @@
 			<a href="#close" title="Close" class="close">X</a>
 			<section class="formulario">
 				<h2>Ingresa</h2>
-				<form action="#">
-					<label for="email">Email: </label><input id="email" type="text" placeholder="&nbsp;Introduce tu email" required>
+				<form id='id_login' action="#" method="POST">
+					<label for="usuario">Usuario: </label><input id="usuario" type="text" placeholder="&nbsp;Introduce tu nombre de usuario" required>
 					<br><br>
 					<label for="password">Contraseña: </label><input id ="password" type="password" placeholder="&nbsp;Introduce tu contraseña" required>
 					<br><br>
@@ -206,6 +206,46 @@
 			});
 			$close.on('click', onClickClose);
 		});
+
+		$('#usuario').on('keypress',validar_usuario);
+		function validar_usuario(e)
+		{
+            $temp=$('#username');
+            if($temp.val().length>30)
+            {
+                return false;
+            }
+			var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]+/;
+			var caracter = String.fromCharCode(e.charCode);
+			if(!patt.test(caracter))
+			{
+				return false;
+			}
+		}
+		$('#id_login input[name="enviar"]').on('click',autenticar);
+		function autenticar(e)
+		{
+            usuario=$('#usuario').val();
+            if(usuario.length>30)
+            {
+                alert('El nombre de usuario no puede ser mayor de 30 caracteres');
+                return;
+            }
+			var patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})*$/;
+			if(!patt.test(usuario))
+			{
+				alert('El nombre de usuario sólo puede contener letras y números.');
+				return;
+			}
+			contraseña = $('#contraseña').val();
+			if(contraseña!="")
+			{
+				alert('La contraseña no puede quedar en blanco.');
+				return;
+			}
+
+			
+		}
 	</script>
 </body>
 
