@@ -13,7 +13,9 @@ from administrador.models import *
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import get_language_info,ugettext as _
 from django.views import i18n
+from django.contrib.auth import authenticate
 import json
+
 
 def home(request): 
 	# import pdb
@@ -21,6 +23,30 @@ def home(request):
 	return render_to_response('index.html',RequestContext(request))
 
 def login_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if (request.POST.__contains__('usuario') and request.POST.__contains__('password')):
+				username = request.POST['usuario']
+				password = request.POST['password']
+				if username and password:
+					request.user = authenticate(username=username,
+													password=password)
+					if request.user is not None:
+						if not request.user.is_active:
+							return HttpResponse(json.dumps({'respuesta':'noActivo'}),mimetype='application/json')
+						else:
+							return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
+					else:
+							return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')
+
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		raise Http404
 	pass
 
 def secciones(request): 

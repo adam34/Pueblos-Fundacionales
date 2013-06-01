@@ -212,8 +212,8 @@
 		$('#usuario').on('keypress',validar_usuario);
 		function validar_usuario(e)
 		{
-            $temp=$('#username');
-            if($temp.val().length>30)
+            usuario = $('#usuario').val();
+            if(usuario.length+1>30)
             {
                 return false;
             }
@@ -239,14 +239,58 @@
 				alert('El nombre de usuario sólo puede contener letras y números.');
 				return;
 			}
-			contraseña = $('#contraseña').val();
-			if(contraseña!="")
+			password = $('#password').val();
+			if(password=="")
 			{
 				alert('La contraseña no puede quedar en blanco.');
 				return;
 			}
-
-			
+			$.ajax({
+				async:false,
+                url:"/login_ajax/",
+                data:{csrfmiddlewaretoken:'{{csrf_token}}','usuario':usuario,'password':password,},
+                type:'POST',
+                success:function(response)
+                {
+                	if(response!='')
+                    {
+                    	if(response.respuesta=='exito')
+                    	{
+                    		alert('Usuario logeado.');
+		                	setTimeout(function()
+		                	{
+		                		location.href='/';
+		                	}
+		                		,2000);
+                    	}
+                    	else if(response.respuesta=='fallido')
+                    	{
+                    		alert('Error, datos incorrectos.');
+                    	}
+                    	else if(response.respuesta=='noActivo')
+                    	{
+                    		alert('Error, el usuario no esta autorizado para entrar en el sistema.');
+                    	}
+                    	else if(response.respuesta=='noCampos')
+                    	{
+                    		alert('No se recibieron los campos completos.');
+                    	}
+                    	else if(response.respuesta=='noPOST')
+                    	{
+                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+                    	}
+                    }
+                    else
+                    {
+                        alert('No hubo respuesta por parte del servidor.');
+                    }
+                },
+                error:function(jqXHR, status, error)
+                {
+                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+                },
+            });
+            return false;
 		}
 	</script>
 </body>
