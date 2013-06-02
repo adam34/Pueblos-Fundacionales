@@ -4,11 +4,7 @@
 	# pdb.set_trace()
 import json
 from django.http import HttpResponse, Http404
-<<<<<<< HEAD
-from django.shortcuts import render_to_response,redirect
-=======
 from django.shortcuts import render_to_response, redirect
->>>>>>> upstream/master
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -146,7 +142,6 @@ def recupera_ajax(request):
 	else:
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
-<<<<<<< HEAD
 def cambiar_contrasena(request):
 	if request.POST:
 		if ('usuario' in request.POST and 'contrasena' in request.POST and 'contrasena_repe' in request.POST):
@@ -174,18 +169,11 @@ def cambiar_contrasena(request):
 			raise Http404
 	else:
 		raise Http404
-=======
->>>>>>> upstream/master
+
 
 def cerrar_sesion(request):
 	logout(request)
 	return redirect(home)
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> upstream/master
 
 def secciones(request): 
 	return render_to_response('secciones.html')
