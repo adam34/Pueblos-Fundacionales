@@ -20,12 +20,17 @@ import string, random
 import json,smtplib
 
 def home(request): 
-	# import pdb
-	# pdb.set_trace()
+	import pdb
+	pdb.set_trace()
 	#Obtener un pueblo turistico al azar
-	# cantidad_turisticos=pueblo.objects.filter(TIPO=u'Turístico').count()
-	# azar=random.randint(0,cantidad_turisticos-1)
-	return render_to_response('index.html',RequestContext(request,{'user':request.user}))
+	cantidad_turisticos=pueblo.objects.filter(TIPO=u'T').count()
+	azar=random.randint(0,cantidad_turisticos-1)
+	turistico=pueblo.objects.all()[azar]
+	cantidad_curiosidades=curiosidad.objects.count()
+	azar=random.randint(0,cantidad_curiosidades-1)
+	curios=curiosidad.objects.all()[azar]
+
+	return render_to_response('index.html',RequestContext(request,{'user':request.user,'turistico':turistico}))
 
 def login_ajax(request):
 	# import pdb

@@ -390,8 +390,6 @@ class PuebloForm(forms.ModelForm):
 		return pueblo
 
 	def clean(self):
-		# import pdb
-		# pdb.set_trace()
 		super(PuebloForm, self).clean()
 		cleaned_data = self.cleaned_data
 
@@ -404,6 +402,13 @@ class PuebloForm(forms.ModelForm):
 			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,16})$',longitud) == None:
 				if not self._errors.has_key('MAPA'):
 					self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
+		administrador = cleaned_data['ADMINISTRADOR']
+		try:
+			if not administrador.is_staff:
+				self._errors['ADMINISTRADOR']= ErrorList([u"No puede ser asignado un usuario como administrador de un pueblo sino tiene acceso al administrador."])
+		except User.DoesNotExist,e:
+			print e
+			self._errors['ADMINISTRADOR']= ErrorList([u"No puede ser asignado un usuario como administrador sino existe."])
 		return cleaned_data
 
 class PuebloChangeForm(forms.ModelForm):
@@ -528,6 +533,13 @@ class PuebloChangeForm(forms.ModelForm):
 			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,16})$',longitud) == None:
 				if not self._errors.has_key('MAPA'):
 					self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
+		administrador = cleaned_data['ADMINISTRADOR']
+		try:
+			if not administrador.is_staff:
+				self._errors['ADMINISTRADOR']= ErrorList([u"No puede ser asignado un usuario como administrador de un pueblo sino tiene acceso al administrador."])
+		except User.DoesNotExist,e:
+			print e
+			self._errors['ADMINISTRADOR']= ErrorList([u"No puede ser asignado un usuario como administrador sino existe."])
 		return cleaned_data
 
 #------------------------------Fin de formularios para el modelo de pueblos----------------------
