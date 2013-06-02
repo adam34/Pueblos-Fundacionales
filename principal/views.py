@@ -1,16 +1,152 @@
 # Create your views here.
 # -*- encoding: utf-8 -*-
+	# import pdb
+	# pdb.set_trace()
 import json
 from django.http import HttpResponse, Http404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
+from django.conf import settings
+
 from administrador.models import *
 from django.views.decorators.csrf import csrf_exempt
-import json
+from django.utils.translation import get_language_info,ugettext as _
+from django.views import i18n
+from django.contrib.auth import authenticate,logout,login
+from django.core.mail import send_mail
+from email.MIMEText import MIMEText
+import string, random
+import json,smtplib
 
 def home(request): 
-	return render_to_response('index.html',RequestContext(request))
+	# import pdb
+	# pdb.set_trace()
+	return render_to_response('index.html',RequestContext(request,{'user':request.user}))
+
+def login_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if not request.user.is_authenticated():
+				if (request.POST.__contains__('usuario') and request.POST.__contains__('password')):
+					username = request.POST['usuario']
+					password = request.POST['password']
+					if username and password:
+						usuario = authenticate(username=username,
+														password=password)
+						if usuario is not None:
+							if not usuario.is_active:
+								return HttpResponse(json.dumps({'respuesta':'noActivo'}),mimetype='application/json')
+							else:
+								login(request,usuario)
+								return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
+						else:
+								return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')
+				else:
+					return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noAccion'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+	pass
+
+def registro_usuario_ajax(request):
+	if request.is_ajax():
+		if request.POST:
+			if ('usuario' in request.POST and 'correo' in request.POST and 'password' in request.POST and 'password_repe' in request.POST):
+				usuario = request.POST['usuario']
+				password = request.POST['password']
+				password_repe =request.POST['password_repe']
+				if password == password_repe:
+					if not User.objects.filter(username=usuario).exists():
+						nuevo_usuario=User(username=usuario)
+						nuevo_usuario.set_password(password)
+						nuevo_usuario.email=request.POST['correo']
+						nuevo_usuario.save()
+						try:
+							# msg = MIMEText(message, _charset="UTF-8")
+							# msg['Subject'] = Header(subject, "utf-8")
+							server = smtplib.SMTP('smtp.gmail.com', 587) 
+							#Next, log in to the server
+							server.starttls()
+							server.ehlo()
+							server.login("mario250213", "/(mar3443)=")
+							mensaje = u"Bienvenido %s, al sistema de Pueblos Fundacionales! Esperamos que tenga una buena experiencia. \n\n\n Atentamente: La administración del sistema de Pueblos Fundacionales" % (usuario)
+							msg = MIMEText(mensaje,_charset="UTF-8")
+							msg['From'] = "mario250213@gmail.com"
+							msg['To'] = nuevo_usuario.email
+							msg['Subject'] = "Registro de cuenta en sitio de Pueblos Fundacionales."							
+							text = msg.as_string()
+							server.sendmail("mario250213@gmail.com", nuevo_usuario.email, text)
+							server.quit()
+							print "enviado"
+						except  Exception,e:
+							print e
+						return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
+					else:
+						return HttpResponse(json.dumps({'respuesta':'existe'}),mimetype='application/json')
+				else:
+					return HttpResponse(json.dumps({'respuesta':'noIguales'}),mimetype='application/json')
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')	
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
+def recupera_ajax(request):
+	if request.is_ajax():
+		if request.POST:
+			if 'correo' in request.POST :
+				correo = request.POST['correo']
+				usuario = User.objects.filter(email=correo)
+				if usuario.exists():
+					try:
+						# import pdb
+						# pdb.set_trace()
+						# msg = MIMEText(message, _charset="UTF-8")
+						# msg['Subject'] = Header(subject, "utf-8")
+						server = smtplib.SMTP('smtp.gmail.com', 587) 
+						#Next, log in to the server
+						server.starttls()
+						server.ehlo()
+						nueva_contrasena = ''.join(random.choice(string.ascii_uppercase+string.ascii_lowercase + string.digits) for x in range(15))
+						usuario[0].set_password(nueva_contrasena)
+						usuario[0].save()
+						server.login("mario250213", "/(mar3443)=")
+						mensaje = u"Qué tal %s.<br>La contraseña de recuperación de su cuenta es: %s\n<br> Para cambiar la contraseña actual por una personal, haga clic sobre el enlace siguiente: <a href='http://localhost/cambiar_contraseña/'>http://localhost/cambiar_contraseña/</a>  <br><br> Atentamente: La administración del sistema de Pueblos Fundacionales" % (usuario[0].username,nueva_contrasena)
+						msg = MIMEText(mensaje,'html',_charset="UTF-8")
+						msg['From'] = "mario250213@gmail.com"
+						msg['To'] = correo
+						msg['Subject'] = u"Recuperar contraseña."
+						text = msg.as_string()
+						server.sendmail("mario250213@gmail.com", correo, text)
+						server.quit()
+						print "enviado"
+					except  Exception,e:
+						print e
+					return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
+				else:
+					return HttpResponse(json.dumps({'respuesta':'Noexiste'}),mimetype='application/json')
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')	
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
+
+def logout_ajax(request):
+	if request.is_ajax():
+		logout(request)
+	else:
+		raise Http404
+
+
 
 def secciones(request): 
 	return render_to_response('secciones.html')

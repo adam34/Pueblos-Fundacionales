@@ -110,7 +110,7 @@
 				<h2>Ingresa</h2>
 				<article id="contenedor_form">
 					<form action="#" id="form_ingreso">
-					<label for="email">Email: </label><input id="email" type="text" placeholder="&nbsp;Introduce tu email" required>
+					<label for="usuario">Usuario: </label><input id="usuario" type="text" placeholder="&nbsp;Introduce tu nombre de usuario" required maxlength='30'>
 					<br><br>
 					<label for="password">Contraseña: </label><input id ="password" type="password" placeholder="&nbsp;Introduce tu contraseña" required>
 					<br><br>
@@ -121,7 +121,7 @@
 				<article id="olvido_form">
 					<form action="#" id="form_olvido">
 					<label for="email">Email: </label>
-					<input id="email" type="text" placeholder="&nbsp;Introduce tu email" required>
+					<input id="email" type="text" placeholder="&nbsp;Introduce tu email" required maxlength='75'>
 					<br><br>
 					<input name="enviar" value="Recuperar" type="button">
 					<br>
@@ -129,10 +129,10 @@
 					</form>
 				</article>
 				<article class="acceso">
-					<form action="#" id="form_ingreso">
+					<form action="#" id="form_registro">
 						<label for="username">Usuario</label>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<input id="username" type="text" placeholder="&nbsp;Usuario" required><br>
+						<input id="username" type="text" placeholder="&nbsp;Usuario" required maxlength='30'><br>
 						<label for="correo_e">Email</label>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input id="correo_e" type="text" placeholder="&nbsp;Correo electrónico" required><br>
@@ -152,6 +152,12 @@
 		</div>
 	</div>
 	<section class="contenedor">
+		{% if user.username != "" %}
+			<p>{{user.username}}</p>
+			<p>Un usuario peinado en la pared.</p>
+		{% else %}
+			<p>No usuario</p>
+		{% endif %}
 		<!-- Principal -->
 		{% block contenedor %}{% endblock %}
 	</section>
@@ -264,6 +270,293 @@
 				$('#cambio').hide();
 			});
 		});
+		$('#form_ingreso #usuario').on('keypress',validar_usuario);
+		function validar_usuario(e)
+		{
+            usuario = $('#usuario').val();
+            if(usuario.length+1>30)
+            {
+                return false;
+            }
+			var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]+/;
+			var caracter = String.fromCharCode(e.charCode);
+			if(!patt.test(caracter))
+			{
+				return false;
+			}
+		}
+		$('#form_ingreso input[name="enviar"]').on('click',autenticar);
+		function autenticar(e)
+		{
+            usuario=$('#usuario').val();
+            if(usuario.length>30)
+            {
+                alert('El nombre de usuario no puede ser mayor de 30 caracteres');
+                return;
+            }
+			var patt=/^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]+$/;
+			if(!patt.test(usuario))
+			{
+				alert('El nombre de usuario sólo puede contener letras y números.');
+				return;
+			}
+			password = $('#password').val();
+			if(password=="")
+			{
+				alert('La contraseña no puede quedar en blanco.');
+				return;
+			}
+			$.ajax({
+				async:false,
+                url:"/login_ajax/",
+                data:{csrfmiddlewaretoken:'{{csrf_token}}','usuario':usuario,'password':password,},
+                type:'POST',
+                success:function(response)
+                {
+                	if(response!='')
+                    {
+                    	if(response.respuesta=='exito')
+                    	{
+                    		alert('Usuario logeado.');
+		                	setTimeout(function()
+		                	{
+		                		location.href='/';
+		                	}
+		                		,2000);
+                    	}
+                    	else if(response.respuesta=='fallido')
+                    	{
+                    		alert('Error, datos incorrectos.');
+                    	}
+                    	else if(response.respuesta=='noActivo')
+                    	{
+                    		alert('Error, el usuario no esta autorizado para entrar en el sistema.');
+                    	}
+                    	else if(response.respuesta=='noCampos')
+                    	{
+                    		alert('No se recibieron los campos completos.');
+                    	}
+                    	else if(response.respuesta=='noPOST')
+                    	{
+                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+                    	}
+                   		else if(response.respuesta=='noAJAX')
+                    	{
+                    		alert('No se utilizó AJAX para la comunicación con el servidor.');
+                    	}
+                    }
+                    else
+                    {
+                        alert('No hubo respuesta por parte del servidor.');
+                    }
+                },
+                error:function(jqXHR, status, error)
+                {
+                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+                },
+            });
+            return false;
+        }
+		$('#form_registro #username').on('keypress',validar_usuario);
+		$('#form_registro #correo_e').on('keypress',validar_correo);
+		$('#form_registro input[name="enviar"]').on('click',registrar);
+		function validar_correo(e)
+		{
+            var patt=new RegExp("^[A-Za-z0-9.-_@]+$");
+            var caracter = String.fromCharCode(e.charCode);
+            if(!patt.test(caracter))
+            {
+                return false;
+            }
+		}
+		function registrar(e)
+		{
+			usuario = $('#form_registro #username').val();
+			correo = $('#form_registro #correo_e').val();
+			password = $('#form_registro #password_n').val();
+			password_r = $('#form_registro #password_r').val();
+		    var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]+/;
+		    if(!patt.test(usuario))
+		    {
+		        alert('El nombre de usuario sólo puede contener letras y números, ningún otro tipo de caracter.');
+		        return;
+		    }
+		    patt= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+	        if(!patt.test(correo))
+	        {
+	            alert('El formato del email es incorrecto. Favor de verificarlo.');
+	            return;
+	        }
+	        if(password=="")
+	        {
+	        	alert('El campo de la contraseña no puede permanecer en blanco.');
+	            return;
+	        }
+	        if(password!=password_r)
+	        {
+	        	alert('Las campos de contraseñas no pueden ser diferentes. Verifiquelo, por favor.');
+	            return;	
+	        }
+			$.ajax({
+				async:false,
+                url:"/registro_usuario_ajax/",
+                data:{csrfmiddlewaretoken:'{{csrf_token}}','usuario':usuario,'correo':correo,'password':password,'password_repe':password_r},
+                type:'POST',
+                success:function(response)
+                {
+                	if(response!='')
+                    {
+                    	if(response.respuesta=='exito')
+                    	{
+                    		alert('Usuario registrado.');
+		                	setTimeout(function()
+		                	{
+								$.ajax({
+									async:false,
+					                url:"/login_ajax/",
+					                data:{csrfmiddlewaretoken:'{{csrf_token}}','usuario':usuario,'password':password,},
+					                type:'POST',
+					                success:function(response)
+					                {
+					                	if(response!='')
+					                    {
+					                    	if(response.respuesta=='exito')
+					                    	{
+					                    		alert('Usuario logeado.');
+							                	location.href='/';
+					                    	}
+					                    	else if(response.respuesta=='fallido')
+					                    	{
+					                    		alert('Error, datos incorrectos.');
+					                    	}
+					                    	else if(response.respuesta=='noActivo')
+					                    	{
+					                    		alert('Error, el usuario no esta autorizado para entrar en el sistema.');
+					                    	}
+					                    	else if(response.respuesta=='noCampos')
+					                    	{
+					                    		alert('No se recibieron los campos completos.');
+					                    	}
+					                    	else if(response.respuesta=='noPOST')
+					                    	{
+					                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+					                    	}
+					                   		else if(response.respuesta=='noAJAX')
+					                    	{
+					                    		alert('No se utilizó AJAX para la comunicación con el servidor.');
+					                    	}
+					                    }
+					                    else
+					                    {
+					                        alert('No hubo respuesta por parte del servidor.');
+					                    }
+					                },
+					                error:function(jqXHR, status, error)
+					                {
+					                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+					                },
+					            });
+					            return false;
+								}
+		                		,2000);
+                    	}
+                    	else if(response.respuesta=='fallido')
+                    	{
+                    		alert('Error, datos incorrectos.');
+                    	}
+                    	else if(response.respuesta=='existe')
+                    	{
+                    		alert('Error, el usuario que esta tratando de registrar, ya existe. Intente con otro diferente.');
+                    	}
+                    	else if(response.respuesta=='noIguales')
+                    	{
+                    		alert('Error, las contraseñas no coinciden.');
+                    	}
+                    	else if(response.respuesta=='noCampos')
+                    	{
+                    		alert('No se recibieron los campos completos.');
+                    	}
+                    	else if(response.respuesta=='noPOST')
+                    	{
+                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+                    	}
+                   		else if(response.respuesta=='noAJAX')
+                    	{
+                    		alert('No se utilizó AJAX para la comunicación con el servidor.');
+                    	}
+                    }
+                    else
+                    {
+                        alert('No hubo respuesta por parte del servidor.');
+                    }
+                },
+                error:function(jqXHR, status, error)
+                {
+                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+                },
+            });
+            return false;
+
+		}
+		$('#olvido_form #email').on('keypress',validar_correo);
+		$('#olvido_form input[name="enviar"]').on('click',recuperar);
+		function recuperar(e)
+		{
+			correo = $('#olvido_form #email').val();
+		    patt= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+	        if(!patt.test(correo))
+	        {
+	            alert('El formato del email es incorrecto. Favor de verificarlo.');
+	            return;
+	        }
+			$.ajax({
+				async:false,
+                url:"/recupera_ajax/",
+                data:{csrfmiddlewaretoken:'{{csrf_token}}','correo':correo,},
+                type:'POST',
+                success:function(response)
+                {
+                	if(response!='')
+                    {
+                    	if(response.respuesta=='exito')
+                    	{
+                    		alert('Contraseña enviada a correo.');
+		                	setTimeout(function()
+		                	{
+		                		location.href='/';
+		                	}
+		                		,2000);
+                    	}
+                    	else if(response.respuesta=='Noexiste')
+                    	{
+                    		alert('Error, no existe una cuenta de usuario con ese correo.');
+                    	}
+                    	else if(response.respuesta=='noCampos')
+                    	{
+                    		alert('No se recibieron los campos completos.');
+                    	}
+                    	else if(response.respuesta=='noPOST')
+                    	{
+                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+                    	}
+                   		else if(response.respuesta=='noAJAX')
+                    	{
+                    		alert('No se utilizó AJAX para la comunicación con el servidor.');
+                    	}
+                    }
+                    else
+                    {
+                        alert('No hubo respuesta por parte del servidor.');
+                    }
+                },
+                error:function(jqXHR, status, error)
+                {
+                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+                },
+            });
+            return false;
+		}
+
 	</script>
 </body>
 

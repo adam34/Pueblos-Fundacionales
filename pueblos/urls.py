@@ -50,5 +50,9 @@ urlpatterns = patterns('',
     url(r'^sitios_turisticos/$', 'principal.views.sitiosT'),
     url(r'^busqueda/$', 'principal.views.busqueda'),
     url(r'^curiosidades/$', 'principal.views.curiosidades'),
-    url(r'^galerias_ajax/$','principal.views.galerias_ajax')
+    url(r'^galerias_ajax/$','principal.views.galerias_ajax'),
+    url(r'^login_ajax/', 'principal.views.login_ajax'),
+    url(r'^registro_usuario_ajax/', 'principal.views.registro_usuario_ajax'),
+    url(r'^recupera_ajax/', 'principal.views.recupera_ajax'),
+    
 )
