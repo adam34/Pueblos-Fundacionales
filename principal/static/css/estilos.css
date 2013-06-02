@@ -31,20 +31,22 @@ header{background:transparent;height:160px}
 #arrow{height:15px;margin:.8em 0;width:15px}
 #olvido_form{display:none;}
 #olvido_form input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);color:#fff;height:30px;width:120px}
-#olvido_form input[type="text"],#olvido_form input[type="password"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;width:290px}
+#olvido_form input[type="text"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;width:80%}
 #olvido_form input[type="text"]{margin-left:3.3em}
 #olvido_form label{margin-left:1.3em}
-.acceso{display:none;text-align:left;}
-.acceso input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);color:#fff;height:30px;margin-left:50%;width:90px}
-.acceso input[type="text"],.acceso input[type="password"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;width:290px}
-.acceso input[type="text"]{margin-left:0}
-.acceso label{margin-left:20%}
-.acceso label#passwordd{margin-right:.5em}
-#contenedor_form{text-align:left;}
-#contenedor_form input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);color:#fff;height:30px;margin-left:50%;width:90px}
-#contenedor_form input[type="text"],#contenedor_form input[type="password"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;width:290px}
-#contenedor_form input[type="text"]{margin-left:3.3em}
-#contenedor_form label{margin-left:20%}
+#acceso{display:none;text-align:left;}
+#acceso input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);color:#fff;height:30px;margin-left:50%;width:90px}
+#acceso input[type="text"],#acceso input[type="password"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;width:50%}
+#acceso input[type="text"]{margin-left:0}
+#acceso input#password_n,#acceso input#password_r{margin-left:1%}
+#acceso input#username{margin-left:5%}
+#acceso input#correo_e{margin-left:8%}
+#acceso label{margin-left:20%}
+#contenedor_form > form#form_ingreso{text-align:left;}
+#contenedor_form > form#form_ingreso input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);color:#fff;height:30px;margin-left:45%;width:90px}
+#contenedor_form > form#form_ingreso input[type="text"],#contenedor_form > form#form_ingreso input[type="password"]{background:#f0f0f0;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-top:.5em;height:30px;left:24%;position:relative;width:290px}
+#contenedor_form > form#form_ingreso input[type="password"]{left:20%;position:relative}
+#contenedor_form > form#form_ingreso label.usuario_lbl,#contenedor_form > form#form_ingreso label.password_lbl{left:20%;position:relative}
 #locations{float:left;list-style:none;max-width:200px;}
 #locations li{color:#fff;cursor:pointer;height:50px;margin:.3em auto;padding:10px;max-width:180px;}
 #locations li:first-child{background:#15455a}
@@ -98,7 +100,7 @@ header{background:transparent;height:160px}
 .eventos{height:300px;margin:0 auto;width:95%;}
 .eventos input[type="text"]{background:#f0f0f0;color:#f0f0f0;width:230px}
 .footer_container{margin:0 auto;width:80%}
-.formulario{border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#666;height:320px;padding-right:10px;text-align:center;width:95%;}
+.formulario{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#666;height:320px;padding-right:10px;text-align:center;width:95%;}
 .formulario span{color:#a70325;cursor:pointer;font-size:.8em;font-weight:bold;float:right}
 .idiomas,.social_icons{display:inline-block;margin:0 auto;text-align:right;vertical-align:middle;width:60%}
 .idiomas{margin:0 0 0 5em;}

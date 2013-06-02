@@ -183,17 +183,49 @@
 			width 200px
 	header, nav, .contenedor 
 		width 95%
+	#acceso 
+		input[type="text"]
+			margin-left 0
+		input#password_n, input#password_r
+			margin-left 3%
+			width 60%
+		input#username 
+			margin-left 11% 
+			width 60%
+		input#correo_e 
+			margin-left 15%
+			width 60%
+		label 
+			margin-left 2%
+		input[type="button"]
+			margin-left 45%
+	#olvido_form 
+		input[type="text"]
+			margin-left 2%
+			width 95%
+		label 
+			margin-left 0
+	#contenedor_form > form#form_ingreso 
+		label.usuario_lbl, label.password_lbl
+			left 5%
+		label.password_lbl
+			top 20%
+		input[type="text"], input[type="password"]
+			left 15%
+			width 60%
+		input[type="password"]
+			left 7.5%
 	#more-info 
 		height auto
 		width 33%
 	.accesibilidad
 		height 190px
 		margin-bottom .4em
-	.acceso, .formulario 
+	/*.acceso, .formulario 
 		margin .2em auto
 		width 90%
 	.acceso 
-		height 200px
+		height 200px*/
 	.buscar 
 		width 30%
 	.calendario-eventos, .calendario-notas 
@@ -282,6 +314,37 @@
 				margin-left 20%
 				margin-top .2em
 				width 40%
+	#acceso 
+		height auto 
+		input[type="text"]
+			margin-left 0
+		input#password_n, input#password_r
+			margin-left 1%
+			width 95%
+		input#username 
+			margin-left 1% 
+			width 95%
+		input#correo_e 
+			margin-left 1%
+			width 95%
+		label 
+			margin-left 2%
+			margin-bottom 2%
+		input[type="button"]
+			margin-left 45%
+	#olvido_form 
+		label,input[type="button"]
+			margin-left 30%
+		
+	#contenedor_form > form#form_ingreso 
+		label.usuario_lbl, label.password_lbl
+			left 5%
+		label.password_lbl
+			top 20%
+		input[type="text"], input[type="password"]
+			left 25%
+			width 70%
+			top -30px
 	#map_canvas
 		width 36%
 	#more-info 
@@ -348,6 +411,18 @@
 				margin-left 5% 
 				margin-top 0
 				width 80%
+	#contenedor_form > form#form_ingreso 
+		label.usuario_lbl, label.password_lbl
+			left 25%
+		label.password_lbl
+			top 30%
+		input[type="text"], input[type="password"]
+			left 0
+			width 95%
+			top 0px
+		input[type="button"]
+			margin-left 25%
+			margin-bottom .5em
 	#map_canvas 
 		width 50%
 	#more-info 
@@ -378,15 +453,15 @@
 
 	#twitter, #facebook
 		font-size .6em
-	.acceso
+	/*.acceso
 		height 230px
 		p 
-			font-size .7em
-	.formulario
+			font-size .7em*/
+	/*.formulario
 		input[type="password"], input[type="text"]
 			width 170px
 		input[type="button"]
-			margin-left 30%
+			margin-left 30%*/
 	.modalDialog > div 
 		width 200px
 	.idiomas 
@@ -438,6 +513,10 @@
 @media screen and (max-width: 320px)
 	footer 
 		background yellow
+	
+	#acceso 
+		border thin solid azul
+		height auto
 	.accesibilidad
 		height 250px
 	.buscar 

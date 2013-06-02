@@ -142,15 +142,13 @@
 				<article id="contenedor_form">
 					<h2 id="ingresar_h">Ingresar</h2>
 					<form action="#" id="form_ingreso">
-					<label for="usuario">
+					<label for="usuario" class="usuario_lbl">
 					Usuario 
 					</label>
-					&nbsp;&nbsp;
 					<input id="usuario" type="text" placeholder="&nbsp;Introduce tu nombre de usuario" required maxlength='30'>
 					<br>
-					<label for="password">
+					<label for="password" class="password_lbl">
 						Contraseña </label>
-					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<input id ="password" type="password" placeholder="&nbsp;Introduce tu contraseña" required>
 					<br><br>
 					<input name="enviar" value="Entrar" type="button">
@@ -168,16 +166,14 @@
 					<span id="regresar_olvido">Regresar</span>
 					</form>
 				</article>
-				<article class="acceso">
+				<article id="acceso">
 					<h2 id="acceder_h">Registro</h2>
 					<form action="#" id="form_registro">
-						<label for="username">Usuario</label>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<label id="lbl_username" for="username">Usuario</label>
 						<input id="username" type="text" placeholder="&nbsp;Usuario" required maxlength='30'><br>
 						<label for="correo_e">Email</label>
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						<input id="correo_e" type="text" placeholder="&nbsp;Correo electrónico" required><br>
-						<label for="password_n">Contraseña</label>&nbsp;&nbsp;
+						<label for="password_n">Contraseña</label>
 						<input id="password_n" type="password" placeholder="&nbsp;Contraseña" required><br>
 						<label id="passwordd" for="password_r">Contraseña</label>
 						<input id="password_r" type="password" placeholder="&nbsp;Repetir Contraseña" required>
@@ -275,7 +271,7 @@
 				$('#acceder_h').show();
 				$('#ingresar_h').hide();
 				$('#olvido').hide();
-				$('.acceso').show();
+				$('#acceso').show();
 				$('#cambio').show();
 			});
 		});
@@ -286,7 +282,7 @@
 				$('span').show();
 				$('#acceder_h').hide();
 				$('#recuperar_h').hide();
-				$('.acceso').hide();
+				$('#acceso').hide();
 				$('#cambio').hide();
 			});
 		});
@@ -294,7 +290,7 @@
 			$('#olvido').on("click", function(){
 				$('#olvido_form').show();
 				$('#form_ingreso').hide();
-				$('.acceso').hide();
+				$('#acceso').hide();
 				$('#ingresar_h').hide();
 				$('#recuperar_h').show();
 				$('#acceder_h').hide();
@@ -312,7 +308,7 @@
 				$('#olvido').show();
 				$('#acceder_h').hide();
 				$('#recuperar_h').hide();
-				$('.acceso').hide();
+				$('#acceso').hide();
 				$('#cambio').hide();
 			});
 		});

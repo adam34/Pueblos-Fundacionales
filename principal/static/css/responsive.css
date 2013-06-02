@@ -58,10 +58,20 @@ aside,.suscribete{height:180px;width:45%}
 aside{margin-left:.2em;width:47%}
 .suscribete input[type="text"]{width:200px}
 header,nav,.contenedor{width:95%}
+#acceso input[type="text"]{margin-left:0}
+#acceso input#password_n,#acceso input#password_r{margin-left:3%;width:60%}
+#acceso input#username{margin-left:11%;width:60%}
+#acceso input#correo_e{margin-left:15%;width:60%}
+#acceso label{margin-left:2%}
+#acceso input[type="button"]{margin-left:45%}
+#olvido_form input[type="text"]{margin-left:2%;width:95%}
+#olvido_form label{margin-left:0}
+#contenedor_form > form#form_ingreso label.usuario_lbl,#contenedor_form > form#form_ingreso label.password_lbl{left:5%}
+#contenedor_form > form#form_ingreso label.password_lbl{top:20%}
+#contenedor_form > form#form_ingreso input[type="text"],#contenedor_form > form#form_ingreso input[type="password"]{left:15%;width:60%}
+#contenedor_form > form#form_ingreso input[type="password"]{left:7.5%}
 #more-info{height:auto;width:33%}
 .accesibilidad{height:190px;margin-bottom:.4em}
-.acceso,.formulario{margin:.2em auto;width:90%}
-.acceso{height:200px}
 .buscar{width:30%}
 .calendario-eventos,.calendario-notas{display:inline-block;vertical-align:top;width:55%}
 .calendario-notas{width:40%}
@@ -90,6 +100,17 @@ aside article{margin-left:0}
 header,nav,.contenedor{width:100%}
 nav li.menu{font-size:1em;padding:.7em 1em .7em 1.2em;width:16%;}
 nav li.menu:last-child{margin-left:20%;margin-top:.2em;width:40%}
+#acceso{height:auto;}
+#acceso input[type="text"]{margin-left:0}
+#acceso input#password_n,#acceso input#password_r{margin-left:1%;width:95%}
+#acceso input#username{margin-left:1%;width:95%}
+#acceso input#correo_e{margin-left:1%;width:95%}
+#acceso label{margin-left:2%;margin-bottom:2%}
+#acceso input[type="button"]{margin-left:45%}
+#olvido_form label,#olvido_form input[type="button"]{margin-left:30%}
+#contenedor_form > form#form_ingreso label.usuario_lbl,#contenedor_form > form#form_ingreso label.password_lbl{left:5%}
+#contenedor_form > form#form_ingreso label.password_lbl{top:20%}
+#contenedor_form > form#form_ingreso input[type="text"],#contenedor_form > form#form_ingreso input[type="password"]{left:25%;width:70%;top:-30px}
 #map_canvas{width:36%}
 #more-info{height:auto;width:28%}
 .buscar{display:block;margin-left:3em;margin-bottom:2em;width:100%}
@@ -113,6 +134,10 @@ aside,.relatos,.materiales,.suscribete{margin:.3em auto .3em auto;width:100%}
 aside,.suscribete{height:150px}
 nav li.menu{text-align:center;width:91%;}
 nav li.menu:last-child{margin-left:5%;margin-top:0;width:80%}
+#contenedor_form > form#form_ingreso label.usuario_lbl,#contenedor_form > form#form_ingreso label.password_lbl{left:25%}
+#contenedor_form > form#form_ingreso label.password_lbl{top:30%}
+#contenedor_form > form#form_ingreso input[type="text"],#contenedor_form > form#form_ingreso input[type="password"]{left:0;width:95%;top:0}
+#contenedor_form > form#form_ingreso input[type="button"]{margin-left:25%;margin-bottom:.5em}
 #map_canvas{width:50%}
 #more-info{width:95%}
 .accesibilidad{font-size:.9em;height:230px}
@@ -124,10 +149,6 @@ nav li.menu:last-child{margin-left:5%;margin-top:0;width:80%}
 .enlaces-utiles p img{margin:.2em}
 .esp,.eng{max-width:44%;margin-left:-.1em;width:44%}
 #twitter,#facebook{font-size:.6em}
-.acceso{height:230px;}
-.acceso p{font-size:.7em}
-.formulario input[type="password"],.formulario input[type="text"]{width:170px}
-.formulario input[type="button"]{margin-left:30%}
 .modalDialog > div{width:200px}
 .idiomas{font-size:.7em;margin:0;width:65%}
 .logotipo{margin-left:1em;height:40px;width:40px}
@@ -145,6 +166,7 @@ nav li.menu:last-child{margin-left:5%;margin-top:0;width:80%}
 .suscribete_redes input[type="text"]{width:270px}
 #forward,#back,#get_route{padding:.5em}
 }@media screen and (max-width: 320px){footer{background:#ff0}
+#acceso{border:thin solid azul;height:auto}
 .accesibilidad{height:250px}
 .buscar{margin-top:-.5em}
 .calendario-eventos input[type="text"]{border:thin solid blanco;position:relative}

@@ -140,20 +140,20 @@ header
 		color blanco
 		height 30px
 		width 120px
-	input[type="text"], input[type="password"]
+	input[type="text"]
 		background darken(blanco, 6%)
 		border thin solid lighten(gris, 80%)
 		bordes(.2em)
 		color darken(blanco, 80%)
 		margin-top .5em
 		height 30px
-		width 290px
+		width 80%
 	input[type="text"]
 		margin-left 3.3em
 	label 
 		margin-left 1.3em
 
-.acceso 
+#acceso 
 	display none
 	text-align left 
 	input[type="button"]
@@ -174,15 +174,19 @@ header
 		color darken(blanco, 80%)
 		margin-top .5em
 		height 30px
-		width 290px
+		width 50%
 	input[type="text"]
 		margin-left 0
+	input#password_n, input#password_r
+		margin-left 1%
+	input#username 
+		margin-left 5% 
+	input#correo_e 
+		margin-left 8%
 	label 
 		margin-left 20%
-	label#passwordd
-		margin-right .5em
 
-#contenedor_form
+#contenedor_form > form#form_ingreso 
 	text-align left
 	input[type="button"]
 		bordes(.2em)
@@ -193,7 +197,7 @@ header
 		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
 		color blanco
 		height 30px
-		margin-left 50%
+		margin-left 45%
 		width 90px
 	input[type="text"], input[type="password"]
 		background darken(blanco, 6%)
@@ -202,11 +206,15 @@ header
 		color darken(blanco, 80%)
 		margin-top .5em
 		height 30px
+		left 24%
+		position relative
 		width 290px
-	input[type="text"]
-		margin-left 3.3em
-	label 
-		margin-left 20%
+	input[type="password"]
+		left 20%
+		position relative 
+	label.usuario_lbl, label.password_lbl
+		left 20%
+		position relative 
 #locations 
 	float left
 	list-style none
@@ -475,7 +483,6 @@ header
 	width 80%
 
 .formulario
-	border thin solid lighten(gris, 80%)
 	bordes(.2em)
 	color darken(blanco, 60%)
 	height 320px
