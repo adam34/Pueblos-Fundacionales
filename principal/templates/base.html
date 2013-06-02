@@ -97,9 +97,16 @@
 			<li class="menu">
 				<a href="#"></a>
 			</li>
-			<li class="menu">
-				<a href="#openModal" id="ingresa">Ingresa</a>
-			</li>
+			{% if user.username != "" %}
+				<li class="menu" id="registrado">
+					Hola &nbsp;<a href="#">{{user.username}}</a>
+					<a href="/cerrar_sesion/">&nbsp;&nbsp;(salir)</a>		
+				</li>
+				{% else %}
+				<li class="menu">
+					<a href="#openModal" id="ingresa">Ingresa</a>
+				</li>
+			{% endif %}
 		</ul>
 	</nav>
 	<!-- Sección de Login --> 
@@ -107,20 +114,28 @@
 		<div>
 			<a href="#close" title="Close" class="close">X</a>
 			<section class="formulario">
-				<h2>Ingresa</h2>
 				<article id="contenedor_form">
+					<h2 id="ingresar_h">Ingresar</h2>
 					<form action="#" id="form_ingreso">
-					<label for="usuario">Usuario: </label><input id="usuario" type="text" placeholder="&nbsp;Introduce tu nombre de usuario" required maxlength='30'>
-					<br><br>
-					<label for="password">Contraseña: </label><input id ="password" type="password" placeholder="&nbsp;Introduce tu contraseña" required>
+					<label for="usuario">
+					Usuario 
+					</label>
+					&nbsp;&nbsp;
+					<input id="usuario" type="text" placeholder="&nbsp;Introduce tu nombre de usuario" required maxlength='30'>
+					<br>
+					<label for="password">
+						Contraseña </label>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<input id ="password" type="password" placeholder="&nbsp;Introduce tu contraseña" required>
 					<br><br>
 					<input name="enviar" value="Entrar" type="button">
 					<br>
 					</form>
 				</article>
 				<article id="olvido_form">
+					<h2 id="recuperar_h">Recuperar</h2>
 					<form action="#" id="form_olvido">
-					<label for="email">Email: </label>
+					<label for="email">Email </label>
 					<input id="email" type="text" placeholder="&nbsp;Introduce tu email" required maxlength='75'>
 					<br><br>
 					<input name="enviar" value="Recuperar" type="button">
@@ -129,6 +144,7 @@
 					</form>
 				</article>
 				<article class="acceso">
+					<h2 id="acceder_h">Registro</h2>
 					<form action="#" id="form_registro">
 						<label for="username">Usuario</label>
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -152,12 +168,6 @@
 		</div>
 	</div>
 	<section class="contenedor">
-		{% if user.username != "" %}
-			<p>{{user.username}}</p>
-			<p>Un usuario peinado en la pared.</p>
-		{% else %}
-			<p>No usuario</p>
-		{% endif %}
 		<!-- Principal -->
 		{% block contenedor %}{% endblock %}
 	</section>
@@ -237,6 +247,8 @@
 			$('#registro').on("click", function(){
 				$('#form_ingreso').hide();
 				$('#registro').hide();
+				$('#acceder_h').show();
+				$('#ingresar_h').hide();
 				$('#olvido').hide();
 				$('.acceso').show();
 				$('#cambio').show();
@@ -244,8 +256,11 @@
 		});
 		$(function(){
 			$('#cambio').on("click", function(){
+				$('#ingresar_h').show();
 				$('#form_ingreso').show();
 				$('span').show();
+				$('#acceder_h').hide();
+				$('#recuperar_h').hide();
 				$('.acceso').hide();
 				$('#cambio').hide();
 			});
@@ -254,8 +269,10 @@
 			$('#olvido').on("click", function(){
 				$('#olvido_form').show();
 				$('#form_ingreso').hide();
-				$('span').show();
 				$('.acceso').hide();
+				$('#ingresar_h').hide();
+				$('#recuperar_h').show();
+				$('#acceder_h').hide();
 				$('#registro').hide();
 				$('#olvido').hide();
 				$('#cambio').hide();
@@ -263,9 +280,13 @@
 		});
 		$(function(){
 			$('#regresar_olvido').on("click", function(){
+				$('#ingresar_h').show();
 				$('#form_ingreso').show();
 				$('#olvido_form').hide();
-				$('span').show();
+				$('#registro').show();
+				$('#olvido').show();
+				$('#acceder_h').hide();
+				$('#recuperar_h').hide();
 				$('.acceso').hide();
 				$('#cambio').hide();
 			});
