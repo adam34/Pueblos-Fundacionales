@@ -4,7 +4,7 @@
 	# pdb.set_trace()
 import json
 from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response,redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -22,6 +22,9 @@ import json,smtplib
 def home(request): 
 	# import pdb
 	# pdb.set_trace()
+	#Obtener un pueblo turistico al azar
+	# cantidad_turisticos=pueblo.objects.filter(TIPO=u'Turístico').count()
+	# azar=random.randint(0,cantidad_turisticos-1)
 	return render_to_response('index.html',RequestContext(request,{'user':request.user}))
 
 def login_ajax(request):
@@ -139,12 +142,38 @@ def recupera_ajax(request):
 	else:
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
-
-def logout_ajax(request):
-	if request.is_ajax():
-		logout(request)
+def cambiar_contrasena(request):
+	if request.POST:
+		if ('usuario' in request.POST and 'contrasena' in request.POST and 'contrasena_repe' in request.POST):
+			contrasena= request.POST['contrasena']
+			contrasena_repe=request.POST['contrasena_repe']
+			if contrasena == contrasena_repe:
+				usuario = request.POST['usuario']
+				usuario_actual = User.objects.get(username=usuario)
+				usuario_actual.set_password(contrasena)
+				return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noIguales'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+	elif request.GET:
+		if 'correo' in request.GET:
+			try:
+				correo=request.GET['correo']
+				usuario_actual = User.objects.get(email=correo)
+				return render_to_response('cambiar_contrasena.html',RequestContext(request,{'user':usuario_actual}))
+			except Exception,e:
+				print e
+				raise Http404
+		else:
+			raise Http404
 	else:
 		raise Http404
+
+def cerrar_sesion(request):
+	logout(request)
+	return redirect(home)
+
 
 
 
