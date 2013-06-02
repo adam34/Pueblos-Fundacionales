@@ -157,6 +157,12 @@
 		</div>
 	</div>
 	<section class="contenedor">
+		{% if user.username != "" %}
+			<p>{{user.username}}</p>
+			<p>Un usuario peinado en la pared.</p>
+		{% else %}
+			<p>No usuario</p>
+		{% endif %}
 		<!-- Principal -->
 		{% block contenedor %}{% endblock %}
 	</section>
