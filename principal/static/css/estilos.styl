@@ -62,6 +62,12 @@ nav
 	box-sizing()
 	ul 
 		text-align left
+	li#registrado 
+		background transparent
+		color blanco
+		a 
+			color blanco 
+			text-decoration none
 	li.menu
 		menu azul 
 		cursor pointer 
@@ -177,6 +183,7 @@ header
 		margin-right .5em
 
 #contenedor_form
+	text-align left
 	input[type="button"]
 		bordes(.2em)
 		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
@@ -186,6 +193,7 @@ header
 		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
 		color blanco
 		height 30px
+		margin-left 50%
 		width 90px
 	input[type="text"], input[type="password"]
 		background darken(blanco, 6%)
@@ -198,7 +206,7 @@ header
 	input[type="text"]
 		margin-left 3.3em
 	label 
-		margin-left 1.3em
+		margin-left 20%
 #locations 
 	float left
 	list-style none

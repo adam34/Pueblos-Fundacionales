@@ -4,7 +4,7 @@
 	# pdb.set_trace()
 import json
 from django.http import HttpResponse, Http404
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.conf import settings
@@ -140,13 +140,9 @@ def recupera_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 
-def logout_ajax(request):
-	if request.is_ajax():
-		logout(request)
-	else:
-		raise Http404
-
-
+def cerrar_sesion(request):
+	logout(request)
+	return redirect(home)
 
 def secciones(request): 
 	return render_to_response('secciones.html')
