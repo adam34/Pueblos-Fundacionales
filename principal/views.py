@@ -66,10 +66,10 @@ def home(request):
 		# pdb.set_trace()
 		hoy_time=datetime.datetime.now()
 		eventos_hoy=evento.objects.filter(FECHA__day=hoy_time.day).order_by('FECHA')
-		if eventos_hoy.count()<=0:
+		if eventos_hoy.count()>0:
 			eventos_hoy=None
 		eventos_mes=evento.objects.filter(FECHA__year=hoy_time.year,FECHA__month=hoy_time.month).order_by('FECHA')
-		if eventos_mes.count()<=0:
+		if eventos_mes.count()>0:
 			eventos_mes=None
 
 	except Exception,e:

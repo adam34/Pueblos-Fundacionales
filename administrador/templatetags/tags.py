@@ -76,7 +76,7 @@ def mostrar_relatos():
 	if len(html)>0:
 		return mark_safe('\n'.join(html))
 	else:
-		return
+		return ''
 
 @register.simple_tag
 def mostrar_reportes():
@@ -124,7 +124,7 @@ def mostrar_reportes():
 	if len(html)>0:
 		return mark_safe('\n'.join(html))
 	else:
-		return
+		return ''
 
 @register.simple_tag
 def mostrar_logins(user):
@@ -146,7 +146,7 @@ def mostrar_logins(user):
 	if len(html)>0:
 		return mark_safe('\n'.join(html))
 	else:
-		return
+		return ''
 
 @register.simple_tag
 def mostrar_imagen_pueblo(coleccion):
@@ -156,7 +156,7 @@ def mostrar_imagen_pueblo(coleccion):
 		ruta_url = elemento.RUTA._get_url()
 		if ruta_url.endswith(('.jpg','png','.bmp','.JPG','.PNG','.BMP')):
 			return ruta_url
-	return
+	return ''
 
 @register.filter
 def cmp_str(var1, valor1):
