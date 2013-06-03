@@ -23,6 +23,8 @@ def home(request):
 	# #Obtener un pueblo turistico al azar
 	try:
 		#Se obtienen los pueblos turisticos solamente y se elige 1 al azar.
+		# import pdb
+		# pdb.set_trace()
 		cantidad_turisticos=pueblo.objects.filter(TIPO=u'T').count()
 		turistico = None
 		if cantidad_turisticos > 0:
@@ -37,6 +39,7 @@ def home(request):
 		#Se obtiene el pueblo más visitado y los 4 más visitados
 		total_pueblos=pueblo.objects.count()
 		pueblo_masVisitado=None
+		pueblos_masVisitados=None
 		if total_pueblos >0:
 			pueblos_masVisitados=pueblo.objects.order_by('-VISITAS')[:4]
 			pueblo_masVisitado=pueblos_masVisitados[0]
@@ -273,11 +276,26 @@ def curiosidades(request):
 def masvisto(request): 
 	return render_to_response('mas-visto.html')
 
-def descubrabcs(request): 
-	return render_to_response('descubra-bcs.html')
+def descubrabcs(request):
+	try:
 
-def bcsdesconocida(request): 
-	return render_to_response('bcs-desconocida.html')
+		cant_turisticos= pueblo.objects.filter(TIPO='T').count()
+		turisticos = None
+		if cant_turisticos <=0:
+			turisticos= pueblo.objects.filter(TIPO='T')
+	except Exception,e:
+		print e
+	return render_to_response('descubra-bcs.html',RequestContext(request,{'user':request.user,'turisticos':turisticos}))
+
+def bcsdesconocida(request):
+	try:
+		cant_curiosidades= curiosidad.objects.count()
+		curiosidades = None
+		if cant_curiosidades <=0:
+			curiosidades= curiosidades.objects.all()
+	except Exception,e:
+		print e
+	return render_to_response('bcs-desconocida.html',RequestContext(request,{'user':request.user,'curiosidades':curiosidades}))
 
 def galerias(request):
 	objs=galeria.objects.all()
@@ -313,7 +331,8 @@ def basico(request):
 def mapa(request): 
 	return render_to_response('mapa.html')
 
-def alojamiento(request): 
+def alojamiento(request):
+	
 	return render_to_response('alojamiento.html')
 
 def comida(request): 

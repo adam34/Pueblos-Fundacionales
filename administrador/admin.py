@@ -286,14 +286,14 @@ class SitiosTuristicosAdmin(admin.ModelAdmin):
 			self.form=SitiosTuristicosChangeForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','PUEBLO','DESCRIPCION','DIRECCION','CATEGORIA','TELEFONOS','PRECIO_DESDE','PRECIO_HASTA','IMAGEN','MAPA','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','PUEBLO','DESCRIPCION','DIRECCION','CATEGORIA','TELEFONOS','PRECIO_DESDE','PRECIO_HASTA','IMAGEN','URL','MAPA','LATITUD','LONGITUD',),
 					}),
 				)
 		else: # obj is None, so this is an add page
 			self.form=SitiosTuristicosForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','PUEBLO','DESCRIPCION','DIRECCION','CATEGORIA','TELEFONOS','PRECIO_DESDE','PRECIO_HASTA','IMAGEN','MAPA','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','PUEBLO','DESCRIPCION','DIRECCION','CATEGORIA','TELEFONOS','PRECIO_DESDE','PRECIO_HASTA','IMAGEN','URL','MAPA','LATITUD','LONGITUD',),
 					}),
 				)
 		return super(SitiosTuristicosAdmin, self).get_form(request, obj, **kwargs)	

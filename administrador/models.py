@@ -199,6 +199,7 @@ class sitio_turistico(models.Model):
 	TELEFONOS=models.TextField(null=True)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
 	IMAGEN=models.ImageField(upload_to='sitios/',null=True)
+	URL=models.URLField(null=True,blank=True)
 	PRECIO_DESDE= models.DecimalField(max_digits=7,decimal_places=2, null=True, default=0.00)
 	PRECIO_HASTA= models.DecimalField(max_digits=7,decimal_places=2, null=True, default=0.00)
 	LATITUD=models.CharField(max_length=20,null=False)

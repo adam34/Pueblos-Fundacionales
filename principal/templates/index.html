@@ -14,28 +14,39 @@
 				<a href="/descubra-bcs/">Descubra BCS</a>
 				<span><a href="/descubra-bcs/">&gt;  Ver todos</a></span>
 				<p class="articulos">
-<!-- 					{% for archivo in turistico.GALERIA.ARCHIVOS.all%}
-						{{archivo.RUTA}}
-						{{'ciclo'}}
-					{% endfor %} -->
+				{% if turistico %}
 					<img src="{% mostrar_imagen_pueblo turistico.GALERIA.ARCHIVOS.all %}" alt="{{turistico.NOMBRE}}">
 					{{turistico.CULTURA|truncatechars:100}} <strong><a href="/descubra-bcs/?turistico='{{turistico.NOMBRE}}'">Leer más...</a> </strong>
+				{% else %}
+					<img src="/static/img/loreto.jpg" alt="Loreto">
+					Lo que iba aquí que se me olvido poner. <strong><a href="/descubra-bcs/">Leer más...</a> </strong>
+				{% endif %}
 				</p>
 			</article>
 			<article class="contenido">
 				<a href="/bcs-desconocida/">BCS Desconocida</a>
 				<span><a href="/bcs-desconocida/">&gt;  Ver todos</a></span>
 				<p class="articulos">
+				{% if curiosidad %}
 					<img src="/static/img/loreto.jpg" alt="Loreto">
 					{{curiosidad.DESCRIPCION|truncatechars:100}}. <strong><a href="/bcs-desconocida/?curiosidad='{{curiosidad.TITULO}}'">Leer más...</a> </strong>
+				{% else %}
+					<img src="/static/img/loreto.jpg" alt="Loreto">
+					Lo que iba aquí que se me olvido poner. <strong><a href="/descubra-bcs/">Leer más...</a> </strong>
+				{% endif %}
 				</p>
 			</article>
 			<article class="contenido">
 				<a href="/mas-visto/">Pueblo más visto</a>
 				<span><a href="#">&gt;  Ver todos</a></span>
 				<p class="articulos">
+				{% if mas_visto %}
 					<img src="{% mostrar_imagen_pueblo mas_visto.GALERIA.ARCHIVOS.all %}" alt="Loreto">
 					{{mas_visto.HISTORIA|truncatechars:100}} <a href="/mas-visto/?visto='{{mas_visto.NOMBRE}}'">Leer más...</a> 
+				{% else %}
+					<img src="/static/img/loreto.jpg" alt="Loreto">
+					Lo que iba aquí que se me olvido poner. <strong><a href="/descubra-bcs/">Leer más...</a> </strong>
+				{%  endif %}
 				</p>
 			</article>
 			<!-- Recomendaciones -->
@@ -44,12 +55,21 @@
 				<!--<video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="440" height="240" data-setup="{}">
   				<source src="video/477 Aniversario de La Paz.mp4" type='video/mp4'>
 				</video>-->
-				{% if contratos|length >= 2 %}
-					{% for contrato in contratos %}
-					<a href="/sitios/?sitio={{contrato.SITIO.ID}}">
-						<img src="/uploads/{{contrato.SITIO.IMAGEN}}" alt="{{contrato.SITIO.NOMBRE}}">
-					</a>
-					{% endfor %}
+				{% if contratos %}
+					{% if contratos|length >= 2 %}
+						{% for contrato in contratos %}
+						<a href="/sitios/?sitio={{contrato.SITIO.ID}}">
+							<img src="/uploads/{{contrato.SITIO.IMAGEN}}" alt="{{contrato.SITIO.NOMBRE}}">
+						</a>
+						{% endfor %}
+					{% else %}
+						<a href="#">
+							<img src="/static/img/banner1.jpg" alt="">
+						</a>
+						<a href="">
+							<img src="/static/img/banner2.jpg".jpg alt="">
+						</a>
+					{% endif %}
 				{% else %}
 					<a href="#">
 						<img src="/static/img/banner1.jpg" alt="">
@@ -78,14 +98,35 @@
 				</div>
 				<section class="proximos-eventos">
 					<h4>Próximos Eventos</h4>
-					{% for evento_hoy in eventos_hoy %}
-						<article>
-							<p>{{evento_hoy.FECHA | date:'d'}}</p>
-							<a href="/eventos/?evento={{evento_hoy.ID}}">
-								{{evento_hoy.NOMBRE}}
-							</a>
-						</article>
-					{% endfor %}
+					{% if eventos_hoy %}
+						{% for evento_hoy in eventos_hoy %}
+							<article>
+								<p>{{evento_hoy.FECHA | date:'d'}}</p>
+								<a href="/eventos/?evento={{evento_hoy.ID}}">
+									{{evento_hoy.NOMBRE}}
+								</a>
+							</article>
+						{% endfor %}
+					{% else %}
+							<article>
+								<p>18</p>
+								<a href="/eventos/">
+									Fiestas de San Ignacio
+								</a>
+							</article>
+							<article>
+								<p>22</p>
+								<a href="/eventos/">
+									Fiestas de San Ignacio
+								</a>
+							</article>
+							<article>
+								<p>26</p>
+								<a href="/eventos/">
+									Fiestas de San Ignacio
+								</a>
+							</article>
+					{% endif %}
 					<span><a href="/eventos/">Ver todos los próximos eventos</a></span>
 				</section>
 				<button id='cargar_eventos'>cargar</button>
@@ -197,17 +238,48 @@
 				<h3>Mapa General de Misiones</h3>
 				<div id="page-wrap">
 					<ul id="locations">
-						{% if visitado|length >= 4 %}
-							{% for visitado in mas_vistos  %}
-							<li data-geo-lat="{{visitado.LATITUD}}" data-geo-long="{{visitado.LONGITUD}}">
-								<h5>{{visitado.MUNICIPIO}}</h5>
-	          					<p>{{visitado.NOMBRE}}</p>
-	          					<p class="longdesc"><strong>Historia:</strong><br>
-									{{visitado.HISTORIA|truncatechars:100}}
-	          					</p>
-	        				</li>				
-							{% endfor %}
-						{% else %}
+						{% if visitado %}
+							{% if visitado|length >= 4 %}
+								{% for visitado in mas_vistos  %}
+								<li data-geo-lat="{{visitado.LATITUD}}" data-geo-long="{{visitado.LONGITUD}}">
+									<h5>{{visitado.MUNICIPIO}}</h5>
+		          					<p>{{visitado.NOMBRE}}</p>
+		          					<p class="longdesc"><strong>Historia:</strong><br>
+										{{visitado.HISTORIA|truncatechars:100}}
+		          					</p>
+		        				</li>				
+								{% endfor %}
+							{% else %}
+								<li data-geo-lat="26.013132" data-geo-long="-111.347895">
+									<h5>Loreto</h5>
+		          					<p>Misión de Loreto</p>
+		          					<p class="longdesc"><strong>Historia:</strong><br>
+										Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
+		          					</p>
+		        				</li>
+		        				<li data-geo-lat="26.299571" data-geo-long="-111.715851">
+		          					<h5>Comondú</h4>
+		          					<p>La Purísima</p>
+		          					<p class="longdesc"><strong>Historia:</strong> 
+										La Purísima cuenta con una rica tradición gastronómica, basada principalmente en la elaboración de quesos de cabra y vaca, dulces regionales, pan artesanal de dátil y de haba, birria de cabrito, así como elaboración de vino, herencia de la presencia jesuita, que junto a nuestras artesanías nos recuerdan nuestro origen de pueblo misionero.
+		          					</p>
+		        				</li>
+		        				<li data-geo-lat="24.80037" data-geo-long="-112.103162">
+		          					<h5>Comondú</h5>
+			          				<p>San Carlos</p>
+		    	      				<p class="longdesc"><strong>Historia:</strong> 
+										Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
+		      				    	</p>
+		       				 	</li>
+		         				<li data-geo-lat="26.013132" data-geo-long="-111.347895">
+		          					<h5>Loreto</h5>
+		          					<p>Loreto</p>
+		           					<p class="longdesc"><strong>Historia:</strong> 
+										Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
+		          					</p>
+		        				</li>
+	        				{% endif %}
+	        			{% else %}
 							<li data-geo-lat="26.013132" data-geo-long="-111.347895">
 								<h5>Loreto</h5>
 	          					<p>Misión de Loreto</p>
@@ -236,7 +308,7 @@
 									Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
 	          					</p>
 	        				</li>
-        				{% endif %}
+	        			{% endif %}
 					</ul>
 					<div id="map_canvas"></div>
 					<div id="more-info">
