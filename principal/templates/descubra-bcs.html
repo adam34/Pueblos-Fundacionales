@@ -8,9 +8,34 @@
 	<section class="contenedor">
 		<section class="basico">
 			<h2>Descubra BCS</h2>
+			{% if turisticos %}
+			<!-- Sección de codigo para cuando la variable turisticos tiene un valor. El otro caso es para cuando no regresa nada y se coloca alguna estructura por default-->
+				<table>
+					<tr>
+						<th>NOMBRE</th>
+						<th>MUNICIPIO</th>
+						<th>HISTORIA</th>
+						<th>CULTURA</th>
+						<th>COMIDA</th>
+						<th>GALERIA</th>
+
+					</tr>
+					{% for turistico in turisticos %}
+					<tr>
+						<td>{{turistico.NOMBRE}}</td>
+						<td>{{turistico.MUNICIPIO}}</td>
+						<td>{{turistico.HISTORIA}}</td>
+						<td>{{turistico.CULTURA}}</td>
+						<td>{{turistico.COMIDA}}</td>
+						<td>{{turistico.GALERIA}}</td>
+					</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				<p>Hola! Esto es lo que aparece cuando no se regresan valores de pueblos turisticos</p>
+			{% endif %}
 		</section>
 		<section class="menu_basico">
-			
 		</section>
 	</section>
 {% endblock %}

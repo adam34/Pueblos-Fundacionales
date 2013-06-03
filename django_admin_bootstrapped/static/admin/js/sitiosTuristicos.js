@@ -115,6 +115,12 @@ function validar_formulario()
             errores.push('No es correcto que el precio inicial sea mayor que el final. Favor de verificarlo y corregirlo');
         }
     }
+    
+    // url=$('#id_URL').val()
+    // if(url!="")
+    // {
+
+    // }
     if(errores.length==0)
     {
         if(map!=undefined)

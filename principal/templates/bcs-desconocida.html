@@ -7,7 +7,25 @@
 	<section class="contenedor">
 		<section class="basico">
 			<h2>BCS Desconocida</h2>
-			
+			{% if curiosidades %}
+			<!-- Sección de codigo para cuando la variable curiosidades tiene un valor. El otro caso es para cuando no regresa nada y se coloca alguna estructura por default-->
+				<table>
+					<tr>
+						<th>PUEBLO</th>
+						<th>TITULO</th>
+						<th>DESCRIPCION</th>
+					</tr>
+					{% for curiosidad in curiosidades %}
+					<tr>
+						<td>{{curiosidad.PUEBLO.NOMBRE}}</td>
+						<td>{{curiosidad.TITULO}}</td>
+						<td>{{curiosidad.DESCRIPCION}}</td>
+					</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+			<p>Hola! Esto es lo que aparece cuando no se regresan valores de pueblos turisticos</p>
+			{% endif %}
 		</section>
 		<section class="menu_basico">
 			
