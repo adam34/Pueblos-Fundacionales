@@ -134,6 +134,29 @@
 		<section class="hoteles">
 			<h3>Hoteles</h3>
 			<section class="hoteles_4">
+			{% if hoteles %}
+				{% for hotel in hoteles %}
+				<section class="estrellas">
+					<article class="img_hoteles">
+						<img src="{{hotel.IMAGEN}}" alt="">
+					</article>
+					<article class="desc_hoteles">
+						<h4>{{hotel.NOMBRE}}</h4>
+						<p class="habitaciones">
+							{{hotel.DESCRIPCION}}
+						</p>
+						<p class="desc">Frente a la playa, al final del malecón....</p>
+						<span>{{hotel.PUEBLO.MUNICIPIO}}</span>
+					</article>
+					<article class="costo_hoteles">
+						<p>Desde <span>${{hotel.PRECIO_DESDE}}</span> MXN</p>
+						<a href="{{hotel.URL}}" target="_blank">
+							Más info
+						</a>
+					</article>
+				</section>
+				{% endfor %}
+			{% else %}
 				<section class="estrellas">
 					<article class="img_hoteles">
 						<img src="/static/img/hotel1.jpg" alt="">
@@ -210,6 +233,7 @@
 						</a>
 					</article>
 				</section>
+			{% endif %}
 			</section>
 		</section>
 	</section>

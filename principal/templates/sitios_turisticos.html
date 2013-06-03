@@ -129,6 +129,7 @@
 		<section class="contenedor_eventos">
 			<h2 class="eventos-h2">Sitios Turísticos</h2>
 			<section class="sites_t">
+				{% if sitios %}
 				<ul>
 					{% for sitio in sitios  %}
 					<li>
@@ -147,6 +148,9 @@
 					</li>
 					{% endfor %}
 				</ul>
+				{% else %}
+					<p>No existen sitios turísticos a mostrar.</p>
+				{% endif %}
 			</section>
 		</section>
 	</section>

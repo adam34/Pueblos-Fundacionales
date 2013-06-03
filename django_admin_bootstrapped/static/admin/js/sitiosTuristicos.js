@@ -119,7 +119,11 @@ function validar_formulario()
     // url=$('#id_URL').val()
     // if(url!="")
     // {
-
+    //     var patt=/^((https?|ftp)://|(www|ftp)\.)[a-z0-9-]+(\.[a-z0-9-]+)+([/?].*)?$/
+    //     if(!patt.test(url))
+    //     {
+    //         errores.push('Se encontraron errores en el formato de la URL. Favor de corregilro')
+    //     }
     // }
     if(errores.length==0)
     {

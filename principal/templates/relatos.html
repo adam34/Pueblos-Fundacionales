@@ -176,7 +176,8 @@
 			</section>
 		</section>
 	</section>
-	<!-- Sección de Login --> 
+	<!-- Sección de Login -->
+	{% if user.username|length > 0 %}
 	<div id="relatoNuevo" class="modalDialog_R">
 		<div>
 			<a href="#close" title="Close" class="close">X</a>
@@ -198,6 +199,7 @@
 			</section>
 		</div>
 	</div>
+	{% endif %}
 	<footer>
 		<section class="footer_container">
 			<section class="footer_wrap">
@@ -279,6 +281,14 @@
 			
 			$close.on('click', onClickClose);
 		});
+	{% if user.username|length > 0 %}
+	{% else %}
+		$('#aRelato').on('click',bloquear);
+		function bloquear()
+		{
+			alert('Necesita estar autenticado en el sistema para poder enviar un relato.')
+		}
+	{% endif %}
 	</script>
 </body>
 

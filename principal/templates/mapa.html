@@ -150,6 +150,21 @@
             		<input type="submit" class="btn" value="Buscar" />
           		</div>
         	</form>
+        	{% if fundacionales %}
+        		<p>Existen pueblos fundacionales para colocar en el mapa</p>
+        	{% else %}
+        		<p>No existen pueblos fundacionales para colocar en el mapa</p>
+        	{% endif %}
+        	{% if turisticos %}
+        		<p>Existen pueblos turísticos para colocar en el mapa</p>
+        	{% else %}
+        		<p>No existen pueblos turísticos para colocar en el mapa</p>
+        	{% endif %}
+        	{% if sitios %}
+        		<p>Existen sitios para colocar en el mapa</p>
+        	{% else %}
+        		<p>No existen sitios para colocar en el mapa</p>
+        	{% endif %}
 		</section>
 	</section>
 	<footer>
