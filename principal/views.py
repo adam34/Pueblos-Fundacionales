@@ -23,6 +23,8 @@ def home(request):
 	# #Obtener un pueblo turistico al azar
 	try:
 		#Se obtienen los pueblos turisticos solamente y se elige 1 al azar.
+		# import pdb
+		# pdb.set_trace()
 		cantidad_turisticos=pueblo.objects.filter(TIPO=u'T').count()
 		turistico = None
 		if cantidad_turisticos > 0:
@@ -37,6 +39,7 @@ def home(request):
 		#Se obtiene el pueblo más visitado y los 4 más visitados
 		total_pueblos=pueblo.objects.count()
 		pueblo_masVisitado=None
+		pueblos_masVisitados=None
 		if total_pueblos >0:
 			pueblos_masVisitados=pueblo.objects.order_by('-VISITAS')[:4]
 			pueblo_masVisitado=pueblos_masVisitados[0]
