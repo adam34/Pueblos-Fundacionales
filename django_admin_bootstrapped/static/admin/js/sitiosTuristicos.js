@@ -95,13 +95,24 @@ function validar_formulario()
     {
         errores.push('Es obligatorio introducir una dirección para el sitio.');
     }
-    precio = $("#id_PRECIO").val()
-    if(precio!="")
+    precio_inicial = $("#id_PRECIO_DESDE").val()
+    precio_final = $("#id_PRECIO_HASTA").val()
+    if(precio_inicial!="0.00" || precio_final!="0.00")
     {
         patt= /^([0-9]{1,5}).([0-9]{2})$/;
-        if(!patt.test(precio))
+        if(!patt.test(precio_inicial))
         {
-            errores.push('Formato del precio incorrecto. El formato correcto puede tener de 1 a 5 digitos a la izquierda del "." y de 1 a 2 decimales.');
+            errores.push('Formato del precio inicial es incorrecto. El formato correcto puede tener de 1 a 5 digitos a la izquierda del "." y de 1 a 2 decimales.');
+        }
+        if(!patt.test(precio_final))
+        {
+            errores.push('Formato del precio final incorrecto. El formato correcto puede tener de 1 a 5 digitos a la izquierda del "." y de 1 a 2 decimales.');
+        }
+        inicial=parseFloat(precio_inicial);
+        fin=parseFloat(precio_final)
+        if(inicial>fin)
+        {
+            errores.push('No es correcto que el precio inicial sea mayor que el final. Favor de verificarlo y corregirlo');
         }
     }
     if(errores.length==0)

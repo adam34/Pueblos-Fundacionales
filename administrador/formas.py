@@ -390,8 +390,6 @@ class PuebloForm(forms.ModelForm):
 		return pueblo
 
 	def clean(self):
-		# import pdb
-		# pdb.set_trace()
 		super(PuebloForm, self).clean()
 		cleaned_data = self.cleaned_data
 
@@ -404,6 +402,14 @@ class PuebloForm(forms.ModelForm):
 			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,16})$',longitud) == None:
 				if not self._errors.has_key('MAPA'):
 					self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
+		administrador = cleaned_data['ADMINISTRADOR']
+
+		try:
+			if not administrador.is_staff:
+				self._errors['ADMINISTRADOR']= ErrorList([u"No puede ser asignado un usuario como administrador de un pueblo sino tiene acceso al administrador."])
+		except User.DoesNotExist,e:
+			print e
+			self._errors['ADMINISTRADOR']= ErrorList([u"No puede ser asignado un usuario como administrador sino existe."])
 		return cleaned_data
 
 class PuebloChangeForm(forms.ModelForm):
@@ -506,16 +512,10 @@ class PuebloChangeForm(forms.ModelForm):
 				pueb_idiom.COMIDA = comida
 				pueb_idiom.DATOS = datos
 				pueb_idiom.save(commit)
-			#HISTORIA
-			#CULTURA
-			#COMIDAS
-			#DATOS
 		return pueblo
 
 
 	def clean(self):
-		# import pdb
-		# pdb.set_trace()
 		super(PuebloChangeForm, self).clean()
 		cleaned_data = self.cleaned_data
 
@@ -528,6 +528,13 @@ class PuebloChangeForm(forms.ModelForm):
 			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,16})$',longitud) == None:
 				if not self._errors.has_key('MAPA'):
 					self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
+		administrador = cleaned_data['ADMINISTRADOR']
+		try:
+			if not administrador.is_staff:
+				self._errors['ADMINISTRADOR']= ErrorList([u"No puede ser asignado un usuario como administrador de un pueblo sino tiene acceso al administrador."])
+		except User.DoesNotExist,e:
+			print e
+			self._errors['ADMINISTRADOR']= ErrorList([u"No puede ser asignado un usuario como administrador sino existe."])
 		return cleaned_data
 
 #------------------------------Fin de formularios para el modelo de pueblos----------------------
@@ -995,9 +1002,12 @@ class SitiosTuristicosForm(forms.ModelForm):
 		self.fields['TELEFONOS'].help_text= "Obligatorio. Número o números para poder contactar al local. Ejemplo: Tel: 6121578921;6121789413. Cel: 6121705677"
 		self.fields['TELEFONOS'].widget.attrs={'rows':'3','class':'vTextField span8'}
 		self.fields['TELEFONOS'].required=False
-		self.fields['PRECIO'].help_text= "Opcional. Precio por él servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano."
-		self.initial['PRECIO'] ='0.00'
-		self.fields['PRECIO'].required=False
+		self.fields['PRECIO_DESDE'].help_text= "Opcional. Intervalo incial del servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano."
+		self.fields['PRECIO_HASTA'].help_text= "Opcional. Intervalo final del servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano. En dado caso que se coloque uno de ellos es OBLIGATORIO que el inicial sea menor que el final."
+		self.initial['PRECIO_DESDE'] ='0.00'
+		self.initial['PRECIO_HASTA'] ='0.00'
+		self.fields['PRECIO_DESDE'].required=False
+		self.fields['PRECIO_HASTA'].required=False
 		self.fields['IMAGEN'].help_text= "Obligatorio. Banner de la empresa."
 		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox()
 		self.fields['DESCRIPCION'].widget.attrs={'rows':'3','class':'vTextField span8'}
@@ -1041,6 +1051,20 @@ class SitiosTuristicosForm(forms.ModelForm):
 			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,16})$',longitud) == None:
 				if not self._errors.has_key('MAPA'):
 					self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
+
+		import pdb
+		pdb.set_trace()
+		inicial=cleaned_data['PRECIO_DESDE']
+		fin=cleaned_data['PRECIO_HASTA']
+		try:
+			if (inicial!=0 and fin!=0):
+				if inicial>fin:
+					if not self._errors.has_key('PRECIO_DESDE'):
+						self._errors['PRECIO_DESDE']= ErrorList([u"El valor del precio inicial no puede ser menor al del precio final."])
+		except Exception,e:
+			if not self._errors.has_key('PRECIO_DESDE'):
+				self._errors['PRECIO_DESDE']= ErrorList([u"Error en el formato de los precios."])
+			print e
 		return cleaned_data
 
 class SitiosTuristicosChangeForm(forms.ModelForm):
@@ -1064,9 +1088,11 @@ class SitiosTuristicosChangeForm(forms.ModelForm):
 		self.fields['TELEFONOS'].help_text= "Obligatorio. Número o números para poder contactar al local."
 		self.fields['TELEFONOS'].widget.attrs['rows']='3'
 		self.fields['TELEFONOS'].widget.attrs['class'] = 'vTextField span5'
-
-		self.fields['PRECIO'].help_text= "Opcional. Precio por él servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano."
-		self.fields['PRECIO'].required=False
+		self.fields['TELEFONOS'].required=False
+		self.fields['PRECIO_DESDE'].help_text= "Opcional. Intervalo incial del servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano."
+		self.fields['PRECIO_HASTA'].help_text= "Opcional. Intervalo final del servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano. En dado caso que se coloque uno de ellos es OBLIGATORIO que el inicial sea menor que el final."
+		self.fields['PRECIO_DESDE'].required=False
+		self.fields['PRECIO_HASTA'].required=False
 		self.fields['IMAGEN'].help_text= "Obligatorio. Banner de la empresa."
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
@@ -1134,6 +1160,19 @@ class SitiosTuristicosChangeForm(forms.ModelForm):
 			if re.match(r'([-]?)([0-9]{1,3})[.]([0-9]{1,16})$',longitud) == None:
 				if not self._errors.has_key('MAPA'):
 					self._errors['MAPA']= ErrorList([u"Ocurrió un error interno con el formato de la latitud. Favor de contactar al administrador."])
+		import pdb
+		pdb.set_trace()
+		inicial=cleaned_data['PRECIO_DESDE']
+		fin=cleaned_data['PRECIO_HASTA']
+		try:
+			if (inicial!=0 and fin!=0):
+				if inicial>fin:
+					if not self._errors.has_key('PRECIO_DESDE'):
+						self._errors['PRECIO_DESDE']= ErrorList([u"El valor del precio inicial no puede ser menor al del precio final."])
+		except Exception,e:
+			if not self._errors.has_key('PRECIO_DESDE'):
+				self._errors['PRECIO_DESDE']= ErrorList([u"Error en el formato de los precios."])
+			print e
 		return cleaned_data
 
 #------------------------------Fin de formularios para el modelo de SitiosTuristicos------------
@@ -1182,7 +1221,7 @@ class ContratosForm(forms.ModelForm):
 		self.fields['FECHA_INICIO'].help_text= "Obligatorio. Fecha desde la cuál se empieza a llevar a cabo la publicidad."
 		self.initial['FECHA_INICIO']=datetime.date.today()
 		#self.fields['FECHA_INICIO'].widget.attrs['readonly']= 'true'
-		self.fields['DURACION'].help_text= "Obligatorio. Tiempo durante el cual estará mostrandose la publicidad. El tiempo esta dado en meses."
+		self.fields['DURACION'].help_text= "Obligatorio. Tiempo durante el cual estará mostrandose la publicidad. El tiempo esta dado en meses de 30 días."
 		choices= [(str(i),i) for i in range(0,11)]
 		choices = tuple(choices)
 		self.fields['DURACION'].widget = forms.widgets.Select(choices=choices)
@@ -1203,7 +1242,7 @@ class ContratosChangeForm(forms.ModelForm):
 		self.fields['FECHA_INICIO'].help_text= "Obligatorio. Fecha desde la cuál se empieza a llevar a cabo la publicidad."
 		self.initial['FECHA_INICIO']=datetime.date.today()
 		#self.fields['FECHA_INICIO'].widget.attrs['readonly']= 'true'
-		self.fields['DURACION'].help_text= "Obligatorio. Tiempo durante el cual estará mostrandose la publicidad. El tiempo esta dado en meses."
+		self.fields['DURACION'].help_text= "Obligatorio. Tiempo durante el cual estará mostrandose la publicidad. El tiempo esta dado en meses de 30 días."
 		choices= [(str(i),i) for i in range(0,11)]
 		choices = tuple(choices)
 		self.fields['DURACION'].widget = forms.widgets.Select(choices=choices)
@@ -1320,5 +1359,16 @@ class ArchivosChangeForm(forms.ModelForm):
 		self.fields['NOMBRE'].widget=HiddenInput()
 		self.fields['DESCRIPCION'].help_text= "Opcional. Referencia de la galería."
 		self.fields['RUTA'].help_text= "Obligatorio. Ruta del archivo que se guardará en el sistema."
+		obj = kwargs['instance']
+		try:
+			self.initial['NOMBRE'] = obj.NOMBRE
+		except Exception,e:
+			print e
 
+	def clean(self):
+		# import pdb
+		# pdb.set_trace()
+		super(ArchivosChangeForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
 #---------------------------Fin de formularios para el modelo de archivos----------------------

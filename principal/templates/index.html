@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load tags %}
 {%  block css %}
 	<!-- Slider del Clima -->
 	<link rel="stylesheet" href="/static/css/weatherslider.css">
@@ -13,8 +14,12 @@
 				<a href="/descubra-bcs/">Descubra BCS</a>
 				<span><a href="/descubra-bcs/">&gt;  Ver todos</a></span>
 				<p class="articulos">
-					<img src="/static/img/loreto.jpg" alt="Loreto">
-					Loreto es la ciudad más antigua de las Californias y fue fundada como misión en 1697 por el jesuita Juan María Salvaterra. <strong><a href="/descubra-bcs/">Leer más...</a> </strong>
+<!-- 					{% for archivo in turistico.GALERIA.ARCHIVOS.all%}
+						{{archivo.RUTA}}
+						{{'ciclo'}}
+					{% endfor %} -->
+					<img src="{% mostrar_imagen_pueblo turistico.GALERIA.ARCHIVOS.all %}" alt="{{turistico.NOMBRE}}">
+					{{turistico.CULTURA|truncatechars:100}} <strong><a href="/descubra-bcs/?turistico='{{turistico.NOMBRE}}'">Leer más...</a> </strong>
 				</p>
 			</article>
 			<article class="contenido">
@@ -22,15 +27,15 @@
 				<span><a href="/bcs-desconocida/">&gt;  Ver todos</a></span>
 				<p class="articulos">
 					<img src="/static/img/loreto.jpg" alt="Loreto">
-					Loreto es la ciudad más antigua de las Californias y fue fundada como misión en 1697 por el jesuita Juan María Salvaterra. <strong><a href="/bcs-desconocida/">Leer más...</a> </strong>
+					{{curiosidad.DESCRIPCION|truncatechars:100}}. <strong><a href="/bcs-desconocida/?curiosidad='{{curiosidad.TITULO}}'">Leer más...</a> </strong>
 				</p>
 			</article>
 			<article class="contenido">
 				<a href="/mas-visto/">Pueblo más visto</a>
 				<span><a href="#">&gt;  Ver todos</a></span>
 				<p class="articulos">
-					<img src="/static/img/loreto.jpg" alt="Loreto">
-					Loreto es la ciudad más antigua de las Californias y fue fundada como misión en 1697 por el jesuita Juan María Salvaterra. <a href="/mas-visto/">Leer más...</a> 
+					<img src="{% mostrar_imagen_pueblo mas_visto.GALERIA.ARCHIVOS.all %}" alt="Loreto">
+					{{mas_visto.HISTORIA|truncatechars:100}} <a href="/mas-visto/?visto='{{mas_visto.NOMBRE}}'">Leer más...</a> 
 				</p>
 			</article>
 			<!-- Recomendaciones -->
@@ -39,16 +44,62 @@
 				<!--<video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="440" height="240" data-setup="{}">
   				<source src="video/477 Aniversario de La Paz.mp4" type='video/mp4'>
 				</video>-->
-				<a href="#">
-					<img src="/static/img/banner1.jpg" alt="">
-				</a>
-				<a href="">
-					<img src="/static/img/banner2.jpg".jpg alt="">
-				</a>
+				{% if contratos|length >= 2 %}
+					{% for contrato in contratos %}
+					<a href="/sitios/?sitio={{contrato.SITIO.ID}}">
+						<img src="/uploads/{{contrato.SITIO.IMAGEN}}" alt="{{contrato.SITIO.NOMBRE}}">
+					</a>
+					{% endfor %}
+				{% else %}
+					<a href="#">
+						<img src="/static/img/banner1.jpg" alt="">
+					</a>
+					<a href="">
+						<img src="/static/img/banner2.jpg".jpg alt="">
+					</a>
+				{% endif %}
+
 			</section>
 			<!-- Eventos -->
 			<h2>Eventos</h2>
 			<section class="eventos">
+				<div class="calendario-eventos">
+					<input type="text" id="eventos" gldp-id="gldp-3023006963" class="gldp-el">
+    				<div id="eventos_div" gldp-el="mydate">
+    				</div>
+				</div>
+				<div class="calendario-notas">
+					<h3>Eventos de la semana</h3>
+					<p class="noticias">Selecciona alguna de las fechas en el Calendario.</p>
+					{% for evento_mes in eventos_mes %}
+						{{evento_mes.NOMBRE}}
+						{{evento_mes.FECHA | date:'d/M/Y'}}
+					{% endfor %}
+				</div>
+				<section class="proximos-eventos">
+					<h4>Próximos Eventos</h4>
+					{% for evento_hoy in eventos_hoy %}
+						<article>
+							<p>{{evento_hoy.FECHA | date:'d'}}</p>
+							<a href="/eventos/?evento={{evento_hoy.ID}}">
+								{{evento_hoy.NOMBRE}}
+							</a>
+						</article>
+					{% endfor %}
+					<span><a href="/eventos/">Ver todos los próximos eventos</a></span>
+				</section>
+				<button id='cargar_eventos'>cargar</button>
+				<section class="politicas">
+					<h2>Políticas de uso</h2>
+					<img src="/static/img/politicas.png" alt="">
+					<p>
+						Visita nuestra sección de Políticas de Privacidad y Uso para que puedas navegar a través de nuestro sitio de manera más segura. 
+						<br><br>
+						<a href="/politicas/">Haga clic aquí para más información</a>
+					</p>
+				</section>
+			</section>
+<!-- 			<section class="eventos">
 				<div class="calendario-eventos">
 					<input type="text" id="eventos" gldp-id="gldp-3023006963" class="gldp-el">
     				<div id="eventos_div" gldp-el="mydate">
@@ -89,7 +140,7 @@
 						<a href="/politicas/">Haga clic aquí para más información</a>
 					</p>
 				</section>
-			</section>
+			</section> -->
 		</section>
 		<!-- Fin de Sección Principal -->
 		<section class="menu-lateral">
@@ -146,34 +197,46 @@
 				<h3>Mapa General de Misiones</h3>
 				<div id="page-wrap">
 					<ul id="locations">
-						<li data-geo-lat="26.013132" data-geo-long="-111.347895">
-							<h5>Loreto</h5>
-          					<p>Misión de Loreto</p>
-          					<p class="longdesc"><strong>Historia:</strong><br>
-								Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
-          					</p>
-        				</li>
-        				<li data-geo-lat="26.299571" data-geo-long="-111.715851">
-          					<h5>Comondú</h4>
-          					<p>La Purísima</p>
-          					<p class="longdesc"><strong>Historia:</strong> 
-								La Purísima cuenta con una rica tradición gastronómica, basada principalmente en la elaboración de quesos de cabra y vaca, dulces regionales, pan artesanal de dátil y de haba, birria de cabrito, así como elaboración de vino, herencia de la presencia jesuita, que junto a nuestras artesanías nos recuerdan nuestro origen de pueblo misionero.
-          					</p>
-        				</li>
-        				<li data-geo-lat="24.80037" data-geo-long="-112.103162">
-          					<h5>Comondú</h5>
-	          				<p>San Carlos</p>
-    	      				<p class="longdesc"><strong>Historia:</strong> 
-								Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
-      				    	</p>
-       				 	</li>
-         				<li data-geo-lat="26.013132" data-geo-long="-111.347895">
-          					<h5>Loreto</h5>
-          					<p>Loreto</p>
-           					<p class="longdesc"><strong>Historia:</strong> 
-								Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
-          					</p>
-        				</li>
+						{% if visitado|length >= 4 %}
+							{% for visitado in mas_vistos  %}
+							<li data-geo-lat="{{visitado.LATITUD}}" data-geo-long="{{visitado.LONGITUD}}">
+								<h5>{{visitado.MUNICIPIO}}</h5>
+	          					<p>{{visitado.NOMBRE}}</p>
+	          					<p class="longdesc"><strong>Historia:</strong><br>
+									{{visitado.HISTORIA|truncatechars:100}}
+	          					</p>
+	        				</li>				
+							{% endfor %}
+						{% else %}
+							<li data-geo-lat="26.013132" data-geo-long="-111.347895">
+								<h5>Loreto</h5>
+	          					<p>Misión de Loreto</p>
+	          					<p class="longdesc"><strong>Historia:</strong><br>
+									Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
+	          					</p>
+	        				</li>
+	        				<li data-geo-lat="26.299571" data-geo-long="-111.715851">
+	          					<h5>Comondú</h4>
+	          					<p>La Purísima</p>
+	          					<p class="longdesc"><strong>Historia:</strong> 
+									La Purísima cuenta con una rica tradición gastronómica, basada principalmente en la elaboración de quesos de cabra y vaca, dulces regionales, pan artesanal de dátil y de haba, birria de cabrito, así como elaboración de vino, herencia de la presencia jesuita, que junto a nuestras artesanías nos recuerdan nuestro origen de pueblo misionero.
+	          					</p>
+	        				</li>
+	        				<li data-geo-lat="24.80037" data-geo-long="-112.103162">
+	          					<h5>Comondú</h5>
+		          				<p>San Carlos</p>
+	    	      				<p class="longdesc"><strong>Historia:</strong> 
+									Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
+	      				    	</p>
+	       				 	</li>
+	         				<li data-geo-lat="26.013132" data-geo-long="-111.347895">
+	          					<h5>Loreto</h5>
+	          					<p>Loreto</p>
+	           					<p class="longdesc"><strong>Historia:</strong> 
+									Son más de 300 años de historia los que construyen la leyenda del poblado más antiguo de la península de Baja California, que aún hoy hacen un bello contraste de colorido a la orilla del azul profundo del mar y el verde-ocre de las islas cercanas. 
+	          					</p>
+	        				</li>
+        				{% endif %}
 					</ul>
 					<div id="map_canvas"></div>
 					<div id="more-info">
@@ -297,4 +360,65 @@
 	<script src="/static/js/eventos.js"></script>
 	<!-- Script Clima-->
 	<script src="/static/js/example.js"></script>
+	<script type="text/javascript">
+		$(function()
+		{
+			$("#cargar_eventos").on('click',obtener_eventos);
+			function obtener_eventos(e)
+			{
+				$.ajax({
+					async:false,
+	                url:"/eventos_ajax/",
+	                data:{csrfmiddlewaretoken:'{{csrf_token}}','year':2013,'month':6,},
+	                type:'POST',
+	                success:function(response)
+	                {
+	                	if(response!='')
+	                    {
+	                    	if(response.respuesta=='exito')
+	                    	{
+	                    		$('.proximos-eventos').html('');
+	                    		$('.proximos-eventos').append('<h4>Próximos Eventos</h4>')
+	                    		for(i=0;i<response.eventos.length;i++)
+	                    		{
+									$('.proximos-eventos').append('<article>'+
+									'<p>'+response.eventos[i].day+'/'+response.eventos[i].month+'/'+response.eventos[i].year+
+									'</p>'+
+									'<a href=/eventos/?evento='+response.eventos[i].id+'>'+response.eventos[i].nombre+
+									'</a>'+
+									'</article>');
+	                    		}
+								$('.proximos-eventos').append('<span><a href="/eventos/">Ver todos los próximos eventos</a></span>');
+	                    	}
+	                    	else if(response.respuesta=='noDatos')
+	                    	{
+	                    		alert('No hay eventos para el mes.');
+	                    	}
+	                    	else if(response.respuesta=='noCampos')
+	                    	{
+	                    		alert('No se recibieron los campos completos.');
+	                    	}
+	                    	else if(response.respuesta=='noPOST')
+	                    	{
+	                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+	                    	}
+	                   		else if(response.respuesta=='noAJAX')
+	                    	{
+	                    		alert('No se utilizó AJAX para la comunicación con el servidor.');
+	                    	}
+	                    }
+	                    else
+	                    {
+	                        alert('No hubo respuesta por parte del servidor.');
+	                    }
+	                },
+	                error:function(jqXHR, status, error)
+	                {
+	                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+	                },
+	            });
+            return false;
+			}
+		});
+	</script>
 {% endblock %}

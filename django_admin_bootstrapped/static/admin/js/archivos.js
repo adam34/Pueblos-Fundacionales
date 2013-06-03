@@ -54,13 +54,20 @@ function validar_formulario()
     valor=$('#id_RUTA').val();
     if(valor=="")
     {
-        errores.push('Seleccione un archivo, por favor.');
+        if($('.field-RUTA a').length==0)
+        {
+            errores.push('Seleccione un archivo, por favor.');
+        }
     }
     if(errores.length==0)
     {
-        partes = $('#id_RUTA').val().split("\\");
-        archivo = partes[partes.length-1];
-        $('#id_NOMBRE').val(archivo);
+        $ruta = $($('#id_RUTA'))
+        if($ruta.val()!="")
+        {
+            partes = $ruta.val().split("\\");
+            archivo = partes[partes.length-1];
+            $('#id_NOMBRE').val(archivo);
+        }
     }
 
     return errores;

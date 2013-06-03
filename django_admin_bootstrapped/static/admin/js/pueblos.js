@@ -34,29 +34,6 @@ $(function()
     {
         alert('Error inesperado al tratar de asociar los eventos al formulario correcto. Contacte a su administrador para mayores informes.')
     }
-    tinymce.init({
-        selector: "textarea",
-        theme: "modern",
-        width: 700,
-        height: 300,
-        plugins: [
-             "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
-             "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
-             "save table contextmenu directionality emoticons template paste textcolor"
-       ],
-       toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons", 
-     });
-    $editors =$(tinymce.editors);
-    $editors.each(function(index,value){
-        $control=$(value.getElement())
-        contenido = $control.val();
-        if(contenido!="")
-        {
-            value.setContent(contenido);
-            $control.val('')
-        }
-    });
-
 });
 //Metodo utilizado para controlar el guardado de los datos con el servidor por Ajax.
 function agregar(e,form,ruta)
@@ -112,19 +89,12 @@ function validar_formulario()
     {
         errores.push('Seleccione a un usuario para que sea el administrador del pueblo.');
     }
+    if($("#id_MUNICIPIO").val()=="")
+    {
+        errores.push('Seleccione el municipio en el que se ubica el pueblo.');
+    }
     if(errores.length==0)
     {
-        $editors =$(tinymce.editors);
-        $editors.each(function(index,value)
-        {
-            contenido = value.getContent();
-            if(contenido!="")
-            {
-                $control=$(value.getElement())
-                $control.val(contenido);
-
-            }
-        });
         if(map!=undefined)
         {
             cantidad = map.markers.length;

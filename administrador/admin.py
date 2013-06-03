@@ -79,19 +79,19 @@ class GruposAdmin(admin.ModelAdmin):
 
 #ModelAdmin de Pueblos para el manejo de las paginas para agregar, modificar y mostrar elementos
 class PueblosAdmin(admin.ModelAdmin):
-	list_display =('NOMBRE','TIPO')
+	list_display =('NOMBRE','TIPO','ADMINISTRADOR',)
 	list_per_page = 10
-	list_filter = ('TIPO',)
+	list_filter = ('TIPO','ADMINISTRADOR',)
 	search_fields = ['NOMBRE',]
+	ordering = ['NOMBRE']
 	def get_form(self, request, obj=None, **kwargs):
 		#print dir(self.form._meta.fields)
 		if obj: # obj is not None, so this is a change page
 			pass
-			#kwargs['fields'] = ['username', 'password','password2']
 			self.form=PuebloChangeForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','TIPO','GALERIA','ADMINISTRADOR','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','TIPO','GALERIA','ADMINISTRADOR','MUNICIPIO','LATITUD','LONGITUD',),
 					}),
 				('Historia', {
 					'classes': ('collapse',),
@@ -118,7 +118,7 @@ class PueblosAdmin(admin.ModelAdmin):
 			self.form=PuebloForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','TIPO','GALERIA','ADMINISTRADOR','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','TIPO','GALERIA','ADMINISTRADOR','MUNICIPIO','LATITUD','LONGITUD',),
 					}),
 				('Historia', {
 					'classes': ('collapse',),
@@ -141,12 +141,23 @@ class PueblosAdmin(admin.ModelAdmin):
 					'fields': ('MAPA',)
 					}),
 				)
-		return super(PueblosAdmin, self).get_form(request, obj, **kwargs)	
+		return super(PueblosAdmin, self).get_form(request, obj, **kwargs)
+	def change_view(self, request, object_id, form_url='', extra_context=None):
+		# import pdb
+		# pdb.set_trace()
+		# algo=0
+		return super(PueblosAdmin, self).change_view(request, object_id,form_url,extra_context)
+	def add_view(self, request, form_url='', extra_context=None):
+		# import pdb
+		# pdb.set_trace()
+		# algo=0
+		return super(PueblosAdmin, self).add_view(request, form_url,extra_context)
+
 #Fin del PueblosAdmin
 
 #ModelAdmin de Curiosidades para el manejo de las paginas para agregar, modificar y mostrar elementos
 class CuriosidadesAdmin(admin.ModelAdmin):
-	list_display =('TITULO',)
+	list_display =('TITULO','PUEBLO')
 	list_per_page = 10
 	search_fields = ['NOMBRE',]
 	def get_form(self, request, obj=None, **kwargs):
@@ -275,14 +286,14 @@ class SitiosTuristicosAdmin(admin.ModelAdmin):
 			self.form=SitiosTuristicosChangeForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','PUEBLO','DESCRIPCION','DIRECCION','CATEGORIA','TELEFONOS','PRECIO','IMAGEN','MAPA','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','PUEBLO','DESCRIPCION','DIRECCION','CATEGORIA','TELEFONOS','PRECIO_DESDE','PRECIO_HASTA','IMAGEN','MAPA','LATITUD','LONGITUD',),
 					}),
 				)
 		else: # obj is None, so this is an add page
 			self.form=SitiosTuristicosForm
 			self.fieldsets = (
 				(None, {
-					'fields': ('NOMBRE','PUEBLO','DESCRIPCION','DIRECCION','CATEGORIA','TELEFONOS','PRECIO','IMAGEN','MAPA','LATITUD','LONGITUD',),
+					'fields': ('NOMBRE','PUEBLO','DESCRIPCION','DIRECCION','CATEGORIA','TELEFONOS','PRECIO_DESDE','PRECIO_HASTA','IMAGEN','MAPA','LATITUD','LONGITUD',),
 					}),
 				)
 		return super(SitiosTuristicosAdmin, self).get_form(request, obj, **kwargs)	
@@ -294,6 +305,7 @@ class CategoriasAdmin(admin.ModelAdmin):
 	list_display =('NOMBRE',)
 	list_per_page = 10
 	search_fields = ['NOMBRE',]
+	ordering = ['NOMBRE',]
 	def get_form(self, request, obj=None, **kwargs):
 		#print dir(self.form._meta.fields)
 		if obj: # obj is not None, so this is a change page
@@ -307,9 +319,9 @@ class CategoriasAdmin(admin.ModelAdmin):
 
 #ModelAdmin de Contratos para el manejo de las paginas para agregar, modificar y mostrar elementos
 class ContratosAdmin(admin.ModelAdmin):
-	list_display =('get_Sitio','FECHA_INICIO','DURACION')
+	list_display =('SITIO','FECHA_INICIO','DURACION')
 	list_per_page = 10
-	search_fields = ['get_Sitio',]
+	search_fields = ['SITIO',]
 	def get_form(self, request, obj=None, **kwargs):
 		#print dir(self.form._meta.fields)
 		if obj: # obj is not None, so this is a change page

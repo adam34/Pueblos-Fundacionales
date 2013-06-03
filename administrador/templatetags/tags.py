@@ -148,7 +148,15 @@ def mostrar_logins(user):
 	else:
 		return
 
-
+@register.simple_tag
+def mostrar_imagen_pueblo(coleccion):
+	# import pdb
+	# pdb.set_trace()
+	for elemento in coleccion:
+		ruta_url = elemento.RUTA._get_url()
+		if ruta_url.endswith(('.jpg','png','.bmp','.JPG','.PNG','.BMP')):
+			return ruta_url
+	return
 
 @register.filter
 def cmp_str(var1, valor1):

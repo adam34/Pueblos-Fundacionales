@@ -17,7 +17,7 @@ $(function()
                 return false;
             }
 			//var patt=new RegExp("[A-Za-z0-9]+");
-			var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]+/;
+			var patt=/[A-Za-z0-9]+/;
 			var caracter = String.fromCharCode(e.charCode);
 			if(!patt.test(caracter))
 			{
@@ -127,7 +127,7 @@ function validar_formulario()
         errores.push('La longitud del nombre de usuario no puede ser menor de 6 caracteres.');
     }
     //var patt=new RegExp("[A-Za-z0-9]+");
-    var patt=/^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]+$/;
+    var patt=/^[A-Za-z0-9]+$/;
     if(!patt.test(str1))
     {
         errores.push('El nombre de usuario sólo puede contener letras y números, ningún otro tipo de caracter.');
