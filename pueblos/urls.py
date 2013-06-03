@@ -55,4 +55,5 @@ urlpatterns = patterns('',
     url(r'^registro_usuario_ajax/$', 'principal.views.registro_usuario_ajax'),
     url(r'^recupera_ajax/$', 'principal.views.recupera_ajax'),
     url(r'^cerrar_sesion/$', 'principal.views.cerrar_sesion'),
+    url(r'^eventos_ajax/$', 'principal.views.eventos_ajax'),
     )

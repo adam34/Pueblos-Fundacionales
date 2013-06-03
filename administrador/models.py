@@ -44,12 +44,18 @@ class pueblo(models.Model):
 		('F','Fundacional'),
 		('T','Turístico'),
 	)
+	MUNICIPIOS =(
+		('Mulege','Mulegé'),
+		('Comondu','Comondú'),
+		('Loreto','Loreto'),
+	)
 	class Meta:
 		verbose_name="pueblo" #Nombre en singular del modelo
 		verbose_name_plural="pueblos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	NOMBRE=models.CharField(max_length=30,null=False)
 	ADMINISTRADOR = models.ForeignKey(User,unique=True,null=False)
+	MUNICIPIO=models.CharField(max_length=10,null=False,choices=MUNICIPIOS)
 	HISTORIA = models.TextField(null=False)
 	CULTURA = models.TextField(null=False)
 	COMIDA = models.TextField(null=False)
@@ -187,13 +193,14 @@ class sitio_turistico(models.Model):
 		verbose_name_plural="sitios turisticos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	NOMBRE=models.CharField(null=False,max_length=50)
-	DIRECCION=models.CharField(null=False,max_length=50)
+	DIRECCION=models.CharField(null=False,max_length=100)
 	DESCRIPCION=models.TextField(null=False)
 	CATEGORIA=models.ForeignKey('categoria',null=False)
 	TELEFONOS=models.TextField(null=True)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
 	IMAGEN=models.ImageField(upload_to='sitios/',null=True)
-	PRECIO= models.DecimalField(max_digits=7,decimal_places=2, null=True, default=0.00)
+	PRECIO_DESDE= models.DecimalField(max_digits=7,decimal_places=2, null=True, default=0.00)
+	PRECIO_HASTA= models.DecimalField(max_digits=7,decimal_places=2, null=True, default=0.00)
 	LATITUD=models.CharField(max_length=20,null=False)
 	LONGITUD=models.CharField(max_length=20,null=False)
 	def __unicode__(self):
@@ -233,10 +240,9 @@ class contrato(models.Model):
 	FECHA_INICIO=models.DateField(null=False)
 	DURACION=models.IntegerField(null=True,default=0)
 	NOVECES=models.IntegerField(null=True,default=0)
+	ULTIMA_FECHA =models.DateTimeField(null=True,blank=True)
 	def __unicode__(self):
 		return self.SITIO.NOMBRE+" ,contrato: "+str(self.ID)
-	def get_Sitio(self):
-		return self.SITIO.NOMBRE
 
 class reporte_comentario(models.Model):
 	class Meta:

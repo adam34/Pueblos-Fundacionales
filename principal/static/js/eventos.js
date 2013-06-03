@@ -12,7 +12,7 @@ $(window).on("load", function() {
                 repeatMonth: true
             },
             {
-                date: new Date(0, 1, 1),
+                date: new Date(2013, 0, 1),
                 data: { message: 'Feliz Año Nuevo!' },
                 repeatYear: false
             },
