@@ -174,7 +174,7 @@
 							<img id='{{relato.relato.ID}}' class='no_megusta' src="/static/img/heart-broken.png" alt="" title="No me gustó">
 						</span>
 						{% endif %}
-							
+
 						<span aria-hidden="true" class="icon-heart-broken minus"></span>
 						&nbsp; &nbsp;<span id='puntaje_{{relato.relato.ID}}'>Puntos acumulados: {{relato.relato.VALORACION}}	</span>
 						{% if relato.comentarios|length > 0 %}
@@ -198,19 +198,7 @@
 							<br><br>
 								<input name="enviar" value="Comentar" type="button">
 						</form>
-<<<<<<< HEAD
-						<section class="comments">
-							<h4>Usuario: {{relato.USUARIO.username}} </h4>
-							<div><!-- start slipsum code -->
-
-								Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends
-							</div>
-							<p id="fechacomentarios">Fecha: {{relato.FECHA}}</p>
-						</section>
-						<div id="more"> Mostrar más comentarios </div>
-=======
 						{% endif %}
->>>>>>> upstream/master
 					</li>
 					{% endfor %}
 				</ul>
@@ -332,7 +320,7 @@
 					$(this).fadeIn(5000)
 				});
 			});
-			
+
 			$close.on('click', onClickClose);
 		});
 	{% if user.username|length > 0 %}
@@ -462,7 +450,7 @@
                     	{
 							alert('Ocurrió un error interno.');
                     	}
-	            		
+
                     }
                     else
                     {
