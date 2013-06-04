@@ -115,9 +115,16 @@
 			<li class="menu">
 				<a href="#"></a>
 			</li>
-			<li class="menu">
-				<a href="#openModal" id="ingresa">Ingresa</a>
-			</li>
+			{% if user.username != "" %}
+				<li class="menu" id="registrado">
+					Hola &nbsp;<a href="#">{{user.username}}</a>
+					<a href="/cerrar_sesion/">&nbsp;&nbsp;(salir)</a>		
+				</li>
+				{% else %}
+				<li class="menu">
+					<a href="#openModal" id="ingresa">Ingresa</a>
+				</li>
+			{% endif %}
 		</ul>
 	</nav>
 	<!-- Sección de Login --> 
@@ -125,29 +132,53 @@
 		<div>
 			<a href="#close" title="Close" class="close">X</a>
 			<section class="formulario">
-				<h2>Ingresa</h2>
-				<form action="#">
-					<label for="email">Email: </label><input id="email" type="text" placeholder="&nbsp;Introduce tu email" required>
-					<br><br>
-					<label for="password">Contraseña: </label><input id ="password" type="password" placeholder="&nbsp;Introduce tu contraseña" required>
-					<br><br>
-					<a href="#">Olvidé mi contraseña</a>
+				<article id="contenedor_form">
+					<h2 id="ingresar_h">Ingresar</h2>
+					<form action="#" id="form_ingreso">
+					<label for="usuario" class="usuario_lbl">
+					Usuario 
+					</label>
+					<input id="usuario" type="text" placeholder="&nbsp;Introduce tu nombre de usuario" required maxlength='30'>
+					<br>
+					<label for="password" class="password_lbl">
+						Contraseña </label>
+					<input id ="password" type="password" placeholder="&nbsp;Introduce tu contraseña" required>
 					<br><br>
 					<input name="enviar" value="Entrar" type="button">
-				</form>
+					<br>
+					</form>
+				</article>
+				<article id="olvido_form">
+					<h2 id="recuperar_h">Recuperar</h2>
+					<form action="#" id="form_olvido">
+					<label for="email">Email </label>
+					<input id="email" type="text" placeholder="&nbsp;Introduce tu email" required maxlength='75'>
+					<br><br>
+					<input name="enviar" value="Recuperar" type="button">
+					<br>
+					<span id="regresar_olvido">Regresar</span>
+					</form>
+				</article>
+				<article id="acceso">
+					<h2 id="acceder_h">Registro</h2>
+					<form action="#" id="form_registro">
+						<label id="lbl_username" for="username">Usuario</label>
+						<input id="username" type="text" placeholder="&nbsp;Usuario" required maxlength='30'><br>
+						<label for="correo_e">Email</label>
+						<input id="correo_e" type="text" placeholder="&nbsp;Correo electrónico" required><br>
+						<label for="password_n">Contraseña</label>
+						<input id="password_n" type="password" placeholder="&nbsp;Contraseña" required><br>
+						<label id="passwordd" for="password_r">Contraseña</label>
+						<input id="password_r" type="password" placeholder="&nbsp;Repetir Contraseña" required>
+						<br><br>
+						<input name="enviar" value="Registrar" type="button">
+					</form>
+					<span id="cambio">Regresar</span>
+				</article>
+				<span id="registro">Registrarse</span>
+					<br>
+					<span id="olvido">Olvidé mi contraseña</span>
 			</section>
-			<article class="acceso">
-				<h2>¿Aún no eres miembro?</h2>
-				<div id="twitter">
-					<img src="/static/img/tt.png" alt="">
-					Entra con <strong>TWITTER</strong>
-				</div>
-				<div id="facebook">
-					<img src="/static/img/fb.png" alt="">
-					Entra con <strong>FACEBOOK</strong>
-				</div>
-				<p>O ingresa con tu correo electrónico y llena el siguiente cuestionario <a href="#">aquí</a></p>
-			</article>
 		</div>
 	</div>
 	<section class="contenedor">
@@ -177,6 +208,15 @@
 
 						<span aria-hidden="true" class="icon-heart-broken minus"></span>
 						&nbsp; &nbsp;<span id='puntaje_{{relato.relato.ID}}'>Puntos acumulados: {{relato.relato.VALORACION}}	</span>
+
+						{% if user.username|length > 0 %}
+						<form id='{{relato.relato.ID}}' action="#">
+							<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
+							<br><br>
+								<input name="enviar" value="Comentar" type="button">
+						</form>
+						{% endif %}
+
 						{% if relato.comentarios|length > 0 %}
 							{% for comentario in relato.comentarios %}
 								<section class="comments">
@@ -192,13 +232,7 @@
 							<p>No comentarios</p>
 						{% endif %}
 						<div id="more"> Mostrar más comentarios </div>
-						{% if user.username|length > 0 %}
-						<form id='{{relato.relato.ID}}' action="#">
-							<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
-							<br><br>
-								<input name="enviar" value="Comentar" type="button">
-						</form>
-						{% endif %}
+						
 					</li>
 					{% endfor %}
 				</ul>
