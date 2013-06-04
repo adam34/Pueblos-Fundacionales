@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
 from django.conf import settings
+from django.db.models import Q
 
 from administrador.models import *
 from django.db.models import Max
@@ -490,4 +491,28 @@ def sitiosT(request):
 	return render_to_response('sitios_turisticos.html',RequestContext(request,{'sitios':sitios,'user':request.user}))
 
 def busqueda(request):
-	return render_to_response('busqueda.html')
+	if 'text_search' in request.POST:
+		res = request.POST['text_search']
+		pueblos=None
+		eventos=None
+		sitios=None
+		relatos=None
+		try:
+			cont_pueblos= pueblo.objects.filter(NOMBRE=res).count()
+			if cont_pueblos >0:
+				pueblos=pueblo.objects.filter(NOMBRE=res)
+			cont_eventos=evento.objects.filter(NOMBRE=res).count()
+			if cont_eventos>0:
+				eventos=evento.objects.filter(NOMBRE=res)
+			cont_sitios=sitio_turistico.objects.filter(Q(NOMBRE=res) | Q(DIRECCION=res) | Q(DESCRIPCION=res)).count()
+			if cont_sitios>0:
+				sitios=sitio_turistico.objects.filter(Q(NOMBRE=res) | Q(DIRECCION=res) | Q(DESCRIPCION=res)).count()
+			cont_relatos=relato.objects.filter(TITULO=res).count()
+			if cont_relatos>0:
+				relatos=relato.objects.filter(TITULO=res).count()
+		except Exception,e:
+			print e
+		return render_to_response('busqueda.html',RequestContext(request,{'respuesta':res,'user':request.user,'pueblos':pueblos,'eventos':eventos,'sitios':sitios,'relatos':relatos}))
+	else:
+		return render_to_response('busqueda.html')
+	
