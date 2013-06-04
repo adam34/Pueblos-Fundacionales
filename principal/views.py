@@ -23,13 +23,11 @@ def home(request):
 	# #Obtener un pueblo turistico al azar
 	try:
 		#Se obtienen los pueblos turisticos solamente y se elige 1 al azar.
-		# import pdb
-		# pdb.set_trace()
-		cantidad_turisticos=pueblo.objects.filter(TIPO=u'T').count()
+		cantidad_turisticos=pueblo.objects.filter(TIPO='T').count()
 		turistico = None
 		if cantidad_turisticos > 0:
 			azar=random.randint(0,cantidad_turisticos-1)
-			turistico=pueblo.objects.all()[azar]
+			turistico=pueblo.objects.filter(TIPO='T')[azar]
 		cantidad_curiosidades=curiosidad.objects.count()
 		#Procedimiento similar al de pueblos turisticos pero con las curiosidades
 		curios=None
@@ -278,10 +276,9 @@ def masvisto(request):
 
 def descubrabcs(request):
 	try:
-
 		cant_turisticos= pueblo.objects.filter(TIPO='T').count()
 		turisticos = None
-		if cant_turisticos <=0:
+		if cant_turisticos >0:
 			turisticos= pueblo.objects.filter(TIPO='T')
 	except Exception,e:
 		print e
