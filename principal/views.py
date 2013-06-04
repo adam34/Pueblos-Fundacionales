@@ -464,8 +464,54 @@ def audio(request):
 	return render_to_response('multimedia/audio.html')
 
 def eventos(request):
-	eventos=evento.objects.all()
-	return render_to_response('eventos.html',{'eventos':eventos})
+	try:
+		# import pdb
+		# pdb.set_trace()
+		cont_eventos = evento.objects.count()
+		eventos = None
+		lista=[]
+		if cont_eventos > 0:
+			eventos = evento.objects.all()
+			for event in eventos:
+				dic = dict()
+				coment_cont=comentario_evento.objects.filter(EVENTO=event).count()
+				dic['evento']=event
+				if coment_cont > 0:
+					dic['comentarios']=comentario_evento.objects.filter(EVENTO=event)[:3]
+				else:
+					dic['comentarios']=None
+				lista.append(dic)
+		#Agarrar 3 comentarios por cada relato a mostrar
+	except Exception,e:
+		print e
+	return render_to_response('eventos.html',RequestContext(request,{'user':request.user,'eventos':lista}))
+def comentarios_eventos_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if ('ID' in request.POST and 'COMENTARIO' in request.POST ):
+				iden=request.POST['ID']
+				comentario=request.POST['COMENTARIO']
+				usuario=request.user
+				try:
+					event=evento.objects.get(ID=iden)
+					fecha = datetime.datetime.now()
+					comen_event=comentario_evento(EVENTO=event,USUARIO=usuario,DESCRIPCION=comentario,FECHA=fecha,VALORACION=0)
+					comen_event.save()
+					fec = fecha.strftime('%d/%m/%Y, a las %H:%M:%S ')
+					return HttpResponse(json.dumps({'respuesta':'exito','fecha':fec}),mimetype='application/json')
+				except Exception,e:
+					print e
+					return HttpResponse(json.dumps({'respuesta':'noEvento'}),mimetype='application/json')		
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
+
 
 def galeria_2(request):
 	return render_to_response('multimedia/galeria.html')
@@ -559,13 +605,52 @@ def valorar_relatos_ajax(request):
 
 def sitiosT(request):
 	try:
+		# import pdb
+		# pdb.set_trace()
 		cont_sitios = sitio_turistico.objects.count()
 		sitios = None
+		lista=[]
 		if cont_sitios > 0:
 			sitios = sitio_turistico.objects.all()
+			for sitio in sitios:
+				dic = dict()
+				coment_cont=comentario_sitio.objects.filter(SITIOS=sitio).count()
+				dic['sitio']=sitio
+				if coment_cont > 0:
+					dic['comentarios']=comentario_sitio.objects.filter(SITIOS=sitio)[:3]
+				else:
+					dic['comentarios']=None
+				lista.append(dic)
+		#Agarrar 3 comentarios por cada relato a mostrar
 	except Exception,e:
 		print e
-	return render_to_response('sitios_turisticos.html',RequestContext(request,{'sitios':sitios,'user':request.user}))
+	return render_to_response('sitios_turisticos.html',RequestContext(request,{'sitios':sitios,'user':request.user,'sitios':lista}))
+
+def comentarios_sitios_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if ('ID' in request.POST and 'COMENTARIO' in request.POST ):
+				iden=request.POST['ID']
+				comentario=request.POST['COMENTARIO']
+				usuario=request.user
+				try:
+					sitio=sitio_turistico.objects.get(ID=iden)						
+					fecha = datetime.datetime.now()
+					comen_sitio=comentario_sitio(SITIOS=sitio,USUARIO=usuario,DESCRIPCION=comentario,FECHA=fecha,VALORACION=0)
+					comen_sitio.save()
+					fec = fecha.strftime('%d/%m/%Y, a las %H:%M:%S ')
+					return HttpResponse(json.dumps({'respuesta':'exito','fecha':fec}),mimetype='application/json')
+				except Exception,e:
+					print e
+					return HttpResponse(json.dumps({'respuesta':'noSitio'}),mimetype='application/json')		
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def busqueda(request):
 	if 'text_search' in request.POST:

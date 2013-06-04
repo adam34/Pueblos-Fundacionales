@@ -177,15 +177,6 @@
 
 						<span aria-hidden="true" class="icon-heart-broken minus"></span>
 						&nbsp; &nbsp;<span id='puntaje_{{relato.relato.ID}}'>Puntos acumulados: {{relato.relato.VALORACION}}	</span>
-
-						{% if user.username|length > 0 %}
-						<form id='{{relato.relato.ID}}' action="#">
-							<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
-							<br><br>
-								<input name="enviar" value="Comentar" type="button">
-						</form>
-						{% endif %}
-
 						{% if relato.comentarios|length > 0 %}
 							{% for comentario in relato.comentarios %}
 								<section class="comments">
@@ -201,7 +192,13 @@
 							<p>No comentarios</p>
 						{% endif %}
 						<div id="more"> Mostrar más comentarios </div>
-						
+						{% if user.username|length > 0 %}
+						<form id='{{relato.relato.ID}}' action="#">
+							<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
+							<br><br>
+								<input name="enviar" value="Comentar" type="button">
+						</form>
+						{% endif %}
 					</li>
 					{% endfor %}
 				</ul>
@@ -357,7 +354,8 @@
 			            			'<p id="fechacomentarios">Fecha: '+response.fecha+'</p>'+
 			            			'</section>'+
 			            			'<br>'
-			            			);		            			
+			            			);
+			            			$('form#'+id+' textarea').val('');
 		            		}
 		            		else
 		            		{

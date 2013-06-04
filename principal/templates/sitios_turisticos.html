@@ -157,33 +157,37 @@
 				{% if sitios %}
 				<ul>
 					{% for sitio in sitios  %}
-					<li>
-						<h3> {{sitio.NOMBRE}}</h3>
+					<li id='sitio_{{sitio.sitio.ID}}'>
+						<h3> {{sitio.sitio.NOMBRE}}</h3>
 						<br>
-						<img src="/uploads/{{sitio.IMAGEN}}">
+						<img src="/uploads/{{sitio.sitio.IMAGEN}}">
 						<br>
 						<br><br>
-						<div>{{sitio.DESCRIPCION}}</div>
+						<div>{{sitio.sitio.DESCRIPCION}}</div>
 						<br>
-						<div><span>Dirección: </span>{{sitio.DIRECCION}} en {{sitio.PUEBLO.NOMBRE}}</div>
+						<div><span>Dirección: </span>{{sitio.sitio.DIRECCION}} en {{sitio.sitio.PUEBLO.NOMBRE}}</div>
 						<br>
-						<div><span>Teléfonos: </span>{{sitio.TELEFONOS}}</div>
+						<div><span>Teléfonos: </span>{{sitio.sitio.TELEFONOS}}</div>
 						<br>
-						<div id="etiquetas"><span>Etiquetas: </span>{{sitio.CATEGORIA}}</div>
-						<form action="#">
-							<textarea rows="4" cols="45" placeholder="Comenta">
-
-							</textarea>
+						<div id="etiquetas"><span>Etiquetas: </span>{{sitio.sitio.CATEGORIA}}</div>
+						<form id='{{sitio.sitio.ID}}' action="#">
+							<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
 							<br><br>
+							{% if user.username|length > 0 %}
 								<input name="enviar" value="Enviar" type="button">
+							{% endif %}
 						</form>
 						<section class="comments-sitios">
-							<h4>Rosita</h4>
-							<div id="comments-div"><!-- start slipsum code -->
-								Estupendo restaurante, comida muy rica. Recomendado al 100%
-
+						{% for comentario in sitio.comentarios  %}
+							<h4>Rosita{{comentario.USUARIO.username}}</h4>
+							<div><!-- start slipsum code -->
+								{{comentario.DESCRIPCION}}
 							</div>
+							<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
+						<br>
+						{% endfor %}
 						</section>
+						<br>
 						<div id="more"> Mostrar más comentarios </div>
 					</li>
 					{% endfor %}
@@ -273,6 +277,66 @@
 			});
 		});
 	</script>
+	{% if user.username|length > 0 %}
+	<script>
+		$('form input[name="enviar"]').on('click',registrar);
+		function registrar(e)
+		{
+			$elemento = $(e.target);
+			id= $elemento.parent().attr('id');
+			comentario = $('form#'+id+' textarea').val();
+			if (comentario!="")
+			{
+				$.ajax({
+					 async:false,
+	                url:"/comentarios_sitios_ajax/",
+	                data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'COMENTARIO':comentario},
+	                type:'POST',
+	                //dataType:
+	                success:function(response)
+	                {
+	                	if(response!='')
+	                    {
+		            		//$('puntaje_'+id).val('Puntos acumulados: '+response.valoracion);
+		            		if(response.respuesta=='exito')
+		            		{
+			            		$('#sitio_'+id).append(
+			            			'<section class="comments">'+
+			            			'<h4>Usuario: {{user.username}} </h4>'+
+			            			'<div>'+
+			            				comentario+
+			            			'</div>'+
+			            			'<p id="fechacomentarios">Fecha: '+response.fecha+'</p>'+
+			            			'</section>'+
+			            			'<br>'
+			            			);
+			            			$('form#'+id+' textarea').val('');
+		            		}
+		            		else
+		            		{
+		            			alert('Ocurrió un error. Favor de verificarlo.');
+		            		}
+
+	                    }
+	                    else
+	                    {
+	                        alert('No hubo respuesta por parte del servidor.');
+	                    }
+	                },
+	                 error:function(jqXHR, status, error)
+	                {
+	                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+	                },
+	            });
+			}
+			else
+			{
+				alert('Asegurese de haber introducido un comentario antes de tratarlo de enviar.');
+			}
+			return false;
+		}
+	</script>
+	{% endif %}
 </body>
 
 </html>
