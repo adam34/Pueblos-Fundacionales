@@ -30,7 +30,7 @@
 						</form>
 						<section class="comments">
 						{% for comentario in evento.comentarios  %}
-							<h4>Rosita{{comentario.USUARIO.username}}</h4>
+							<h4>{{comentario.USUARIO.username}}</h4>
 							<div><!-- start slipsum code -->
 								{{comentario.DESCRIPCION}}
 							</div>
@@ -45,7 +45,7 @@
 
 				</ul>
 			</section>
-			
+
 		</section>
 	</section>
 {% endblock %}
