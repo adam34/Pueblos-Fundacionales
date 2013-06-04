@@ -1,17 +1,5 @@
-<!doctype html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Pueblos Fundacionales</title>
-	<!-- Forzar a IE a utilizar el motor de Chrome -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<!-- Contenido -->
-	<meta name="description" content="Comunidad online donde podrás visualizar todo lo relacionado a los Pueblos Fundacionales de la Zona Norte de BCS, desde su ubicación, hoteles, restaurantes, ¡visítanos!"/>
-	<!-- Keywords -->
-	<meta name="keywords" content="pueblos fundacionales, baja California sur, restaurantes, hoteles, loreto, mulege, comondu, misiones"/>
-	<!-- Viewport -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<!-- Autores -- >
+{% extends 'base.html' %}
+{%  block css %}
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
 	<link rel="stylesheet" href="/static/css/normalize.css">
@@ -21,238 +9,79 @@
 	<link rel="stylesheet" href="/static/css/responsive.css">
 	<!-- Slider superior Camera -->
 	<link rel='stylesheet' id='camera-css' href='/static/css/camera.css' media='all'> 
-</head>
-<body>
-	<section class="conf_idiomas">
-		<div class="idiomas">
-			<a href="#">
-				<img id="arrow" src="/static/img/arrow.png" alt=""/>
-			</a>
-			<div class="esp">
-				<img src="/static/img/bandera.png" alt="Español">
-				<a href="#">Español</a>
-			</div>
-			<div class="eng">
-				<img src="/static/img/ingles.png" alt="Español">
-				<a href="#">Inglés</a>
-			</div>
-		</div>
-		<div class="social_icons">
-			<a href="#" title="Facebook">
-				<img src="/static/img/facebook.png" alt="Facebook" />
-			</a>
-			<a href="#" title="Twitter">
-				<img src="/static/img/twitter.png" alt="Twitter" />
-			</a>
-			<a href="#" title="RSS">
-				<img src="/static/img/rss.png" alt="RSS" />
-			</a>
-		</div>
-	</section>
-	<header>
-		<section class="superior">
-			<a href="/"><img class="logotipo" src="/static/img/Logotipo.png" alt="Proyecto Pueblos"></a>
-			<h1 class="titulo">Pueblos Fundacionales</h1>
-			<article class="buscar">
-				<form class="expandable_search">
-  					<input type="search" placeholder="Buscar" class="icono_buscar">
-				</form>
-			</article>
+{% endblock %}
+
+{% block contenedor %}
+	<section class="contenedor_relatos">
+		<section class="story">
+			<h2>Relatos</h2>
+			<ul>
+				{% for relato in relatos  %}
+				<li id='relato_{{relato.relato.ID}}'>
+					<h3> {{relato.relato.TITULO}}</h3>
+					<br>
+					<span>Autor:</span>&nbsp; &nbsp;{{relato.relato.USUARIO.username}}
+					<br>
+					<span>Fecha:</span>&nbsp; &nbsp;{{relato.relato.FECHA}}
+					<br>
+					<span>Descripción:</span> &nbsp; &nbsp;<p>{{relato.relato.DESCRIPCION}}</p>
+					<br><br>
+					{% if user.username|length > 0 %}
+					<span>Valoración: </span>
+					<span class="plus">
+						<img id='{{relato.relato.ID}}' class='me_gusta' src="/static/img/heart.png" alt="" title="Me gustó">
+					</span>
+					<span class="plus">
+						<img id='{{relato.relato.ID}}' class='no_megusta' src="/static/img/heart-broken.png" alt="" title="No me gustó">
+					</span>
+					{% endif %}
+
+					<span aria-hidden="true" class="icon-heart-broken minus"></span>
+					&nbsp; &nbsp;<span id='puntaje_{{relato.relato.ID}}'>Puntos acumulados: {{relato.relato.VALORACION}}	</span>
+
+					{% if user.username|length > 0 %}
+					<form id='{{relato.relato.ID}}' action="#">
+						<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
+						<br><br>
+							<input name="enviar" value="Comentar" type="button">
+					</form>
+					{% endif %}
+
+					{% if relato.comentarios|length > 0 %}
+						{% for comentario in relato.comentarios %}
+							<section class="comments">
+								<h4>Usuario: {{comentario.USUARIO.username}} </h4>
+								<div><!-- start slipsum code -->
+									{{comentario.DESCRIPCION}}
+								</div>
+								<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
+							</section>
+							<br>
+						{% endfor %}
+					{% else %}
+						<p>No comentarios</p>
+					{% endif %}
+					<div id="more"> Mostrar más comentarios </div>
+					
+				</li>
+				{% endfor %}
+			</ul>
+
 		</section>
-	</header>
-	<div class="fluid_container">
-		<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
-			<div data-thumb="/static/images/slides/thumbs/Mision1.jpg" data-src="/static/images/slides/Mision1.jpg">
-                <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">
-                   	Mision de San Javier, Sierra  de la Giganta B.C.S.
-                   </a>
-                </div>
-            </div>
-            <div data-thumb="/static/images/slides/thumbs/Mision4.jpg" data-src="/static/images/slides/Mision4.jpg">
-                <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">
-                    Misión de San Ignacio de Kadakamaán, una de las mejor conservadas de la penisula
-                   </a>
-                </div>
-            </div>
-           
-			<div data-thumb="/static/images/slides/thumbs/Mision3.jpg" data-src="/static/images/slides/Mision3.jpg">
-                <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">
-                   	Misión de Nuestra Señora de Santa Rosalía de Mulegé
-                   </a>
-                </div>
-            </div>
-            <div data-thumb="/static/images/slides/thumbs/Mision2.jpg" data-src="/static/images/slides/Mision2.jpg">
-                <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">La Purísima, B.C.S.
-                   </a>
-                </div>
-            </div>
-            <div data-thumb="/static/images/slides/thumbs/Mision5.jpg" data-src="/static/images/slides/Mision5.jpg">
-                <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">Iglesia de Santa Bárbara, diseñada por Gustave Eiffel
-                   </a>
-                </div>
-            </div>
-		</div>
-	</div>
-	<nav>
-		<ul>
-			<li class="menu">
-				<a href="/">Inicio</a>
-			</li>
-			<li class="menu">
-				<a href="/secciones/">Secciones</a>
-			</li>
-			<li class="menu">
-				<a href="/pueblos/">Pueblos</a>
-			</li>
-			<li class="menu">
-				<a href="/galerias/">Galerías</a>
-			</li>
-			<li class="menu">
-				<a href="#"></a>
-			</li>
-			{% if user.username != "" %}
-				<li class="menu" id="registrado">
-					Hola &nbsp;<a href="#">{{user.username}}</a>
-					<a href="/cerrar_sesion/">&nbsp;&nbsp;(salir)</a>		
-				</li>
-				{% else %}
-				<li class="menu">
-					<a href="#openModal" id="ingresa">Ingresa</a>
-				</li>
+		<section class="menu_story">
+			<h3>Mejores relatos</h3>
+			<p>
+				{% for relato in relatos  %}
+					<br>
+					<h4> {{relato.relato.TITULO}}</h4>
+				{% endfor %}
+			</p>
+			{% if user.username|length > 0 %}
+			<a id="aRelato" href="#relatoNuevo">Escribir relato</a>
 			{% endif %}
-		</ul>
-	</nav>
-	<!-- Sección de Login --> 
-	<div id="openModal" class="modalDialog">
-		<div>
-			<a href="#close" title="Close" class="close">X</a>
-			<section class="formulario">
-				<article id="contenedor_form">
-					<h2 id="ingresar_h">Ingresar</h2>
-					<form action="#" id="form_ingreso">
-					<label for="usuario" class="usuario_lbl">
-					Usuario 
-					</label>
-					<input id="usuario" type="text" placeholder="&nbsp;Introduce tu nombre de usuario" required maxlength='30'>
-					<br>
-					<label for="password" class="password_lbl">
-						Contraseña </label>
-					<input id ="password" type="password" placeholder="&nbsp;Introduce tu contraseña" required>
-					<br><br>
-					<input name="enviar" value="Entrar" type="button">
-					<br>
-					</form>
-				</article>
-				<article id="olvido_form">
-					<h2 id="recuperar_h">Recuperar</h2>
-					<form action="#" id="form_olvido">
-					<label for="email">Email </label>
-					<input id="email" type="text" placeholder="&nbsp;Introduce tu email" required maxlength='75'>
-					<br><br>
-					<input name="enviar" value="Recuperar" type="button">
-					<br>
-					<span id="regresar_olvido">Regresar</span>
-					</form>
-				</article>
-				<article id="acceso">
-					<h2 id="acceder_h">Registro</h2>
-					<form action="#" id="form_registro">
-						<label id="lbl_username" for="username">Usuario</label>
-						<input id="username" type="text" placeholder="&nbsp;Usuario" required maxlength='30'><br>
-						<label for="correo_e">Email</label>
-						<input id="correo_e" type="text" placeholder="&nbsp;Correo electrónico" required><br>
-						<label for="password_n">Contraseña</label>
-						<input id="password_n" type="password" placeholder="&nbsp;Contraseña" required><br>
-						<label id="passwordd" for="password_r">Contraseña</label>
-						<input id="password_r" type="password" placeholder="&nbsp;Repetir Contraseña" required>
-						<br><br>
-						<input name="enviar" value="Registrar" type="button">
-					</form>
-					<span id="cambio">Regresar</span>
-				</article>
-				<span id="registro">Registrarse</span>
-					<br>
-					<span id="olvido">Olvidé mi contraseña</span>
-			</section>
-		</div>
-	</div>
-	<section class="contenedor">
-		<section class="contenedor_relatos">
-			<section class="story">
-				<h2>Relatos</h2>
-				<ul>
-					{% for relato in relatos  %}
-					<li id='relato_{{relato.relato.ID}}'>
-						<h3> {{relato.relato.TITULO}}</h3>
-						<br>
-						<span>Autor:</span>&nbsp; &nbsp;{{relato.relato.USUARIO.username}}
-						<br>
-						<span>Fecha:</span>&nbsp; &nbsp;{{relato.relato.FECHA}}
-						<br>
-						<span>Descripción:</span> &nbsp; &nbsp;<p>{{relato.relato.DESCRIPCION}}</p>
-						<br><br>
-						{% if user.username|length > 0 %}
-						<span>Valoración: </span>
-						<span class="plus">
-							<img id='{{relato.relato.ID}}' class='me_gusta' src="/static/img/heart.png" alt="" title="Me gustó">
-						</span>
-						<span class="plus">
-							<img id='{{relato.relato.ID}}' class='no_megusta' src="/static/img/heart-broken.png" alt="" title="No me gustó">
-						</span>
-						{% endif %}
-
-						<span aria-hidden="true" class="icon-heart-broken minus"></span>
-						&nbsp; &nbsp;<span id='puntaje_{{relato.relato.ID}}'>Puntos acumulados: {{relato.relato.VALORACION}}	</span>
-
-						{% if user.username|length > 0 %}
-						<form id='{{relato.relato.ID}}' action="#">
-							<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
-							<br><br>
-								<input name="enviar" value="Comentar" type="button">
-						</form>
-						{% endif %}
-
-						{% if relato.comentarios|length > 0 %}
-							{% for comentario in relato.comentarios %}
-								<section class="comments">
-									<h4>Usuario: {{comentario.USUARIO.username}} </h4>
-									<div><!-- start slipsum code -->
-										{{comentario.DESCRIPCION}}
-									</div>
-									<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
-								</section>
-								<br>
-							{% endfor %}
-						{% else %}
-							<p>No comentarios</p>
-						{% endif %}
-						<div id="more"> Mostrar más comentarios </div>
-						
-					</li>
-					{% endfor %}
-				</ul>
-
-			</section>
-			<section class="menu_story">
-				<h3>Mejores relatos</h3>
-				<p>
-					{% for relato in relatos  %}
-						<br>
-						<h4> {{relato.relato.TITULO}}</h4>
-					{% endfor %}
-				</p>
-				{% if user.username|length > 0 %}
-				<a id="aRelato" href="#relatoNuevo">Escribir relato</a>
-				{% endif %}
-			</section>
 		</section>
 	</section>
-	<!-- Sección de Login -->
+	<!-- Sección de relatos -->
 	{% if user.username|length > 0 %}
 	<div id="relatoNuevo" class="modalDialog_R">
 		<div>
@@ -276,215 +105,49 @@
 		</div>
 	</div>
 	{% endif %}
-	<footer>
-		<section class="footer_container">
-			<section class="footer_wrap">
-				<section class="wcont">
-					<h4 class="title">Patrocinadores</h4>
-					<ul>
-						<li><a href="#" title="link 1">Link #1</a></li>
-						<li><a href="#" title="link 2">Link #2</a></li>
-						<li><a href="#" title="link 3">Link #3</a></li>
-						<li><a href="#" title="link 4">Link #4</a></li>
-					</ul>
-				</section>
-				<section class="wcont">
-					<h4 class="title">Colaboradores</h4>
-					<ul>
-						<li><a href="#" title="link 1">Link #1</a></li>
-						<li><a href="#" title="link 2">Link #2</a></li>
-						<li><a href="#" title="link 3">Link #3</a></li>
-						<li><a href="#" title="link 4">Link #4</a></li>
-					</ul>
-				</section>
-				<section class="wcont">
-					<h4 class="title">Enlaces de interés</h4>
-					<ul>
-						<li><a href="#" title="link 1">Link #1</a></li>
-						<li><a href="#" title="link 2">Link #2</a></li>
-						<li><a href="#" title="link 3">Link #3</a></li>
-						<li><a href="#" title="link 4">Link #4</a></li>
-					</ul>
-				</section>
-				<section class="wcont">
-					<h4 class="title">Contacto</h4>
-					<ul>
-						<li><a href="#" title="link 1">Link #1</a></li>
-						<li><a href="#" title="link 2">Link #2</a></li>
-						<li><a href="#" title="link 3">Link #3</a></li>
-						<li><a href="#" title="link 4">Link #4</a></li>
-					</ul>
-				</section>
-			</section>
-		</section>
-	</footer>
+{% endblock %}
 
-	<!-- jQuery -->
-	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-	<!-- jQuery Mobile -->
-	<script src='/static/scripts/jquery.mobile.customized.min.js'></script>
-	<!-- Modernizr -->
-	<script src="/static/js/modernizr.custom.17475.js"></script>
-	<!-- jQuery Easing -->
-	 <script src='/static/scripts/jquery.easing.1.3.js'></script> 
-	 <!-- Slider Camera -->
-    <script src='/static/scripts/camera.min.js'></script> 
-    <script>
-    	
-		$(function(){		
-			$('#camera_wrap_1').camera({
-				height : '400px',
-				thumbnails: true,
-			});
-		});
-		$close = $('.close');
-		$el = $('.modalDialog_R');
-		function onClickClose(e) {
-            e.preventDefault();
-            self.$el.fadeOut('fast');
-        }
-		$(function(){
-			$('#ingresa').on("click", function(){
-				$('.modalDialog').show(function(){
-					$(this).fadeIn(5000)
-				});
-			});
-			$('#aRelato').on("click", function(){
-				$el.show(function(){
-					$(this).fadeIn(5000)
-				});
-			});
-
-			$close.on('click', onClickClose);
-		});
-	{% if user.username|length > 0 %}
-		$('form input[name="enviar"]').on('click',registrar);
-		function registrar(e)
+{% block js %}
+<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<script>
+{% if user.username|length > 0 %}
+	$('form input[name="enviar"]').on('click',registrar);
+	function registrar(e)
+	{
+		$elemento = $(e.target);
+		id= $elemento.parent().attr('id');
+		comentario = $('form#'+id+' textarea').val();
+		if (comentario!="")
 		{
-			$elemento = $(e.target);
-			id= $elemento.parent().attr('id');
-			comentario = $('form#'+id+' textarea').val();
-			if (comentario!="")
-			{
-				$.ajax({
-					 async:false,
-	                url:"/comentarios_relatos_ajax/",
-	                data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'COMENTARIO':comentario},
-	                type:'POST',
-	                //dataType:
-	                success:function(response)
-	                {
-	                	if(response!='')
-	                    {
-		            		//$('puntaje_'+id).val('Puntos acumulados: '+response.valoracion);
-		            		if(response.respuesta='exito')
-		            		{
-			            		$('#relato_'+id).append(
-			            			'<section class="comments">'+
-			            			'<h4>Usuario: {{user.username}} </h4>'+
-			            			'<div>'+
-			            				comentario+
-			            			'</div>'+
-			            			'<p id="fechacomentarios">Fecha: '+response.fecha+'</p>'+
-			            			'</section>'+
-			            			'<br>'
-			            			);
-			            			$('form#'+id+' textarea').val('');
-		            		}
-		            		else
-		            		{
-		            			alert('Ocurrió un error. Favor de verificarlo.');
-		            		}
-
-	                    }
-	                    else
-	                    {
-	                        alert('No hubo respuesta por parte del servidor.');
-	                    }
-	                },
-	                 error:function(jqXHR, status, error)
-	                {
-	                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
-	                },
-	            });
-			}
-			else
-			{
-				alert('Asegurese de haber introducido un comentario antes de tratarlo de enviar.');
-			}
-			return false;
-		}
-		$('.me_gusta').on('click',valorar);
-		function valorar(e)
-		{
-			$elemento = $(e.target);
-			id= $elemento.attr('id');
-			valor=1
-			//$elemento = $(e.target)
 			$.ajax({
 				 async:false,
-                url:"/valorar_relatos_ajax/",
-                data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'VALORACION':valor},
+                url:"/comentarios_relatos_ajax/",
+                data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'COMENTARIO':comentario},
                 type:'POST',
                 //dataType:
                 success:function(response)
                 {
                 	if(response!='')
                     {
-                    	if(response.respuesta=='exito')
-                    	{
-                    		$('#puntaje_'+id).html('Puntos acumulados: '+response.valoracion);	
-                    	}
-                    	else if (response.respuesta=='noVotar')
-                    	{
-                    		alert('No puede votar más de una vez por un comentario.');
-                    	}
-                    	else
-                    	{
-							alert('Ocurrió un error interno.');
-                    	}
-                    }
-                    else
-                    {
-                        alert('No hubo respuesta por parte del servidor.');
-                    }
-                },
-                 error:function(jqXHR, status, error)
-                {
-                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
-                },
-            });
-			return false;
-		}
-		$('.no_megusta').on('click',valorar2);
-		function valorar2(e)
-		{
-			$elemento = $(e.target);
-			id= $elemento.attr('id');
-			valor=-1
-			//$elemento = $(e.target)
-			$.ajax({
-				 async:false,
-                url:"/valorar_relatos_ajax/",
-                data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'VALORACION':valor},
-                type:'POST',
-                //dataType:
-                success:function(response)
-                {
-                	if(response!='')
-                    {
-                    	if(response.respuesta=='exito')
-                    	{
-                    		$('#puntaje_'+id).html('Puntos acumulados: '+response.valoracion);	
-                    	}
-                    	else if (response.respuesta=='noVotar')
-                    	{
-                    		alert('No puede votar más de una vez por un comentario.');
-                    	}
-                    	else
-                    	{
-							alert('Ocurrió un error interno.');
-                    	}
+	            		//$('puntaje_'+id).val('Puntos acumulados: '+response.valoracion);
+	            		if(response.respuesta='exito')
+	            		{
+		            		$('#relato_'+id).append(
+		            			'<section class="comments">'+
+		            			'<h4>Usuario: {{user.username}} </h4>'+
+		            			'<div>'+
+		            				comentario+
+		            			'</div>'+
+		            			'<p id="fechacomentarios">Fecha: '+response.fecha+'</p>'+
+		            			'</section>'+
+		            			'<br>'
+		            			);
+		            			$('form#'+id+' textarea').val('');
+	            		}
+	            		else
+	            		{
+	            			alert('Ocurrió un error. Favor de verificarlo.');
+	            		}
 
                     }
                     else
@@ -497,10 +160,102 @@
                     alert(jqXHR.responseText+'\n'+status+'\n'+ error);
                 },
             });
-			return false;
 		}
-	{% endif %}
-	</script>
+		else
+		{
+			alert('Asegurese de haber introducido un comentario antes de tratarlo de enviar.');
+		}
+		return false;
+	}
+	$('.me_gusta').on('click',valorar);
+	function valorar(e)
+	{
+		$elemento = $(e.target);
+		id= $elemento.attr('id');
+		valor=1
+		//$elemento = $(e.target)
+		$.ajax({
+			 async:false,
+            url:"/valorar_relatos_ajax/",
+            data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'VALORACION':valor},
+            type:'POST',
+            //dataType:
+            success:function(response)
+            {
+            	if(response!='')
+                {
+                	if(response.respuesta=='exito')
+                	{
+                		$('#puntaje_'+id).html('Puntos acumulados: '+response.valoracion);	
+                	}
+                	else if (response.respuesta=='noVotar')
+                	{
+                		alert('No puede votar más de una vez por un comentario.');
+                	}
+                	else
+                	{
+						alert('Ocurrió un error interno.');
+                	}
+                }
+                else
+                {
+                    alert('No hubo respuesta por parte del servidor.');
+                }
+            },
+             error:function(jqXHR, status, error)
+            {
+                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+            },
+        });
+		return false;
+	}
+	$('.no_megusta').on('click',valorar2);
+	function valorar2(e)
+	{
+		$elemento = $(e.target);
+		id= $elemento.attr('id');
+		valor=-1
+		//$elemento = $(e.target)
+		$.ajax({
+			 async:false,
+            url:"/valorar_relatos_ajax/",
+            data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'VALORACION':valor},
+            type:'POST',
+            //dataType:
+            success:function(response)
+            {
+            	if(response!='')
+                {
+                	if(response.respuesta=='exito')
+                	{
+                		$('#puntaje_'+id).html('Puntos acumulados: '+response.valoracion);	
+                	}
+                	else if (response.respuesta=='noVotar')
+                	{
+                		alert('No puede votar más de una vez por un comentario.');
+                	}
+                	else
+                	{
+						alert('Ocurrió un error interno.');
+                	}
+
+                }
+                else
+                {
+                    alert('No hubo respuesta por parte del servidor.');
+                }
+            },
+             error:function(jqXHR, status, error)
+            {
+                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+            },
+        });
+		return false;
+	}
+{% endif %}
+</script>
+{% endblock %}
+
 </body>
 
 </html>

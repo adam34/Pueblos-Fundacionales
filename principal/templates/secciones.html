@@ -1,17 +1,5 @@
-<!doctype html>
-<html lang="es">
-<head>
-	<meta charset="UTF-8">
-	<title>Pueblos Fundacionales</title>
-	<!-- Forzar a IE a utilizar el motor de Chrome -->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<!-- Contenido -->
-	<meta name="description" content="Comunidad online donde podrás visualizar todo lo relacionado a los Pueblos Fundacionales de la Zona Norte de BCS, desde su ubicación, hoteles, restaurantes, ¡visítanos!"/>
-	<!-- Keywords -->
-	<meta name="keywords" content="pueblos fundacionales, baja California sur, restaurantes, hoteles, loreto, mulege, comondu, misiones"/>
-	<!-- Viewport -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<!-- Autores -- >
+{% extends 'base.html' %}
+{%  block css %}
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
 	<link rel="stylesheet" href="/static/css/normalize.css">
@@ -23,468 +11,263 @@
 	<link rel="stylesheet" href="/static/css/responsive.css">
 	<!-- Slider superior Camera -->
 	<link rel='stylesheet' id='camera-css' href='/static/css/camera.css' media='all'> 
-</head>
-<body>
-	<section class="conf_idiomas">
-		<div class="idiomas">
-			<a href="#">
-				<img id="arrow" src="/static/img/arrow.png" alt=""/>
-			</a>
-			<div class="esp">
-				<img src="/static/img/bandera.png" alt="Español">
-				<a href="#">Español</a>
-			</div>
-			<div class="eng">
-				<img src="/static/img/ingles.png" alt="Español">
-				<a href="#">Inglés</a>
-			</div>
-		</div>
-		<div class="social_icons">
-			<a href="#" title="Facebook">
-				<img src="/static/img/facebook.png" alt="Facebook" />
-			</a>
-			<a href="#" title="Twitter">
-				<img src="/static/img/twitter.png" alt="Twitter" />
-			</a>
-			<a href="#" title="RSS">
-				<img src="/static/img/rss.png" alt="RSS" />
-			</a>
-		</div>
-	</section>
-	<header>
-		<section class="superior">
-			<img class="logotipo" src="/static/img/Logotipo.png" alt="Proyecto Pueblos">
-			<h1 class="titulo">Pueblos Fundacionales</h1>
-			<article class="buscar">
-				<form class="expandable_search">
-  					<input type="search" placeholder="Buscar" class="icono_buscar">
-				</form>
-			</article>
-		</section>
-	</header>
-	<div class="fluid_container">
-		<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
-			<div data-thumb="/static/images/slides/thumbs/Mision1.jpg" data-src="/static/images/slides/Mision1.jpg">
-                <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">
-                   	Mision de San Javier, Sierra  de la Giganta B.C.S.
-                   </a>
-                </div>
-            </div>
-            <div data-thumb="/static/images/slides/thumbs/Mision4.jpg" data-src="/static/images/slides/Mision4.jpg">
-                <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">
-                    Misión de San Ignacio de Kadakamaán, una de las mejor conservadas de la penisula
-                   </a>
-                </div>
-            </div>
-           
-			<div data-thumb="/static/images/slides/thumbs/Mision3.jpg" data-src="/static/images/slides/Mision3.jpg">
-                <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">
-                   	Misión de Nuestra Señora de Santa Rosalía de Mulegé
-                   </a>
-                </div>
-            </div>
-            <div data-thumb="/static/images/slides/thumbs/Mision2.jpg" data-src="/static/images/slides/Mision2.jpg">
-                <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">La Purísima, B.C.S.
-                   </a>
-                </div>
-            </div>
-            <div data-thumb="/static/images/slides/thumbs/Mision5.jpg" data-src="/static/images/slides/Mision5.jpg">
-                <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">Iglesia de Santa Bárbara, diseñada por Gustave Eiffel
-                   </a>
-                </div>
-            </div>
-		</div>
-	</div>
-	</div>
-	<nav>
-		<ul>
-			<li class="menu">
-				<a href="/">Inicio</a>
-			</li>
-			<li class="menu">
-				<a href="/secciones/">Secciones</a>
-			</li>
-			<li class="menu">
-				<a href="/pueblos/">Pueblos</a>
-			</li>
-			<li class="menu">
-				<a href="/galerias/">Galerías</a>
-			</li>
-			<li class="menu">
-				<a href="#"></a>
-			</li>
-			<li class="menu">
-				<a href="#openModal" id="ingresa">Ingresa</a>
-			</li>
-		</ul>
-	</nav>
-	<!-- Sección de Login --> 
-	<div id="openModal" class="modalDialog">
-		<div>
-			<a href="#close" title="Close" class="close">X</a>
-			<section class="formulario">
-				<h2>Ingresa</h2>
-				<form action="#">
-					<label for="email">Email: </label><input id="email" type="text" placeholder="&nbsp;Introduce tu email" required>
-					<br><br>
-					<label for="password">Contraseña: </label><input id ="password" type="password" placeholder="&nbsp;Introduce tu contraseña" required>
-					<br><br>
-					<a href="#">Olvidé mi contraseña</a>
-					<br><br>
-					<input name="enviar" value="Entrar" type="button">
-				</form>
-			</section>
-			<article class="acceso">
-				<h2>¿Aún no eres miembro?</h2>
-				<div id="twitter">
-					<img src="/static/img/tt.png" alt="">
-					Entra con <strong>TWITTER</strong>
-				</div>
-				<div id="facebook">
-					<img src="/static/img/fb.png" alt="">
-					Entra con <strong>FACEBOOK</strong>
-				</div>
-				<p>O ingresa con tu correo electrónico y llena el siguiente cuestionario <a href="#">aquí</a></p>
-			</article>
-		</div>
-	</div>
-	<section class="contenedor">
-		<section class="secciones">
-			<h2>Secciones</h2>
-			<section class="sitios_turisticos">
-				<h3>Mapa del Sitio</h3>
-					<section class="map_tree">
-						<ul>
-							<li>
-								<a href="/">Inicio</a>
-							</li>
-							<li>
-								<a href="/secciones/">Secciones</a>
-								<ul>
-									<li>
-										<a href="/alojamiento/">
-											Hoteles
-										</a>
-									</li>
-									<li>
-										<a href="/comida/">
-											Restaurantes
-										</a>
-									</li>
-									<li>
-										<a href="/eventos/">
-											Eventos
-										</a>
-									</li>
-									<li>
-										<a href="/galerias/">
-											Galería
-										</a>
-									</li>
-									<li>
-										<a href="/curiosidades/">
-											Curiosidades
-										</a>
-									</li>
-									<li>
-										<a href="/relatos/">
-											Relatos
-										</a>
-									</li>
-									<li>
-										<a href="/directorio/">
-											Directorio
-										</a>
-									</li>
-									<li>
-										<a href="/libreria/">
-											Libreria
-										</a>
-									</li>
-									<li>
-										<a href="/sitios_turisticos/">
-											Sitios Turísticos
-										</a>
-									</li>
-									<li>
-										<a href="/mapa/">
-											Mapa
-										</a>
-									</li>
-									<li>
-										<a href="/multimedia/">
-											Multimedia
-										</a>
-									</li>
-									<li>
-										<a href="/libros/">
-											Descargas
-										</a>
-									</li>
-								</ul>
-							</li>
-							<li>
-								<a href="/pueblos/">
-									Pueblos
-								</a>
-							</li>
-							<li>
-								<a href="/galerias/">
-									Galerías
-								</a>
-							</li>
-							<li>
-								<a href="/">
-									Novedades
-								</a>
-								<ul>
-									<li>
-										<a href="/bcs-desconocida/">
-											BCS Desconocida
-										</a>
-									</li>
-									<li>
-										<a href="/descubra-bcs/">
-											Descubra BCS
-										</a>
-									</li>
-									<li>
-										<a href="/mas-visto/">
-											Pueblo más visto
-										</a>
-									</li>
-								</ul>
-							</li>
-						</ul>
-					</section>
-					<br><br>
-				<span>
-					<a href="/sitios_turisticos/">
-						Visita nuestra sección de Sitios Turísticos, da click <span>aquí</span>
-					</a>
-				</span>
-				<section class="hoteles">
-					<h4>Hoteles</h4>
-					<ul>
-						<li>Hoteles ★★★★</li>
-						<li>Hoteles ★★★</li>
-						<li>Hoteles ★★★</li>
-						<li>Hostal</li>
-						<li>B &amp; B [Bed and breakfast]</li>
-					</ul>
-					<a class="entrar" href="/alojamiento/">Visitar sección</a>
-				</section>
-				<section class="seccion_restaurantes">
-					<h4>Restaurantes</h4>
-					<ul>
-						<li>Comida sudcaliforniana</li>
-						<li>¿A dónde voy a comer?</li>
-					</ul>
-					<a class="entrar" href="/comida/">Visitar sección</a>
-				</section>
-				<section class="seccion_pueblos">
-					<h4>Pueblos Fundacionales</h4>
-					<ul>
-						<li>Historia</li>
-						<li>Pueblos y tradiciones</li>
-						<li>Misiones</li>
-						<li>Museos</li>
-						<li>Galerías de Artes</li>
-					</ul>
-					<a class="entrar" href="/pueblos/">Visitar sección</a>
-				</section>
-				<section class="seccion_eventos">
-					<h4>Eventos</h4>
-					<ul>
-						<li>Pueblos Fundacionales</li>
-						<li>Arte</li>
-					</ul>
-					<a class="entrar" href="/eventos/">Visitar sección</a>
-				</section>
-				<section class="seccion_centros">
-					<h4>Galerías</h4>
-					<ul>
-						<li>Pueblos Sudcalifornianos</li>
-						<li>Fotografías históricas</li>
-						<li>Fotografías actuales</li>
-					</ul>
-						<a class="entrar" href="/curiosidades/">Visitar sección</a>
-				</section>
-				<section class="seccion_curiosidades">
-					<h4>Curiosidades</h4>
-					<ul>
-						<li>¿Sabías que... ?</li>
-						<li>Flora</li>
-						<li>Fauna</li>
-					</ul>
-					<a class="entrar" href="/curiosidades/">Visitar sección</a>
-				</section>
-				<section class="seccion_catalogo">
-					<h4>Catálogo digital</h4>
-					<ul>
-						<li>Libros históricos</li>
-						<li>Libros sobre los Pueblos</li>
-					</ul>
-					<a class="entrar" href="/libreria/">Visitar sección</a>
-				</section>
-				<section class="seccion_catalogo">
-					<h4>Directorio Telefónico</h4>
-					<ul>
-						<li>Emergencias</li>
-						<li>Cruz Roja</li>
-					</ul>
-					<a class="entrar" href="/libreria/">Visitar sección</a>
-				</section>
-			</section>
-			<section class="menu_turistico">
-				<article class="visitabcs">
-					<img src="/static/img/turismo.jpg" alt="">
-					<p></p>
-					<h4>
-						<a href="/libros/">
-							Visita
-						</a>
-					</h4>	
-					<p>¿Quieres visitar alguno de los Pueblos? Entra aquí y entérate de algunos consejos </p>	
-				</article>
-				<article class="guias_turisticas">
-					<img src="/static/img/turismo.jpg" alt="">
-					<p></p>
-					<h4>
-						<a href="/libros/">
-							Guías turísticas
-						</a>
-					</h4>	
-					<p>Ven y visualiza alguna guía turística, mapa o rutas qué seguir</p>
-				</article>
-			</section>
-		</section>
-		<section class="menu_secciones">
-			<section class="seccion_sugerencias">
-				<h3>Sugerencias</h3>
-				<article>
-					<img src="/static/img/folleto.jpg" alt="">
-					<div>
-						<h4>Historia y cultura</h4>
-						<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
-					</div>
-				</article>
-				<article>
-					<img src="/static/img/folleto.jpg" alt="">
-					<div>
-						<h4>Centros turísticos</h4>
-						<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
-					</div>
-				</article>
-				<article>
-					<img src="/static/img/folleto.jpg" alt="">
-					<div>
-						<h4>Hoteles</h4>
-						<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
-					</div>
-				</article>
-				<article>
-					<img src="/static/img/folleto.jpg" alt="">
-					<div>
-						<h4>Hoteles</h4>
-						<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
-					</div>
-				</article>
-				<section class="suscribete_redes">
-					<h3>Suscríbete</h3>
-					<form action="#">
-						<input type="text" placeholder="&nbsp;Introduce tu email">
-						<br><br>
-						<input name="enviar" value="Enviar" type="button">
-					</form>
-				</section>
-			</section>
-		</section>	
-	</section>
-	<footer>
-		<section class="footer_container">
-			<section class="footer_wrap">
-				<section class="wcont">
-					<h4 class="title">Patrocinadores</h4>
-					<ul>
-						<li><a href="#" title="link 1">Link #1</a></li>
-						<li><a href="#" title="link 2">Link #2</a></li>
-						<li><a href="#" title="link 3">Link #3</a></li>
-						<li><a href="#" title="link 4">Link #4</a></li>
-					</ul>
-				</section>
-				<section class="wcont">
-					<h4 class="title">Colaboradores</h4>
-					<ul>
-						<li><a href="#" title="link 1">Link #1</a></li>
-						<li><a href="#" title="link 2">Link #2</a></li>
-						<li><a href="#" title="link 3">Link #3</a></li>
-						<li><a href="#" title="link 4">Link #4</a></li>
-					</ul>
-				</section>
-				<section class="wcont">
-					<h4 class="title">Enlaces de interés</h4>
-					<ul>
-						<li><a href="#" title="link 1">Link #1</a></li>
-						<li><a href="#" title="link 2">Link #2</a></li>
-						<li><a href="#" title="link 3">Link #3</a></li>
-						<li><a href="#" title="link 4">Link #4</a></li>
-					</ul>
-				</section>
-				<section class="wcont">
-					<h4 class="title">Contacto</h4>
-					<ul>
-						<li><a href="#" title="link 1">Link #1</a></li>
-						<li><a href="#" title="link 2">Link #2</a></li>
-						<li><a href="#" title="link 3">Link #3</a></li>
-						<li><a href="#" title="link 4">Link #4</a></li>
-					</ul>
-				</section>
-			</section>
-		</section>
-	</footer>
+{% endblock %}
 
+{% block contenedor %}
+	<section class="secciones">
+		<h2>Secciones</h2>
+		<section class="sitios_turisticos">
+			<h3>Mapa del Sitio</h3>
+				<section class="map_tree">
+					<ul>
+						<li>
+							<a href="/">Inicio</a>
+						</li>
+						<li>
+							<a href="/secciones/">Secciones</a>
+							<ul>
+								<li>
+									<a href="/alojamiento/">
+										Hoteles
+									</a>
+								</li>
+								<li>
+									<a href="/comida/">
+										Restaurantes
+									</a>
+								</li>
+								<li>
+									<a href="/eventos/">
+										Eventos
+									</a>
+								</li>
+								<li>
+									<a href="/galerias/">
+										Galería
+									</a>
+								</li>
+								<li>
+									<a href="/curiosidades/">
+										Curiosidades
+									</a>
+								</li>
+								<li>
+									<a href="/relatos/">
+										Relatos
+									</a>
+								</li>
+								<li>
+									<a href="/directorio/">
+										Directorio
+									</a>
+								</li>
+								<li>
+									<a href="/libreria/">
+										Libreria
+									</a>
+								</li>
+								<li>
+									<a href="/sitios_turisticos/">
+										Sitios Turísticos
+									</a>
+								</li>
+								<li>
+									<a href="/mapa/">
+										Mapa
+									</a>
+								</li>
+								<li>
+									<a href="/multimedia/">
+										Multimedia
+									</a>
+								</li>
+								<li>
+									<a href="/libros/">
+										Descargas
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="/pueblos/">
+								Pueblos
+							</a>
+						</li>
+						<li>
+							<a href="/galerias/">
+								Galerías
+							</a>
+						</li>
+						<li>
+							<a href="/">
+								Novedades
+							</a>
+							<ul>
+								<li>
+									<a href="/bcs-desconocida/">
+										BCS Desconocida
+									</a>
+								</li>
+								<li>
+									<a href="/descubra-bcs/">
+										Descubra BCS
+									</a>
+								</li>
+								<li>
+									<a href="/mas-visto/">
+										Pueblo más visto
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</section>
+				<br><br>
+			<span>
+				<a href="/sitios_turisticos/">
+					Visita nuestra sección de Sitios Turísticos, da click <span>aquí</span>
+				</a>
+			</span>
+			<section class="hoteles">
+				<h4>Hoteles</h4>
+				<ul>
+					<li>Hoteles ★★★★</li>
+					<li>Hoteles ★★★</li>
+					<li>Hoteles ★★★</li>
+					<li>Hostal</li>
+					<li>B &amp; B [Bed and breakfast]</li>
+				</ul>
+				<a class="entrar" href="/alojamiento/">Visitar sección</a>
+			</section>
+			<section class="seccion_restaurantes">
+				<h4>Restaurantes</h4>
+				<ul>
+					<li>Comida sudcaliforniana</li>
+					<li>¿A dónde voy a comer?</li>
+				</ul>
+				<a class="entrar" href="/comida/">Visitar sección</a>
+			</section>
+			<section class="seccion_pueblos">
+				<h4>Pueblos Fundacionales</h4>
+				<ul>
+					<li>Historia</li>
+					<li>Pueblos y tradiciones</li>
+					<li>Misiones</li>
+					<li>Museos</li>
+					<li>Galerías de Artes</li>
+				</ul>
+				<a class="entrar" href="/pueblos/">Visitar sección</a>
+			</section>
+			<section class="seccion_eventos">
+				<h4>Eventos</h4>
+				<ul>
+					<li>Pueblos Fundacionales</li>
+					<li>Arte</li>
+				</ul>
+				<a class="entrar" href="/eventos/">Visitar sección</a>
+			</section>
+			<section class="seccion_centros">
+				<h4>Galerías</h4>
+				<ul>
+					<li>Pueblos Sudcalifornianos</li>
+					<li>Fotografías históricas</li>
+					<li>Fotografías actuales</li>
+				</ul>
+					<a class="entrar" href="/curiosidades/">Visitar sección</a>
+			</section>
+			<section class="seccion_curiosidades">
+				<h4>Curiosidades</h4>
+				<ul>
+					<li>¿Sabías que... ?</li>
+					<li>Flora</li>
+					<li>Fauna</li>
+				</ul>
+				<a class="entrar" href="/curiosidades/">Visitar sección</a>
+			</section>
+			<section class="seccion_catalogo">
+				<h4>Catálogo digital</h4>
+				<ul>
+					<li>Libros históricos</li>
+					<li>Libros sobre los Pueblos</li>
+				</ul>
+				<a class="entrar" href="/libreria/">Visitar sección</a>
+			</section>
+			<section class="seccion_catalogo">
+				<h4>Directorio Telefónico</h4>
+				<ul>
+					<li>Emergencias</li>
+					<li>Cruz Roja</li>
+				</ul>
+				<a class="entrar" href="/libreria/">Visitar sección</a>
+			</section>
+		</section>
+		<section class="menu_turistico">
+			<article class="visitabcs">
+				<img src="/static/img/turismo.jpg" alt="">
+				<p></p>
+				<h4>
+					<a href="/libros/">
+						Visita
+					</a>
+				</h4>	
+				<p>¿Quieres visitar alguno de los Pueblos? Entra aquí y entérate de algunos consejos </p>	
+			</article>
+			<article class="guias_turisticas">
+				<img src="/static/img/turismo.jpg" alt="">
+				<p></p>
+				<h4>
+					<a href="/libros/">
+						Guías turísticas
+					</a>
+				</h4>	
+				<p>Ven y visualiza alguna guía turística, mapa o rutas qué seguir</p>
+			</article>
+		</section>
+	</section>
+	<section class="menu_secciones">
+		<section class="seccion_sugerencias">
+			<h3>Sugerencias</h3>
+			<article>
+				<img src="/static/img/folleto.jpg" alt="">
+				<div>
+					<h4>Historia y cultura</h4>
+					<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
+				</div>
+			</article>
+			<article>
+				<img src="/static/img/folleto.jpg" alt="">
+				<div>
+					<h4>Centros turísticos</h4>
+					<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
+				</div>
+			</article>
+			<article>
+				<img src="/static/img/folleto.jpg" alt="">
+				<div>
+					<h4>Hoteles</h4>
+					<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
+				</div>
+			</article>
+			<article>
+				<img src="/static/img/folleto.jpg" alt="">
+				<div>
+					<h4>Hoteles</h4>
+					<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
+				</div>
+			</article>
+			<section class="suscribete_redes">
+				<h3>Suscríbete</h3>
+				<form action="#">
+					<input type="text" placeholder="&nbsp;Introduce tu email">
+					<br><br>
+					<input name="enviar" value="Enviar" type="button">
+				</form>
+			</section>
+		</section>
+	</section>
+{% endblock %}
+
+{% block js%}
 	<!-- jQuery -->
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
-	<!-- jQuery Mobile -->
-	<script src='/static/scripts/jquery.mobile.customized.min.js'></script>
-	<!-- Modernizr -->
-	<script src="/static/js/modernizr.custom.17475.js"></script>
-	<!-- jQuery Easing -->
-	 <script src='/static/scripts/jquery.easing.1.3.js'></script> 
-	 <!-- Slider Camera -->
-    <script src='/static/scripts/camera.min.js'></script> 
-    <script>
-		$(function(){		
-			$('#camera_wrap_1').camera({
-				height : '400px',
-				thumbnails: true,
-			});
-		});
-		$(function(){
-			$('#ingresa').on("click", function(){
-				$('.modalDialog').show(function(){
-					$(this).fadeIn(5000)
-				});
-			});
-			$('.close').on("click", function(){
-				$('.modalDialog').hide(function(){
-					$(this).css({
-						WebkitTransition : 'opacity 400ms ease-in-out',
-    					MozTransition    : 'opacity 400ms ease-in-out',
-    					MsTransition     : 'opacity 400ms ease-in-out',
-    					OTransition      : 'opacity 400ms ease-in-out',
-    					transition       : 'opacity 400ms sease-in-out'
-					});
-				});
-			});
-		});
-	</script>
-</body>
-
-</html>
+{% endblock %}
