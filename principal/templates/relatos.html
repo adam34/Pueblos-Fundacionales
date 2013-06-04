@@ -156,33 +156,49 @@
 				<h2>Relatos</h2>
 				<ul>
 					{% for relato in relatos  %}
-					<li>
-						<h3> {{relato.TITULO}}</h3>
+					<li id='relato_{{relato.relato.ID}}'>
+						<h3> {{relato.relato.TITULO}}</h3>
 						<br>
-						<span>Autor:</span>&nbsp; &nbsp;{{relato.USUARIO.username}}
+						<span>Autor:</span>&nbsp; &nbsp;{{relato.relato.USUARIO.username}}
 						<br>
-						<span>Fecha:</span>&nbsp; &nbsp;{{relato.FECHA}}
+						<span>Fecha:</span>&nbsp; &nbsp;{{relato.relato.FECHA}}
 						<br>
-						<span>Descripción:</span> &nbsp; &nbsp;<p>{{relato.DESCRIPCION}}</p>
+						<span>Descripción:</span> &nbsp; &nbsp;<p>{{relato.relato.DESCRIPCION}}</p>
 						<br><br>
+						{% if user.username|length > 0 %}
 						<span>Valoración: </span>
 						<span class="plus">
-							<img src="/static/img/heart.png" alt="" title="Me gustó">
+							<img id='{{relato.relato.ID}}' class='me_gusta' src="/static/img/heart.png" alt="" title="Me gustó">
 						</span>
 						<span class="plus">
-							<img src="/static/img/heart-broken.png" alt="" title="No me gustó">
+							<img id='{{relato.relato.ID}}' class='no_megusta' src="/static/img/heart-broken.png" alt="" title="No me gustó">
 						</span>
+						{% endif %}
 							
 						<span aria-hidden="true" class="icon-heart-broken minus"></span>
-						&nbsp; &nbsp;<span>Puntos acumulados: {{relato.VALORACION}}	</span>
-
-						<form action="#">
-							<textarea rows="4" cols="45" placeholder="Comenta">
-
-							</textarea>
+						&nbsp; &nbsp;<span id='puntaje_{{relato.relato.ID}}'>Puntos acumulados: {{relato.relato.VALORACION}}	</span>
+						{% if relato.comentarios|length > 0 %}
+							{% for comentario in relato.comentarios %}
+								<section class="comments">
+									<h4>Usuario: {{comentario.USUARIO.username}} </h4>
+									<div><!-- start slipsum code -->
+										{{comentario.DESCRIPCION}}
+									</div>
+									<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
+								</section>
+								<br>
+							{% endfor %}
+						{% else %}
+							<p>No comentarios</p>
+						{% endif %}
+						<div id="more"> Mostrar más comentarios </div>
+						{% if user.username|length > 0 %}
+						<form id='{{relato.relato.ID}}' action="#">
+							<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
 							<br><br>
 								<input name="enviar" value="Comentar" type="button">
 						</form>
+<<<<<<< HEAD
 						<section class="comments">
 							<h4>Usuario: {{relato.USUARIO.username}} </h4>
 							<div><!-- start slipsum code -->
@@ -192,6 +208,9 @@
 							<p id="fechacomentarios">Fecha: {{relato.FECHA}}</p>
 						</section>
 						<div id="more"> Mostrar más comentarios </div>
+=======
+						{% endif %}
+>>>>>>> upstream/master
 					</li>
 					{% endfor %}
 				</ul>
@@ -202,10 +221,12 @@
 				<p>
 					{% for relato in relatos  %}
 						<br>
-						<h4> {{relato.TITULO}}</h4>
+						<h4> {{relato.relato.TITULO}}</h4>
 					{% endfor %}
 				</p>
+				{% if user.username|length > 0 %}
 				<a id="aRelato" href="#relatoNuevo">Escribir relato</a>
+				{% endif %}
 			</section>
 		</section>
 	</section>
@@ -315,11 +336,145 @@
 			$close.on('click', onClickClose);
 		});
 	{% if user.username|length > 0 %}
-	{% else %}
-		$('#aRelato').on('click',bloquear);
-		function bloquear()
+		$('form input[name="enviar"]').on('click',registrar);
+		function registrar(e)
 		{
-			alert('Necesita estar autenticado en el sistema para poder enviar un relato.')
+			$elemento = $(e.target);
+			id= $elemento.parent().attr('id');
+			comentario = $('form#'+id+' textarea').val();
+			if (comentario!="")
+			{
+				$.ajax({
+					 async:false,
+	                url:"/comentarios_relatos_ajax/",
+	                data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'COMENTARIO':comentario},
+	                type:'POST',
+	                //dataType:
+	                success:function(response)
+	                {
+	                	if(response!='')
+	                    {
+		            		//$('puntaje_'+id).val('Puntos acumulados: '+response.valoracion);
+		            		if(response.respuesta='exito')
+		            		{
+			            		$('#relato_'+id).append(
+			            			'<section class="comments">'+
+			            			'<h4>Usuario: {{user.username}} </h4>'+
+			            			'<div>'+
+			            				comentario+
+			            			'</div>'+
+			            			'<p id="fechacomentarios">Fecha: '+response.fecha+'</p>'+
+			            			'</section>'+
+			            			'<br>'
+			            			);		            			
+		            		}
+		            		else
+		            		{
+		            			alert('Ocurrió un error. Favor de verificarlo.');
+		            		}
+
+	                    }
+	                    else
+	                    {
+	                        alert('No hubo respuesta por parte del servidor.');
+	                    }
+	                },
+	                 error:function(jqXHR, status, error)
+	                {
+	                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+	                },
+	            });
+			}
+			else
+			{
+				alert('Asegurese de haber introducido un comentario antes de tratarlo de enviar.');
+			}
+			return false;
+		}
+		$('.me_gusta').on('click',valorar);
+		function valorar(e)
+		{
+			$elemento = $(e.target);
+			id= $elemento.attr('id');
+			valor=1
+			//$elemento = $(e.target)
+			$.ajax({
+				 async:false,
+                url:"/valorar_relatos_ajax/",
+                data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'VALORACION':valor},
+                type:'POST',
+                //dataType:
+                success:function(response)
+                {
+                	if(response!='')
+                    {
+                    	if(response.respuesta=='exito')
+                    	{
+                    		$('#puntaje_'+id).html('Puntos acumulados: '+response.valoracion);	
+                    	}
+                    	else if (response.respuesta=='noVotar')
+                    	{
+                    		alert('No puede votar más de una vez por un comentario.');
+                    	}
+                    	else
+                    	{
+							alert('Ocurrió un error interno.');
+                    	}
+                    }
+                    else
+                    {
+                        alert('No hubo respuesta por parte del servidor.');
+                    }
+                },
+                 error:function(jqXHR, status, error)
+                {
+                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+                },
+            });
+			return false;
+		}
+		$('.no_megusta').on('click',valorar2);
+		function valorar2(e)
+		{
+			$elemento = $(e.target);
+			id= $elemento.attr('id');
+			valor=-1
+			//$elemento = $(e.target)
+			$.ajax({
+				 async:false,
+                url:"/valorar_relatos_ajax/",
+                data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'VALORACION':valor},
+                type:'POST',
+                //dataType:
+                success:function(response)
+                {
+                	if(response!='')
+                    {
+                    	if(response.respuesta=='exito')
+                    	{
+                    		$('#puntaje_'+id).html('Puntos acumulados: '+response.valoracion);	
+                    	}
+                    	else if (response.respuesta=='noVotar')
+                    	{
+                    		alert('No puede votar más de una vez por un comentario.');
+                    	}
+                    	else
+                    	{
+							alert('Ocurrió un error interno.');
+                    	}
+	            		
+                    }
+                    else
+                    {
+                        alert('No hubo respuesta por parte del servidor.');
+                    }
+                },
+                 error:function(jqXHR, status, error)
+                {
+                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+                },
+            });
+			return false;
 		}
 	{% endif %}
 	</script>
