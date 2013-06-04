@@ -471,14 +471,91 @@ def galeria_2(request):
 	return render_to_response('multimedia/galeria.html')
 
 def relatos(request):
+	# import pdb
+	# pdb.set_trace()
 	try:
 		cont_relatos = relato.objects.count()
 		relatos = None
+		lista=[]
 		if cont_relatos > 0:
 			relatos = relato.objects.all()
+			for rel in relatos:
+				dic = dict()
+				coment_cont=comentario_relato.objects.filter(RELATOS=rel)
+				dic['relato']=rel
+				if coment_cont > 0:
+					dic['comentarios']=comentario_relato.objects.filter(RELATOS=rel)[:3]
+				else:
+					dic['comentarios']=None
+				lista.append(dic)
+		#Agarrar 3 comentarios por cada relato a mostrar
 	except Exception,e:
 		print e
-	return render_to_response('relatos.html',{'relatos':relatos,'user':request.user})
+	return render_to_response('relatos.html',RequestContext(request,{'relatos':lista,'user':request.user}))
+
+def comentarios_relatos_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if ('ID' in request.POST and 'COMENTARIO' in request.POST ):
+				iden=request.POST['ID']
+				comentario=request.POST['COMENTARIO']
+				usuario=request.user
+				try:
+					rel=relato.objects.get(ID=iden)						
+					fecha = datetime.datetime.now()
+					comen_relato=comentario_relato(RELATOS=rel,USUARIO=usuario,DESCRIPCION=comentario,FECHA=fecha,VALORACION=0)
+					comen_relato.save()
+					fec = fecha.strftime('%d/%m/%Y, a las %H:%M:%S ')
+					return HttpResponse(json.dumps({'respuesta':'exito','fecha':fec}),mimetype='application/json')
+				except Exception,e:
+					print e
+					return HttpResponse(json.dumps({'respuesta':'noRelato'}),mimetype='application/json')		
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
+def valorar_relatos_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if ('ID' in request.POST and 'VALORACION' in request.POST ):
+				iden=request.POST['ID']
+				valoracion=int(request.POST['VALORACION'])
+				usuario=request.user
+				try:
+					rel=relato.objects.get(ID=iden)
+					vot_usuario=votacion.objects.filter(USUARIO=usuario,VOTADO=rel.ID,TIPO_COMENTARIO='r')
+					if(len(vot_usuario)==0):
+						valor=0
+						if valoracion == 1:
+							valor=1
+						elif valoracion ==-1:
+							valor=-1
+						else:
+							valor=0
+						fecha = datetime.datetime.now()
+						voto=votacion(VOTADO=rel.ID,USUARIO=usuario,VOTACION=valor,TIPO_COMENTARIO='r')
+						voto.save()
+						rel.VALORACION+=valor
+						rel.save()
+						return HttpResponse(json.dumps({'respuesta':'exito','valoracion':rel.VALORACION}),mimetype='application/json')
+					else:
+						return HttpResponse(json.dumps({'respuesta':'noVotar','valoracion':rel.VALORACION}),mimetype='application/json')
+				except Exception,e:
+					print e
+					return HttpResponse(json.dumps({'respuesta':'noRelato'}),mimetype='application/json')
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')	
 
 def sitiosT(request):
 	try:

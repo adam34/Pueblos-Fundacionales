@@ -263,7 +263,8 @@ class votacion(models.Model):
 		verbose_name="votacion" #Nombre en singular del modelo
 		verbose_name_plural="votaciones" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
-	COMENTARIO=models.IntegerField(null=True,default=0)
+	VOTADO=models.IntegerField(null=True,default=0) #El objeto de la votacion: relato, sitio,
+	TIPO_COMENTARIO=models.CharField(max_length=1,null=False)
 	VOTACION = models.BooleanField(null=False)
 	USUARIO=models.ForeignKey(User,null=False)
 	def __unicode__(self):
