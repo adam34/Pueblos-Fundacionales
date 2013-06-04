@@ -7,6 +7,19 @@
 	<section class="contenedor">
 			<h2>Búsqueda</h2>
 			<h3>Resultados obtenidos: </h3>
+			{% if respuesta %}
+				{{respuesta}}
+				{% for pueblo in pueblos %}
+				{% endfor %}
+				{% for evento in eventos %}
+				{% endfor %}
+				{% for sitio in sitios %}
+				{% endfor %}
+				{% for relato in relatos  %}
+				{% endfor %}
+			{% else %}
+				<p>No hubo respuesta del lado del servidor.</p>
+			{% endif %}
 	</section>
 {% endblock %}
 
