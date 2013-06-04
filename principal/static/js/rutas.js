@@ -5,7 +5,7 @@ $(document).on("ready", function(){
         $('#back').attr('disabled', 'disabled');
         $('#get_route').click(function(e){
           e.preventDefault();
-          origin = map.markers[0].getPosition();
+          origin = map.setCenter(position.coords.latitude, position.coords.longitude);
           destination = map.markers[map.markers.length-1].getPosition();
           map.getRoutes({
             origin: [origin.lat(), origin.lng()],
@@ -44,12 +44,12 @@ $(document).on("ready", function(){
         lng: -110.33032,
         zoom: 6,
         //zoom: 17,
-        click: function(e){
+        /*click: function(e){
               map.addMarker({
                 lat: e.latLng.lat(),
                 lng: e.latLng.lng()
               });
-          }
+          }*/
     });
     $('#geocoding_form').submit(function(e){
       e.preventDefault();
@@ -83,9 +83,9 @@ $(document).on("ready", function(){
     });
     //La Purísima
     map.addMarker({
-      lat:  26.308189,
-        lng: -111.722717,
-        title: 'Misión de La Purísima',
+      lat:  26.185556,  
+      lng: -112.075278,
+      title: 'Misión de La Purísima',
       icon: '/static/img/iconos/misiones3.png',
       click: function(e) {
           alert('Aquí vive el profe Pedro y la maestra Quitty :D');
