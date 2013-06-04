@@ -172,6 +172,16 @@
 		<section class="pueblos_menu">
 			<h2>Menú</h2>
 			<ul>
+				{% if pueblos %}
+					{% for pueblo in pueblos %}
+					<li>
+						<article>
+							<h4 id="{{pueblo.NOMBRE}}">{{pueblo.NOMBRE}}</h4>
+							<img src="/static/img/purisma.jpg" alt="">
+						</article>
+					</li>					
+					{% endfor %}
+				{% else %}
 				<h3>Pueblos Fundacionales</h3>
 				<li>
 					<article>
@@ -209,6 +219,7 @@
 						<img src="/static/img/sanjavier.png" alt="">
 					</article>
 				</li-->
+				{% endif %}
 			</ul>
 		</section>
 	</section>

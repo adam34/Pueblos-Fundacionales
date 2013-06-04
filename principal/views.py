@@ -64,10 +64,10 @@ def home(request):
 		# pdb.set_trace()
 		hoy_time=datetime.datetime.now()
 		eventos_hoy=evento.objects.filter(FECHA__day=hoy_time.day).order_by('FECHA')
-		if eventos_hoy.count()<=0:
+		if eventos_hoy.count()>0:
 			eventos_hoy=None
 		eventos_mes=evento.objects.filter(FECHA__year=hoy_time.year,FECHA__month=hoy_time.month).order_by('FECHA')
-		if eventos_mes.count()<=0:
+		if eventos_mes.count()>0:
 			eventos_mes=None
 
 	except Exception,e:
@@ -262,17 +262,39 @@ def cerrar_sesion(request):
 def secciones(request): 
 	return render_to_response('secciones.html')
 
-def pueblos(request): 
-	return render_to_response('pueblos.html')
+def pueblos(request):
+	try:
+
+		cant_pueblos= pueblo.objects.count()
+		pueblos = None
+		if cant_pueblos >0:
+			pueblos= pueblo.objects.all()
+	except Exception,e:
+		print e
+	return render_to_response('pueblos.html',RequestContext(request,{'user':request.user,'pueblos':pueblos}))
 
 def politicas(request): 
 	return render_to_response('politicas.html')
 
-def curiosidades(request): 
-	return render_to_response('curiosidades.html')
+def curiosidades(request):
+	try:
+		cant_curiosidades= curiosidad.objects.count()
+		curiosidades = None
+		if cant_curiosidades >0:
+			curiosidades= curiosidades.objects.all()
+	except Exception,e:
+		print e
+	return render_to_response('curiosidades.html',RequestContext(request,{'user':request.user,'curiosidades':curiosidades}))
 
-def masvisto(request): 
-	return render_to_response('mas-visto.html')
+def masvisto(request):
+	try:
+		cant_pueblos= pueblo.objects.count()
+		mas_visto = None
+		if cant_pueblos >0:
+			mas_visto= pueblo.objects.all().order_by('VISITAS')[0]
+	except Exception,e:
+		print e
+	return render_to_response('mas-visto.html',RequestContext(request,{'user':request.user,'mas_visto':mas_visto}))
 
 def descubrabcs(request):
 	try:
@@ -288,7 +310,7 @@ def bcsdesconocida(request):
 	try:
 		cant_curiosidades= curiosidad.objects.count()
 		curiosidades = None
-		if cant_curiosidades <=0:
+		if cant_curiosidades >0:
 			curiosidades= curiosidades.objects.all()
 	except Exception,e:
 		print e
@@ -296,7 +318,7 @@ def bcsdesconocida(request):
 
 def galerias(request):
 	objs=galeria.objects.all()
-	return render_to_response('galerias.html',RequestContext(request,{'galerias':objs}))
+	return render_to_response('galerias.html',RequestContext(request,{'galerias':objs,'user':request.user}))
 
 def galerias_ajax(request):
 	# import pdb
@@ -325,12 +347,41 @@ def libros(request):
 def basico(request): 
 	return render_to_response('accesos.html')
 
-def mapa(request): 
-	return render_to_response('mapa.html')
+def mapa(request):
+	try:
+		cant_fund= pueblo.objects.filter(TIPO='F').count()
+		pueblos_fund = None
+		if cant_fund >0:
+			pueblos_fund= pueblo.objects.filter(TIPO='F')
+		cant_turis= pueblo.objects.filter(TIPO='T').count()
+		pueblos_turis = None
+		if cant_turis >0:
+			pueblos_turis= pueblo.objects.filter(TIPO='T')
+
+		cant_sitios=sitio_turistico.objects.all()
+		sitios = None
+		if cant_sitios >0:
+			sitios=sitio_turistico.objects.all()
+	except Exception,e:
+		print e
+	return render_to_response('mapa.html',RequestContext(request,{'user':request.user,'fundacionales':pueblos_fund,'turisticos':pueblos_turis,'sitios':sitios}))
 
 def alojamiento(request):
-	
-	return render_to_response('alojamiento.html')
+	try:
+		try:
+			categ = categoria.objects.get(NOMBRE='Hoteles')
+		except Exception,e:
+			categ=None
+		if categ is not None:
+			if sitio_turistico.objects.filter(CATEGORIA=categ).count() > 0:
+				hoteles= sitio_turistico.objects.filter(CATEGORIA=categ)
+			else:
+				hoteles=None
+		else:
+			hoteles=None
+	except Exception,e:
+		print e
+	return render_to_response('alojamiento.html',RequestContext(request,{'user':request.user,'hoteles':hoteles}))
 
 def comida(request): 
 	return render_to_response('comida.html')
@@ -359,6 +410,52 @@ def libro_p(request):
 def multimedia(request):
 	return render_to_response('multimedia.html')
 
+def multimedia_ajax(request):
+	if request.is_ajax():
+		if request.POST:
+			if 'TIPO' in request.POST:
+				tipo=request.POST['TIPO']
+				if tipo =='audio':
+					#buscar por .mp3
+					try:
+						archivos=archivo.objects.filter(RUTA__endswith='.mp3')
+						if audio.count()>0:
+							lista = []
+							for audio in archivos:
+								dicc=dict()
+								dicc['NOMBRE']=audio.NOMBRE
+								dicc['RUTA']=audio.RUTA
+								lista.append(dicc)
+							return HttpResponse(json.dumps({'respuesta':'exito','datos':lista}),mimetype='application/json')
+						else:
+							return HttpResponse(json.dumps({'respuesta':'noDatos'}),mimetype='application/json')
+					except Exception,e:
+						print e
+				elif tipo == 'video':
+					#buscar por .mp4,.avi
+					try:
+						archivos=archivo.objects.filter(RUTA__endswith=('.mp4','.avi'))
+						if audio.count()>0:
+							lista = []
+							for audio in archivos:
+								dicc=dict()
+								dicc['NOMBRE']=audio.NOMBRE
+								dicc['RUTA']=audio.RUTA
+								lista.append(dicc)
+							return HttpResponse(json.dumps({'respuesta':'exito','datos':lista}),mimetype='application/json')
+						else:
+							return HttpResponse(json.dumps({'respuesta':'noDatos'}),mimetype='application/json')
+					except Exception,e:
+						print e
+				else:
+					return HttpResponse(json.dumps({'respuesta':'noOpcion'}),mimetype='application/json')					
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
 def player(request):
 	return render_to_response('multimedia/player.html')
 
@@ -373,12 +470,24 @@ def galeria_2(request):
 	return render_to_response('multimedia/galeria.html')
 
 def relatos(request):
-	relatos = relato.objects.all()
-	return render_to_response('relatos.html',{'relatos':relatos})
+	try:
+		cont_relatos = relato.objects.count()
+		relatos = None
+		if cont_relatos > 0:
+			relatos = relato.objects.all()
+	except Exception,e:
+		print e
+	return render_to_response('relatos.html',{'relatos':relatos,'user':request.user})
 
 def sitiosT(request):
-	sitios = sitio_turistico.objects.all()
-	return render_to_response('sitios_turisticos.html',{'sitios':sitios})
+	try:
+		cont_sitios = sitio_turistico.objects.count()
+		sitios = None
+		if cont_sitios > 0:
+			sitios = sitio_turistico.objects.all()
+	except Exception,e:
+		print e
+	return render_to_response('sitios_turisticos.html',RequestContext(request,{'sitios':sitios,'user':request.user}))
 
 def busqueda(request):
 	return render_to_response('busqueda.html')
