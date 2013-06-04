@@ -12,6 +12,7 @@
 	<meta name="keywords" content="pueblos fundacionales, baja California sur, restaurantes, hoteles, loreto, mulege, comondu, misiones"/>
 	<!-- Viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	{%  block css %}
 	<!-- Autores -- >
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
@@ -21,8 +22,9 @@
 	<!-- Hoja de Responsive -->
 	<link rel="stylesheet" href="/static/css/responsive.css">
 	<!-- Slider superior Camera -->
-	<link rel='stylesheet' id='camera-css' href='/static/css/camera.css' media='all'> 
-	{%  block css %}{% endblock %}
+	<link rel='stylesheet' id='camera-css' href='/static/css/camera.css' media='all'>
+	{% endblock %}
+
 	{% block js_importante %}{% endblock %}
 </head>
 <body>
@@ -62,7 +64,7 @@
 			</a>
 			<h1 class="titulo">Pueblos Fundacionales</h1>
 			<article class="buscar">
-				<form id='form_search' class="expandable_search" method='POST' action='busqueda/'>
+				<form id='form_search' class="expandable_search" method='POST' action='/busqueda/'>
 					{% csrf_token %}
   					<input name='text_search' type="search" placeholder="Buscar" class="icono_buscar">
 				</form>

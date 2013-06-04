@@ -2,6 +2,7 @@
 {%  block css %}
 
 	<!-- Hoja de Estilos -->
+	{{block.super}}
 	<link rel="stylesheet" href="/static/css/accesos.css">
 {% endblock %}
 
@@ -27,7 +28,7 @@
 				</table>
 			{% else %}
 			<p>
-				Hola! Esto es lo que aparece cuando no se regresan valores de pueblos turisticos
+				Hola! Esto es lo que aparece cuando no se regresan curiosidades
 			</p>
 			{% endif %}
 		</section>
