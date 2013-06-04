@@ -175,6 +175,12 @@ header{background:transparent;height:160px}
 .events ul > li span{color:#a70325;font-weight:bold;font-size:1em;font-weight:bold;margin-left:.5em;width:30%}
 .events ul > li textarea{background:#fafafa;border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#333;margin-left:5%;margin-right:5%;margin-top:10%;resize:none;width:90%}
 .events ul > li input[type="button"]{-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#25799d),color-stop(100%,#184f67));background:-ms-linear-gradient(top,#25799d 0%,#184f67 100%);background:-o-linear-gradient(top,#25799d 0%,#184f67 100%);background:-moz-linear-gradient(top,#25799d 0%,#184f67 100%);background:linear-gradient(top,#25799d 0%,#184f67 100%);height:30px;margin-left:35%;margin-right:35%;width:30%;color:#fff}
+#more{color:#1e6381;font-weight:bold;margin-left:5%;margin-top:5%;padding-bottom:5%;text-align:center;width:90%}
+.comments{background:#fff;border:thin solid #ccc;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;margin:1em auto;height:auto;width:90%;}
+.comments h4{margin-left:5%}
+.comments h4,.comments div{color:#a70325;display:inline-block;font-weight:bold;margin-top:5%;vertical-align:top;width:25%}
+.comments div{color:#1e6381;font-weight:normal;text-align:justify;width:65%}
+.comments p#fechacomentarios{color:#ce8610;margin-top:1em}
 .contenedor_relatos{height:auto}
 .menu_story,.story{display:inline-block;vertical-align:top;width:18%}
 .menu_story p{font-size:.9em;font-weight:bold;text-align:center;width:100%}
@@ -246,8 +252,4 @@ audio{left:300px;top:10px;float:left;position:relative}
 .uso li{font-size:.9em;font-weight:bold;margin-left:2em;margin-top:.3em;text-align:justify;width:92%}
 .pueblos ul li{list-style:none;margin-left:20%;}
 .pueblos ul li a{color:#ce8610;display:block;padding:.5em;text-decoration:none}
-<<<<<<< HEAD
 .pueblos ul li span{color:#1e6381}
-=======
-.pueblos ul li span{color:#1e6381}
->>>>>>> upstream/master
