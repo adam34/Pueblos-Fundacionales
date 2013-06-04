@@ -821,7 +821,7 @@ header
 		display inline-block
 		font-size .9em
 		font-weight normal
-		height 600px
+		height 750px
 		margin-bottom .5em
 		position relative
 		vertical-align top
@@ -894,6 +894,8 @@ header
 	div 
 		color azul
 		font-weight normal
+		height auto
+		padding-bottom .5em 
 		text-align justify
 		width 65%
 	p#fechacomentarios 
@@ -996,7 +998,7 @@ header
 		display inline-block
 		font-size .9em
 		font-weight normal 
-		height 450px
+		height 600px
 		margin-right 3%
 		margin-bottom .9em
 		padding .8em 0
@@ -1016,14 +1018,62 @@ header
 		text-align left
 	#etiquetas 
 		text-align right
+	textarea 
+		background darken(blanco, 6%)
+		border thin solid lighten(gris, 80%)
+		bordes(.2em)
+		color darken(blanco, 80%)
+		margin-top 3%
+		margin-bottom .5em
+		margin-left 1%
+		overflow-y scroll
+		resize none
+		width 80%
+	input[type="button"]
+		bordes(.2em)
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		color blanco
+		height 30px
+		margin-left 1%
+		width 90px
 
+.comments-sitios
+	background blanco
+	border thin solid darken(blanco, 20%)
+	bordes(.2em)
+	margin 1em auto 
+	height auto 
+	width 90%
+	h4 
+		margin-left 5%
+	h4, div
+		color rojizo 
+		display inline-block
+		font-weight bold
+		margin-top 5%
+		vertical-align top
+		width 25%
+	div 
+		color azul
+		font-weight normal
+		height auto
+		padding-bottom .5em 
+		text-align justify
+		width 65%
+	p#fechacomentarios 
+		color amarillo
+		margin-top 1em
 
 //Galerias 
 .gallery 
 	border thin solid darken(blanco, 15%)
 	bordes(.4em)
 	display inline-block
-	height 150px
+	height 180px
 	margin 0 2% 1em 2%
 	text-align center
 	vertical-align top 
@@ -1297,12 +1347,4 @@ audio
 		padding .5em
 		text-decoration none 
 	span 
-<<<<<<< HEAD
 		color azul
-=======
-		color azul
-<<<<<<< HEAD
-=======
-
->>>>>>> upstream/master
->>>>>>> 227768d941cc280ee1407d662e86004afa9a199e

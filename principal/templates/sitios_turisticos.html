@@ -170,6 +170,21 @@
 						<div><span>Teléfonos: </span>{{sitio.TELEFONOS}}</div>
 						<br>
 						<div id="etiquetas"><span>Etiquetas: </span>{{sitio.CATEGORIA}}</div>
+						<form action="#">
+							<textarea rows="4" cols="45" placeholder="Comenta">
+
+							</textarea>
+							<br><br>
+								<input name="enviar" value="Enviar" type="button">
+						</form>
+						<section class="comments-sitios">
+							<h4>Rosita</h4>
+							<div id="comments-div"><!-- start slipsum code -->
+								Estupendo restaurante, comida muy rica. Recomendado al 100%
+
+							</div>
+						</section>
+						<div id="more"> Mostrar más comentarios </div>
 					</li>
 					{% endfor %}
 				</ul>
