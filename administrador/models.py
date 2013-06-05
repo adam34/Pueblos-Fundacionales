@@ -84,8 +84,8 @@ class pueblo_idioma(models.Model):
 
 class comentario_pueblo(models.Model):
 	class Meta:
-		verbose_name="comentario_pueblo" #Nombre en singular del modelo
-		verbose_name_plural="comentarios_pueblos" #Nombre en plural del modelo
+		verbose_name="comentario de pueblo" #Nombre en singular del modelo
+		verbose_name_plural="comentarios de pueblos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	USUARIO=models.ForeignKey(User,null=False)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
@@ -93,7 +93,7 @@ class comentario_pueblo(models.Model):
 	FECHA=models.DateTimeField(null=False)
 	VALORACION=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
-		return self.FECHA
+		return  self.USUARIO.username +' || '+self.DESCRIPCION
 
 class evento(models.Model):
 	class Meta:
@@ -126,8 +126,8 @@ class evento_idioma(models.Model):
 
 class comentario_evento(models.Model):
 	class Meta:
-		verbose_name="comentario_evento" #Nombre en singular del modelo
-		verbose_name_plural="comentarios_eventos" #Nombre en plural del modelo
+		verbose_name="comentario evento" #Nombre en singular del modelo
+		verbose_name_plural="comentarios de eventos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	USUARIO=models.ForeignKey(User,null=False)
 	EVENTO=models.ForeignKey('evento',null=False)
@@ -135,7 +135,7 @@ class comentario_evento(models.Model):
 	FECHA=models.DateTimeField(null=False)
 	VALORACION=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
-		return self.FECHA
+		return  self.USUARIO.username +' || '+self.DESCRIPCION
 
 class relato(models.Model):
 	class Meta:
@@ -150,7 +150,7 @@ class relato(models.Model):
 	VALORACION=models.IntegerField(null=True,default=0)
 	APROBADO=models.BooleanField(null=False,default=False)
 	def __unicode__(self):
-		return str(self.PUEBLO.NOMBRE) + " || " +str(self.USUARIO.username)
+		return self.PUEBLO.NOMBRE + " || " +self.USUARIO.username
 
 class relato_idioma(models.Model):
 	class Meta:
@@ -166,8 +166,8 @@ class relato_idioma(models.Model):
 
 class comentario_relato(models.Model):
 	class Meta:
-		verbose_name="comentario_relato" #Nombre en singular del modelo
-		verbose_name_plural="comentarios_relatos" #Nombre en plural del modelo
+		verbose_name="comentario de relato" #Nombre en singular del modelo
+		verbose_name_plural="comentarios de relatos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	USUARIO=models.ForeignKey(User,null=False)
 	RELATOS=models.ForeignKey('relato',null=False)
@@ -175,7 +175,7 @@ class comentario_relato(models.Model):
 	FECHA=models.DateTimeField(null=False)
 	VALORACION=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
-		return self.FECHA
+		return  self.USUARIO.username +' || '+self.DESCRIPCION
 
 
 class categoria(models.Model):
@@ -219,8 +219,8 @@ class sitio_turistico_idioma(models.Model):
 
 class comentario_sitio(models.Model):
 	class Meta:
-		verbose_name="comentario_sitio" #Nombre en singular del modelo
-		verbose_name_plural="comentarios_sitios" #Nombre en plural del modelo
+		verbose_name="comentario de sitio" #Nombre en singular del modelo
+		verbose_name_plural="comentarios de sitios" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	USUARIO=models.ForeignKey(User,null=False)
 	SITIOS=models.ForeignKey('sitio_turistico',null=False)
@@ -228,7 +228,7 @@ class comentario_sitio(models.Model):
 	FECHA=models.DateTimeField(null=False)
 	VALORACION=models.IntegerField(null=True,default=0)
 	def __unicode__(self):
-		return self.DESCRIPCION
+		return  self.USUARIO.username +' || '+self.DESCRIPCION
 
 
 class contrato(models.Model):
@@ -247,8 +247,8 @@ class contrato(models.Model):
 
 class reporte_comentario(models.Model):
 	class Meta:
-		verbose_name="reporte_comentario" #Nombre en singular del modelo
-		verbose_name_plural="reportes_comentarios" #Nombre en plural del modelo
+		verbose_name="reporte" #Nombre en singular del modelo
+		verbose_name_plural="reportes" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	CLASE_COMENTARIO=models.CharField(null=False,max_length=1)
 	COMENTARIO=models.IntegerField(null=True,default=0) #Cambiar a PositiveIntegerField
@@ -256,7 +256,7 @@ class reporte_comentario(models.Model):
 	FECHA=models.DateTimeField(null=True,blank=True)
 	USUARIO=models.ForeignKey(User,null=False)
 	def __unicode__(self):
-		return self.RAZON
+		return str(self.ID)
 
 class votacion(models.Model):
 	class Meta:

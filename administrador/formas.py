@@ -1371,3 +1371,56 @@ class ArchivosChangeForm(forms.ModelForm):
 		cleaned_data = self.cleaned_data
 		return cleaned_data
 #---------------------------Fin de formularios para el modelo de archivos----------------------
+
+#------------------------------Formularios para el modelo de archivos------------------------
+
+
+class ReporteChangeForm(forms.ModelForm):
+	COMENTARIO_REP = forms.CharField(required=False)
+	class Meta:
+		model=reporte_comentario
+	class Media:
+		#css={'all':('admin/css/multi-select.css',),}
+		js=('admin/js/reportes.js',)
+	def __init__(self, *args, **kwargs):
+		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
+		super(ReporteChangeForm, self).__init__(*args, **kwargs)
+
+		self.fields['USUARIO'].widget=TextInput()
+		self.fields['USUARIO'].widget.attrs['readonly'] = True
+		self.fields['CLASE_COMENTARIO'].widget= HiddenInput()
+		self.fields['COMENTARIO'].widget= HiddenInput()
+		self.fields['RAZON'].widget.attrs['rows']='2'
+		self.fields['RAZON'].widget.attrs['readonly'] = True
+		self.fields['FECHA'].widget.attrs['readonly'] = True
+		self.fields['USUARIO'].widget.attrs['readonly'] = True
+		self.fields['COMENTARIO_REP'].widget = Textarea()
+		self.fields['COMENTARIO_REP'].label='Comentario'
+		self.fields['COMENTARIO_REP'].widget.attrs['readonly'] = True
+		self.fields['COMENTARIO_REP'].widget.attrs['rows']='2'
+		obj = kwargs['instance']
+
+		self.initial['USUARIO'] = obj.USUARIO.username
+		try:
+			if obj.CLASE_COMENTARIO=='R':
+				comen=comentario_relato.objects.get(ID=obj.COMENTARIO)
+				self.initial['COMENTARIO_REP'] = comen.DESCRIPCION
+			elif obj.CLASE_COMENTARIO=='E':
+				comen=comentario_evento.objects.get(ID=obj.COMENTARIO)
+				self.initial['COMENTARIO_REP'] = comen.DESCRIPCION
+			elif obj.CLASE_COMENTARIO=='S':
+				comen=comentario_sitio.objects.get(ID=obj.COMENTARIO)
+				self.initial['COMENTARIO_REP'] = comen.DESCRIPCION
+			elif obj.CLASE_COMENTARIO=='P':
+				comen=comentario_pueblo.objects.get(ID=obj.COMENTARIO)
+				self.initial['COMENTARIO_REP'] = comen.DESCRIPCION
+		except Exception, e:
+			print e
+
+	def clean(self):
+		# import pdb
+		# pdb.set_trace()
+		super(ReporteChangeForm, self).clean()
+		cleaned_data = self.cleaned_data
+		return cleaned_data
+#---------------------------Fin de formularios para el modelo de archivos----------------------

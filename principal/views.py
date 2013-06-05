@@ -573,7 +573,7 @@ def relatos(request):
 		mejores_relatos = None
 		lista=[]
 		if cont_relatos > 0:
-			relatos = relato.objects.all()
+			relatos = relato.objects.filter(APROBADO=1)
 			for rel in relatos:
 				dic = dict()
 				coment_cont=comentario_relato.objects.filter(RELATOS=rel)
