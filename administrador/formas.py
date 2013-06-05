@@ -185,6 +185,8 @@ class UserForm(forms.ModelForm):
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
 
 	def save(self,commit=True):
+		# import pdb
+		# pdb.set_trace()
 		user = super(UserForm, self).save(commit=False)
 		user.set_password(self.cleaned_data["password"])
 		if commit:
@@ -235,6 +237,8 @@ class UserChangeForm(forms.ModelForm):
 		self.fields['user_permissions'].help_text='Estos son permisos específicos para este usuario. Seleccione los grupos o el grupo en el que desea asignarle.'
 	
 	def save(self,commit=True):
+		# import pdb
+		# pdb.set_trace()
 		user = super(UserChangeForm, self).save(commit=False)
 		if commit:
 			user.save(commit)
@@ -264,6 +268,8 @@ class GroupForm(forms.ModelForm):
 		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos.'
 
 	def save(self,commit=True):
+		# import pdb
+		# pdb.set_trace()
 		grupo = super(GroupForm, self).save(commit=False)
 		if commit:
 			grupo.save(commit)
@@ -292,6 +298,8 @@ class GroupChangeForm(forms.ModelForm):
 		self.fields['permissions'].help_text='Estos son permisos específicos para este grupo. Seleccione los permisos que desee darle a este grupo haciendo clic sobre ellos.'
 
 	def save(self,commit=True):
+		# import pdb
+		# pdb.set_trace()
 		grupo = super(GroupChangeForm, self).save(commit=False)
 		if commit:
 			grupo.save(commit)
