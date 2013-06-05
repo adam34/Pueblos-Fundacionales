@@ -1,6 +1,6 @@
 @font-face{font-family:'Open Sans';font-style:normal;font-weight:normal;src:url("../fonts/OpenSans-Bold-webfont.eot");src:url("../fonts/OpenSans-Bold-webfont.eot?#iefix") format("embedded-opentype"),src url("../fonts/OpenSans-Bold-webfont.ttf") format("truetype"),src url("../fonts/OpenSans-Bold-webfont.svg") format("svg"),src url("../fonts/OpenSans-Bold-webfont.woff") format("woff")}
 *{border:0;margin:0;padding:0}
-aside,.suscribete{border:thin solid #d6d6d6;display:inline-block;height:150px;vertical-align:top;width:45%}
+aside /*.suscribete */{border:thin solid #d6d6d6;display:inline-block;height:150px;margin-left:5%;vertical-align:top;width:45%}
 aside article{display:inline-block;margin:0 .3em;vertical-align:top}
 aside h3{color:#25799d}
 body{background:#0b0c0e url("../img/wallpaper.jpg");background-repeat:no-repeat no-repeat;font-family:Arial,Verdana;font-weight:normal;font-size:16px;font-weight:bold}
@@ -169,7 +169,7 @@ header{background:transparent;height:160px}
 .wcont li{list-style:none;}
 .wcont li a{color:#808080;text-decoration:none}
 .events{height:auto;margin:.5em auto;text-align:center;}
-.events ul > li{background:#fafafa;border:thin solid #d6d6d6;display:inline-block;font-size:.9em;font-weight:bold;font-weight:normal;height:auto;margin-bottom:.5em;position:relative;vertical-align:top;width:30%;text-align:left;}
+.events ul > li{background:#fafafa;border:thin solid #d6d6d6;display:inline-block;font-size:.9em;font-weight:bold;font-weight:normal;height:auto;margin-bottom:.5em;padding:.5em;position:relative;vertical-align:top;width:30%;text-align:left;}
 .events ul > li h3{color:#1e6381}
 .events ul > li img{height:30%;margin-top:.5em;margin-left:3%;margin-right:3%;width:94%}
 .events ul > li span{color:#a70325;font-weight:bold;font-size:1em;font-weight:bold;margin-left:.5em;width:30%}
