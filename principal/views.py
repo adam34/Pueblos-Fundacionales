@@ -730,3 +730,27 @@ def busqueda(request):
 	else:
 		return render_to_response('busqueda.html')
 	
+def reporte_comentarios_ajax(request):
+	import pdb
+	pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if ('ID' in request.POST and 'TIPO_COMENTARIO' in request.POST and 'RAZON' in request.POST ):
+				iden=request.POST['ID']
+				tipo_comentario=request.POST['TIPO_COMENTARIO']
+				razon = request.POST['RAZON']
+				usuario=request.user
+				try:
+					fecha =datetime.datetime.now()
+					reporte = reporte_comentario(CLASE_COMENTARIO=tipo_comentario,COMENTARIO=iden,RAZON=razon,FECHA=fecha,USUARIO=usuario)
+					reporte.save()
+					return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
+				except Exception,e:
+					print e
+					return HttpResponse(json.dumps({'respuesta':'noSitio'}),mimetype='application/json')		
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
