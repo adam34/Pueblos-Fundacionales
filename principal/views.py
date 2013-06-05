@@ -3,7 +3,7 @@
 	# import pdb
 	# pdb.set_trace()
 import json
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
@@ -747,7 +747,7 @@ def reporte_comentarios_ajax(request):
 					return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
 				except Exception,e:
 					print e
-					return HttpResponse(json.dumps({'respuesta':'noSitio'}),mimetype='application/json')		
+					return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')		
 			else:
 				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
 		else:
@@ -756,4 +756,26 @@ def reporte_comentarios_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def enviar_relatos_ajax(request):
-	pass
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if ('TITULO' in request.POST and 'RELATO' in request.POST ):
+				titulo=request.POST['TITULO']
+				contenido=request.POST['RELATO']
+				usuario=request.user
+				village=pueblo.objects.all()[1]
+				try:
+					fecha =datetime.datetime.now()
+					rel = relato(TITULO=titulo,DESCRIPCION=contenido,FECHA=fecha,USUARIO=usuario,PUEBLO=village,APROBADO=False,VALORACION=0)
+					rel.save()
+					return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
+				except Exception,e:
+					print e
+					return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')		
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')

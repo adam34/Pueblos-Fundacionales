@@ -56,7 +56,9 @@
 								</div>
 								<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
 								{% if user.username|length > 0 %}
-								<a id='{{comentario.ID}}' class="vinculo_reportar" href="#relatoReportado">Reportar comentario</a>
+									{% if comentario.USUARIO.username != user.username %}
+									<a id='{{comentario.ID}}' class="vinculo_reportar" href="#relatoReportado">Reportar comentario</a>
+									{% endif %}
 								{% endif %}
 							</section>
 
@@ -115,9 +117,9 @@
 					<span id="nota">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Nota: Después de enviar tu relato será previamente revisado]
 					</span><br>
-					<label for="email">Título: </label><input id="email" type="text" placeholder="&nbsp;Introduce un título para tu relato" required>
+					<label for="titulo">Título: </label><input id="titulo" type="text" placeholder="&nbsp;Introduce un título para tu relato" required>
 					<br><br>
-					<textarea name="relatos" id="" cols="80" rows="5"></textarea>
+					<textarea id='relato' name="relato" cols="80" rows="5"></textarea>
 					<br>
 					<input name="enviar" value="Entrar" type="button">
 				</form>
@@ -134,8 +136,8 @@
 {% if user.username|length > 0 %}
 
 $reportar = $('.modalDialog_Reportado');
-$cerrar = $('.cerrar');
-function onClickCerrar(e) {
+$cerrar_rep = $('.cerrar');
+function cerrar_reporte(e) {
     e.preventDefault();
     self.$reportar.fadeOut('fast');
  }
@@ -147,9 +149,29 @@ $(function(){
 		$elemento = $(e.target);
 		id=$elemento.attr('id');
 		$('#form_reporte #comentario').val(id)
-		$cerrar.on('click', onClickCerrar)
+		$cerrar.on('click', cerrar_reporte)
 	});
 });
+
+
+$enviar = $('.modalDialog_R');
+$cerrar1 = $('.close');
+function onClickCerrar(e) {
+    e.preventDefault();
+    self.$enviar.fadeOut('fast');
+ }
+$(function(){
+	$('#aRelato').on('click', function(e){
+		$('.modalDialog_R').show(function(){
+			$(this).fadeIn(5000);
+		});
+		$elemento = $(e.target);
+		id=$elemento.attr('id');
+		$('#form_reporte #comentario').val(id)
+		$cerrar1.on('click', onClickCerrar)
+	});
+});
+
 
 	$('form input[name="enviar"]').on('click',registrar);
 	function registrar(e)
@@ -314,6 +336,11 @@ $(function(){
 		{
 			razon="Spam";
 		}
+		else
+		{
+			alert('Seleccione una opción, por favor.');
+			return;
+		}
 
 		$.ajax({
 			async:false,
@@ -328,7 +355,63 @@ $(function(){
                 	if(response.respuesta=='exito')
                 	{
                 		alert('Reporte enviado.');
-                		onClickCerrar();
+                		$cerrar_rep.trigger('click');
+                	}
+                	else
+                	{
+						alert('Ocurrió un error interno.');
+                	}
+
+                }
+                else
+                {
+                    alert('No hubo respuesta por parte del servidor.');
+                }
+            },
+             error:function(jqXHR, status, error)
+            {
+                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+            },
+        });
+		return false;
+	}
+	$('#relatoNuevo form input[name="enviar"]').on('click',enviar_relato);
+	function enviar_relato(e)
+	{
+		titulo=$('#relatoNuevo form #titulo').val();
+		relato=$('#relatoNuevo form #relato').val();
+
+		if(titulo=="")
+		{
+			alert('El relato debe tener un titulo.');
+			return;
+		}
+		patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{1,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{1,})*$/;
+		if(!patt.test(titulo))
+		{
+			alert('El titulo sólo puede contener letras y números, con palabras separadas por un espacio.')
+		}
+
+		if(relato=="")
+		{
+			alert('El relato debe tener una descripción.');
+			return;
+		}
+
+		$.ajax({
+			async:false,
+            url:"/enviar_relatos_ajax/",
+            data:{csrfmiddlewaretoken:'{{csrf_token}}','TITULO':titulo,'RELATO':relato,},
+            type:'POST',
+            //dataType:
+            success:function(response)
+            {
+            	if(response!='')
+                {
+                	if(response.respuesta=='exito')
+                	{
+                		alert('Relato enviado.');
+                		$cerrar1.trigger('click');
                 	}
                 	else
                 	{

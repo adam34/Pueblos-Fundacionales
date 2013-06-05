@@ -64,8 +64,8 @@ mensajes ={'required':'El campo es obligatorio. No se puede dejar en blanco o si
 
 class CustomAutenticacionForm(AuthenticationForm):
 	errores_login={
-		'min_length': ("Error del tipo min_length."),
-		'max_length': ("Error del tipo max_length."),
+		'min_length': ("No colocó la cantidad minima de caracteres para el campo."),
+		'max_length': ("Excedió la cantidad máxima de caracteres para el campo."),
 	}
 	username = forms.CharField(min_length=4,max_length=30,error_messages=errores_login)
 	password = forms.CharField(min_length=4,max_length=30, widget=forms.PasswordInput,error_messages=errores_login)
@@ -79,6 +79,8 @@ class CustomAutenticacionForm(AuthenticationForm):
 		}
 	def clean(self):
 		#super(CustomAutenticacionForm, self).clean()
+		# import pdb
+		# pdb.set_trace()
 		username = self.cleaned_data.get('username')
 		password = self.cleaned_data.get('password')
 		if username and password:
@@ -89,18 +91,18 @@ class CustomAutenticacionForm(AuthenticationForm):
 					self.error_messages['invalid_login']
 					)
 			elif not self.user_cache.is_active:
-				raise forms.ValidationError(self.error_messages['inactive'])
+				self._errors['username']= ErrorList([u"El usuario no esta activo o ha sido bloqueado."])
 			elif not self.user_cache.is_staff:
-				raise forms.ValidationError(self.error_messages['no_staff'])
+				self._errors['username']= ErrorList([u"El usuario no tiene permisos para acceder al administrador."])
 			else:
 				access=login()
 				access.USUARIO=self.user_cache
 				access.FECHA=datetime.datetime.now()
+				self.check_for_test_cookie()
 				try:
 					access.save()
 				except Exception,e:
 					pass
-		self.check_for_test_cookie()
 		return self.cleaned_data
 
 class ConfiguracionForm(forms.Form):
