@@ -1,0 +1,1006 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-06-04 16:17-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: .\django_admin_bootstrapped\templates\admin\404.html.py:4
+#: .\django_admin_bootstrapped\templates\admin\404.html.py:8
+msgid "Page not found"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\404.html.py:10
+msgid "We're sorry, but the requested page could not be found."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\500.html.py:7
+#: .\django_admin_bootstrapped\templates\admin\app_index.html.py:8
+#: .\django_admin_bootstrapped\templates\admin\change_form.html.py:21
+#: .\django_admin_bootstrapped\templates\admin\change_list.html.py:38
+#: .\django_admin_bootstrapped\templates\admin\delete_confirmation.html.py:8
+#: .\django_admin_bootstrapped\templates\admin\delete_selected_confirmation.html.py:8
+#: .\django_admin_bootstrapped\templates\admin\index.html.py:15
+#: .\django_admin_bootstrapped\templates\admin\invalid_setup.html.py:7
+#: .\django_admin_bootstrapped\templates\admin\object_history.html.py:8
+#: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:15
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:9
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:76
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_list.html.py:8
+#: .\django_admin_bootstrapped\templates\admin\cms\page\plugin_change_form.html.py:78
+#: .\django_admin_bootstrapped\templates\admin\filer\breadcrumbs.html.py:5
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:7
+#: .\django_admin_bootstrapped\templates\registration\password_change_done.html.py:6
+#: .\django_admin_bootstrapped\templates\registration\password_change_form.html.py:7
+#: .\django_admin_bootstrapped\templates\registration\password_reset_complete.html.py:6
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:6
+#: .\django_admin_bootstrapped\templates\registration\password_reset_done.html.py:6
+#: .\django_admin_bootstrapped\templates\registration\password_reset_form.html.py:6
+msgid "Home"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\500.html.py:8
+msgid "Server error"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\500.html.py:12
+msgid "Server error (500)"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\500.html.py:15
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\500.html.py:16
+msgid ""
+"There's been an error. It's been reported to the site administrators via e-"
+"mail and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\actions.html.py:4
+#: .\django_admin_bootstrapped\templates\admin\filer\actions.html.py:8
+msgid "Run the selected action"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\actions.html.py:4
+#: .\django_admin_bootstrapped\templates\admin\filer\actions.html.py:8
+msgid "Go"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\actions.html.py:11
+#: .\django_admin_bootstrapped\templates\admin\filer\actions.html.py:15
+msgid "Click here to select the objects across all pages"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\actions.html.py:11
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\actions.html.py:13
+#: .\django_admin_bootstrapped\templates\admin\filer\actions.html.py:17
+msgid "Clear selection"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\app_index.html.py:18
+msgid "administration"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\base.html.py:57
+msgid "Welcome,"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\base.html.py:60
+#: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:19
+#: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:53
+msgid "Change password"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\base.html.py:62
+msgid "Log out"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\base.html.py:67
+#: .\principal\templates\admin\config.html.py:52
+#: .\principal\templates\admin\pueblos.html.py:52
+msgid "Recent Actions"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\base.html.py:79
+#: .\principal\templates\admin\config.html.py:64
+#: .\principal\templates\admin\pueblos.html.py:64
+msgid "Unknown content"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\base.html.py:84
+#: .\principal\templates\admin\config.html.py:69
+#: .\principal\templates\admin\pueblos.html.py:69
+msgid "None available"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\change_form.html.py:23
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:79
+#: .\django_admin_bootstrapped\templates\admin\cms\page\plugin_change_form.html.py:81
+msgid "Add"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\change_form.html.py:32
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:90
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:111
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:22
+#: .\django_admin_bootstrapped\templates\admin\filer\image\change_form.html.py:15
+msgid "History"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\change_form.html.py:33
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:91
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:114
+#: .\django_admin_bootstrapped\templates\admin\edit_inline\stacked.html.py:22
+#: .\django_admin_bootstrapped\templates\admin\edit_inline\tabular.html.py:33
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:23
+#: .\django_admin_bootstrapped\templates\admin\filer\image\change_form.html.py:16
+msgid "View on site"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\change_form.html.py:50
+msgid "Por favor, corrije el siguiente error."
+msgid_plural "Por favor, corrije los siguientes errores."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\django_admin_bootstrapped\templates\admin\change_list.html.py:52
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:55
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_list.html.py:91
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\change_list.html.py:67
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:66
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:94
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_list.html.py:115
+msgid "Filter"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\change_list.html.py:86
+msgid "Por favor, corrija el siguiente error."
+msgid_plural "Por favor, corrija los siguientes errores."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\django_admin_bootstrapped\templates\admin\change_list_results.html.py:19
+msgid "Remove from sorting"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\change_list_results.html.py:20
+#, python-format
+msgid "Sorting priority: %(priority_number)s"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\change_list_results.html.py:21
+msgid "Toggle sorting"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\delete_confirmation.html.py:18
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\delete_confirmation.html.py:26
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\delete_confirmation.html.py:34
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\delete_confirmation.html.py:39
+#: .\django_admin_bootstrapped\templates\admin\delete_selected_confirmation.html.py:49
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\delete_selected_confirmation.html.py:11
+msgid "Delete multiple objects"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\delete_selected_confirmation.html.py:20
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\delete_selected_confirmation.html.py:28
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\delete_selected_confirmation.html.py:36
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filter.html.py:2
+#, python-format
+msgid " By %(filter_title)s "
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\invalid_setup.html.py:13
+msgid ""
+"Something's wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:39
+msgid "<h2>Login</h2>"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:42
+#: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:29
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:124
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:146
+#: .\django_admin_bootstrapped\templates\admin\cms\page\plugin_change_form.html.py:95
+#: .\django_admin_bootstrapped\templates\registration\password_change_form.html.py:20
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:54
+msgid "Username:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:63
+msgid "Password:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:76
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:82
+#: .\django_admin_bootstrapped\templates\registration\password_reset_complete.html.py:18
+msgid "Log in"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\object_history.html.py:23
+msgid "Date/time"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\object_history.html.py:24
+msgid "User"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\object_history.html.py:25
+msgid "Action"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\object_history.html.py:39
+msgid ""
+"This object doesn't have a change history. It probably wasn't added via this "
+"admin site."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\page_submit_line.html.py:5
+#: .\django_admin_bootstrapped\templates\admin\submit_line.html.py:3
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:44
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:42
+msgid "Delete"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\page_submit_line.html.py:7
+#, python-format
+msgid "Delete %(language)s translation"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\page_submit_line.html.py:12
+#: .\django_admin_bootstrapped\templates\admin\submit_line.html.py:6
+msgid "Save as new"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\page_submit_line.html.py:13
+#: .\django_admin_bootstrapped\templates\admin\submit_line.html.py:7
+msgid "Save and add another"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\page_submit_line.html.py:14
+#: .\django_admin_bootstrapped\templates\admin\submit_line.html.py:8
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:269
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:291
+msgid "Save and continue editing"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\page_submit_line.html.py:15
+#: .\django_admin_bootstrapped\templates\admin\submit_line.html.py:9
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:268
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:292
+#: .\django_admin_bootstrapped\templates\admin\cms\page\plugin_change_form.html.py:125
+msgid "Save"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\pagination.html.py:21
+msgid "Show all"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\search_form.html.py:5
+msgid "Search"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\search_form.html.py:7
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\django_admin_bootstrapped\templates\admin\search_form.html.py:7
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\auth\user\add_form.html.py:6
+msgid ""
+"First, enter a username and password. Then, you'll be able to edit more user "
+"options."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\auth\user\add_form.html.py:8
+msgid "Enter a username and password."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:33
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:40
+msgid "Password"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:46
+#: .\django_admin_bootstrapped\templates\registration\password_change_form.html.py:50
+msgid "Password (again)"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:47
+msgid "Enter the same password as above, for verification."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:3
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:4
+msgid "Change a page"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:65
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:85
+msgid "Approve page deletion"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:71
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:91
+#, python-format
+msgid "(requires approvement at %(moderation_level)s level)"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:72
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:92
+msgid "(you can perform actions on this page directly)"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:84
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:104
+msgid "Remove delete request"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:86
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:107
+msgid "Approve delete"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:86
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:107
+msgid "Approve"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:86
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:87
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:107
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:108
+msgid "draft"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:87
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:108
+msgid "Preview"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:144
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:164
+msgid "All permissions"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:145
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:157
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:165
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:177
+msgid "Loading..."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:156
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:176
+msgid "Page states"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:179
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:201
+#, python-format
+msgid ""
+"This page must be moderated at level %(moderation_level)s, post a message "
+"for moderator."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:181
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:203
+msgid "Request approvemet"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:3
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_list.html.py:3
+msgid "List of pages"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:51
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_list.html.py:87
+#, python-format
+msgid "Recover deleted %(name)s"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:77
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_list.html.py:101
+msgid "Pages on:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:92
+msgid "Filter:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:92
+msgid "on"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:92
+msgid "off"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:121
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_list.html.py:140
+msgid "Successfully moved"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:126
+#: .\django_admin_bootstrapped\templates\admin\cms\page\change_list.html.py:149
+msgid "An error occured. Please reload the page"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:5
+msgid "select this page"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:5
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:6
+msgid "edit this page"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:6
+msgid "edit"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:16
+msgid "insert above"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:17
+msgid "insert below"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:19
+msgid "insert inside"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:23
+msgid "softroot"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:23
+msgid "home"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:26
+#, python-format
+msgid "Edit this page in %(language)s "
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:33
+msgid "Cut"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:33
+msgid "cut"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:34
+msgid "Copy"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:34
+msgid "copy"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:37
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:41
+msgid "Add Child"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:37
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:41
+msgid "add child"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:44
+msgid "delete"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:61
+msgid "Approve directly"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:63
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:75
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:77
+msgid "view"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:68
+msgid "Unpublish"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:69
+msgid "Publish"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\menu_item.html.py:75
+msgid "View on page"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\plugin_change_form.html.py:124
+msgid "Cancel"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\widgets\installed_plugins_inc.html.py:4
+msgid "Available Plugins"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\widgets\installed_plugins_inc.html.py:7
+msgid "Generic"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\widgets\installed_plugins_inc.html.py:15
+msgid "Add Plugin"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\widgets\installed_plugins_inc.html.py:18
+msgid "From Language"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\cms\page\widgets\installed_plugins_inc.html.py:25
+msgid "Copy Plugins"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\edit_inline\stacked.html.py:87
+#: .\django_admin_bootstrapped\templates\admin\edit_inline\tabular.html.py:118
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\edit_inline\stacked.html.py:90
+#: .\django_admin_bootstrapped\templates\admin\edit_inline\tabular.html.py:121
+msgid "Remove"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\edit_inline\tabular.html.py:17
+msgid "Delete?"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\actions.html.py:15
+#, python-format
+msgid "Select all %(total_count)s files and/or folders"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\breadcrumbs.html.py:5
+msgid "Go back to admin homepage"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\breadcrumbs.html.py:6
+msgid "Go back to Filer app"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\breadcrumbs.html.py:6
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:8
+msgid "Media"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\breadcrumbs.html.py:7
+msgid "Go back to root folder"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\breadcrumbs.html.py:7
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:9
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:79
+msgid "root"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\breadcrumbs.html.py:9
+#: .\django_admin_bootstrapped\templates\admin\filer\breadcrumbs.html.py:12
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:11
+#, python-format
+msgid "Go back to '%(folder_name)s' folder"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\change_form.html.py:28
+msgid "duplicates"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:7
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:8
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:9
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:79
+msgid "Go back to"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:7
+msgid "admin homepage"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:8
+msgid "Filer"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:9
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:79
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\clipboard\clipboard.html.py:28
+msgid "folder"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\change_form.html.py:35
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:80
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:90
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:23
+msgid "Folder Icon"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:64
+msgid "Adds a new Folder"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:64
+msgid "New Folder"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:65
+msgid "upload files"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:65
+msgid "Upload"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:79
+msgid "Go back to the parent folder"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:81
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:29
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\search_form.html.py:16
+#, python-format
+msgid "1 folder"
+msgid_plural "%(counter)s folders"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:81
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:29
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\search_form.html.py:17
+#, python-format
+msgid "1 file"
+msgid_plural "%(counter)s files"
+msgstr[0] ""
+msgstr[1] ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:85
+msgid "Change current folder details"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_listing.html.py:85
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:27
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:43
+msgid "Change"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:13
+msgid "Name"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:23
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:27
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:29
+#, python-format
+msgid "Change '%(item_label)s' folder details"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:30
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:45
+msgid "Owner"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:37
+msgid "Select this file"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:39
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:43
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:44
+#, python-format
+msgid "Change '%(item_label)s' details"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:42
+#, python-format
+msgid "Delete '%(item_label)s'"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:46
+msgid "Permissions"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:46
+msgid "disabled"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:46
+msgid "enabled"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:50
+msgid "Move to clipboard"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:58
+msgid "there are no files or subfolders"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:65
+msgid "previous"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:69
+#, python-format
+msgid ""
+"\n"
+"            Page %(number)s of %(num_pages)s.\n"
+"            "
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\folder\directory_table.html.py:75
+msgid "next"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\image\change_form.html.py:28
+msgid "Full size preview"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\search_form.html.py:8
+msgid "Enter your search phrase here"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\search_form.html.py:11
+msgid "Check it to"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\search_form.html.py:11
+msgid "limit the search to current folder"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\search_form.html.py:12
+msgid "search the current folder"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\search_form.html.py:16
+msgid "found"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\search_form.html.py:16
+msgid "and"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\search_form.html.py:17
+msgid "cancel search"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\clipboard\clipboard.html.py:9
+msgid "Clipboard"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\clipboard\clipboard.html.py:21
+msgid "Paste all items here"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\clipboard\clipboard.html.py:28
+msgid "Move all clipboard files to"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\clipboard\clipboard.html.py:28
+msgid "unfiled files"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\clipboard\clipboard.html.py:28
+msgid "discard"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\admin\filer\tools\clipboard\clipboard.html.py:45
+msgid "the clipboard is empty"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\logged_out.html.py:9
+msgid "Thanks for spending some quality time with the Web site today."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\logged_out.html.py:11
+msgid "Log in again"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_change_done.html.py:7
+#: .\django_admin_bootstrapped\templates\registration\password_change_form.html.py:8
+#: .\django_admin_bootstrapped\templates\registration\password_change_form.html.py:12
+#: .\django_admin_bootstrapped\templates\registration\password_change_form.html.py:13
+msgid "Password change"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_change_done.html.py:11
+#: .\django_admin_bootstrapped\templates\registration\password_change_done.html.py:12
+msgid "Password change successful"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_change_done.html.py:16
+msgid "Your password was changed."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_change_form.html.py:24
+msgid ""
+"Please enter your old password, for security's sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_change_form.html.py:30
+msgid "Old password"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_change_form.html.py:40
+msgid "New password"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_change_form.html.py:61
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:42
+msgid "Change my password"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_complete.html.py:7
+#: .\django_admin_bootstrapped\templates\registration\password_reset_complete.html.py:11
+#: .\django_admin_bootstrapped\templates\registration\password_reset_complete.html.py:12
+msgid "Password reset complete"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_complete.html.py:16
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:7
+msgid "Password reset confirmation"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:11
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:12
+#: .\django_admin_bootstrapped\templates\registration\password_reset_done.html.py:7
+#: .\django_admin_bootstrapped\templates\registration\password_reset_form.html.py:7
+#: .\django_admin_bootstrapped\templates\registration\password_reset_form.html.py:11
+#: .\django_admin_bootstrapped\templates\registration\password_reset_form.html.py:12
+msgid "Password reset"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:18
+msgid "Enter new password"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:20
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:25
+msgid "New password:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:34
+msgid "Confirm password:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:48
+msgid "Password reset unsuccessful"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_confirm.html.py:50
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_done.html.py:11
+#: .\django_admin_bootstrapped\templates\registration\password_reset_done.html.py:12
+msgid "Password reset successful"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_done.html.py:16
+msgid ""
+"We've emailed you instructions for setting your password to the email "
+"address you submitted. You should be receiving it shortly."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_form.html.py:16
+msgid ""
+"Forgotten your password? Enter your email address below, and we'll email "
+"instructions for setting a new one."
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_form.html.py:21
+msgid "Email address:"
+msgstr ""
+
+#: .\django_admin_bootstrapped\templates\registration\password_reset_form.html.py:30
+msgid "Reset my password"
+msgstr ""
+
+#: .\pueblos\settings.py:47
+msgid "Español"
+msgstr ""
+
+#: .\pueblos\settings.py:48
+msgid "Ingles"
+msgstr ""

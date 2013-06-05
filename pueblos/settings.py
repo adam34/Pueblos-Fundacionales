@@ -153,7 +153,7 @@ INSTALLED_APPS = (
     #'social_auth',
 )
 LOCALE_PATHS = (
-    os.path.join(RUTA_PROYECTO,'translations'),
+    'C:/Proyectos/Pueblos-Fundacionales/locale',
 )
 
 

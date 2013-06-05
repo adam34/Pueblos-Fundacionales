@@ -267,7 +267,6 @@ def secciones(request):
 
 def pueblos(request):
 	try:
-
 		cant_pueblos= pueblo.objects.count()
 		pueblos = None
 		if cant_pueblos >0:
@@ -275,6 +274,30 @@ def pueblos(request):
 	except Exception,e:
 		print e
 	return render_to_response('pueblos.html',RequestContext(request,{'user':request.user,'pueblos':pueblos}))
+
+def pueblos_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if 'NOMBRE' in request.POST:
+				try:				
+					nombre = request.POST['NOMBRE']
+					poblado = pueblo.objects.get(NOMBRE=nombre)
+					dicc = dict()
+					dicc = {'NOMBRE':poblado.NOMBRE,'HISTORIA':poblado.HISTORIA,'CULTURA':poblado.CULTURA,'COMIDA':poblado.COMIDA,'DATOS':poblado.DATOS}
+					return HttpResponse(json.dumps({'respuesta':'exito','pueblo':dicc}),mimetype='application/json')
+				except Exception,e:
+					return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')
+				else:
+					return HttpResponse(json.dumps({'respuesta':'Noexiste'}),mimetype='application/json')
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')	
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
 
 def politicas(request):
 	return render_to_response('politicas.html',RequestContext(request,{'user':request.user}))
@@ -311,10 +334,12 @@ def descubrabcs(request):
 
 def bcsdesconocida(request):
 	try:
+		import pdb
+		pdb.set_trace()
 		cant_curiosidades= curiosidad.objects.count()
 		curiosidades = None
 		if cant_curiosidades >0:
-			curiosidades= curiosidades.objects.all()
+			curiosidades= curiosidad.objects.all()
 	except Exception,e:
 		print e
 	return render_to_response('bcs-desconocida.html',RequestContext(request,{'user':request.user,'curiosidades':curiosidades}))
