@@ -71,9 +71,9 @@
 		<section class="menu_story">
 			<h3>Mejores relatos</h3>
 			<p>
-				{% for relato in relatos  %}
+				{% for rel in mejores  %}
 					<br>
-					<h4> {{relato.relato.TITULO}}</h4>
+					<h4> {{rel.TITULO}}</h4>
 				{% endfor %}
 			</p>
 			{% if user.username|length > 0 %}

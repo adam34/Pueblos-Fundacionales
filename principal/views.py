@@ -263,7 +263,25 @@ def cerrar_sesion(request):
 	return redirect(home)
 
 def secciones(request):
-	return render_to_response('secciones.html',RequestContext(request,{'user':request.user}))
+	cant_elementos = sitio_turistico.objects.count()
+	sitios = None
+	lista = []
+	try:
+		if cant_elementos > 0:
+			sitios = list(sitio_turistico.objects.all())
+			if cant_elementos < 4:
+				loop= cant_elementos
+			else:
+				loop=4
+			for i in range(0,loop):
+				azar=random.randint(0,cant_elementos-1)
+				lista.append(sitios[azar])
+				sitios.remove(sitios[azar])
+				cant_elementos -=1
+	except Exception, e:
+		print e
+		sitios=None
+	return render_to_response('secciones.html',RequestContext(request,{'user':request.user,'sitios':lista}))
 
 def pueblos(request):
 	try:
@@ -334,8 +352,8 @@ def descubrabcs(request):
 
 def bcsdesconocida(request):
 	try:
-		import pdb
-		pdb.set_trace()
+		# import pdb
+		# pdb.set_trace()
 		cant_curiosidades= curiosidad.objects.count()
 		curiosidades = None
 		if cant_curiosidades >0:
@@ -370,7 +388,12 @@ def galerias_ajax(request):
 		raise Http404
 
 def libros(request):
-	return render_to_response('libros.html',RequestContext(request,{'user':request.user}))
+	hoy = datetime.datetime.now()
+	cont_eventos = evento.objects.filter(FECHA__gt=hoy)
+	eventos = None
+	if cont_eventos > 0:
+		eventos = evento.objects.filter(FECHA__gt=hoy)
+	return render_to_response('libros.html',RequestContext(request,{'user':request.user,'eventos':eventos}))
 
 def basico(request):
 	return render_to_response('accesos.html',RequestContext(request,{'user':request.user}))
@@ -549,6 +572,7 @@ def relatos(request):
 	try:
 		cont_relatos = relato.objects.count()
 		relatos = None
+		mejores_relatos = None
 		lista=[]
 		if cont_relatos > 0:
 			relatos = relato.objects.all()
@@ -561,10 +585,11 @@ def relatos(request):
 				else:
 					dic['comentarios']=None
 				lista.append(dic)
+			mejores_relatos=relato.objects.all().order_by('-VALORACION')[:3]
 		#Agarrar 3 comentarios por cada relato a mostrar
 	except Exception,e:
 		print e
-	return render_to_response('relatos.html',RequestContext(request,{'relatos':lista,'user':request.user}))
+	return render_to_response('relatos.html',RequestContext(request,{'relatos':lista,'mejores':mejores_relatos,'user':request.user}))
 
 def comentarios_relatos_ajax(request):
 	# import pdb
