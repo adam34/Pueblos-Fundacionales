@@ -703,6 +703,8 @@ def comentarios_sitios_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def busqueda(request):
+	import pdb
+	pdb.set_trace()
 	if 'text_search' in request.POST:
 		res = request.POST['text_search']
 		pueblos=None
@@ -710,18 +712,18 @@ def busqueda(request):
 		sitios=None
 		relatos=None
 		try:
-			cont_pueblos= pueblo.objects.filter(NOMBRE=res).count()
+			cont_pueblos= pueblo.objects.filter(NOMBRE__contains=res).count()
 			if cont_pueblos >0:
-				pueblos=pueblo.objects.filter(NOMBRE=res)
-			cont_eventos=evento.objects.filter(NOMBRE=res).count()
+				pueblos=pueblo.objects.filter(NOMBRE__contains=res)
+			cont_eventos=evento.objects.filter(NOMBRE__contains=res).count()
 			if cont_eventos>0:
-				eventos=evento.objects.filter(NOMBRE=res)
-			cont_sitios=sitio_turistico.objects.filter(Q(NOMBRE=res) | Q(DIRECCION=res) | Q(DESCRIPCION=res)).count()
+				eventos=evento.objects.filter(NOMBRE__contains=res)
+			cont_sitios=sitio_turistico.objects.filter(Q(NOMBRE__contains=res) | Q(DIRECCION__contains=res) | Q(DESCRIPCION__contains=res)).count()
 			if cont_sitios>0:
-				sitios=sitio_turistico.objects.filter(Q(NOMBRE=res) | Q(DIRECCION=res) | Q(DESCRIPCION=res)).count()
-			cont_relatos=relato.objects.filter(TITULO=res).count()
+				sitios=sitio_turistico.objects.filter(Q(NOMBRE__contains=res) | Q(DIRECCION__contains=res) | Q(DESCRIPCION__contains=res)).count()
+			cont_relatos=relato.objects.filter(TITULO__contains=res).count()
 			if cont_relatos>0:
-				relatos=relato.objects.filter(TITULO=res).count()
+				relatos=relato.objects.filter(TITULO__contains=res).count()
 		except Exception,e:
 			print e
 		return render_to_response('busqueda.html',RequestContext(request,{'respuesta':res,'user':request.user,'pueblos':pueblos,'eventos':eventos,'sitios':sitios,'relatos':relatos}))
