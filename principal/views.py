@@ -731,8 +731,8 @@ def busqueda(request):
 		return render_to_response('busqueda.html')
 	
 def reporte_comentarios_ajax(request):
-	import pdb
-	pdb.set_trace()
+	# import pdb
+	# pdb.set_trace()
 	if request.is_ajax():
 		if request.POST:
 			if ('ID' in request.POST and 'TIPO_COMENTARIO' in request.POST and 'RAZON' in request.POST ):
@@ -754,3 +754,6 @@ def reporte_comentarios_ajax(request):
 			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
 	else:
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
+def enviar_relatos_ajax(request):
+	pass

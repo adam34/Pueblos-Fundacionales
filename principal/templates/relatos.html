@@ -55,7 +55,9 @@
 									{{comentario.DESCRIPCION}}
 								</div>
 								<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
-								<a id="vinculo_reportar" href="#relatoReportado">Reportar comentario</a>
+								{% if user.username|length > 0 %}
+								<a id='{{comentario.ID}}' class="vinculo_reportar" href="#relatoReportado">Reportar comentario</a>
+								{% endif %}
 							</section>
 
 							<br>
@@ -88,7 +90,8 @@
 			<a href="#cerrar" title="Close" class="cerrar">X</a>
 			<section class="formulario_re">
 				<h2>Reportar comentario</h2>
-				<form action="#">
+				<form id='form_reporte' action="#">
+					<input id='comentario' type='hidden' value=''>
 					<input type="radio" name="reporte" value="1">Comentario inapropiado <br>
 					<input type="radio" name="reporte" value="2">Contenido vulgar <br>
 					<input type="radio" name="reporte" value="3">Comentario ofensivo <br>
@@ -127,6 +130,9 @@
 {% block js %}
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
+
+{% if user.username|length > 0 %}
+
 $reportar = $('.modalDialog_Reportado');
 $cerrar = $('.cerrar');
 function onClickCerrar(e) {
@@ -134,15 +140,17 @@ function onClickCerrar(e) {
     self.$reportar.fadeOut('fast');
  }
 $(function(){
-	$('#vinculo_reportar').on('click', function(){
+	$('.vinculo_reportar').on('click', function(e){
 		$('.modalDialog_Reportado').show(function(){
 			$(this).fadeIn(5000);
 		});
+		$elemento = $(e.target);
+		id=$elemento.attr('id');
+		$('#form_reporte #comentario').val(id)
 		$cerrar.on('click', onClickCerrar)
 	});
 });
 
-{% if user.username|length > 0 %}
 	$('form input[name="enviar"]').on('click',registrar);
 	function registrar(e)
 	{
@@ -265,6 +273,62 @@ $(function(){
                 	else if (response.respuesta=='noVotar')
                 	{
                 		alert('No puede votar más de una vez por un comentario.');
+                	}
+                	else
+                	{
+						alert('Ocurrió un error interno.');
+                	}
+
+                }
+                else
+                {
+                    alert('No hubo respuesta por parte del servidor.');
+                }
+            },
+             error:function(jqXHR, status, error)
+            {
+                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+            },
+        });
+		return false;
+	}
+
+	$('#form_reporte input[name="enviar"]').on('click',reporte);
+	function reporte(e)
+	{
+		id=$('#form_reporte #comentario').val()
+		razon=$('#form_reporte input[name="reporte"]').val()
+		if(razon=="1")
+		{
+			razon="Comentario inapropiado";
+		}
+		else if(razon=="2")
+		{
+			razon="Contenido vulgar";
+		}
+		else if(razon=="3")
+		{
+			razon="Comentario ofensivo";
+		}
+		else if(razon=="4")
+		{
+			razon="Spam";
+		}
+
+		$.ajax({
+			async:false,
+            url:"/reporte_comentarios_ajax/",
+            data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'RAZON':razon,'TIPO_COMENTARIO':'R'},
+            type:'POST',
+            //dataType:
+            success:function(response)
+            {
+            	if(response!='')
+                {
+                	if(response.respuesta=='exito')
+                	{
+                		alert('Reporte enviado.');
+                		onClickCerrar();
                 	}
                 	else
                 	{
