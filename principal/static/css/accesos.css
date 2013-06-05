@@ -7,6 +7,10 @@
 #proy_b ul li{color:#a70325;font-weight:normal;list-style:square;margin:2% 10%;}
 #proy_b ul li a{color:#a70325;text-decoration:none}
 .basico,.menu_basico{display:inline-block;height:auto;margin:0 auto;vertical-align:top;width:75%}
+.basico_bcs,.basico_desconocida,.basico_masvisto{display:inline-block;height:auto;margin:0 auto;vertical-align:top;width:95%;}
+.basico_bcs ul,.basico_desconocida ul,.basico_masvisto ul{list-style:none}
+.basico_bcs li,.basico_desconocida li,.basico_masvisto li{border:thin solid #ccc;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;color:#1e6381;height:auto;margin-left:5%;margin-right:5%;margin-bottom:2%;padding:.5em;}
+.basico_bcs li span,.basico_desconocida li span,.basico_masvisto li span{color:#ce8610}
 .basico{-ms-box-shadow:.3em 0 .1em #e0e0e0;-moz-box-shadow:.3em 0 .1em #e0e0e0;-o-box-shadow:.3em 0 .1em #e0e0e0;-webkit-box-shadow:.3em 0 .1em #e0e0e0;box-shadow:.3em 0 .1em #e0e0e0;}
 .basico h3{width:30%}
 .contenido_basico_pueblos{text-align:center;}

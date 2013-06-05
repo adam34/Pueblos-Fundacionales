@@ -352,8 +352,18 @@ def descubrabcs(request):
 
 def bcsdesconocida(request):
 	try:
+<<<<<<< HEAD
 		# import pdb
 		# pdb.set_trace()
+=======
+<<<<<<< HEAD
+		#import pdb
+		#pdb.set_trace()
+=======
+		import pdb
+		pdb.set_trace()
+>>>>>>> 8d8677fc9954ccaf5bf3c205d2e122f3ffafe7e5
+>>>>>>> upstream/master
 		cant_curiosidades= curiosidad.objects.count()
 		curiosidades = None
 		if cant_curiosidades >0:

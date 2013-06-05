@@ -7,31 +7,21 @@
 
 {% block contenedor %}
 	<section class="contenedor">
-		<section class="basico">
+		<section class="basico_masvisto">
 			<h2>Pueblo Más Visto</h2>
 			{% if mas_visto %}
-				<table>
-					<tr>
-						<th>NOMBRE</th>
-						<th>MUNICIPIO</th>
-						<th>HISTORIA</th>
-						<th>CULTURA</th>
-						<th>COMIDA</th>
-						<th>DATOS</th>
-						<th>GALERIA</th>
-						<th>TIPO</th>
-					</tr>
-					<tr>
-						<td>{{mas_visto.NOMBRE}}</td>
-						<td>{{mas_visto.MUNICIPIO}}</td>
-						<td>{{mas_visto.HISTORIA}}</td>
-						<td>{{mas_visto.CULTURA}}</td>
-						<td>{{mas_visto.COMIDA}}</td>
-						<td>{{mas_visto.DATOS}}</td>
-						<td>{{mas_visto.GALERIA}}</td>
-						<td>{{mas_visto.TIPO}}</td>
-					</tr>
-				</table>
+			<ul>
+				<li>
+					<span>Pueblo: </span>{{mas_visto.NOMBRE}}<br>
+					<span>Municipio: </span>{{mas_visto.MUNICIPIO}}<br>
+					<span>Historia: </span>{{mas_visto.HISTORIA}} <br>
+					<span>Cultura: </span>{{mas_visto.CULTURA}} <br>
+					<span>Comida: </span>{{mas_visto.COMIDA}} <br>
+					<span>Datos: </span>{{mas_visto.DATOS}} <br>
+					<span>Galería: </span>{{mas_visto.GALERIA}} <br>
+					<span>Tipo: </span>{{mas_visto.TIPO}} <br>
+				</li>
+			</ul>
 				{{mas_visto.GALERIA.ARCHIVOS.ALL|length}}
 				{% for archivo in mas_visto.GALERIA.ARCHIVOS.ALL %}
 					<img src="{{archivo.RUTA}}">
