@@ -373,7 +373,7 @@ header
 .clima
 	margin-left 1.3em
 
-.close 
+.close, .cerrar 
 	background #606061
 	color blanco 
 	line-height 25px 
@@ -877,6 +877,60 @@ header
 	padding-bottom 5% 
 	text-align center
 	width 90% 
+
+.modalDialog_Reportado
+	position fixed
+	font-family Arial, Helvetica, sans-serif 
+	background rgba(0, 0, 0, .8)
+	bottom 0 
+	display none
+	height 100%
+	opacity 0
+	transicion_modal()
+	top 100
+	right -100
+	width 100%
+	z-index 99999
+	&:target 
+		opacity 1
+	
+.formulario_re
+	border thin solid lighten(gris, 80%)
+	bordes(.2em)
+	color darken(blanco, 60%)
+	padding-right 10px
+	//text-align center
+	vertical-align top
+	width 95%
+	input[type="radio"]
+		color rojizo
+		margin-left 8%
+	a 
+		color rojizo
+		font-size .8em
+		float right
+		text-decoration none
+	input[type="button"]
+		bordes(.2em)
+		background-image -webkit-gradient(linear, left top, left bottom, color-stop(0%, lighten(azul, 10%)), color-stop(100%, darken(azul, 20%)))
+		background -ms-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -o-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background -moz-linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		background linear-gradient(top, lighten(azul, 10%) 0%, darken(azul, 20%) 100%)
+		color blanco
+		height 30px
+		margin-left 45%
+		width 90px
+
+.modalDialog_Reportado > div 
+	background blanco
+	bordes(10px)
+	position relative 
+	height 200px 
+	margin 10% auto
+	padding 5px 20px 13px 20px
+	width 400px
+
 .comments 
 	background blanco
 	border thin solid darken(blanco, 20%)
@@ -903,6 +957,14 @@ header
 	p#fechacomentarios 
 		color amarillo
 		margin-top 1em
+	a 
+		color rojizo
+		display block 
+		font-weight bold
+		padding-bottom .5em
+		text-decoration none
+		left 70%
+		position relative 
 
 .contenedor_relatos
 	height auto

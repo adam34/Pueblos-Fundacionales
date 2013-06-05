@@ -703,8 +703,8 @@ def comentarios_sitios_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def busqueda(request):
-	import pdb
-	pdb.set_trace()
+	#import pdb
+	#pdb.set_trace()
 	if 'text_search' in request.POST:
 		res = request.POST['text_search']
 		pueblos=None

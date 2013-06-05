@@ -55,7 +55,9 @@
 									{{comentario.DESCRIPCION}}
 								</div>
 								<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
+								<a id="vinculo_reportar" href="#relatoReportado">Reportar comentario</a>
 							</section>
+
 							<br>
 						{% endfor %}
 					{% else %}
@@ -81,6 +83,21 @@
 			{% endif %}
 		</section>
 	</section>
+	<div id="relatoReportado" class="modalDialog_Reportado">
+		<div>
+			<a href="#cerrar" title="Close" class="cerrar">X</a>
+			<section class="formulario_re">
+				<h2>Reportar comentario</h2>
+				<form action="#">
+					<input type="radio" name="reporte" value="1">Comentario inapropiado <br>
+					<input type="radio" name="reporte" value="2">Contenido vulgar <br>
+					<input type="radio" name="reporte" value="3">Comentario ofensivo <br>
+					<input type="radio" name="reporte" value="4">Spam<br>
+					<input name="enviar" value="Enviar" type="button">
+				</form>
+			</section>
+		</div>
+	</div>
 	<!-- Sección de relatos -->
 	{% if user.username|length > 0 %}
 	<div id="relatoNuevo" class="modalDialog_R">
@@ -110,6 +127,21 @@
 {% block js %}
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
+$reportar = $('.modalDialog_Reportado');
+$cerrar = $('.cerrar');
+function onClickCerrar(e) {
+    e.preventDefault();
+    self.$reportar.fadeOut('fast');
+ }
+$(function(){
+	$('#vinculo_reportar').on('click', function(){
+		$('.modalDialog_Reportado').show(function(){
+			$(this).fadeIn(5000);
+		});
+		$cerrar.on('click', onClickCerrar)
+	});
+});
+
 {% if user.username|length > 0 %}
 	$('form input[name="enviar"]').on('click',registrar);
 	function registrar(e)

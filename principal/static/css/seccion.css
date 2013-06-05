@@ -15,6 +15,7 @@
 .menu_turistico{border:thin solid #d6d6d6;margin:2% auto;width:95%}
 .pueblos_secciones{background:#e6e6e6;width:75%}
 .seccion_sugerencias{margin:0 auto;width:95%;}
+.seccion_sugerencias a{color:#1e6381;text-decoration:none}
 .seccion_sugerencias article{border:thin solid #d6d6d6;-ms-border-radius:.2em;-moz-border-radius:.2em;-webkit-border-radius:.2em;-o-border-radius:.2em;border-radius:.2em;height:80px;margin:.3em;margin-left:2%;}
 .seccion_sugerencias article img{float:left;height:70px;margin:.3em;width:70px}
 .seccion_sugerencias article div{margin:.4em;}
