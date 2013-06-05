@@ -58,4 +58,6 @@ urlpatterns = patterns('',
     url(r'^valorar_relatos_ajax/$', 'principal.views.valorar_relatos_ajax'),
     url(r'^comentarios_eventos_ajax/$', 'principal.views.comentarios_eventos_ajax'),
     url(r'^comentarios_sitios_ajax/$', 'principal.views.comentarios_sitios_ajax'),
+    url(r'^pueblos_ajax/$', 'principal.views.pueblos_ajax'),
+    
     )

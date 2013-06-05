@@ -44,8 +44,8 @@ LANGUAGE_CODE = 'es-MX'
 ugettext = lambda s: s
 
 LANGUAGES = (
-    ('es', ugettext('Español')),
-    ('en', ugettext('Ingles')),
+    ('es', ugettext(u'Español')),
+    ('en', ugettext(u'Ingles')),
 )
 
 SITE_ID = 1
@@ -108,10 +108,9 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -152,6 +151,9 @@ INSTALLED_APPS = (
     'principal',
     'administrador',    
     #'social_auth',
+)
+LOCALE_PATHS = (
+    'C:/Proyectos/Pueblos-Fundacionales/locale',
 )
 
 

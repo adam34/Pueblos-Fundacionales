@@ -22,6 +22,8 @@ import string, random,datetime,json,smtplib
 
 def home(request): 
 	# #Obtener un pueblo turistico al azar
+	# import pdb
+	# pdb.set_trace()
 	try:
 		#Se obtienen los pueblos turisticos solamente y se elige 1 al azar.
 		cantidad_turisticos=pueblo.objects.filter(TIPO='T').count()
@@ -260,12 +262,11 @@ def cerrar_sesion(request):
 	logout(request)
 	return redirect(home)
 
-def secciones(request): 
-	return render_to_response('secciones.html')
+def secciones(request):
+	return render_to_response('secciones.html',RequestContext(request,{'user':request.user}))
 
 def pueblos(request):
 	try:
-
 		cant_pueblos= pueblo.objects.count()
 		pueblos = None
 		if cant_pueblos >0:
@@ -274,8 +275,32 @@ def pueblos(request):
 		print e
 	return render_to_response('pueblos.html',RequestContext(request,{'user':request.user,'pueblos':pueblos}))
 
-def politicas(request): 
-	return render_to_response('politicas.html')
+def pueblos_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if 'NOMBRE' in request.POST:
+				try:				
+					nombre = request.POST['NOMBRE']
+					poblado = pueblo.objects.get(NOMBRE=nombre)
+					dicc = dict()
+					dicc = {'NOMBRE':poblado.NOMBRE,'HISTORIA':poblado.HISTORIA,'CULTURA':poblado.CULTURA,'COMIDA':poblado.COMIDA,'DATOS':poblado.DATOS}
+					return HttpResponse(json.dumps({'respuesta':'exito','pueblo':dicc}),mimetype='application/json')
+				except Exception,e:
+					return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')
+				else:
+					return HttpResponse(json.dumps({'respuesta':'Noexiste'}),mimetype='application/json')
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')	
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
+
+def politicas(request):
+	return render_to_response('politicas.html',RequestContext(request,{'user':request.user}))
 
 def curiosidades(request):
 	try:
@@ -309,10 +334,12 @@ def descubrabcs(request):
 
 def bcsdesconocida(request):
 	try:
+		#import pdb
+		#pdb.set_trace()
 		cant_curiosidades= curiosidad.objects.count()
 		curiosidades = None
 		if cant_curiosidades >0:
-			curiosidades= curiosidades.objects.all()
+			curiosidades= curiosidad.objects.all()
 	except Exception,e:
 		print e
 	return render_to_response('bcs-desconocida.html',RequestContext(request,{'user':request.user,'curiosidades':curiosidades}))
@@ -342,11 +369,11 @@ def galerias_ajax(request):
 	else:
 		raise Http404
 
-def libros(request): 
-	return render_to_response('libros.html')
+def libros(request):
+	return render_to_response('libros.html',RequestContext(request,{'user':request.user}))
 
-def basico(request): 
-	return render_to_response('accesos.html')
+def basico(request):
+	return render_to_response('accesos.html',RequestContext(request,{'user':request.user}))
 
 def mapa(request):
 	try:
@@ -385,31 +412,31 @@ def alojamiento(request):
 	return render_to_response('alojamiento.html',RequestContext(request,{'user':request.user,'hoteles':hoteles}))
 
 def comida(request): 
-	return render_to_response('comida.html')
+	return render_to_response('comida.html',RequestContext(request,{'user':request.user}))
 
 def info(request): 
-	return render_to_response('info-pueblos.html')
+	return render_to_response('info-pueblos.html',RequestContext(request,{'user':request.user}))
 
 def dir(request): 
-	return render_to_response('directorio.html')
+	return render_to_response('directorio.html',RequestContext(request,{'user':request.user}))
 
 def humans(request): 
-	return render_to_response('humans.txt')
+	return render_to_response('humans.txt',RequestContext(request,{'user':request.user}))
 
 def libreria(request): 
-	return render_to_response('libreria.html')
+	return render_to_response('libreria.html',RequestContext(request,{'user':request.user}))
 
 def p(request): 
-	return render_to_response('pueblos/purisima.html')
+	return render_to_response('pueblos/purisima.html',RequestContext(request,{'user':request.user}))
 
 def l(request): 
-	return render_to_response('pueblos/loreto.html')
+	return render_to_response('pueblos/loreto.html',RequestContext(request,{'user':request.user}))
 
 def libro_p(request): 
-	return render_to_response('libreria/libro_purisima.html')
+	return render_to_response('libreria/libro_purisima.html',RequestContext(request,{'user':request.user}))
 
 def multimedia(request):
-	return render_to_response('multimedia.html')
+	return render_to_response('multimedia.html',RequestContext(request,{'user':request.user}))
 
 def multimedia_ajax(request):
 	if request.is_ajax():
@@ -458,10 +485,10 @@ def multimedia_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def player(request):
-	return render_to_response('multimedia/player.html')
+	return render_to_response('multimedia/player.html',RequestContext(request,{'user':request.user}))
 
 def audio(request):
-	return render_to_response('multimedia/audio.html')
+	return render_to_response('multimedia/audio.html',RequestContext(request,{'user':request.user}))
 
 def eventos(request):
 	try:
@@ -514,7 +541,7 @@ def comentarios_eventos_ajax(request):
 
 
 def galeria_2(request):
-	return render_to_response('multimedia/galeria.html')
+	return render_to_response('multimedia/galeria.html',RequestContext(request,{'user':request.user}))
 
 def relatos(request):
 	# import pdb

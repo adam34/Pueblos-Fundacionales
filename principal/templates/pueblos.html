@@ -36,7 +36,7 @@
 				{% if pueblos %}
 					{% for pueblo in pueblos %}
 					<li>
-						<article>
+						<article id='{{pueblo.NOMBRE}}' class='village'>
 							<h4 id="{{pueblo.NOMBRE}}">{{pueblo.NOMBRE}}</h4>
 							<img src="/static/img/purisma.jpg" alt="">
 						</article>
@@ -56,34 +56,88 @@
 						<img src="/static/img/loreto-l.png" alt="">
 					</article>
 				</li>
-				<!--li>
-					<article>
-						<h4>Mulegé</h4>
-						<img src="/static/img/mulege.png" alt="">
-					</article>
-				</li>
-				<li>
-					<article>
-						<h4>San Ignacio</h4>
-						<img src="/static/img/sanignacio.png" alt="">
-					</article>
-				</li>
-				<li>
-					<article>
-						<h4>Santa Rosalía</h4>
-						<img src="/static/img/santarosalia.png" alt="">
-					</article>
-				</li>
-				<li>
-					<article>
-						<h4>San Javier</h4>
-						<img src="/static/img/sanjavier.png" alt="">
-					</article>
-				</li-->
 				{% endif %}
 			</ul>
 		</section>
 	{% endblock %}
 	{% block js %}
 		<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+<<<<<<< HEAD
+=======
+		<script>
+			$('.village').on('click',mostrar_pueblos);
+			function mostrar_pueblos(e)
+			{
+				$elemento = $(e.target);
+				nombre= $elemento.parent().attr('id');
+				$.ajax({
+					async:false,
+		            url:"/pueblos_ajax/",
+		            data:{csrfmiddlewaretoken:'{{csrf_token}}','NOMBRE':nombre},
+		            type:'POST',
+		            //dataType:
+		            success:function(response)
+		            {
+		            	if(response!='')
+		                {
+		                	if(response.respuesta=='exito')
+		                	{
+		                		$('.contenedor_imagen').html(
+								'<h4>'+response.pueblo.NOMBRE+'</h4>'+
+									'<section class="pueblosGen">'+
+										'<section class="tabs">'+
+											'<input id="tab-1" type="radio" name="radio-set" '+
+											'class="tab-selector-1" checked="checked" />'+
+											'<label for="tab-1" class="tab-label-1">Historia<'+'/label>'+
+							   				'<input id="tab-2" type="radio" name="radio-set" '+'class="tab-selector-2" />'+
+											'<label for="tab-2" class="tab-label-2">Cultura</label>'+
+								    		'<input id="tab-3" type="radio" name="radio-set" class="tab-selector-3" />'+
+											'<label for="tab-3" class="tab-label-3">Comida</label>'+
+						    				'<input id="tab-4" type="radio" name="radio-set" class="tab-selector-4" />'+
+											'<label for="tab-4" class="tab-label-4">Datos</label>'+
+											'<div class="clear-shadow"></div>'+
+											'<div class="content">'+
+												'<div class="content-1">'+
+													'<h4>Cultura</h4>'+
+													'<p>'+response.pueblo.HISTORIA+'</p>'+
+												'</div>'+
+												 '<div class="content-2">'+
+													'<h4>Cultura</h4>'+
+													'<p>'+response.pueblo.CULTURA+'</p>'+
+									    		'</div>'+
+									    		'<div class="content-3">'+
+													'<h4>Comida</h4>'+
+													'<p>'+response.pueblo.COMIDA+'</p>'+
+									    		'</div>'+
+									    		'<div class="content-4">'+
+													'<h4>Datos</h4>'+
+					    	    	                '<p>'+response.pueblo.DATOS+'</p>'+
+									    		'</div>'+
+									    	'</div>'+
+									    '</section>'+
+									'</section>');
+		                	}
+		                	else if (response.respuesta=='noVotar')
+		                	{
+		                		alert('No puede votar más de una vez por un comentario.');
+		                	}
+		                	else
+		                	{
+								alert('Ocurrió un error interno.');
+		                	}
+		                }
+		                else
+		                {
+		                    alert('No hubo respuesta por parte del servidor.');
+		                }
+		            },
+		             error:function(jqXHR, status, error)
+		            {
+		                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+		            },
+		        });
+				return false;
+			}
+		</script>
+>>>>>>> 8d8677fc9954ccaf5bf3c205d2e122f3ffafe7e5
 	{% endblock %}
