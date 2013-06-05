@@ -8,7 +8,7 @@ from django.forms.util import ErrorList
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import authenticate
 #from django.contrib.admin.widgets import FilteredSelectMultiple
-from administrador.extras.widgets import SelectMultipleCustom,MapInput,AccordionMultipleTextbox,AccordionMultiplesSimpleTextbox
+from administrador.extras.widgets import SelectMultipleCustom,MapInput,AccordionMultipleTextbox,AccordionMultiplesSimpleTextbox,VerInput
 from django.forms.widgets import *
 import datetime
 
@@ -336,10 +336,17 @@ class PuebloForm(forms.ModelForm):
 		self.fields['CULTURA'].widget=AccordionMultipleTextbox()
 		self.fields['COMIDA'].widget=AccordionMultipleTextbox()
 		self.fields['DATOS'].widget=AccordionMultipleTextbox()
-		self.fields['HISTORIA'].widget.attrs = {'rows':'3','class':'vTextField span8'}
-		self.fields['CULTURA'].widget.attrs = {'rows':'3','class':'vTextField span8'}
-		self.fields['COMIDA'].widget.attrs = {'rows':'3','class':'vTextField span8'}
-		self.fields['DATOS'].widget.attrs = {'rows':'3','class':'vTextField span8'}
+		self.fields['HISTORIA'].widget.attrs = {'rows':'10','class':'vTextField span10','maxlength':'1500'}
+		self.fields['HISTORIA'].help_text='No más de 1500 caracteres.'
+
+		self.fields['CULTURA'].widget.attrs = {'rows':'10','class':'vTextField span10','maxlength':'1500'}
+		self.fields['CULTURA'].help_text='No más de 1500 caracteres.'
+
+		self.fields['COMIDA'].widget.attrs = {'rows':'10','class':'vTextField span10','maxlength':'1500'}
+		self.fields['COMIDA'].help_text='No más de 1500 caracteres.'
+		
+		self.fields['DATOS'].widget.attrs = {'rows':'10','class':'vTextField span10','maxlength':'1500'}
+		self.fields['DATOS'].help_text='No más de 1500 caracteres.'
 
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
@@ -460,10 +467,17 @@ class PuebloChangeForm(forms.ModelForm):
 		self.fields['CULTURA'].widget=AccordionMultipleTextbox(data=cultura)
 		self.fields['COMIDA'].widget=AccordionMultipleTextbox(data=comida)
 		self.fields['DATOS'].widget=AccordionMultipleTextbox(data=datos)
-		self.fields['HISTORIA'].widget.attrs = {'rows':'3','class':'vTextField span8'}
-		self.fields['CULTURA'].widget.attrs = {'rows':'3','class':'vTextField span8'}
-		self.fields['COMIDA'].widget.attrs = {'rows':'3','class':'vTextField span8'}
-		self.fields['DATOS'].widget.attrs = {'rows':'3','class':'vTextField span8'}
+		self.fields['HISTORIA'].widget.attrs = {'rows':'10','class':'vTextField span10','maxlength':'1500'}
+		self.fields['HISTORIA'].help_text='No más de 1500 caracteres.'
+
+		self.fields['CULTURA'].widget.attrs = {'rows':'10','class':'vTextField span10','maxlength':'1500'}
+		self.fields['CULTURA'].help_text='No más de 1500 caracteres.'
+
+		self.fields['COMIDA'].widget.attrs = {'rows':'10','class':'vTextField span10','maxlength':'1500'}
+		self.fields['COMIDA'].help_text='No más de 1500 caracteres.'
+
+		self.fields['DATOS'].widget.attrs = {'rows':'10','class':'vTextField span10','maxlength':'1500'}
+		self.fields['DATOS'].help_text='No más de 1500 caracteres.'
 
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
@@ -555,10 +569,11 @@ class CuriosidadesForm(forms.ModelForm):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(CuriosidadesForm, self).__init__(*args, **kwargs)
 		self.fields['PUEBLO'].help_text= "Obligatorio. Nombre del pueblo a asociar."
-		self.fields['TITULO'].help_text= "Obligatorio. Encabezado de la curiosidad. El idioma original es obligatorio."
-		self.fields['DESCRIPCION'].help_text= "Obligatorio. Contenido de la curiosidad. El idioma original es obligatorio."
+		self.fields['TITULO'].help_text= "Obligatorio. Encabezado de la curiosidad. El idioma original es obligatorio. No más de 2000 caracteres."
+		self.fields['DESCRIPCION'].help_text= "Obligatorio. Contenido de la curiosidad. El idioma original es obligatorio. No más de 2000 caracteres."
 		self.fields['TITULO'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'30'})
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'3','class':'vTextField span8'})
+
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
 		# import pdb
 		# pdb.set_trace()
 		#self.fields['ADMINISTRADORES'].widget = SelectMultipleCustom()
@@ -608,8 +623,8 @@ class CuriosidadesChangeForm(forms.ModelForm):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(CuriosidadesChangeForm, self).__init__(*args, **kwargs)
 		self.fields['PUEBLO'].help_text= "Obligatorio. Nombre del pueblo a asociar."
-		self.fields['TITULO'].help_text= "Obligatorio. Encabezado de la curiosidad. El idioma original es obligatorio."
-		self.fields['DESCRIPCION'].help_text= "Obligatorio. Contenido de la curiosidad. El idioma original es obligatorio."
+		self.fields['TITULO'].help_text= "Obligatorio. Encabezado de la curiosidad. El idioma original es obligatorio. No más de 2000 caracteres."
+		self.fields['DESCRIPCION'].help_text= "Obligatorio. Contenido de la curiosidad. El idioma original es obligatorio. No más de 2000 caracteres."
 		# import pdb
 		# pdb.set_trace()
 
@@ -628,7 +643,7 @@ class CuriosidadesChangeForm(forms.ModelForm):
 		except curiosidad_idioma.DoesNotExist,e:
 			pass
 		self.fields['TITULO'].widget=AccordionMultiplesSimpleTextbox(data=titulo)
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(data=descripcion,attrs = {'rows':'3','class':'vTextField span8'})
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
 
 	def save(self,commit=True):
 		# import pdb
@@ -688,11 +703,11 @@ class EventosForm(forms.ModelForm):
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del evento."
 		self.fields['FECHA'].help_text= "Obligatorio. Formato dd/mm/yyyy Y hh:mm:ss formato 24hrs."
 		self.fields['PUEBLO'].help_text= "Obligatorio. Pueblo donde se llevará acabo el evento."
-		self.fields['DESCRIPCION'].help_text= "Obligatorio. Información acerca del evento."
-		self.fields['LUGAR'].help_text= "Obligatorio. Ubicación exacta donde se llevará exacto el evento."
+		self.fields['DESCRIPCION'].help_text= "Obligatorio. Información acerca del evento. No más de 2000 caracteres."
+		self.fields['LUGAR'].help_text= "Obligatorio. Ubicación exacta donde se llevará exacto el evento. No más de 200 caracteres."
 
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'3','class':'vTextField span8'})
-		self.fields['LUGAR'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'50','rows':'3','class':'vTextField span8'})
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
+		self.fields['LUGAR'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'200','rows':'3'})
 
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
@@ -760,11 +775,6 @@ class EventosChangeForm(forms.ModelForm):
 		self.fields['NOMBRE'].widget.attrs = {'readonly':'true'}
 		self.fields['FECHA'].help_text= "Obligatorio. Formato dd/mm/yyyy Y hh:mm:ss formato 24hrs."
 		self.fields['PUEBLO'].help_text= "Obligatorio. Pueblo donde se llevará acabo el evento."
-		self.fields['DESCRIPCION'].help_text= "Obligatorio. Información acerca del evento."
-		self.fields['LUGAR'].help_text= "Obligatorio. Ubicación exacta donde se llevará exacto el evento."
-
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs={'rows':'3','class':'vTextField span8'})
-		self.fields['LUGAR'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'50','rows':'3','class':'vTextField span8'})
 
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
@@ -787,6 +797,13 @@ class EventosChangeForm(forms.ModelForm):
 			pass
 		self.fields['LUGAR'].widget=AccordionMultiplesSimpleTextbox(data=lugar)
 		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(data=descripcion)
+		
+		self.fields['DESCRIPCION'].help_text= "Obligatorio. Información acerca del evento. No más de 2000 caracteres."
+		self.fields['LUGAR'].help_text= "Obligatorio. Ubicación exacta donde se llevará exacto el evento. No más de 200 caracteres."
+
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
+		self.fields['LUGAR'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'200','rows':'3'})
+
 
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
@@ -858,11 +875,10 @@ class RelatosForm(forms.ModelForm):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(RelatosForm, self).__init__(*args, **kwargs)
 		self.fields['PUEBLO'].help_text= "Obligatorio. Pueblo donde se llevará acabo el evento."
-		self.fields['DESCRIPCION'].help_text= "Obligatorio. Información acerca del evento."
-		self.fields['TITULO'].help_text= "Obligatorio. Nombre del relato."
-
+		self.fields['DESCRIPCION'].help_text= "Obligatorio. Información acerca del evento. No más de 2000 caracteres."
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
+		self.fields['TITULO'].help_text= "Obligatorio. Nombre del relato. No más de 30 caracteres."
 		self.fields['TITULO'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'30'})
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs={'rows':'3','class':'vTextField span8'})
 
 
 
@@ -916,8 +932,6 @@ class RelatosChangeForm(forms.ModelForm):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(RelatosChangeForm, self).__init__(*args, **kwargs)
 		self.fields['PUEBLO'].help_text= "Obligatorio. Pueblo donde se llevará acabo el evento."
-		self.fields['DESCRIPCION'].help_text= "Obligatorio. Información acerca del evento."
-		self.fields['TITULO'].help_text= "Obligatorio. Nombre del relato."
 		
 		obj = kwargs['instance']
 		titulo = {u'Español' : obj.TITULO}
@@ -935,8 +949,10 @@ class RelatosChangeForm(forms.ModelForm):
 			
 		except  relato_idioma.DoesNotExist, e:
 			pass
-		self.fields['TITULO'].widget=AccordionMultiplesSimpleTextbox(data=titulo,attrs={'maxlength':'30'})
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(data=descripcion,attrs = {'rows':'3','class':'vTextField span8'})
+		self.fields['DESCRIPCION'].help_text= "Obligatorio. Información acerca del evento. No más de 2000 caracteres."
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
+		self.fields['TITULO'].help_text= "Obligatorio. Nombre del relato. No más de 30 caracteres."
+		self.fields['TITULO'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'30'})
 
 	def save(self,commit=True):
 		# import pdb
@@ -998,11 +1014,10 @@ class SitiosTuristicosForm(forms.ModelForm):
 		super(SitiosTuristicosForm, self).__init__(*args, **kwargs)
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del la empresa."
 		self.fields['PUEBLO'].help_text= "Obligatorio. Pueblo donde está ubicado la empresa."
-		self.fields['DESCRIPCION'].help_text= "Obligatorio. Pueblo donde está ubicado la empresa."
-		self.fields['DIRECCION'].help_text= "Obligatorio. Lugar donde se encuentra el negocio."
+		self.fields['DIRECCION'].help_text= "Obligatorio. Lugar donde se encuentra el negocio. No más de 100 caracteres"
 		self.fields['CATEGORIA'].help_text= "Obligatorio. Tipo de negocio o giro comercial."
-		self.fields['TELEFONOS'].help_text= "Obligatorio. Número o números para poder contactar al local. Ejemplo: Tel: 6121578921;6121789413. Cel: 6121705677"
-		self.fields['TELEFONOS'].widget.attrs={'rows':'3','class':'vTextField span8'}
+		self.fields['TELEFONOS'].help_text= "Obligatorio. Número o números para poder contactar al local. Ejemplo: Tel: 6121578921;6121789413. Cel: 6121705677. No más de 100 caracteres."
+		self.fields['TELEFONOS'].widget.attrs={'rows':'3','class':'vTextField span8','maxlength':'100'}
 		self.fields['TELEFONOS'].required=False
 		self.fields['PRECIO_DESDE'].help_text= "Opcional. Intervalo incial del servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano."
 		self.fields['PRECIO_HASTA'].help_text= "Opcional. Intervalo final del servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano. En dado caso que se coloque uno de ellos es OBLIGATORIO que el inicial sea menor que el final."
@@ -1014,7 +1029,10 @@ class SitiosTuristicosForm(forms.ModelForm):
 		self.fields['PRECIO_HASTA'].required=False
 		self.fields['IMAGEN'].help_text= "Obligatorio. Banner de la empresa."
 		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox()
-		self.fields['DESCRIPCION'].widget.attrs={'rows':'3','class':'vTextField span8'}
+		self.fields['DESCRIPCION'].help_text= "Obligatorio. Pueblo donde está ubicado la empresa. No más de 2000 caracteres."
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
+
+
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
 		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"span12 vTextField"})
@@ -1084,11 +1102,10 @@ class SitiosTuristicosChangeForm(forms.ModelForm):
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del la empresa."
 		self.fields['PUEBLO'].help_text= "Obligatorio. Pueblo donde está ubicado la empresa."
 		self.fields['DESCRIPCION'].help_text= "Obligatorio. Pueblo donde está ubicado la empresa."
-		self.fields['DIRECCION'].help_text= "Obligatorio. Lugar donde se encuentra el negocio."
+		self.fields['DIRECCION'].help_text= "Obligatorio. Lugar donde se encuentra el negocio. No más de 100 caracteres"
 		self.fields['CATEGORIA'].help_text= "Obligatorio. Tipo de negocio o giro comercial."
-		self.fields['TELEFONOS'].help_text= "Obligatorio. Número o números para poder contactar al local."
-		self.fields['TELEFONOS'].widget.attrs['rows']='3'
-		self.fields['TELEFONOS'].widget.attrs['class'] = 'vTextField span5'
+		self.fields['TELEFONOS'].help_text= "Obligatorio. Número o números para poder contactar al local. Ejemplo: Tel: 6121578921;6121789413. Cel: 6121705677. No más de 100 caracteres."
+		self.fields['TELEFONOS'].widget.attrs={'rows':'3','class':'vTextField span8','maxlength':'100'}
 		self.fields['TELEFONOS'].required=False
 		self.fields['PRECIO_DESDE'].help_text= "Opcional. Intervalo incial del servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano."
 		self.fields['PRECIO_HASTA'].help_text= "Opcional. Intervalo final del servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano. En dado caso que se coloque uno de ellos es OBLIGATORIO que el inicial sea menor que el final."
@@ -1116,8 +1133,8 @@ class SitiosTuristicosChangeForm(forms.ModelForm):
 		except  sitio_turistico_idioma.DoesNotExist, e:
 			pass
 		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(data=descripcion)
-		self.fields['DESCRIPCION'].widget.attrs['rows'] ='3'
-		self.fields['DESCRIPCION'].widget.attrs['class'] = 'vTextField span8'
+		self.fields['DESCRIPCION'].help_text= "Obligatorio. Pueblo donde está ubicado la empresa. No más de 2000 caracteres."
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
 		
 		coordenadas= {}
 		if (obj.LATITUD is not None and obj.LONGITUD is not None):
@@ -1217,7 +1234,7 @@ class ContratosForm(forms.ModelForm):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(ContratosForm, self).__init__(*args, **kwargs)
 		self.fields['SITIO'].help_text= "Obligatorio. Nombre del la empresa que solicita el contrato de publicidad."
-		self.fields['OBSERVACION'].help_text= "Opcional. Notas o datos adicionales del contrato."
+		self.fields['OBSERVACION'].help_text= "Opcional. Notas o datos adicionales del contrato. No más de 30 caracteres"
 		self.fields['OBSERVACION'].required=False
 		self.fields['FECHA_INICIO'].help_text= "Obligatorio. Fecha desde la cuál se empieza a llevar a cabo la publicidad."
 		self.initial['FECHA_INICIO']=datetime.date.today()
@@ -1238,7 +1255,7 @@ class ContratosChangeForm(forms.ModelForm):
 		super(ContratosChangeForm, self).__init__(*args, **kwargs)
 
 		self.fields['SITIO'].help_text= "Obligatorio. Nombre del la empresa que solicita el contrato de publicidad."
-		self.fields['OBSERVACION'].help_text= "Opcional. Notas o datos adicionales del contrato."
+		self.fields['OBSERVACION'].help_text= "Opcional. Notas o datos adicionales del contrato. No más de 30 caracteres"
 		self.fields['OBSERVACION'].required=False
 		self.fields['FECHA_INICIO'].help_text= "Obligatorio. Fecha desde la cuál se empieza a llevar a cabo la publicidad."
 		self.initial['FECHA_INICIO']=datetime.date.today()
@@ -1289,8 +1306,8 @@ class GaleriasForm(forms.ModelForm):
 	def __init__(self, *args, **kwargs):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(GaleriasForm, self).__init__(*args, **kwargs)
-		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre de la galeria. Sólo caracteres."
-		self.fields['DESCRIPCION'].help_text= "Opcional. Referencia de la galería."
+		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre de la galeria. Sólo caracteres y números y no más de 40."
+		self.fields['DESCRIPCION'].help_text= "Opcional. Referencia de la galería. No más de 100 caracteres."
 		self.fields['ARCHIVOS'].help_text= "Obligatorio. Listado de archivos a incluir en la galería."
 		self.fields['ARCHIVOS'].widget=SelectMultipleCustom()
 		self.fields['ARCHIVOS'].queryset=archivo.objects.all()
@@ -1313,8 +1330,8 @@ class GaleriasChangeForm(forms.ModelForm):
 		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
 		super(GaleriasChangeForm, self).__init__(*args, **kwargs)
 
-		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre de la galeria. Sólo caracteres y números."
-		self.fields['DESCRIPCION'].help_text= "Opcional. Referencia de la galería."
+		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre de la galeria. Sólo caracteres y números y no más de 40."
+		self.fields['DESCRIPCION'].help_text= "Opcional. Referencia de la galería. No más de 100 caracteres."
 		self.fields['ARCHIVOS'].help_text= "Obligatorio. Listado de archivos a incluir en la galería."
 		self.fields['ARCHIVOS'].widget=SelectMultipleCustom()
 		self.fields['ARCHIVOS'].queryset=archivo.objects.all()
@@ -1396,11 +1413,13 @@ class ReporteChangeForm(forms.ModelForm):
 		self.fields['RAZON'].widget.attrs['readonly'] = True
 		self.fields['FECHA'].widget.attrs['readonly'] = True
 		self.fields['USUARIO'].widget.attrs['readonly'] = True
-		self.fields['COMENTARIO_REP'].widget = Textarea()
+		
+		obj = kwargs['instance']
+
+		self.fields['COMENTARIO_REP'].widget = VerInput(data={'tipo_comentario':obj.CLASE_COMENTARIO,'id':obj.COMENTARIO})
 		self.fields['COMENTARIO_REP'].label='Comentario'
 		self.fields['COMENTARIO_REP'].widget.attrs['readonly'] = True
 		self.fields['COMENTARIO_REP'].widget.attrs['rows']='2'
-		obj = kwargs['instance']
 
 		self.initial['USUARIO'] = obj.USUARIO.username
 		try:
