@@ -958,9 +958,9 @@ class RelatosChangeForm(forms.ModelForm):
 		except  relato_idioma.DoesNotExist, e:
 			pass
 		self.fields['DESCRIPCION'].help_text= "Obligatorio. Información acerca del evento. No más de 2000 caracteres."
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'},data=descripcion)
 		self.fields['TITULO'].help_text= "Obligatorio. Nombre del relato. No más de 30 caracteres."
-		self.fields['TITULO'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'30'})
+		self.fields['TITULO'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'30'},data=titulo)
 
 	def save(self,commit=True):
 		# import pdb
@@ -1140,9 +1140,9 @@ class SitiosTuristicosChangeForm(forms.ModelForm):
 			
 		except  sitio_turistico_idioma.DoesNotExist, e:
 			pass
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(data=descripcion)
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'},data=descripcion)
 		self.fields['DESCRIPCION'].help_text= "Obligatorio. Pueblo donde está ubicado la empresa. No más de 2000 caracteres."
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
+
 		
 		coordenadas= {}
 		if (obj.LATITUD is not None and obj.LONGITUD is not None):

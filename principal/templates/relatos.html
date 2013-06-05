@@ -24,6 +24,8 @@
 					<br>
 					<span>Fecha:</span>&nbsp; &nbsp;{{relato.relato.FECHA}}
 					<br>
+					<span>Pueblo:</span> &nbsp; &nbsp;{{relato.relato.PUEBLO.NOMBRE}}
+					<br>
 					<span>Descripción:</span> &nbsp; &nbsp;<p>{{relato.relato.DESCRIPCION}}</p>
 					<br><br>
 					{% if user.username|length > 0 %}
@@ -117,9 +119,19 @@
 					<span id="nota">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Nota: Después de enviar tu relato será previamente revisado]
 					</span><br>
-					<label for="titulo">Título: </label><input id="titulo" type="text" placeholder="&nbsp;Introduce un título para tu relato" required>
+					<label for="titulo">Título: </label><input id="titulo" type="text" placeholder="&nbsp;Introduce un título para tu relato" required maxlength='30'>
 					<br><br>
-					<textarea id='relato' name="relato" cols="80" rows="5"></textarea>
+					<label for="titulo">Pueblo: </label>
+					<select id='pueblos'>
+						<option value='' selected>--------------------------------------------------------------------</option>
+						{% if pueblos %}
+							{% for pueblo in pueblos %}
+								<option value='{{pueblo.NOMBRE}}'>{{pueblo.NOMBRE}}</option>
+							{% endfor %}
+						{% endif %}
+					</select>
+					<br><br>
+					<label for="relato">Descripción: </label><textarea id='relato' name="relato" cols="80" rows="5" maxlength='2000'></textarea>
 					<br>
 					<input name="enviar" value="Entrar" type="button">
 				</form>
@@ -387,7 +399,7 @@ $(function(){
 	{
 		titulo=$('#relatoNuevo form #titulo').val();
 		relato=$('#relatoNuevo form #relato').val();
-
+		pueblo=$('#relatoNuevo #pueblos').val()
 		if(titulo=="")
 		{
 			alert('El relato debe tener un titulo.');
@@ -396,7 +408,8 @@ $(function(){
 		patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{1,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{1,})*$/;
 		if(!patt.test(titulo))
 		{
-			alert('El titulo sólo puede contener letras y números, con palabras separadas por un espacio.')
+			alert('El titulo sólo puede contener letras y números, con palabras separadas por un espacio.');
+			return;
 		}
 
 		if(relato=="")
@@ -404,11 +417,16 @@ $(function(){
 			alert('El relato debe tener una descripción.');
 			return;
 		}
+		if(pueblo=="")
+		{
+			alert('Seleccione un pueblo para él que registrará el relato.');
+			return;
+		}
 
 		$.ajax({
 			async:false,
             url:"/enviar_relatos_ajax/",
-            data:{csrfmiddlewaretoken:'{{csrf_token}}','TITULO':titulo,'RELATO':relato,},
+            data:{csrfmiddlewaretoken:'{{csrf_token}}','TITULO':titulo,'RELATO':relato,'PUEBLO':pueblo},
             type:'POST',
             //dataType:
             success:function(response)

@@ -231,10 +231,10 @@ class EventosAdmin(admin.ModelAdmin):
 
 #ModelAdmin de relatos para el manejo de las paginas para agregar, modificar y mostrar elementos
 class RelatosAdmin(admin.ModelAdmin):
-	list_display =('TITULO','USUARIO')
+	list_display =('TITULO','USUARIO','APROBADO')
 	list_per_page = 10
 	search_fields = ['TITULO','USUARIO']
-	list_filter = ('USUARIO',)
+	list_filter = ('USUARIO','APROBADO',)
 	def get_form(self, request, obj=None, **kwargs):
 		#print dir(self.form._meta.fields)
 		if obj: # obj is not None, so this is a change page

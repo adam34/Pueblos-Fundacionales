@@ -584,10 +584,19 @@ def relatos(request):
 					dic['comentarios']=None
 				lista.append(dic)
 			mejores_relatos=relato.objects.all().order_by('-VALORACION')[:3]
+		cont_pueblos= pueblo.objects.count()
+		pueblos = None
+		if cont_pueblos:
+			pueblos = pueblo.objects.all()
 		#Agarrar 3 comentarios por cada relato a mostrar
 	except Exception,e:
 		print e
-	return render_to_response('relatos.html',RequestContext(request,{'relatos':lista,'mejores':mejores_relatos,'user':request.user}))
+	return render_to_response('relatos.html',RequestContext(request,
+		{'relatos':lista,
+		'mejores':mejores_relatos,
+		'user':request.user,
+		'pueblos':pueblos,
+		}))
 
 def comentarios_relatos_ajax(request):
 	# import pdb
@@ -760,11 +769,12 @@ def enviar_relatos_ajax(request):
 	# pdb.set_trace()
 	if request.is_ajax():
 		if request.POST:
-			if ('TITULO' in request.POST and 'RELATO' in request.POST ):
+			if ('TITULO' in request.POST and 'RELATO' in request.POST  and 'PUEBLO' in request.POST):
 				titulo=request.POST['TITULO']
 				contenido=request.POST['RELATO']
 				usuario=request.user
-				village=pueblo.objects.all()[1]
+				nombre=request.POST['PUEBLO']
+				village=pueblo.objects.get(NOMBRE=nombre)
 				try:
 					fecha =datetime.datetime.now()
 					rel = relato(TITULO=titulo,DESCRIPCION=contenido,FECHA=fecha,USUARIO=usuario,PUEBLO=village,APROBADO=False,VALORACION=0)
