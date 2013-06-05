@@ -18,7 +18,7 @@
 			<h2>Novedades</h2>
 			<article class="contenido">
 				<a href="/descubra-bcs/">Descubra BCS</a>
-				<span><a href="/descubra-bcs/">&gt;  Ver todos</a></span>
+				<span><a href="/descubra-bcs/"><!--&gt;  Ver todos--></a></span>
 				<p class="articulos">
 				{% if turistico %}
 					<img src="{% mostrar_imagen_pueblo turistico.GALERIA.ARCHIVOS.all %}" alt="{{turistico.NOMBRE}}">
@@ -31,7 +31,7 @@
 			</article>
 			<article class="contenido">
 				<a href="/bcs-desconocida/">BCS Desconocida</a>
-				<span><a href="/bcs-desconocida/">&gt;  Ver todos</a></span>
+				<span><a href="/bcs-desconocida/"><!--&gt;  Ver todos--></a></span>
 				<p class="articulos">
 				{% if curiosidad %}
 					<img src="/static/img/loreto.jpg" alt="Loreto">
@@ -44,7 +44,7 @@
 			</article>
 			<article class="contenido">
 				<a href="/mas-visto/">Pueblo más visto</a>
-				<span><a href="#">&gt;  Ver todos</a></span>
+				<span><a href="#"><!--&gt;  Ver todos--></a></span>
 				<p class="articulos">
 				{% if mas_visto %}
 					<img src="{% mostrar_imagen_pueblo mas_visto.GALERIA.ARCHIVOS.all %}" alt="Loreto">
@@ -386,14 +386,14 @@
 					<a href="/multimedia/">Ver todos</a>
 				</div>
 			</section>
-			<section class="suscribete">
+			<!--section class="suscribete">
 				<h3>Suscríbete</h3>
 				<form action="#">
 					<input type="text" placeholder="&nbsp;Introduce tu email">
 					<br><br>
 					<input name="enviar" value="Enviar" type="button">
 				</form>
-			</section>
+			</section-->
 			<aside >
 				<h3>¡Visítanos!</h3>
 				<article>

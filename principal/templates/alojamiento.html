@@ -27,14 +27,14 @@
 			<article class="desc_hoteles">
 				<h4>{{hotel.NOMBRE}}</h4>
 				<p class="habitaciones">
-					{{hotel.DESCRIPCION}}
+					
 				</p>
-				<p class="desc">Frente a la playa, al final del malecón....</p>
-				<span>{{hotel.PUEBLO.MUNICIPIO}}</span>
+				<p class="desc">Descripción: {{hotel.DESCRIPCION}}</p>
+				<span>Ubicación: {{hotel.PUEBLO.MUNICIPIO}}</span>
 			</article>
 			<article class="costo_hoteles">
 				<p>Desde <span>${{hotel.PRECIO_DESDE}}</span> MXN</p>
-				<a href="/uploads/{{hotel.URL}}" target="_blank">
+				<a href="{{hotel.URL}}" target="_blank">
 					Más info
 				</a>
 			</article>

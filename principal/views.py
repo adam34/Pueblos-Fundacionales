@@ -325,7 +325,7 @@ def curiosidades(request):
 		cant_curiosidades= curiosidad.objects.count()
 		curiosidades = None
 		if cant_curiosidades >0:
-			curiosidades= curiosidades.objects.all()
+			curiosidades= curiosidad.objects.all()
 	except Exception,e:
 		print e
 	return render_to_response('curiosidades.html',RequestContext(request,{'user':request.user,'curiosidades':curiosidades}))
