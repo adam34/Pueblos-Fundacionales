@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load tags %}
+{% load i18n %}
 {%  block css %}
 	<!-- Slider del Clima -->
 	{{block.super}}
@@ -9,6 +10,10 @@
 {% endblock %}
 
 {% block contenedor %}
+<!--         {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+            <p>{{ language.name_local }} ({{ language.code }})</p>
+        {% endfor %} -->
 		<section class="principal">
 			<h2>Novedades</h2>
 			<article class="contenido">
@@ -220,7 +225,7 @@
 			</article>
 			<article class="telefonos">
 			<!-- Teléfonos -->
-				<h3>Teléfonos</h3>
+				<h3>Directorio</h3>
 				<p>
 					<a href="#">Emergencias</a>
 					<br>
