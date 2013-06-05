@@ -227,34 +227,15 @@
 	<section class="menu_secciones">
 		<section class="seccion_sugerencias">
 			<h3>Sugerencias</h3>
+			{% for sitio in sitios %}
 			<article>
-				<img src="/static/img/folleto.jpg" alt="">
+				<img src="/uploads/{{sitio.IMAGEN}}" alt="">
 				<div>
-					<h4>Historia y cultura</h4>
-					<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
+					<h4>{{sitio.NOMBRE}}</h4>
+					<p>{{sitio.DESCRIPCION}}</p>
 				</div>
 			</article>
-			<article>
-				<img src="/static/img/folleto.jpg" alt="">
-				<div>
-					<h4>Centros turísticos</h4>
-					<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
-				</div>
-			</article>
-			<article>
-				<img src="/static/img/folleto.jpg" alt="">
-				<div>
-					<h4>Hoteles</h4>
-					<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
-				</div>
-			</article>
-			<article>
-				<img src="/static/img/folleto.jpg" alt="">
-				<div>
-					<h4>Hoteles</h4>
-					<p>No te pierdas este fantástico evento, este próximo 20 de mayo.</p>
-				</div>
-			</article>
+			{% endfor %}
 			<section class="suscribete_redes">
 				<h3>Suscríbete</h3>
 				<form action="#">

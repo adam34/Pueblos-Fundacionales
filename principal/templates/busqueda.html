@@ -11,12 +11,16 @@
 			{% if respuesta %}
 				{{respuesta}}
 				{% for pueblo in pueblos %}
+					<p>{{pueblo.NOMBRE}}</p>
 				{% endfor %}
 				{% for evento in eventos %}
+					<p>{{evento.NOMBRE}}</p>
 				{% endfor %}
 				{% for sitio in sitios %}
+					<p>{{sitio.NOMBRE}}</p>
 				{% endfor %}
 				{% for relato in relatos  %}
+					<p>{{sitio.TITULO}}</p>
 				{% endfor %}
 			{% else %}
 				<p>No hubo respuesta del lado del servidor.</p>
