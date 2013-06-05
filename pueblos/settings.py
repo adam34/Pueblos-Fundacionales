@@ -44,8 +44,8 @@ LANGUAGE_CODE = 'es-MX'
 ugettext = lambda s: s
 
 LANGUAGES = (
-    ('es', ugettext(u'Español')),
-    ('en', ugettext(u'Ingles')),
+    ('es-MX', ugettext('Español')),
+    ('en-US', ugettext('Ingles')),
 )
 
 SITE_ID = 1
@@ -152,9 +152,9 @@ INSTALLED_APPS = (
     'administrador',    
     #'social_auth',
 )
-LOCALE_PATHS = (
-    'C:/Proyectos/Pueblos-Fundacionales/locale',
-)
+# LOCALE_PATHS = (
+#     'C:/Proyectos/Pueblos-Fundacionales/locale',
+# )
 
 
 
