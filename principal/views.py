@@ -3,7 +3,7 @@
 	# import pdb
 	# pdb.set_trace()
 import json
-from django.http import HttpResponse, Http404
+from django.http import HttpResponse, Http404,HttpResponseRedirect
 from django.shortcuts import render_to_response, redirect
 from django.template import RequestContext
 from django.contrib.auth.models import User
@@ -573,7 +573,7 @@ def relatos(request):
 		mejores_relatos = None
 		lista=[]
 		if cont_relatos > 0:
-			relatos = relato.objects.all()
+			relatos = relato.objects.filter(APROBADO=1)
 			for rel in relatos:
 				dic = dict()
 				coment_cont=comentario_relato.objects.filter(RELATOS=rel)
@@ -584,10 +584,19 @@ def relatos(request):
 					dic['comentarios']=None
 				lista.append(dic)
 			mejores_relatos=relato.objects.all().order_by('-VALORACION')[:3]
+		cont_pueblos= pueblo.objects.count()
+		pueblos = None
+		if cont_pueblos:
+			pueblos = pueblo.objects.all()
 		#Agarrar 3 comentarios por cada relato a mostrar
 	except Exception,e:
 		print e
-	return render_to_response('relatos.html',RequestContext(request,{'relatos':lista,'mejores':mejores_relatos,'user':request.user}))
+	return render_to_response('relatos.html',RequestContext(request,
+		{'relatos':lista,
+		'mejores':mejores_relatos,
+		'user':request.user,
+		'pueblos':pueblos,
+		}))
 
 def comentarios_relatos_ajax(request):
 	# import pdb
@@ -730,3 +739,53 @@ def busqueda(request):
 	else:
 		return render_to_response('busqueda.html')
 	
+def reporte_comentarios_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if ('ID' in request.POST and 'TIPO_COMENTARIO' in request.POST and 'RAZON' in request.POST ):
+				iden=request.POST['ID']
+				tipo_comentario=request.POST['TIPO_COMENTARIO']
+				razon = request.POST['RAZON']
+				usuario=request.user
+				try:
+					fecha =datetime.datetime.now()
+					reporte = reporte_comentario(CLASE_COMENTARIO=tipo_comentario,COMENTARIO=iden,RAZON=razon,FECHA=fecha,USUARIO=usuario)
+					reporte.save()
+					return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
+				except Exception,e:
+					print e
+					return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')		
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
+def enviar_relatos_ajax(request):
+	# import pdb
+	# pdb.set_trace()
+	if request.is_ajax():
+		if request.POST:
+			if ('TITULO' in request.POST and 'RELATO' in request.POST  and 'PUEBLO' in request.POST):
+				titulo=request.POST['TITULO']
+				contenido=request.POST['RELATO']
+				usuario=request.user
+				nombre=request.POST['PUEBLO']
+				village=pueblo.objects.get(NOMBRE=nombre)
+				try:
+					fecha =datetime.datetime.now()
+					rel = relato(TITULO=titulo,DESCRIPCION=contenido,FECHA=fecha,USUARIO=usuario,PUEBLO=village,APROBADO=False,VALORACION=0)
+					rel.save()
+					return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
+				except Exception,e:
+					print e
+					return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')		
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')

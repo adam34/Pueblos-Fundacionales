@@ -379,6 +379,10 @@
                     	{
                     		alert('Error, el usuario no esta autorizado para entrar en el sistema.');
                     	}
+                    	else if(response.respuesta=='noAccion')
+                    	{
+                    		location.href='/';
+                    	}
                     	else if(response.respuesta=='noCampos')
                     	{
                     		alert('No se recibieron los campos completos.');

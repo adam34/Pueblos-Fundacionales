@@ -49,16 +49,17 @@
     </div>
     {% endfor %}
   {% endif %}
-  <div class="control-group">
+  <div class="control-group {% if form.username.errors|length > 0 %}error{% endif %}">
     <div class="control-label">
         <label for="id_username" class="required">{% trans 'Username:' %}</label> 
     </div>
-    <div class="controls">
+    <!-- <p>{{ form.username.errors|length }}</p> -->
+    <div class="controls"> 
         {{ form.username }}
         {% if not form.this_is_the_login_form.errors %}<span class="help-inline">{{ form.username.errors|striptags }}</span>{% endif %}
     </div>
   </div>
-  <div class="control-group">
+  <div class="control-group {% if form.password.errors|length > 0 %}error{% endif %}">
     <div class="control-label">
         <label for="id_password" class="required">{% trans 'Password:' %}</label> 
     </div>

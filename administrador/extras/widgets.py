@@ -341,6 +341,8 @@ class MapInput(Input):
                 </script>
                 """))
         return mark_safe('\n'.join(output))
+
+
 class AccordionMultipleTextbox(Widget):
     datos = {}
     def __init__(self, attrs=None, data=None):
@@ -474,13 +476,13 @@ class AccordionMultiplesSimpleTextbox(Widget):
         if band:
             output.append(mark_safe("""
                     <div class='tab-pane active' id='"""+name+"""'>
-                        <input type='text' class='vTextField span6' name='"""+name+"""' placeholder='Descripción en Español' value='"""+self.datos[u'Español']+"""' %s>
+                        <input type='text' class='vTextField span10' name='"""+name+"""' placeholder='Descripción en Español' value='"""+self.datos[u'Español']+"""' %s>
                     </div>
                 """ % attrs_finales))
         else:
             output.append(mark_safe("""
                     <div class='tab-pane active' id='"""+name+"""'>
-                        <input type='text' class='vTextField span6' name='"""+name+"""' value='' placeholder='Descripción en Español' %s>
+                        <input type='text' class='vTextField span10' name='"""+name+"""' value='' placeholder='Descripción en Español' %s>
                     </div>
                 """ % attrs_finales))
         for idiom in idiomas:
@@ -498,13 +500,13 @@ class AccordionMultiplesSimpleTextbox(Widget):
             if band:
                 output.append(mark_safe("""
                         <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
-                            <input type='text' class='vTextField span6' name="""+name+"""_"""+idiom.NOMBRE+""" placeholder='Descripción en """+idiom.NOMBRE+"""' value='"""+self.datos[idiom.NOMBRE]+"""' %s attrs_finales>
+                            <input type='text' class='vTextField span10' name="""+name+"""_"""+idiom.NOMBRE+""" placeholder='Descripción en """+idiom.NOMBRE+"""' value='"""+self.datos[idiom.NOMBRE]+"""' %s attrs_finales>
                         </div>
                     """))
             else:                
                 output.append(mark_safe("""
                         <div class='tab-pane' id='"""+name+"_"+idiom.NOMBRE+"""'>
-                            <input type='text' class='vTextField span6' name="""+name+"""_"""+idiom.NOMBRE+""" value='' placeholder='Descripción en """+idiom.NOMBRE+"""' %s>
+                            <input type='text' class='vTextField span10' name="""+name+"""_"""+idiom.NOMBRE+""" value='' placeholder='Descripción en """+idiom.NOMBRE+"""' %s>
                         </div>
                     """ % attrs_finales))
         output.append(mark_safe("""</div>"""))
@@ -521,4 +523,55 @@ class AccordionMultiplesSimpleTextbox(Widget):
             </div>
         </div>
         """ % (name,name)))
+        return mark_safe('\n'.join(output))
+
+
+class VerInput(Input):
+    datos = {}
+    def __init__(self, attrs=None, data=None):
+        super(VerInput, self).__init__(attrs=attrs)
+        if isinstance(data,dict):
+            self.datos = data
+        else:
+            self.datos=None
+    def render(self, name, value, attrs=None):
+        if value is None:
+            value = ''
+        # import pdb
+        # pdb.set_trace()
+        final_attrs = self.build_attrs(self.attrs, name=name)
+        attrs_finales = flatatt(final_attrs)
+        output = []
+        output.append(mark_safe("""
+            <textarea %s>%s</textarea><button id='ver_comentario' class='btn btn-info' style='margin: 0 0 0 10px;'>Ver comentario</button>
+        """ % (attrs_finales,value)))
+        if self.datos is not None:
+            if ( self.datos.__contains__('tipo_comentario') and self.datos.__contains__('id')):
+                output.append(mark_safe("""
+                <script>
+                    $('#ver_comentario').on('click',ver_comentario);
+                    function ver_comentario(e)
+                    {
+                        tipo='%s'
+                        if(tipo=='E')
+                        {
+                            location.href='/admin/administrador/comentario_evento/%s/';
+                        }
+                        if(tipo=='R')
+                        {
+                            location.href='/admin/administrador/comentario_relato/%s/';
+                        }
+                        if(tipo=='P')
+                        {
+                            location.href='/admin/administrador/comentario_pueblo/%s/';
+                        }
+                        if(tipo=='S')
+                        {
+                            location.href='/admin/administrador/comentario_sitio/%s/';
+                        }
+                        return false;
+                    }
+                </script>
+                """%(self.datos['tipo_comentario'],self.datos['id'],self.datos['id'],self.datos['id'],self.datos['id'])))
+
         return mark_safe('\n'.join(output))

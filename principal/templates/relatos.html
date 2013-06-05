@@ -24,6 +24,8 @@
 					<br>
 					<span>Fecha:</span>&nbsp; &nbsp;{{relato.relato.FECHA}}
 					<br>
+					<span>Pueblo:</span> &nbsp; &nbsp;{{relato.relato.PUEBLO.NOMBRE}}
+					<br>
 					<span>Descripción:</span> &nbsp; &nbsp;<p>{{relato.relato.DESCRIPCION}}</p>
 					<br><br>
 					{% if user.username|length > 0 %}
@@ -40,7 +42,7 @@
 					&nbsp; &nbsp;<span id='puntaje_{{relato.relato.ID}}'>Puntos acumulados: {{relato.relato.VALORACION}}	</span>
 
 					{% if user.username|length > 0 %}
-					<form id='{{relato.relato.ID}}' action="#">
+					<form id='{{relato.relato.ID}}' name="comentario" action="#">
 						<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
 						<br><br>
 							<input name="enviar" value="Comentar" type="button">
@@ -55,7 +57,11 @@
 									{{comentario.DESCRIPCION}}
 								</div>
 								<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
-								<a id="vinculo_reportar" href="#relatoReportado">Reportar comentario</a>
+								{% if user.username|length > 0 %}
+									{% if comentario.USUARIO.username != user.username %}
+									<a id='{{comentario.ID}}' class="vinculo_reportar" href="#relatoReportado">Reportar comentario</a>
+									{% endif %}
+								{% endif %}
 							</section>
 
 							<br>
@@ -88,7 +94,8 @@
 			<a href="#cerrar" title="Close" class="cerrar">X</a>
 			<section class="formulario_re">
 				<h2>Reportar comentario</h2>
-				<form action="#">
+				<form id='form_reporte' action="#">
+					<input id='comentario' type='hidden' value=''>
 					<input type="radio" name="reporte" value="1">Comentario inapropiado <br>
 					<input type="radio" name="reporte" value="2">Contenido vulgar <br>
 					<input type="radio" name="reporte" value="3">Comentario ofensivo <br>
@@ -112,9 +119,19 @@
 					<span id="nota">
 						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Nota: Después de enviar tu relato será previamente revisado]
 					</span><br>
-					<label for="email">Título: </label><input id="email" type="text" placeholder="&nbsp;Introduce un título para tu relato" required>
+					<label for="titulo">Título: </label><input id="titulo" type="text" placeholder="&nbsp;Introduce un título para tu relato" required maxlength='30'>
 					<br><br>
-					<textarea name="relatos" id="" cols="80" rows="5"></textarea>
+					<label for="titulo">Pueblo: </label>
+					<select id='pueblos'>
+						<option value='' selected>--------------------------------------------------------------------</option>
+						{% if pueblos %}
+							{% for pueblo in pueblos %}
+								<option value='{{pueblo.NOMBRE}}'>{{pueblo.NOMBRE}}</option>
+							{% endfor %}
+						{% endif %}
+					</select>
+					<br><br>
+					<label for="relato">Descripción: </label><textarea id='relato' name="relato" cols="80" rows="5" maxlength='2000'></textarea>
 					<br>
 					<input name="enviar" value="Entrar" type="button">
 				</form>
@@ -127,23 +144,49 @@
 {% block js %}
 <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
 <script>
+
+{% if user.username|length > 0 %}
+
+//-----------------------------------------------------------------------
 $reportar = $('.modalDialog_Reportado');
-$cerrar = $('.cerrar');
-function onClickCerrar(e) {
+$cerrar_rep = $('.cerrar');
+function cerrar_reporte(e) {
     e.preventDefault();
     self.$reportar.fadeOut('fast');
  }
 $(function(){
-	$('#vinculo_reportar').on('click', function(){
+	$('.vinculo_reportar').on('click', function(e){
 		$('.modalDialog_Reportado').show(function(){
 			$(this).fadeIn(5000);
 		});
-		$cerrar.on('click', onClickCerrar)
+		$elemento = $(e.target);
+		id=$elemento.attr('id');
+		$('#form_reporte #comentario').val(id)
+		$cerrar_rep.on('click', cerrar_reporte)
 	});
 });
 
-{% if user.username|length > 0 %}
-	$('form input[name="enviar"]').on('click',registrar);
+//-----------------------------------------------------------------------
+$enviar = $('.modalDialog_R');
+$cerrar1 = $('.close');
+function onClickCerrar(e) {
+    e.preventDefault();
+    self.$enviar.fadeOut('fast');
+ }
+$(function(){
+	$('#aRelato').on('click', function(e){
+		$('.modalDialog_R').show(function(){
+			$(this).fadeIn(5000);
+		});
+		$elemento = $(e.target);
+		id=$elemento.attr('id');
+		$('#form_reporte #comentario').val(id)
+		$cerrar1.on('click', onClickCerrar)
+	});
+});
+
+//-----------------------------------------------------------------------
+	$('form[name="comentario"] input[name="enviar"]').on('click',registrar);
 	function registrar(e)
 	{
 		$elemento = $(e.target);
@@ -175,6 +218,7 @@ $(function(){
 		            			'<br>'
 		            			);
 		            			$('form#'+id+' textarea').val('');
+		            			alert('Comentario agregado.');
 	            		}
 	            		else
 	            		{
@@ -199,6 +243,9 @@ $(function(){
 		}
 		return false;
 	}
+
+//-----------------------------------------------------------------------
+
 	$('.me_gusta').on('click',valorar);
 	function valorar(e)
 	{
@@ -242,6 +289,7 @@ $(function(){
 		return false;
 	}
 	$('.no_megusta').on('click',valorar2);
+//-----------------------------------------------------------------------
 	function valorar2(e)
 	{
 		$elemento = $(e.target);
@@ -265,6 +313,130 @@ $(function(){
                 	else if (response.respuesta=='noVotar')
                 	{
                 		alert('No puede votar más de una vez por un comentario.');
+                	}
+                	else
+                	{
+						alert('Ocurrió un error interno.');
+                	}
+
+                }
+                else
+                {
+                    alert('No hubo respuesta por parte del servidor.');
+                }
+            },
+             error:function(jqXHR, status, error)
+            {
+                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+            },
+        });
+		return false;
+	}
+//-----------------------------------------------------------------------
+	$('#form_reporte input[name="enviar"]').on('click',reporte);
+	function reporte(e)
+	{
+		id=$('#form_reporte #comentario').val()
+		razon=$('#form_reporte input[name="reporte"]').val()
+		if(razon=="1")
+		{
+			razon="Comentario inapropiado";
+		}
+		else if(razon=="2")
+		{
+			razon="Contenido vulgar";
+		}
+		else if(razon=="3")
+		{
+			razon="Comentario ofensivo";
+		}
+		else if(razon=="4")
+		{
+			razon="Spam";
+		}
+		else
+		{
+			alert('Seleccione una opción, por favor.');
+			return;
+		}
+
+		$.ajax({
+			async:false,
+            url:"/reporte_comentarios_ajax/",
+            data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'RAZON':razon,'TIPO_COMENTARIO':'R'},
+            type:'POST',
+            //dataType:
+            success:function(response)
+            {
+            	if(response!='')
+                {
+                	if(response.respuesta=='exito')
+                	{
+                		alert('Reporte enviado.');
+                		$cerrar_rep.trigger('click');
+                	}
+                	else
+                	{
+						alert('Ocurrió un error interno.');
+                	}
+
+                }
+                else
+                {
+                    alert('No hubo respuesta por parte del servidor.');
+                }
+            },
+             error:function(jqXHR, status, error)
+            {
+                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+            },
+        });
+		return false;
+	}
+//-----------------------------------------------------------------------
+	$('#relatoNuevo form input[name="enviar"]').on('click',enviar_relato);
+	function enviar_relato(e)
+	{
+		titulo=$('#relatoNuevo form #titulo').val();
+		relato=$('#relatoNuevo form #relato').val();
+		pueblo=$('#relatoNuevo #pueblos').val()
+		if(titulo=="")
+		{
+			alert('El relato debe tener un titulo.');
+			return;
+		}
+		patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{1,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{1,})*$/;
+		if(!patt.test(titulo))
+		{
+			alert('El titulo sólo puede contener letras y números, con palabras separadas por un espacio.');
+			return;
+		}
+
+		if(relato=="")
+		{
+			alert('El relato debe tener una descripción.');
+			return;
+		}
+		if(pueblo=="")
+		{
+			alert('Seleccione un pueblo para él que registrará el relato.');
+			return;
+		}
+
+		$.ajax({
+			async:false,
+            url:"/enviar_relatos_ajax/",
+            data:{csrfmiddlewaretoken:'{{csrf_token}}','TITULO':titulo,'RELATO':relato,'PUEBLO':pueblo},
+            type:'POST',
+            //dataType:
+            success:function(response)
+            {
+            	if(response!='')
+                {
+                	if(response.respuesta=='exito')
+                	{
+                		alert('Relato enviado.');
+                		$cerrar1.trigger('click');
                 	}
                 	else
                 	{

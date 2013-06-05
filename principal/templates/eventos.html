@@ -22,7 +22,7 @@
 						<span>Descripción:</span> &nbsp; &nbsp;{{evento.evento.DESCRIPCION}}
 						<br>
 						<span>Lugar: </span>&nbsp; &nbsp;{{evento.evento.LUGAR}}
-						<form id='{{evento.evento.ID}}' action="#">
+						<form id='{{evento.evento.ID}}' name='comentario' action="#">
 							<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
 							<br><br>
 							{% if user.username|length > 0 %}
@@ -36,6 +36,11 @@
 								{{comentario.DESCRIPCION}}
 							</div>
 							<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
+							{% if user.username|length > 0 %}
+								{% if comentario.USUARIO.username != user.username %}
+								<a id='{{comentario.ID}}' class="vinculo_reportar" href="#relatoReportado">Reportar comentario</a>
+								{% endif %}
+							{% endif %}
 						<br>
 						{% endfor %}
 						</section>
@@ -49,14 +54,49 @@
 
 		</section>
 	</section>
+	<div id="relatoReportado" class="modalDialog_Reportado">
+		<div>
+			<a href="#cerrar" title="Close" class="cerrar">X</a>
+			<section class="formulario_re">
+				<h2>Reportar comentario</h2>
+				<form id='form_reporte' action="#">
+					<input id='comentario' type='hidden' value=''>
+					<input type="radio" name="reporte" value="1">Comentario inapropiado <br>
+					<input type="radio" name="reporte" value="2">Contenido vulgar <br>
+					<input type="radio" name="reporte" value="3">Comentario ofensivo <br>
+					<input type="radio" name="reporte" value="4">Spam<br>
+					<input name="enviar" value="Enviar" type="button">
+				</form>
+			</section>
+		</div>
+	</div>
 {% endblock %}
 
 {%  block js %}
 	<!-- jQuery -->
 	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+
 	{% if user.username|length > 0 %}
 	<script>
-		$('form input[name="enviar"]').on('click',registrar);
+		$reportar = $('.modalDialog_Reportado');
+		$cerrar_rep = $('.cerrar');
+		function cerrar_reporte(e) {
+		    e.preventDefault();
+		    self.$reportar.fadeOut('fast');
+		 }
+		$(function(){
+			$('.vinculo_reportar').on('click', function(e){
+				$('.modalDialog_Reportado').show(function(){
+					$(this).fadeIn(5000);
+				});
+				$elemento = $(e.target);
+				id=$elemento.attr('id');
+				$('#form_reporte #comentario').val(id)
+				$cerrar_rep.on('click', cerrar_reporte)
+			});
+		});
+//--------------------------------------------------------------------------------------
+		$('form[name="comentario"] input[name="enviar"]').on('click',registrar);
 		function registrar(e)
 		{
 			$elemento = $(e.target);
@@ -88,6 +128,7 @@
 			            			'<br>'
 			            			);
 			            			$('form#'+id+' textarea').val('');
+			            			alert('Comentario agregado.');
 		            		}
 		            		else
 		            		{
@@ -112,6 +153,67 @@
 			}
 			return false;
 		}
+//---------------------------------------------------------------------------------------
+	$('#form_reporte input[name="enviar"]').on('click',reporte);
+	function reporte(e)
+	{
+		id=$('#form_reporte #comentario').val()
+		razon=$('#form_reporte input[name="reporte"]').val()
+		if(razon=="1")
+		{
+			razon="Comentario inapropiado";
+		}
+		else if(razon=="2")
+		{
+			razon="Contenido vulgar";
+		}
+		else if(razon=="3")
+		{
+			razon="Comentario ofensivo";
+		}
+		else if(razon=="4")
+		{
+			razon="Spam";
+		}
+		else
+		{
+			alert('Seleccione una opción, por favor.');
+			return;
+		}
+
+		$.ajax({
+			async:false,
+            url:"/reporte_comentarios_ajax/",
+            data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'RAZON':razon,'TIPO_COMENTARIO':'E'},
+            type:'POST',
+            //dataType:
+            success:function(response)
+            {
+            	if(response!='')
+                {
+                	if(response.respuesta=='exito')
+                	{
+                		alert('Reporte enviado.');
+                		$cerrar_rep.trigger('click');
+                	}
+                	else
+                	{
+						alert('Ocurrió un error interno.');
+                	}
+
+                }
+                else
+                {
+                    alert('No hubo respuesta por parte del servidor.');
+                }
+            },
+             error:function(jqXHR, status, error)
+            {
+                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+            },
+        });
+		return false;
+	}
 	</script>
 	{% endif %}
 {% endblock %}

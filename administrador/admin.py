@@ -231,9 +231,10 @@ class EventosAdmin(admin.ModelAdmin):
 
 #ModelAdmin de relatos para el manejo de las paginas para agregar, modificar y mostrar elementos
 class RelatosAdmin(admin.ModelAdmin):
-	list_display =('TITULO',)
+	list_display =('TITULO','USUARIO','APROBADO')
 	list_per_page = 10
-	search_fields = ['TITULO',]
+	search_fields = ['TITULO','USUARIO']
+	list_filter = ('USUARIO','APROBADO',)
 	def get_form(self, request, obj=None, **kwargs):
 		#print dir(self.form._meta.fields)
 		if obj: # obj is not None, so this is a change page
@@ -419,6 +420,71 @@ class ArchivosAdmin(admin.ModelAdmin):
 		return super(ArchivosAdmin, self).get_form(request, obj, **kwargs)
 	
 #Fin ArchivosAdmin
+
+#ModelAdmin de reportes para el manejo de las paginas para agregar, modificar y mostrar elementos
+class Reportes_Admin(admin.ModelAdmin):
+	list_display =('USUARIO','FECHA')
+	list_per_page = 10
+	def get_form(self, request, obj=None, **kwargs):
+		#print dir(self.form._meta.fields)
+		if obj: # obj is not None, so this is a change page
+			pass
+			#kwargs['fields'] = ['username', 'password','password2']
+			self.form=ReporteChangeForm
+			self.fieldsets = (
+				(None, {
+					'fields': ('USUARIO','RAZON','FECHA','COMENTARIO_REP','CLASE_COMENTARIO','COMENTARIO',),
+					}),
+				)
+		return super(Reportes_Admin, self).get_form(request, obj, **kwargs)
+	# def __init__(self, *args, **kwargs):
+	# 	super(ContratosAdmin, self).__init__(*args, **kwargs)
+#Fin del reportes
+
+
+
+class Comen_Sitios_Admin(admin.ModelAdmin):
+	list_display =('USUARIO','SITIOS','FECHA','DESCRIPCION')
+	list_per_page = 10
+	search_fields = ['USUARIO','SITIOS',]
+	def delete_model(self, request, obj):
+		# import pdb
+		# pdb.set_trace()
+		reportes = reporte_comentario.objects.filter(COMENTARIO=obj.ID)
+		for reporte in reportes:
+			reporte.delete()
+
+	def delete_model(self, request, obj):
+		# import pdb
+		# pdb.set_trace()
+		reportes = reporte_comentario.objects.filter(COMENTARIO=obj.ID,CLASE_COMENTARIO='S')
+		for reporte in reportes:
+			reporte.delete()
+
+class Comen_Relatos_Admin(admin.ModelAdmin):
+	list_display =('USUARIO','RELATOS','FECHA','DESCRIPCION')
+	list_per_page = 10
+	search_fields = ['USUARIO','RELATOS',]
+	def delete_model(self, request, obj):
+		# import pdb
+		# pdb.set_trace()
+		reportes = reporte_comentario.objects.filter(COMENTARIO=obj.ID,CLASE_COMENTARIO='R')
+		for reporte in reportes:
+			reporte.delete()
+
+
+class Comen_Evento_Admin(admin.ModelAdmin):
+	list_display =('USUARIO','EVENTO','FECHA','DESCRIPCION')
+	list_per_page = 10
+	search_fields = ['USUARIO','EVENTO',]
+	def delete_model(self, request, obj):
+		# import pdb
+		# pdb.set_trace()
+		reportes = reporte_comentario.objects.filter(COMENTARIO=obj.ID,CLASE_COMENTARIO='E')
+		for reporte in reportes:
+			reporte.delete()
+
+
 # admin.site.register(idioma)
 # admin.site.register(pueblo)
 # admin.site.register(archivo)
@@ -446,9 +512,9 @@ admin.site.register(contrato,ContratosAdmin)
 admin.site.register(galeria,GaleriasAdmin)
 admin.site.register(archivo,ArchivosAdmin)
 admin.site.register(login)
-admin.site.register(reporte_comentario)
+admin.site.register(reporte_comentario,Reportes_Admin)
 
 admin.site.register(comentario_pueblo)
-admin.site.register(comentario_evento)
-admin.site.register(comentario_relato)
-admin.site.register(comentario_sitio)
+admin.site.register(comentario_evento,Comen_Evento_Admin)
+admin.site.register(comentario_relato,Comen_Relatos_Admin)
+admin.site.register(comentario_sitio,Comen_Sitios_Admin)
