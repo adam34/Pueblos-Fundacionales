@@ -16,7 +16,7 @@ class archivo(models.Model):
 	ID=models.AutoField(primary_key=True)
 	NOMBRE=models.CharField(unique=True,max_length=20,null=False)
 	DESCRIPCION=models.CharField(max_length=100,null=False, blank=True)
-	RUTA=models.FileField(upload_to='galerias/')
+	RUTA=models.ImageField(upload_to='galerias/')
 	def __unicode__(self):
 		return self.NOMBRE
 
