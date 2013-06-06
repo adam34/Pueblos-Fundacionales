@@ -372,29 +372,28 @@ class PuebloForm(forms.ModelForm):
 		# 	pueblo.save(commit)
 		pueblo.save()
 
-		idiomas = idioma.objects.all()
-		for idiom in idiomas:
-			nombre="HISTORIA_"+idiom.NOMBRE
+		for idioma in IDIOMAS:
+			nombre="HISTORIA_"+idioma[0]
 			historia=""
 			cultura=""
 			comida=""
 			datos=""
 			if self.data.__contains__(nombre):
 				historia=self.data[nombre]
-			nombre="CULTURA_"+idiom.NOMBRE
+			nombre="CULTURA_"+idioma[0]
 			if self.data.__contains__(nombre):
 				cultura=self.data[nombre]
-			nombre="COMIDA_"+idiom.NOMBRE
+			nombre="COMIDA_"+idioma[0]
 			if self.data.__contains__(nombre):
 				comida=self.data[nombre]
-			nombre="DATOS_"+idiom.NOMBRE
+			nombre="DATOS_"+idioma[0]
 			if self.data.__contains__(nombre):
 				datos=self.data[nombre]
 			
 			if (historia != "" or cultura !="" or comida != "" or datos !=""):
 				pueb_idiom = pueblo_idioma()
 				pueb_idiom.PUEBLO = pueblo
-				pueb_idiom.IDIOMA = idiom
+				pueb_idiom.IDIOMA = idioma[0]
 				pueb_idiom.HISTORIA = historia
 				pueb_idiom.CULTURA = cultura
 				pueb_idiom.COMIDA = comida
@@ -459,16 +458,16 @@ class PuebloChangeForm(forms.ModelForm):
 		try:
 			pueb_idioms=pueblo_idioma.objects.get(PUEBLO=obj)
 			if isinstance(pueb_idioms,pueblo_idioma):
-				historia[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.HISTORIA
-				cultura[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.CULTURA
-				datos[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.DATOS
-				comida[u''+pueb_idioms.IDIOMA.NOMBRE]=pueb_idioms.COMIDA
+				historia[u''+pueb_idioms.IDIOMA]=pueb_idioms.HISTORIA
+				cultura[u''+pueb_idioms.IDIOMA]=pueb_idioms.CULTURA
+				datos[u''+pueb_idioms.IDIOMA]=pueb_idioms.DATOS
+				comida[u''+pueb_idioms.IDIOMA]=pueb_idioms.COMIDA
 			elif isinstance(pueb_idioms,list):
 				for pueb_idiom in pueb_idioms:
-					historia[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.HISTORIA
-					cultura[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.CULTURA
-					datos[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.DATOS
-					comida[pueb_idiom.IDIOMA.NOMBRE]=pueb_idiom.COMIDA	
+					historia[pueb_idiom.IDIOMA]=pueb_idiom.HISTORIA
+					cultura[pueb_idiom.IDIOMA]=pueb_idiom.CULTURA
+					datos[pueb_idiom.IDIOMA]=pueb_idiom.DATOS
+					comida[pueb_idiom.IDIOMA]=pueb_idiom.COMIDA	
 		except pueblo_idioma.DoesNotExist,e:
 			pass
 		self.fields['HISTORIA'].widget=AccordionMultipleTextbox(data=historia)
@@ -499,7 +498,7 @@ class PuebloChangeForm(forms.ModelForm):
 		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"span12 vTextField"},data=coordenadas)
 
 	def save(self,commit=True):
-		pueblo = super(PuebloChangeForm, self).save(commit=False)
+		pueblo = super(PuebloForm, self).save(commit=False)
 		pueblo.HISTORIA=self.data['HISTORIA']
 		pueblo.CULTURA=self.data['CULTURA']
 		pueblo.COMIDA=self.data['COMIDA']
@@ -508,29 +507,28 @@ class PuebloChangeForm(forms.ModelForm):
 		# 	pueblo.save(commit)
 		pueblo.save()
 
-		idiomas = idioma.objects.all()
-		for idiom in idiomas:
-			nombre="HISTORIA_"+idiom.NOMBRE
+		for idioma in IDIOMAS:
+			nombre="HISTORIA_"+idioma[0]
 			historia=""
 			cultura=""
 			comida=""
 			datos=""
 			if self.data.__contains__(nombre):
 				historia=self.data[nombre]
-			nombre="CULTURA_"+idiom.NOMBRE
+			nombre="CULTURA_"+idioma[0]
 			if self.data.__contains__(nombre):
 				cultura=self.data[nombre]
-			nombre="COMIDA_"+idiom.NOMBRE
+			nombre="COMIDA_"+idioma[0]
 			if self.data.__contains__(nombre):
 				comida=self.data[nombre]
-			nombre="DATOS_"+idiom.NOMBRE
+			nombre="DATOS_"+idioma[0]
 			if self.data.__contains__(nombre):
 				datos=self.data[nombre]
 			
 			if (historia != "" or cultura !="" or comida != "" or datos !=""):
 				pueb_idiom = pueblo_idioma()
 				pueb_idiom.PUEBLO = pueblo
-				pueb_idiom.IDIOMA = idiom
+				pueb_idiom.IDIOMA = idioma[0]
 				pueb_idiom.HISTORIA = historia
 				pueb_idiom.CULTURA = cultura
 				pueb_idiom.COMIDA = comida
@@ -593,22 +591,20 @@ class CuriosidadesForm(forms.ModelForm):
 		curiosidad = super(CuriosidadesForm, self).save(commit=False)
 		curiosidad.save()
 
-		idiomas = idioma.objects.all()
-		for idiom in idiomas:
-			
+		for idioma in IDIOMAS:
 			titulo=""
 			descripcion=""
-			nombre="TITULO_"+idiom.NOMBRE
+			nombre="TITULO_"+idioma[0]
 			if self.data.__contains__(nombre):
 				titulo=self.data[nombre]
-			nombre="DESCRIPCION_"+idiom.NOMBRE
+			nombre="DESCRIPCION_"+idioma[0]
 			if self.data.__contains__(nombre):
 				descripcion=self.data[nombre]
 			
 			if (titulo != "" or descripcion !=""):
 				cur_idiom = curiosidad_idioma()
 				cur_idiom.CURIOSIDAD = curiosidad
-				cur_idiom.IDIOMA= idiom
+				cur_idiom.IDIOMA= idioma[0]
 				cur_idiom.TITULO = titulo
 				cur_idiom.DESCRIPCION = descripcion
 				cur_idiom.save(commit)
@@ -642,16 +638,16 @@ class CuriosidadesChangeForm(forms.ModelForm):
 		try:
 			curs_idioms=curiosidad_idioma.objects.get(CURIOSIDAD=obj)
 			if isinstance(curs_idioms,curiosidad_idioma):
-				titulo[u''+curs_idioms.IDIOMA.NOMBRE]=curs_idioms.TITULO
-				descripcion[u''+curs_idioms.IDIOMA.NOMBRE]=curs_idioms.DESCRIPCION
+				titulo[u''+curs_idioms.IDIOMA]=curs_idioms.TITULO
+				descripcion[u''+curs_idioms.IDIOMA]=curs_idioms.DESCRIPCION
 			elif isinstance(curs_idioms,list):
 				for cur_idioms in curs_idioms:
-					titulo[cur_idioms.IDIOMA.NOMBRE]=cur_idioms.TITULO
-					descripcion[cur_idioms.IDIOMA.NOMBRE]=cur_idioms.DESCRIPCION
+					titulo[cur_idioms.IDIOMA]=cur_idioms.TITULO
+					descripcion[cur_idioms.IDIOMA]=cur_idioms.DESCRIPCION
 		except curiosidad_idioma.DoesNotExist,e:
 			pass
 		self.fields['TITULO'].widget=AccordionMultiplesSimpleTextbox(data=titulo)
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'},data=descripcion)
 
 	def save(self,commit=True):
 		# import pdb
@@ -659,22 +655,20 @@ class CuriosidadesChangeForm(forms.ModelForm):
 		curiosidad = super(CuriosidadesChangeForm, self).save(commit=False)
 		curiosidad.save()
 
-		idiomas = idioma.objects.all()
-		for idiom in idiomas:
-			
+		for idioma in IDIOMAS:
 			titulo=""
 			descripcion=""
-			nombre="TITULO_"+idiom.NOMBRE
+			nombre="TITULO_"+idioma[0]
 			if self.data.__contains__(nombre):
 				titulo=self.data[nombre]
-			nombre="DESCRIPCION_"+idiom.NOMBRE
+			nombre="DESCRIPCION_"+idioma[0]
 			if self.data.__contains__(nombre):
 				descripcion=self.data[nombre]
 			
 			if (titulo != "" or descripcion !=""):
 				cur_idiom = curiosidad_idioma()
 				cur_idiom.CURIOSIDAD = curiosidad
-				cur_idiom.IDIOMA= idiom
+				cur_idiom.IDIOMA= idioma[0]
 				cur_idiom.TITULO = titulo
 				cur_idiom.DESCRIPCION = descripcion
 				cur_idiom.save(commit)
@@ -731,22 +725,20 @@ class EventosForm(forms.ModelForm):
 		evento = super(EventosForm, self).save(commit=False)
 		evento.save()
 
-		idiomas = idioma.objects.all()
-		for idiom in idiomas:
-			
+		for idioma in IDIOMAS:			
 			lugar=""
 			descripcion=""
-			nombre="LUGAR_"+idiom.NOMBRE
+			nombre="LUGAR_"+idioma[0]
 			if self.data.__contains__(nombre):
 				lugar=self.data[nombre]
-			nombre="DESCRIPCION_"+idiom.NOMBRE
+			nombre="DESCRIPCION_"+idioma[0]
 			if self.data.__contains__(nombre):
 				descripcion=self.data[nombre]
 			
 			if (lugar != "" or descripcion !=""):
 				event_idiom = evento_idioma()
 				event_idiom.EVENTO = evento
-				event_idiom.IDIOMA= idiom
+				event_idiom.IDIOMA= idioma[0]
 				event_idiom.LUGAR = lugar
 				event_idiom.DESCRIPCION = descripcion
 				event_idiom.save(commit)
@@ -795,22 +787,19 @@ class EventosChangeForm(forms.ModelForm):
 		try:
 			events_idioms=evento_idioma.objects.get(EVENTO=obj)
 			if isinstance(events_idioms,evento_idioma):
-				lugar[u''+events_idioms.IDIOMA.NOMBRE]=events_idioms.LUGAR
-				descripcion[u''+events_idioms.IDIOMA.NOMBRE]=events_idioms.DESCRIPCION
+				lugar[u''+events_idioms.IDIOMA]=events_idioms.LUGAR
+				descripcion[u''+events_idioms.IDIOMA]=events_idioms.DESCRIPCION
 			elif isinstance(events_idioms,list):
 				for event_idioms in events_idioms:
-					lugar[event_idioms.IDIOMA.NOMBRE]=event_idioms.LUGAR
-					descripcion[event_idioms.IDIOMA.NOMBRE]=event_idioms.DESCRIPCION
+					lugar[event_idioms.IDIOMA]=event_idioms.LUGAR
+					descripcion[event_idioms.IDIOMA]=event_idioms.DESCRIPCION
 		except evento_idioma.DoesNotExist,e:
 			pass
-		self.fields['LUGAR'].widget=AccordionMultiplesSimpleTextbox(data=lugar)
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(data=descripcion)
-		
+
+		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'},data=descripcion)
+		self.fields['LUGAR'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'200','rows':'3'},data=lugar)
 		self.fields['DESCRIPCION'].help_text= "Obligatorio. Información acerca del evento. No más de 2000 caracteres."
 		self.fields['LUGAR'].help_text= "Obligatorio. Ubicación exacta donde se llevará exacto el evento. No más de 200 caracteres."
-
-		self.fields['DESCRIPCION'].widget=AccordionMultipleTextbox(attrs = {'rows':'10','class':'vTextField span10','maxlength':'2000'})
-		self.fields['LUGAR'].widget=AccordionMultiplesSimpleTextbox(attrs={'maxlength':'200','rows':'3'})
 
 
 		self.fields['LATITUD'].widget = HiddenInput()
@@ -830,22 +819,21 @@ class EventosChangeForm(forms.ModelForm):
 		evento = super(EventosChangeForm, self).save(commit=False)
 		evento.save()
 
-		idiomas = idioma.objects.all()
-		for idiom in idiomas:
+		for idioma in IDIOMAS:
 			
 			lugar=""
 			descripcion=""
-			nombre="LUGAR_"+idiom.NOMBRE
+			nombre="LUGAR_"+idioma[0]
 			if self.data.__contains__(nombre):
 				lugar=self.data[nombre]
-			nombre="DESCRIPCION_"+idiom.NOMBRE
+			nombre="DESCRIPCION_"+idioma[0]
 			if self.data.__contains__(nombre):
 				descripcion=self.data[nombre]
 			
 			if (lugar != "" or descripcion !=""):
 				event_idiom = evento_idioma()
 				event_idiom.EVENTO = evento
-				event_idiom.IDIOMA= idiom
+				event_idiom.IDIOMA= idioma[0]
 				event_idiom.LUGAR = lugar
 				event_idiom.DESCRIPCION = descripcion
 				event_idiom.save(commit)
@@ -902,21 +890,22 @@ class RelatosForm(forms.ModelForm):
 			relato.FECHA= datetime.datetime.now()
 		
 		relato.save()
-		idiomas = idioma.objects.all()
-		for idiom in idiomas:	
+		import pdb
+		pdb.set_trace()
+		for idioma in IDIOMAS:
 			titulo=""
 			descripcion=""
-			nombre="TITULO_"+idiom.NOMBRE
+			nombre="TITULO_"+idioma[0]
 			if self.data.__contains__(nombre):
 				titulo=self.data[nombre]
-			nombre="DESCRIPCION_"+idiom.NOMBRE
+			nombre="DESCRIPCION_"+idioma[0]
 			if self.data.__contains__(nombre):
 				descripcion=self.data[nombre]
 			
 			if (titulo != "" or descripcion !=""):
 				tit_idiom = relato_idioma()
 				tit_idiom.RELATO = relato
-				tit_idiom.IDIOMA= idiom
+				tit_idiom.IDIOMA= idioma[0]
 				tit_idiom.TITULO = titulo
 				tit_idiom.DESCRIPCION = descripcion
 				tit_idiom.save(commit)
@@ -948,12 +937,12 @@ class RelatosChangeForm(forms.ModelForm):
 			relats_idioms=relato_idioma.objects.get(RELATO=obj)
 
 			if isinstance(relats_idioms,relato_idioma):
-				titulo[u''+relats_idioms.IDIOMA.NOMBRE]=relats_idioms.TITULO
-				descripcion[u''+relats_idioms.IDIOMA.NOMBRE]=relats_idioms.DESCRIPCION
+				titulo[u''+relats_idioms.IDIOMA]=relats_idioms.TITULO
+				descripcion[u''+relats_idioms.IDIOMA]=relats_idioms.DESCRIPCION
 			elif isinstance(relats_idioms,list):
 				for relat_idioms in relats_idioms:
-					titulo[event_idioms.IDIOMA.NOMBRE]=event_idioms.TITULO
-					descripcion[relat_idioms.IDIOMA.NOMBRE]=relat_idioms.DESCRIPCION
+					titulo[event_idioms.IDIOMA]=event_idioms.TITULO
+					descripcion[relat_idioms.IDIOMA]=relat_idioms.DESCRIPCION
 			
 		except  relato_idioma.DoesNotExist, e:
 			pass
@@ -975,22 +964,21 @@ class RelatosChangeForm(forms.ModelForm):
 		
 		relato.save()
 
-		idiomas = idioma.objects.all()
-		for idiom in idiomas:
+		for idioma in IDIOMAS:
 			
 			titulo=""
 			descripcion=""
-			nombre="TITULO_"+idiom.NOMBRE
+			nombre="TITULO_"+idioma[0]
 			if self.data.__contains__(nombre):
 				titulo=self.data[nombre]
-			nombre="DESCRIPCION_"+idiom.NOMBRE
+			nombre="DESCRIPCION_"+idioma[0]
 			if self.data.__contains__(nombre):
 				descripcion=self.data[nombre]
 			
 			if (titulo != "" or descripcion !=""):
 				tit_idiom = relato_idioma()
 				tit_idiom.RELATO = relato
-				tit_idiom.IDIOMA= idiom
+				tit_idiom.IDIOMA= idioma[0]
 				tit_idiom.TITULO = titulo
 				tit_idiom.DESCRIPCION = descripcion
 				tit_idiom.save(commit)
@@ -1051,17 +1039,16 @@ class SitiosTuristicosForm(forms.ModelForm):
 		# pdb.set_trace()
 		sitio = super(SitiosTuristicosForm, self).save(commit=False)	
 		sitio.save()
-		idiomas = idioma.objects.all()
-		for idiom in idiomas:	
+		for idioma in IDIOMAS:
 			descripcion=""
-			nombre="DESCRIPCION_"+idiom.NOMBRE
+			nombre="DESCRIPCION_"+idioma[0]
 			if self.data.__contains__(nombre):
 				descripcion=self.data[nombre]
 			
-			if (titulo != "" or descripcion !=""):
+			if (descripcion !=""):
 				sit_idiom = sitio_turistico_idioma()
 				sit_idiom.SITIO = sitio
-				sit_idiom.IDIOMA= idiom
+				sit_idiom.IDIOMA= idioma[0]
 				sit_idiom.DESCRIPCION = descripcion
 				sit_idiom.save(commit)
 		return sitio
@@ -1133,10 +1120,10 @@ class SitiosTuristicosChangeForm(forms.ModelForm):
 			sits_idioms=sitio_turistico_idioma.objects.get(SITIO=obj)
 
 			if isinstance(sits_idioms,sitio_turistico_idioma):
-				descripcion[u''+sits_idioms.IDIOMA.NOMBRE]=sits_idioms.DESCRIPCION
+				descripcion[u''+sits_idioms.IDIOMA]=sits_idioms.DESCRIPCION
 			elif isinstance(sits_idioms,list):
 				for sits_idiom in sits_idioms:
-					descripcion[sits_idiom.IDIOMA.NOMBRE]=sits_idiom.DESCRIPCION
+					descripcion[sits_idiom.IDIOMA]=sits_idiom.DESCRIPCION
 			
 		except  sitio_turistico_idioma.DoesNotExist, e:
 			pass
@@ -1158,17 +1145,16 @@ class SitiosTuristicosChangeForm(forms.ModelForm):
 		# pdb.set_trace()
 		sitio = super(SitiosTuristicosChangeForm, self).save(commit=False)	
 		sitio.save()
-		idiomas = idioma.objects.all()
-		for idiom in idiomas:	
+		for idioma in IDIOMAS:
 			descripcion=""
-			nombre="DESCRIPCION_"+idiom.NOMBRE
+			nombre="DESCRIPCION_"+idioma[0]
 			if self.data.__contains__(nombre):
 				descripcion=self.data[nombre]
 			
 			if (titulo != "" or descripcion !=""):
 				sit_idiom = sitio_turistico_idioma()
 				sit_idiom.SITIO = sitio
-				sit_idiom.IDIOMA= idiom
+				sit_idiom.IDIOMA= idioma[0]
 				sit_idiom.DESCRIPCION = descripcion
 				sit_idiom.save(commit)
 		return sitio
@@ -1274,33 +1260,6 @@ class ContratosChangeForm(forms.ModelForm):
 		self.fields['DURACION'].widget = forms.widgets.Select(choices=choices)
 
 #---------------------------Fin de formularios para el modelo de Contratos----------------------
-
-
-#------------------------------Formularios para el modelo de Idiomas------------------------
-
-class IdiomasForm(forms.ModelForm):
-	class Media:
-		#css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/idiomas.js',)
-	class Meta:
-		model=idioma
-	def __init__(self, *args, **kwargs):
-		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
-		super(IdiomasForm, self).__init__(*args, **kwargs)
-		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del idioma. No menor de 4 carácteres y no mayor de 30. Sólo caracteres."
-
-class IdiomasChangeForm(forms.ModelForm):
-	class Meta:
-		model=idioma
-	class Media:
-		#css={'all':('admin/css/multi-select.css',),}
-		js=('admin/js/idiomas.js',)
-	def __init__(self, *args, **kwargs):
-		#El campo username tiene sus propios validadores o metodos para validar el contenido del campo.
-		super(IdiomasChangeForm, self).__init__(*args, **kwargs)
-		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre del idioma. Sólo caracteres."
-
-#---------------------------Fin de Formularios para el modelo de Idiomas----------------------
 
 #------------------------------Formularios para el modelo de galerias------------------------
 

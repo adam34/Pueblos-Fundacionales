@@ -21,100 +21,100 @@
 				<section class="map_tree">
 					<ul>
 						<li>
-							<a href="/">Inicio</a>
+							<a href="{% url 'home' %}">Inicio</a>
 						</li>
 						<li>
 							<a href="/secciones/">Secciones</a>
 							<ul>
 								<li>
-									<a href="/alojamiento/">
+									<a href="{% url 'alojamiento' %}">
 										Hoteles
 									</a>
 								</li>
 								<li>
-									<a href="/comida/">
+									<a href="{% url 'comida' %}">
 										Restaurantes
 									</a>
 								</li>
 								<li>
-									<a href="/eventos/">
+									<a href="{% url 'eventos' %}">
 										Eventos
 									</a>
 								</li>
 								<li>
-									<a href="/galerias/">
+									<a href="{% url 'galerias' %}">
 										Galería
 									</a>
 								</li>
 								<li>
-									<a href="/curiosidades/">
+									<a href="{% url 'curiosidades' %}">
 										Curiosidades
 									</a>
 								</li>
 								<li>
-									<a href="/relatos/">
+									<a href="{% url 'relatos' %}">
 										Relatos
 									</a>
 								</li>
 								<li>
-									<a href="/directorio/">
+									<a href="{% url 'dir' %}">
 										Directorio
 									</a>
 								</li>
 								<li>
-									<a href="/libreria/">
+									<a href="{% url 'libreria' %}">
 										Libreria
 									</a>
 								</li>
 								<li>
-									<a href="/sitios_turisticos/">
+									<a href="{% url 'sitios_turisticos' %}">
 										Sitios Turísticos
 									</a>
 								</li>
 								<li>
-									<a href="/mapa/">
+									<a href="{% url 'mapa' %}">
 										Mapa
 									</a>
 								</li>
 								<li>
-									<a href="/multimedia/">
+									<a href="{% url 'multimedia' %}">
 										Multimedia
 									</a>
 								</li>
 								<li>
-									<a href="/libros/">
+									<a href="{% url 'libros' %}">
 										Descargas
 									</a>
 								</li>
 							</ul>
 						</li>
 						<li>
-							<a href="/pueblos/">
+							<a href="{% url 'pueblos' %}">
 								Pueblos
 							</a>
 						</li>
 						<li>
-							<a href="/galerias/">
+							<a href="{% url 'galerias' %}">
 								Galerías
 							</a>
 						</li>
 						<li>
-							<a href="/">
+							<a href="{% url 'home' %}">
 								Novedades
 							</a>
 							<ul>
 								<li>
-									<a href="/bcs-desconocida/">
+									<a href="{% url 'bcsdesconocida' %}">
 										BCS Desconocida
 									</a>
 								</li>
 								<li>
-									<a href="/descubra-bcs/">
+									<a href="{% url 'descubrabcs' %}">
 										Descubra BCS
 									</a>
 								</li>
 								<li>
-									<a href="/mas-visto/">
+									<a href="{% url 'masvisto' %}">
 										Pueblo más visto
 									</a>
 								</li>
@@ -124,7 +124,7 @@
 				</section>
 				<br><br>
 			<span>
-				<a href="/sitios_turisticos/">
+				<a href="{% url 'sitios_turisticos' %}">
 					Visita nuestra sección de Sitios Turísticos, da click <span>aquí</span>
 				</a>
 			</span>
@@ -137,7 +137,7 @@
 					<li>Hostal</li>
 					<li>B &amp; B [Bed and breakfast]</li>
 				</ul>
-				<a class="entrar" href="/alojamiento/">Visitar sección</a>
+				<a class="entrar" href="{% url 'alojamiento' %}">Visitar sección</a>
 			</section>
 			<section class="seccion_restaurantes">
 				<h4>Restaurantes</h4>
@@ -145,7 +145,7 @@
 					<li>Comida sudcaliforniana</li>
 					<li>¿A dónde voy a comer?</li>
 				</ul>
-				<a class="entrar" href="/comida/">Visitar sección</a>
+				<a class="entrar" href="{% url 'comida' %}">Visitar sección</a>
 			</section>
 			<section class="seccion_pueblos">
 				<h4>Pueblos Fundacionales</h4>
@@ -156,7 +156,7 @@
 					<li>Museos</li>
 					<li>Galerías de Artes</li>
 				</ul>
-				<a class="entrar" href="/pueblos/">Visitar sección</a>
+				<a class="entrar" href="{% url 'pueblos' %}">Visitar sección</a>
 			</section>
 			<section class="seccion_eventos">
 				<h4>Eventos</h4>
@@ -164,7 +164,7 @@
 					<li>Pueblos Fundacionales</li>
 					<li>Arte</li>
 				</ul>
-				<a class="entrar" href="/eventos/">Visitar sección</a>
+				<a class="entrar" href="{% url 'eventos' %}">Visitar sección</a>
 			</section>
 			<section class="seccion_centros">
 				<h4>Galerías</h4>
@@ -173,7 +173,7 @@
 					<li>Fotografías históricas</li>
 					<li>Fotografías actuales</li>
 				</ul>
-					<a class="entrar" href="/curiosidades/">Visitar sección</a>
+					<a class="entrar" href="{% url 'galerias' %}">Visitar sección</a>
 			</section>
 			<section class="seccion_curiosidades">
 				<h4>Curiosidades</h4>
@@ -182,7 +182,7 @@
 					<li>Flora</li>
 					<li>Fauna</li>
 				</ul>
-				<a class="entrar" href="/curiosidades/">Visitar sección</a>
+				<a class="entrar" href="{% url 'curiosidades' %}">Visitar sección</a>
 			</section>
 			<section class="seccion_catalogo">
 				<h4>Catálogo digital</h4>
@@ -190,7 +190,7 @@
 					<li>Libros históricos</li>
 					<li>Libros sobre los Pueblos</li>
 				</ul>
-				<a class="entrar" href="/libreria/">Visitar sección</a>
+				<a class="entrar" href="{% url 'libreria' %}">Visitar sección</a>
 			</section>
 			<section class="seccion_catalogo">
 				<h4>Directorio Telefónico</h4>
@@ -198,7 +198,7 @@
 					<li>Emergencias</li>
 					<li>Cruz Roja</li>
 				</ul>
-				<a class="entrar" href="/libreria/">Visitar sección</a>
+				<a class="entrar" href="{% url 'dir' %}">Visitar sección</a>
 			</section>
 		</section>
 		<section class="menu_turistico">
@@ -206,7 +206,7 @@
 				<img src="/static/img/turismo.jpg" alt="">
 				<p></p>
 				<h4>
-					<a href="/libros/">
+					<a href="{% url 'libros' %}">
 						Visita
 					</a>
 				</h4>	
@@ -216,7 +216,7 @@
 				<img src="/static/img/turismo.jpg" alt="">
 				<p></p>
 				<h4>
-					<a href="/libros/">
+					<a href="{% url 'libros' %}">
 						Guías turísticas
 					</a>
 				</h4>	
@@ -233,7 +233,7 @@
 				<div>
 					<h4>{{sitio.NOMBRE}}</h4>
 					<p>{{sitio.DESCRIPCION}}</a></p>
-					<p><a href='/sitios_turisticos/'>Ver sitio</a></p>
+					<p><a href='{% url "sitios_turisticos" %}'>Ver sitio</a></p>
 				</div>
 			</article>
 			{% endfor %}

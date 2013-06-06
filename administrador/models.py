@@ -5,22 +5,16 @@ from django.conf import settings
 
 # Create your models here.
 
-
-class idioma(models.Model):
-	class Meta:
-		verbose_name="idioma" #Nombre en singular del modelo
-		verbose_name_plural="idiomas" #Nombre en plural del modelo
-	ID = models.AutoField(primary_key=True)
-	NOMBRE = models.CharField(max_length=20,null=False, unique=True)
-	def __unicode__(self):
-		return self.NOMBRE
+IDIOMAS =(
+	('Ingles',u'Inglés'),
+	)
 
 class archivo(models.Model):
 	class Meta:
 		verbose_name="archivo" #Nombre en singular del modelo
 		verbose_name_plural="archivos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
-	NOMBRE=models.CharField(max_length=20,null=False)
+	NOMBRE=models.CharField(unique=True,max_length=20,null=False)
 	DESCRIPCION=models.CharField(max_length=100,null=False, blank=True)
 	RUTA=models.FileField(upload_to='galerias/')
 	def __unicode__(self):
@@ -31,7 +25,7 @@ class galeria(models.Model):
 		verbose_name="galería" #Nombre en singular del modelo
 		verbose_name_plural="galerías" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
-	NOMBRE=models.CharField(max_length=40,null=False)
+	NOMBRE=models.CharField(unique=True,max_length=40,null=False)
 	DESCRIPCION=models.CharField(max_length=100,null=False)
 	USUARIO=models.ForeignKey(User,null=False)
 	ARCHIVOS=models.ManyToManyField(archivo)
@@ -53,7 +47,7 @@ class pueblo(models.Model):
 		verbose_name="pueblo" #Nombre en singular del modelo
 		verbose_name_plural="pueblos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
-	NOMBRE=models.CharField(max_length=30,null=False)
+	NOMBRE=models.CharField(unique=True, max_length=30,null=False)
 	ADMINISTRADOR = models.ForeignKey(User,unique=True,null=False)
 	MUNICIPIO=models.CharField(max_length=10,null=False,choices=MUNICIPIOS)
 	HISTORIA = models.TextField(null=False)
@@ -67,6 +61,20 @@ class pueblo(models.Model):
 	VISITAS=models.PositiveIntegerField(null=False,default=0,blank=True)
 	def __unicode__(self):
 		return self.NOMBRE
+	def get_pueblo_idioma(self,language):
+		if language != settings.SELECTED_LANGUAGE:
+			cont_pueblos=pueblo_idioma.objects.filter(IDIOMA=language,PUEBLO=self).count()
+			if cont_pueblos > 0:
+				try:
+					obj=pueblo_idioma.objects.get(IDIOMA=language,PUEBLO=self)
+					self.HISTORIA=obj.HISTORIA
+					self.CULTURA=obj.CULTURA
+					self.COMIDA=obj.COMIDA
+					self.DATOS=obj.DATOS
+				except Exception,e:
+					print e
+		return self
+
 
 class pueblo_idioma(models.Model):
 	class Meta:
@@ -74,7 +82,7 @@ class pueblo_idioma(models.Model):
 		verbose_name_plural="pueblos_idiomas" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	PUEBLO=models.ForeignKey('Pueblo',null=False)
-	IDIOMA=models.ForeignKey('Idioma',null=False)
+	IDIOMA=models.CharField(max_length=15, null=False,blank=False,choices=IDIOMAS)
 	HISTORIA = models.TextField(null=False)
 	CULTURA = models.TextField(null=False)
 	COMIDA = models.TextField(null=False)
@@ -100,7 +108,7 @@ class evento(models.Model):
 		verbose_name="evento" #Nombre en singular del modelo
 		verbose_name_plural="eventos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
-	NOMBRE=models.CharField(null=False,max_length=50)
+	NOMBRE=models.CharField(unique=True,null=False,max_length=50)
 	FECHA=models.DateTimeField(null=False)
 	PUEBLO=models.ForeignKey('pueblo',null=False)
 	DESCRIPCION=models.TextField(null=False)
@@ -110,18 +118,30 @@ class evento(models.Model):
 	LONGITUD=models.CharField(max_length=20,null=False)
 	def __unicode__(self):
 		return self.NOMBRE
+	def get_evento_idioma(self,language):
+		if language != settings.SELECTED_LANGUAGE:
+			cont_eventos=evento_idioma.objects.filter(IDIOMA=language,EVENTO=self).count()
+			if cont_eventos > 0:
+				try:
+					obj=evento_idioma.objects.get(IDIOMA=language,EVENTO=self)
+					self.DESCRIPCION=obj.DESCRIPCION
+					self.LUGAR=obj.LUGAR
+				except Exception,e:
+					print e
+		return self
 
 class evento_idioma(models.Model):
 	class Meta:
 		verbose_name="evento_idioma" #Nombre en singular del modelo
 		verbose_name_plural="eventos_idiomas" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
-	IDIOMA=models.ForeignKey('idioma',null=False)
+	IDIOMA=models.CharField(max_length=15, null=False,blank=False,choices=IDIOMAS)
 	EVENTO=models.ForeignKey('evento',null=False)
 	DESCRIPCION=models.TextField(null=False)
 	LUGAR=models.CharField(null=False,max_length=50)
 	def __unicode__(self):
 		return self.LUGAR
+
 
 
 class comentario_evento(models.Model):
@@ -151,6 +171,19 @@ class relato(models.Model):
 	APROBADO=models.BooleanField(null=False,default=False)
 	def __unicode__(self):
 		return self.PUEBLO.NOMBRE + " || " +self.USUARIO.username
+	def get_relato_idioma(self,language):
+		# import pdb
+		# pdb.set_trace()
+		if language != settings.SELECTED_LANGUAGE:
+			cont_relatos=relato_idioma.objects.filter(IDIOMA=language,RELATO=self).count()
+			if cont_relatos > 0:
+				try:
+					obj=relato_idioma.objects.get(IDIOMA=language,RELATO=self)
+					self.DESCRIPCION=obj.DESCRIPCION
+					self.TITULO=obj.TITULO
+				except Exception,e:
+					print e
+		return self
 
 class relato_idioma(models.Model):
 	class Meta:
@@ -158,7 +191,7 @@ class relato_idioma(models.Model):
 		verbose_name_plural="relatos_idiomas" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
 	RELATO=models.ForeignKey('relato',null=False)
-	IDIOMA=models.ForeignKey('idioma',null=False)
+	IDIOMA=models.CharField(max_length=15, null=False,blank=False,choices=IDIOMAS)
 	TITULO=models.CharField(null=False,max_length=30)
 	DESCRIPCION=models.TextField(null=False)
 	def __unicode__(self):
@@ -183,7 +216,7 @@ class categoria(models.Model):
 		verbose_name="categoria" #Nombre en singular del modelo
 		verbose_name_plural="categorias" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
-	NOMBRE=models.CharField(null=False,max_length=30)
+	NOMBRE=models.CharField(unique=True,null=False,max_length=30)
 	def __unicode__(self):
 		return self.NOMBRE
 
@@ -192,7 +225,7 @@ class sitio_turistico(models.Model):
 		verbose_name="sitio turistico" #Nombre en singular del modelo
 		verbose_name_plural="sitios turisticos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
-	NOMBRE=models.CharField(null=False,max_length=50)
+	NOMBRE=models.CharField(unique=True,null=False,max_length=50)
 	DIRECCION=models.CharField(null=False,max_length=100)
 	DESCRIPCION=models.TextField(null=False)
 	CATEGORIA=models.ForeignKey('categoria',null=False)
@@ -206,13 +239,24 @@ class sitio_turistico(models.Model):
 	LONGITUD=models.CharField(max_length=20,null=False)
 	def __unicode__(self):
 		return self.NOMBRE
+	def get_sitio_turistico_idioma(self,language):
+		if language != settings.SELECTED_LANGUAGE:
+			cont_sitios=sitio_turistico_idioma.objects.filter(IDIOMA=language,SITIO=self).count()
+			if cont_sitios > 0:
+				try:
+					obj=sitio_turistico_idioma.objects.get(IDIOMA=language,SITIO=self)
+					self.DESCRIPCION=obj.DESCRIPCION
+				except Exception,e:
+					print e
+		return self
+
 
 class sitio_turistico_idioma(models.Model):
 	class Meta:
 		verbose_name="sitio_turistico_idioma" #Nombre en singular del modelo
 		verbose_name_plural="sitios_turisticos_idiomas" #Nombre en plural del modelo	
 	SITIO=models.ForeignKey('sitio_turistico',null=False)
-	IDIOMA =models.ForeignKey('idioma',null=False)
+	IDIOMA=models.CharField(max_length=15, null=False,blank=False,choices=IDIOMAS)
 	DESCRIPCION=models.TextField(null=False)
 	def __unicode__(self):
 		return self.DESCRIPCION
@@ -275,7 +319,7 @@ class curiosidad_idioma(models.Model):
 		verbose_name="curiosidad_idioma" #Nombre en singular del modelo
 		verbose_name_plural="curiosidades_idiomas" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
-	IDIOMA =models.ForeignKey('idioma',null=False)
+	IDIOMA=models.CharField(max_length=15, null=False,blank=False,choices=IDIOMAS)
 	CURIOSIDAD =models.ForeignKey('curiosidad',null=False)
 	TITULO=models.CharField(null=False,max_length=30)
 	DESCRIPCION=models.TextField(null=False)	
@@ -292,6 +336,17 @@ class curiosidad(models.Model):
 	PUEBLO=models.ForeignKey('pueblo',null=False)
 	def __unicode__(self):
 		return self.TITULO
+	def get_curiosidad_idioma(self,language):
+		if language != settings.SELECTED_LANGUAGE:
+			cont_curiosidad=curiosidad_idioma.objects.filter(IDIOMA=language,CURIOSIDAD=self).count()
+			if cont_curiosidad > 0:
+				try:
+					obj=curiosidad_idioma.objects.get(IDIOMA=language,CURIOSIDAD=self)
+					self.DESCRIPCION=obj.DESCRIPCION
+					self.TITULO=obj.TITULO
+				except Exception,e:
+					print e
+		return self
 
 class login(models.Model):
 	class Meta:

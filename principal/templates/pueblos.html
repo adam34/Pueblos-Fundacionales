@@ -27,7 +27,7 @@
 			</section>
 			<section class="libreria">
 				<h4>Visita nuestro catálogo digital</h4>
-				<a href="/libreria/">Entra aquí</a>
+				<a href="{% url 'libreria' %}">Entra aquí</a>
 			</section>
 		</section>
 		<section class="pueblos_menu">
@@ -70,7 +70,7 @@
 				nombre= $elemento.parent().attr('id');
 				$.ajax({
 					async:false,
-		            url:"/pueblos_ajax/",
+		            url:"{% url 'pueblos_ajax' %}",
 		            data:{csrfmiddlewaretoken:'{{csrf_token}}','NOMBRE':nombre},
 		            type:'POST',
 		            //dataType:
@@ -137,8 +137,4 @@
 				return false;
 			}
 		</script>
-<<<<<<< HEAD
->>>>>>> 8d8677fc9954ccaf5bf3c205d2e122f3ffafe7e5
-=======
->>>>>>> 8d8677fc9954ccaf5bf3c205d2e122f3ffafe7e5
 	{% endblock %}

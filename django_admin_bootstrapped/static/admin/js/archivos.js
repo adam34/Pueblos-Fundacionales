@@ -45,12 +45,6 @@ function validar_formulario()
     //Se validan los campos de username, password, password2, nombre(s),apellido(s) y email
     //Se valida el username
     var errores = new Array();
-
-    valor=$('#id_DESCRIPCION').val();
-    if(valor=="")
-    {
-        errores.push('Introduzca una descripción para el archivo.');
-    }
     valor=$('#id_RUTA').val();
     if(valor=="")
     {

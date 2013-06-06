@@ -135,7 +135,7 @@
 	        }
 			$.ajax({
 				async:false,
-                url:"/registro_usuario_ajax/",
+                url:"{% url 'registro_usuario_ajax' %}",
                 data:{csrfmiddlewaretoken:'{{csrf_token}}','usuario':usuario,'correo':correo,'password':password,'password_repe':password_r},
                 type:'POST',
                 success:function(response)
@@ -236,7 +236,6 @@
 		}
 //------------------------------------------------------------------------------
 	{% if user.username|length > 0 %}
-	<script>
 		$('form input[name="enviar"]').on('click',registrar);
 		function registrar(e)
 		{
@@ -247,7 +246,7 @@
 			{
 				$.ajax({
 					 async:false,
-	                url:"/comentarios_sitios_ajax/",
+	                url:"{% url 'comentarios_sitios_ajax' %}",
 	                data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'COMENTARIO':comentario},
 	                type:'POST',
 	                //dataType:
@@ -269,6 +268,7 @@
 			            			'<br>'
 			            			);
 			            			$('form#'+id+' textarea').val('');
+			            			alert('Comentario enviado.');
 		            		}
 		            		else
 		            		{

@@ -33,8 +33,6 @@
 {% endblock %}
 
 {% block content %}
-{% get_current_language as LANGUAGE_CODE %}
-<p>{{LANGUAGE_CODE}}</p>
 <div id="content-main">
 <form class="form-signin form-horizontal" action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
   <div class="form-signin-inner">

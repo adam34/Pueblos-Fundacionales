@@ -346,22 +346,6 @@ class ContratosAdmin(admin.ModelAdmin):
 	# 	super(ContratosAdmin, self).__init__(*args, **kwargs)
 #Fin del ContratosAdmin
 
-#ModelAdmin de Categorias para el manejo de las paginas para agregar, modificar y mostrar elementos
-class IdiomasAdmin(admin.ModelAdmin):
-	list_display =('NOMBRE',)
-	list_per_page = 10
-	search_fields = ['NOMBRE',]
-	def get_form(self, request, obj=None, **kwargs):
-		#print dir(self.form._meta.fields)
-		if obj: # obj is not None, so this is a change page
-			pass
-			#kwargs['fields'] = ['username', 'password','password2']
-			self.form=IdiomasChangeForm
-		else: # obj is None, so this is an add page
-			self.form=IdiomasForm
-		return super(IdiomasAdmin, self).get_form(request, obj, **kwargs)
-#Fin del Categorias
-
 #ModelAdmin de Contratos para el manejo de las paginas para agregar, modificar y mostrar elementos
 class GaleriasAdmin(admin.ModelAdmin):
 	list_display =('NOMBRE',)
@@ -501,7 +485,6 @@ admin.site.register(User,UsuarioAdmin)
 admin.site.unregister(Group)
 admin.site.register(Group,GruposAdmin)
 
-admin.site.register(idioma,IdiomasAdmin)
 admin.site.register(pueblo,PueblosAdmin)
 admin.site.register(curiosidad,CuriosidadesAdmin)
 admin.site.register(evento,EventosAdmin)

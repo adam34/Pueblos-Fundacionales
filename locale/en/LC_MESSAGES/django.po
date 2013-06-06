@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-06 00:57-0600\n"
+"POT-Creation-Date: 2013-06-06 15:25-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -258,11 +258,11 @@ msgid ""
 "the appropriate user."
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:41
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:39
 msgid "<h2>Login</h2>"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:44
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:42
 #: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:29
 #: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:124
 #: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:146
@@ -273,19 +273,19 @@ msgid_plural "Please correct the errors below."
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:56
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:54
 msgid "Username:"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:66
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:64
 msgid "Password:"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:79
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:77
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:85
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:83
 #: .\django_admin_bootstrapped\templates\registration\password_reset_complete.html.py:18
 msgid "Log in"
 msgstr ""
@@ -1001,7 +1001,7 @@ msgid "Pueblos Fundacionales"
 msgstr "Foundational Towns"
 
 #: .\principal\templates\base.html.py:44 .\principal\templates\base.html.py:53
-#: .\principal\templates\base.html.py:68 .\pueblos\settings.py:57
+#: .\principal\templates\base.html.py:68
 msgid "Español"
 msgstr "Spanish"
 
@@ -1410,6 +1410,5 @@ msgstr "Visit us!"
 msgid "No hay eventos para el mes"
 msgstr "There are not eventos for this month"
 
-#: .\pueblos\settings.py:58
-msgid "Ingles"
-msgstr "English"
+#~ msgid "Ingles"
+#~ msgstr "English"

@@ -51,7 +51,7 @@
 			var galeria = elemento.innerHTML;
 			$.ajax({
 				 async:false,
-                url:"/galerias_ajax/",
+                url:"{% url 'galerias_ajax' %}",
                 data:{csrfmiddlewaretoken:'{{csrf_token}}','galeria':galeria},
                 type:'POST',
                 //dataType:
