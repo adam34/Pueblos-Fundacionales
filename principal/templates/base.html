@@ -1,10 +1,11 @@
 <!-- Pagina base.html-->
 {% load i18n %}
 <!doctype html>
+{% get_current_language as LANGUAGE_CODE %}
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Pueblos Fundacionales</title>
+	<title>{% trans 'Pueblos Fundacionales' %}</title>
 	<!-- Forzar a IE a utilizar el motor de Chrome -->
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<!-- Contenido -->
@@ -34,17 +35,43 @@
     <![endif]-->
     <section class="conf_idiomas">
 		<div class="idiomas">
+			{% if LANGUAGE_CODE == 'es-mx' %}
 			<a href="#">
 				<img id="arrow" src="/static/img/arrow.png" alt=""/>
 			</a>
 			<div class="esp">
 				<img src="/static/img/bandera.png" alt="Español">
-				<a href="#">Español</a>
+				<a href="/es-mx{{url}}">{% trans "Español" %}</a>
 			</div>
 			<div class="eng">
-				<img src="/static/img/ingles.png" alt="Español">
-				<a href="#">Inglés</a>
+				<img src="/static/img/ingles.png" alt="Ingles">
+				<a href="/en{{url}}">{% trans "Inglés" %}</a>
 			</div>
+			{% elif LANGUAGE_CODE == 'en' %}
+			<div class="esp">
+				<img src="/static/img/bandera.png" alt="Español">
+				<a href="/es-mx{{url}}">{% trans "Español" %}</a>
+			</div>
+			<a href="#">
+				<img id="arrow" src="/static/img/arrow.png" alt=""/>
+			</a>
+			<div class="eng">
+				<img src="/static/img/ingles.png" alt="Ingles">
+				<a href="/en{{url}}">{% trans "Inglés" %}</a>
+			</div>
+			{% else %}
+			<a href="#">
+				<img id="arrow" src="/static/img/arrow.png" alt=""/>
+			</a>
+			<div class="esp">
+				<img src="/static/img/bandera.png" alt="Español">
+				<a href="/es-mx{{url}}">{% trans "Español" %}</a>
+			</div>
+			<div class="eng">
+				<img src="/static/img/ingles.png" alt="Ingles">
+				<a href="/en{{url}}">{% trans "Inglés" %}</a>
+			</div>
+			{% endif %}
 		</div>
 		<div class="social_icons">
 			<a href="#" title="Facebook">
@@ -60,14 +87,14 @@
 	</section>
 	<header>
 		<section class="superior">
-			<a href="/">
+			<a href="{% url 'home' %}">
 				<img class="logotipo" src="/static/img/Logotipo.png" alt="Proyecto Pueblos">
 			</a>
-			<h1 class="titulo">Pueblos Fundacionales</h1>
+			<h1 class="titulo">{% trans 'Pueblos Fundacionales' %}</h1>
 			<article class="buscar">
-				<form id='form_search' class="expandable_search" method='POST' action='/busqueda/'>
+				<form id='form_search' class="expandable_search" method='POST' action='{% url 'busqueda' %}'>
 					{% csrf_token %}
-  					<input name='text_search' type="search" placeholder="Buscar" class="icono_buscar">
+  					<input name='text_search' type="search" placeholder="{% trans 'Buscar' %}" class="icono_buscar">
 				</form>
 			</article>
 		</section>
@@ -76,7 +103,7 @@
 		<div class="camera_wrap camera_azure_skin" id="camera_wrap_1">
 			<div data-thumb="/static/images/slides/thumbs/Mision1.jpg" data-src="/static/images/slides/Mision1.jpg">
                 <div class="camera_caption fadeFromBottom">
-                   <a href="/pueblos/">
+                   <a href="/pu">
                    	Misión de San Javier, Sierra  de la Giganta B.C.S.
                    </a>
                 </div>
@@ -113,28 +140,28 @@
 	<nav>
 		<ul>
 			<li class="menu">
-				<a href="/">Inicio</a>
+				<a href="{% url 'home' %}">{% trans 'Inicio' %}</a>
 			</li>
 			<li class="menu">
-				<a href="/secciones/">Secciones</a>
+				<a href="{% url 'secciones' %}">{% trans 'Secciones' context "part of Site" %}</a>
 			</li>
 			<li class="menu">
-				<a href="/pueblos/">Pueblos</a>
+				<a href="{% url 'pueblos' %}">{% trans 'Pueblos' %}</a>
 			</li>
 			<li class="menu">
-				<a href="/galerias/">Galerías</a>
+				<a href="{% url 'galerias' %}">{% trans 'Galerías' context "Gallery of images" %}</a>
 			</li>
 			<li class="menu">
 				<a href="#"></a>
 			</li>
 			{% if user.username != "" %}
 				<li class="menu" id="registrado">
-					Hola &nbsp;<a href="#">{{user.username}}</a>
-					<a href="/cerrar_sesion/">&nbsp;&nbsp;(salir)</a>		
+					{% trans 'Hola' %} &nbsp;<a href="#">{{user.username}}</a>
+					<a href="{% url 'cerrar_sesion' %}">&nbsp;&nbsp;(salir)</a>		
 				</li>
 				{% else %}
 				<li class="menu">
-					<a href="#openModal" id="ingresa">Ingresa</a>
+					<a href="#openModal" id="ingresa">{% trans 'Ingresa' %}</a>
 				</li>
 			{% endif %}
 		</ul>
@@ -145,51 +172,51 @@
 			<a href="#close" title="Close" class="close">X</a>
 			<section class="formulario">
 				<article id="contenedor_form">
-					<h2 id="ingresar_h">Ingresar</h2>
+					<h2 id="ingresar_h">{% trans 'Ingresar' %}</h2>
 					<form action="#" id="form_ingreso">
 					<label for="usuario" class="usuario_lbl">
-					Usuario 
+					{% trans 'Usuario' %}
 					</label>
-					<input id="usuario" type="text" placeholder="&nbsp;Introduce tu nombre de usuario" required maxlength='30'>
+					<input id="usuario" type="text" placeholder="&nbsp;{% trans 'Introduce tu nombre de usuario' %}" required maxlength='30'>
 					<br>
 					<label for="password" class="password_lbl">
-						Contraseña </label>
-					<input id ="password" type="password" placeholder="&nbsp;Introduce tu contraseña" required>
+						{% trans 'Contraseña' %}</label>
+					<input id ="password" type="password" placeholder="&nbsp;{% trans 'Introduce tu contraseña' %}" required>
 					<br><br>
-					<input name="enviar" value="Entrar" type="button">
+					<input name="enviar" value="{% trans 'Entrar' %}" type="button">
 					<br>
 					</form>
 				</article>
 				<article id="olvido_form">
-					<h2 id="recuperar_h">Recuperar</h2>
+					<h2 id="recuperar_h">{% trans 'Recuperar' %}</h2>
 					<form action="#" id="form_olvido">
 					<label for="email">Email </label>
-					<input id="email" type="text" placeholder="&nbsp;Introduce tu email" required maxlength='75'>
+					<input id="email" type="text" placeholder="&nbsp;{% trans 'Introduce tu email' " required maxlength='75'>
 					<br><br>
-					<input name="enviar" value="Recuperar" type="button">
+					<input name="enviar" value="{% trans 'Recuperar' %}" type="button">
 					<br>
-					<span id="regresar_olvido">Regresar</span>
+					<span id="regresar_olvido">{% trans 'Regresar' %}</span>
 					</form>
 				</article>
 				<article id="acceso">
-					<h2 id="acceder_h">Registro</h2>
+					<h2 id="acceder_h">{% trans 'Registro' %}</h2>
 					<form action="#" id="form_registro">
-						<label id="lbl_username" for="username">Usuario</label>
+						<label id="lbl_username" for="username">{% trans 'Usuario' %}</label>
 						<input id="username" type="text" placeholder="&nbsp;Usuario" required maxlength='30'><br>
-						<label for="correo_e">Email</label>
-						<input id="correo_e" type="text" placeholder="&nbsp;Correo electrónico" required><br>
-						<label for="password_n">Contraseña</label>
-						<input id="password_n" type="password" placeholder="&nbsp;Contraseña" required><br>
-						<label id="passwordd" for="password_r">Contraseña</label>
-						<input id="password_r" type="password" placeholder="&nbsp;Repetir Contraseña" required>
+						<label for="correo_e">{% trans 'Email' %}</label>
+						<input id="correo_e" type="text" placeholder="&nbsp;{% trans 'Correo electrónico' %}" required><br>
+						<label for="password_n">{% trans 'Contraseña' %}</label>
+						<input id="password_n" type="password" placeholder="&nbsp; {% trans 'Contraseña' %}" required><br>
+						<label id="passwordd" for="password_r">{% trans 'Contraseña' %}</label>
+						<input id="password_r" type="password" placeholder="&nbsp;{% trans 'Repetir Contraseña' %}" required>
 						<br><br>
-						<input name="enviar" value="Registrar" type="button">
+						<input name="enviar" value="{% trans 'Registrar' %}" type="button">
 					</form>
-					<span id="cambio">Regresar</span>
+					<span id="cambio">{% trans 'Regresar' %}</span>
 				</article>
-				<span id="registro">Registrarse</span>
+				<span id="registro">{% trans 'Registrarse' %}</span>
 					<br>
-					<span id="olvido">Olvidé mi contraseña</span>
+					<span id="olvido">{% trans 'Olvidé mi contraseña' %}</span>
 			</section>
 		</div>
 	</div>
@@ -201,7 +228,7 @@
 		<section class="footer_container">
 			<section class="footer_wrap">
 			<section class="wcont">
-				<h4 class="title">Patrocinadores</h4>
+				<h4 class="title">{% trans 'Patrocinadores' %}</h4>
 				<ul>
 					<li><a href="#" title="link 1">Link #1</a></li>
 					<li><a href="#" title="link 2">Link #2</a></li>
@@ -210,7 +237,7 @@
 				</ul>
 			</section>
 			<section class="wcont">
-				<h4 class="title">Colaboradores</h4>
+				<h4 class="title">{% trans 'Colaboradores' %}</h4>
 				<ul>
 					<li><a href="#" title="link 1">Link #1</a></li>
 					<li><a href="#" title="link 2">Link #2</a></li>
@@ -219,7 +246,7 @@
 				</ul>
 			</section>
 			<section class="wcont">
-				<h4 class="title">Enlaces de interés</h4>
+				<h4 class="title">{% trans 'Enlaces de interés' %}</h4>
 				<ul>
 					<li><a href="#" title="link 1">Link #1</a></li>
 					<li><a href="#" title="link 2">Link #2</a></li>
@@ -228,7 +255,7 @@
 				</ul>
 			</section>
 			<section class="wcont">
-				<h4 class="title">Contacto</h4>
+				<h4 class="title">{% trans 'Contacto' %}</h4>
 				<ul>
 					<li><a href="#" title="link 1">Link #1</a></li>
 					<li><a href="#" title="link 2">Link #2</a></li>
@@ -338,24 +365,24 @@
             usuario=$('#usuario').val();
             if(usuario.length>30)
             {
-                alert('El nombre de usuario no puede ser mayor de 30 caracteres');
+                alert('{% trans "El nombre de usuario no puede ser mayor de 30 caracteres" %}.');
                 return;
             }
 			var patt=/^[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]+$/;
 			if(!patt.test(usuario))
 			{
-				alert('El nombre de usuario sólo puede contener letras y números.');
+				alert('{% trans "El nombre de usuario sólo puede contener letras y números" %}. ');
 				return;
 			}
 			password = $('#password').val();
 			if(password=="")
 			{
-				alert('La contraseña no puede quedar en blanco.');
+				alert('{% trans "La contraseña no puede quedar en blanco" %}.');
 				return;
 			}
 			$.ajax({
 				async:false,
-                url:"/login_ajax/",
+                url:"{% url 'login_ajax' %}",
                 data:{csrfmiddlewaretoken:'{{csrf_token}}','usuario':usuario,'password':password,},
                 type:'POST',
                 success:function(response)
@@ -364,20 +391,20 @@
                     {
                     	if(response.respuesta=='exito')
                     	{
-                    		alert('Usuario logeado.');
+                    		alert('{% trans "Usuario logeado" %}.');
 		                	setTimeout(function()
 		                	{
-		                		location.href='/';
+		                		location.href='{% url "home" %}';
 		                	}
 		                		,1000);
                     	}
                     	else if(response.respuesta=='fallido')
                     	{
-                    		alert('Error, datos incorrectos.');
+                    		alert('{% trans "Error, datos incorrectos" %}.');
                     	}
                     	else if(response.respuesta=='noActivo')
                     	{
-                    		alert('Error, el usuario no esta autorizado para entrar en el sistema.');
+                    		alert('{% trans "Error, el usuario no esta autorizado para entrar en el sistema" %}.');
                     	}
                     	else if(response.respuesta=='noAccion')
                     	{
@@ -385,20 +412,20 @@
                     	}
                     	else if(response.respuesta=='noCampos')
                     	{
-                    		alert('No se recibieron los campos completos.');
+                    		alert('{% trans "No se recibieron los campos completos" %}.');
                     	}
                     	else if(response.respuesta=='noPOST')
                     	{
-                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+                    		alert('{% trans "No se utilizó el mensaje correcto para comunicarse con el servidor" %}.');
                     	}
                    		else if(response.respuesta=='noAJAX')
                     	{
-                    		alert('No se utilizó AJAX para la comunicación con el servidor.');
+                    		alert('{% trans "No se utilizó AJAX para la comunicación con el servidor" %}.');
                     	}
                     }
                     else
                     {
-                        alert('No hubo respuesta por parte del servidor.');
+                        alert('{% trans "No hubo respuesta por parte del servidor" %}.');
                     }
                 },
                 error:function(jqXHR, status, error)
@@ -429,28 +456,28 @@
 		    var patt=/[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]+/;
 		    if(!patt.test(usuario))
 		    {
-		        alert('El nombre de usuario sólo puede contener letras y números, ningún otro tipo de caracter.');
+		        alert('{% trans "El nombre de usuario sólo puede contener letras y números, ningún otro tipo de caracter" %}.');
 		        return;
 		    }
 		    patt= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 	        if(!patt.test(correo))
 	        {
-	            alert('El formato del email es incorrecto. Favor de verificarlo.');
+	            alert('{% trans "El formato del email es incorrecto. Favor de verificarlo" %}.');
 	            return;
 	        }
 	        if(password=="")
 	        {
-	        	alert('El campo de la contraseña no puede permanecer en blanco.');
+	        	alert('{% trans "El campo de la contraseña no puede permanecer en blanco" %}.');
 	            return;
 	        }
 	        if(password!=password_r)
 	        {
-	        	alert('Las campos de contraseñas no pueden ser diferentes. Verifiquelo, por favor.');
+	        	alert('{% trans "Las campos de contraseñas no pueden ser diferentes. Verifiquelo, por favor" %}.');
 	            return;	
 	        }
 			$.ajax({
 				async:false,
-                url:"/registro_usuario_ajax/",
+                url:"{% url 'registro_usuario_ajax' %}",
                 data:{csrfmiddlewaretoken:'{{csrf_token}}','usuario':usuario,'correo':correo,'password':password,'password_repe':password_r},
                 type:'POST',
                 success:function(response)
@@ -459,12 +486,12 @@
                     {
                     	if(response.respuesta=='exito')
                     	{
-                    		alert('Usuario registrado.');
+                    		alert('{% trans "Usuario registrado" %}.');
 		                	setTimeout(function()
 		                	{
 								$.ajax({
 									async:false,
-					                url:"/login_ajax/",
+					                url:"{% url 'login_ajax' %}",
 					                data:{csrfmiddlewaretoken:'{{csrf_token}}','usuario':usuario,'password':password,},
 					                type:'POST',
 					                success:function(response)
@@ -473,33 +500,33 @@
 					                    {
 					                    	if(response.respuesta=='exito')
 					                    	{
-					                    		alert('Usuario logeado.');
-							                	location.href='/';
+					                    		alert('{% trans "Usuario logeado" %}.');
+							                	location.href='{% url "home" %}';
 					                    	}
 					                    	else if(response.respuesta=='fallido')
 					                    	{
-					                    		alert('Error, datos incorrectos.');
+					                    		alert('{% trans "Error, datos incorrectos" %}.');
 					                    	}
 					                    	else if(response.respuesta=='noActivo')
 					                    	{
-					                    		alert('Error, el usuario no esta autorizado para entrar en el sistema.');
+					                    		alert('{% trans "Error, el usuario no esta autorizado para entrar en el sistema" %}.');
 					                    	}
 					                    	else if(response.respuesta=='noCampos')
 					                    	{
-					                    		alert('No se recibieron los campos completos.');
+					                    		alert('{% trans "No se recibieron los campos completos" %}.');
 					                    	}
 					                    	else if(response.respuesta=='noPOST')
 					                    	{
-					                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+					                    		alert('{% trans "No se utilizó el mensaje correcto para comunicarse con el servidor" %}.');
 					                    	}
 					                   		else if(response.respuesta=='noAJAX')
 					                    	{
-					                    		alert('No se utilizó AJAX para la comunicación con el servidor.');
+					                    		alert('{% trans "No se utilizó AJAX para la comunicación con el servidor" %}.');
 					                    	}
 					                    }
 					                    else
 					                    {
-					                        alert('No hubo respuesta por parte del servidor.');
+					                        alert('{% trans "No hubo respuesta por parte del servidor " %}.');
 					                    }
 					                },
 					                error:function(jqXHR, status, error)
@@ -513,32 +540,32 @@
                     	}
                     	else if(response.respuesta=='fallido')
                     	{
-                    		alert('Error, datos incorrectos.');
+                    		alert('{% trans "Error, datos incorrectos " %}.');
                     	}
                     	else if(response.respuesta=='existe')
                     	{
-                    		alert('Error, el usuario que esta tratando de registrar, ya existe. Intente con otro diferente.');
+                    		alert('{% trans "Error, el usuario que esta tratando de registrar, ya existe. Intente con otro diferente" %}.');
                     	}
                     	else if(response.respuesta=='noIguales')
                     	{
-                    		alert('Error, las contraseñas no coinciden.');
+                    		alert('{% trans "Error, las contraseñas no coinciden" %}.');
                     	}
                     	else if(response.respuesta=='noCampos')
                     	{
-                    		alert('No se recibieron los campos completos.');
+                    		alert('{% trans "No se recibieron los campos completos" %}.');
                     	}
                     	else if(response.respuesta=='noPOST')
                     	{
-                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+                    		alert('{% trans "No se utilizó el mensaje correcto para comunicarse con el servidor" %}.');
                     	}
                    		else if(response.respuesta=='noAJAX')
                     	{
-                    		alert('No se utilizó AJAX para la comunicación con el servidor.');
+                    		alert('{% trans "No se utilizó AJAX para la comunicación con el servidor" %}.');
                     	}
                     }
                     else
                     {
-                        alert('No hubo respuesta por parte del servidor.');
+                        alert('{% trans "No hubo respuesta por parte del servidor" %}.');
                     }
                 },
                 error:function(jqXHR, status, error)
@@ -557,12 +584,12 @@
 		    patt= /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
 	        if(!patt.test(correo))
 	        {
-	            alert('El formato del email es incorrecto. Favor de verificarlo.');
+	            alert('{% trans "El formato del email es incorrecto. Favor de verificarlo" %}.');
 	            return;
 	        }
 			$.ajax({
 				async:false,
-                url:"/recupera_ajax/",
+                url:"{% url 'recupera_ajax' %}",
                 data:{csrfmiddlewaretoken:'{{csrf_token}}','correo':correo,},
                 type:'POST',
                 success:function(response)
@@ -571,33 +598,33 @@
                     {
                     	if(response.respuesta=='exito')
                     	{
-                    		alert('Contraseña enviada a correo.');
+                    		alert('{% trans "Contraseña enviada a correo" %}.');
 		                	setTimeout(function()
 		                	{
-		                		location.href='/';
+		                		location.href='{% url "home" %}';
 		                	}
 		                		,1000);
                     	}
                     	else if(response.respuesta=='Noexiste')
                     	{
-                    		alert('Error, no existe una cuenta de usuario con ese correo.');
+                    		alert('{% trans "Error, no existe una cuenta de usuario con ese correo" %}.');
                     	}
                     	else if(response.respuesta=='noCampos')
                     	{
-                    		alert('No se recibieron los campos completos.');
+                    		alert('{% trans "No se recibieron los campos completos" %}.');
                     	}
                     	else if(response.respuesta=='noPOST')
                     	{
-                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+                    		alert('{% trans "No se utilizó el mensaje correcto para comunicarse con el servidor" %}.');
                     	}
                    		else if(response.respuesta=='noAJAX')
                     	{
-                    		alert('No se utilizó AJAX para la comunicación con el servidor.');
+                    		alert('{% trans "No se utilizó AJAX para la comunicación con el servidor" %}.');
                     	}
                     }
                     else
                     {
-                        alert('No hubo respuesta por parte del servidor.');
+                        alert('{% trans "No hubo respuesta por parte del servidor" %}.');
                     }
                 },
                 error:function(jqXHR, status, error)

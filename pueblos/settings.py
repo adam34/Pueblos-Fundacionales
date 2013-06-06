@@ -3,7 +3,17 @@
 
 import os
 RUTA_PROYECTO = os.path.dirname(os.path.realpath(__file__))
+PROJECT_ROOT_ROOT = os.path.abspath(os.path.dirname(__file__))
+try:
+    # import pdb
+    # pdb.set_trace()
+    indice = PROJECT_ROOT_ROOT.rindex('pueblos')
+    PROJECT_ROOT_ROOT = PROJECT_ROOT_ROOT[0:indice-1]
+    PROJECT_ROOT_ROOT=os.path.join(PROJECT_ROOT_ROOT,'locale')
+except Exception, e:
+    pass
 
+# print PROJECT_ROOT_ROOT
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -39,13 +49,18 @@ TIME_ZONE = 'America/Mazatlan'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'es-MX'
+LANGUAGE_CODE = 'es-mx'
 
 ugettext = lambda s: s
 
 LANGUAGES = (
-    ('es-MX', ugettext('Español')),
-    ('en-US', ugettext('Ingles')),
+    ('es-mx', ugettext('Español')),
+    ('en', ugettext('Ingles')),
+)
+
+LOCALE_PATHS = (
+    #'C:/Proyectos/Pueblos-Fundacionales/locale',
+    PROJECT_ROOT_ROOT,
 )
 
 SITE_ID = 1
@@ -108,9 +123,9 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -152,9 +167,6 @@ INSTALLED_APPS = (
     'administrador',    
     #'social_auth',
 )
-# LOCALE_PATHS = (
-#     'C:/Proyectos/Pueblos-Fundacionales/locale',
-# )
 
 
 

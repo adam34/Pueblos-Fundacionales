@@ -14,16 +14,18 @@ from administrador.models import *
 from django.db.models import Max
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.translation import get_language_info,ugettext as _
+from django.utils import translation
 from django.views import i18n
 from django.contrib.auth import authenticate,logout,login
 from django.core.mail import send_mail
 from email.MIMEText import MIMEText
 import string, random,datetime,json,smtplib
 
-def home(request): 
+def home(request): 	
 	# #Obtener un pueblo turistico al azar
 	# import pdb
 	# pdb.set_trace()
+	url=resolver_url(request)
 	try:
 		#Se obtienen los pueblos turisticos solamente y se elige 1 al azar.
 		cantidad_turisticos=pueblo.objects.filter(TIPO='T').count()
@@ -84,6 +86,7 @@ def home(request):
 		'contratos':contracts,
 		'eventos_hoy':eventos_hoy,
 		'eventos_mes':eventos_mes,
+		'url':url
 		}))
 def eventos_ajax(request):
 	# import pdb
@@ -115,8 +118,8 @@ def eventos_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def login_ajax(request):
-	# import pdb
-	# pdb.set_trace()
+	import pdb
+	pdb.set_trace()
 	if request.is_ajax():
 		if request.POST:
 			if not request.user.is_authenticated():
@@ -229,7 +232,9 @@ def recupera_ajax(request):
 	else:
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
+#Ajax
 def cambiar_contrasena(request):
+
 	if request.POST:
 		if ('usuario' in request.POST and 'contrasena' in request.POST and 'contrasena_repe' in request.POST):
 			contrasena= request.POST['contrasena']
@@ -263,6 +268,7 @@ def cerrar_sesion(request):
 	return redirect(home)
 
 def secciones(request):
+	url=resolver_url(request)
 	cant_elementos = sitio_turistico.objects.count()
 	sitios = None
 	lista = []
@@ -281,9 +287,15 @@ def secciones(request):
 	except Exception, e:
 		print e
 		sitios=None
-	return render_to_response('secciones.html',RequestContext(request,{'user':request.user,'sitios':lista}))
+	return render_to_response('secciones.html',RequestContext(request,
+		{
+		'user':request.user,
+		'sitios':lista,
+		'url':url,
+		}))
 
 def pueblos(request):
+	url=resolver_url(request)
 	try:
 		cant_pueblos= pueblo.objects.count()
 		pueblos = None
@@ -291,7 +303,11 @@ def pueblos(request):
 			pueblos= pueblo.objects.all()
 	except Exception,e:
 		print e
-	return render_to_response('pueblos.html',RequestContext(request,{'user':request.user,'pueblos':pueblos}))
+	return render_to_response('pueblos.html',RequestContext(request,{
+		'user':request.user,
+		'pueblos':pueblos,
+		'url':url,
+		}))
 
 def pueblos_ajax(request):
 	# import pdb
@@ -318,9 +334,15 @@ def pueblos_ajax(request):
 
 
 def politicas(request):
-	return render_to_response('politicas.html',RequestContext(request,{'user':request.user}))
+	url=resolver_url(request)
+	return render_to_response('politicas.html',RequestContext(request,
+		{
+		'user':request.user,
+		'url':url,
+		}))
 
 def curiosidades(request):
+	url=resolver_url(request)
 	try:
 		cant_curiosidades= curiosidad.objects.count()
 		curiosidades = None
@@ -328,9 +350,15 @@ def curiosidades(request):
 			curiosidades= curiosidad.objects.all()
 	except Exception,e:
 		print e
-	return render_to_response('curiosidades.html',RequestContext(request,{'user':request.user,'curiosidades':curiosidades}))
+	return render_to_response('curiosidades.html',RequestContext(request,
+		{
+		'user':request.user,
+		'curiosidades':curiosidades,
+		'url':url,
+		}))
 
 def masvisto(request):
+	url=resolver_url(request)
 	try:
 		cant_pueblos= pueblo.objects.count()
 		mas_visto = None
@@ -338,9 +366,15 @@ def masvisto(request):
 			mas_visto= pueblo.objects.all().order_by('VISITAS')[0]
 	except Exception,e:
 		print e
-	return render_to_response('mas-visto.html',RequestContext(request,{'user':request.user,'mas_visto':mas_visto}))
+	return render_to_response('mas-visto.html',RequestContext(request,
+		{
+		'user':request.user,
+		'mas_visto':mas_visto,
+		'url':url,
+		}))
 
 def descubrabcs(request):
+	url=resolver_url(request)
 	try:
 		cant_turisticos= pueblo.objects.filter(TIPO='T').count()
 		turisticos = None
@@ -348,9 +382,15 @@ def descubrabcs(request):
 			turisticos= pueblo.objects.filter(TIPO='T')
 	except Exception,e:
 		print e
-	return render_to_response('descubra-bcs.html',RequestContext(request,{'user':request.user,'turisticos':turisticos}))
+	return render_to_response('descubra-bcs.html',RequestContext(request,
+		{
+		'user':request.user,
+		'turisticos':turisticos,
+		'url':url,
+		}))
 
 def bcsdesconocida(request):
+	url=resolver_url(request)
 	try:
 		cant_curiosidades= curiosidad.objects.count()
 		curiosidades = None
@@ -358,11 +398,22 @@ def bcsdesconocida(request):
 			curiosidades= curiosidad.objects.all()
 	except Exception,e:
 		print e
-	return render_to_response('bcs-desconocida.html',RequestContext(request,{'user':request.user,'curiosidades':curiosidades}))
+	return render_to_response('bcs-desconocida.html',RequestContext(request,
+		{
+		'user':request.user,
+		'curiosidades':curiosidades,
+		'url':url,
+		}))
 
 def galerias(request):
+	url=resolver_url(request)
 	objs=galeria.objects.all()
-	return render_to_response('galerias.html',RequestContext(request,{'galerias':objs,'user':request.user}))
+	return render_to_response('galerias.html',RequestContext(request,
+		{
+		'galerias':objs,
+		'user':request.user,
+		'url':url,
+		}))
 
 def galerias_ajax(request):
 	# import pdb
@@ -386,17 +437,29 @@ def galerias_ajax(request):
 		raise Http404
 
 def libros(request):
+	url=resolver_url(request)
 	hoy = datetime.datetime.now()
 	cont_eventos = evento.objects.filter(FECHA__gt=hoy)
 	eventos = None
 	if cont_eventos > 0:
 		eventos = evento.objects.filter(FECHA__gt=hoy)
-	return render_to_response('libros.html',RequestContext(request,{'user':request.user,'eventos':eventos}))
+	return render_to_response('libros.html',RequestContext(request,
+		{
+		'user':request.user,
+		'eventos':eventos,
+		'url':url,
+		}))
 
 def basico(request):
-	return render_to_response('accesos.html',RequestContext(request,{'user':request.user}))
+	url=resolver_url(request)
+	return render_to_response('accesos.html',RequestContext(request,
+		{
+		'user':request.user,
+		'url':url,
+		}))
 
 def mapa(request):
+	url=resolver_url(request)
 	try:
 		cant_fund= pueblo.objects.filter(TIPO='F').count()
 		pueblos_fund = None
@@ -413,9 +476,17 @@ def mapa(request):
 			sitios=sitio_turistico.objects.all()
 	except Exception,e:
 		print e
-	return render_to_response('mapa.html',RequestContext(request,{'user':request.user,'fundacionales':pueblos_fund,'turisticos':pueblos_turis,'sitios':sitios}))
+	return render_to_response('mapa.html',RequestContext(request,
+		{
+		'user':request.user,
+		'fundacionales':pueblos_fund,
+		'turisticos':pueblos_turis,
+		'sitios':sitios,
+		'url':url,
+		}))
 
 def alojamiento(request):
+	url=resolver_url(request)
 	try:
 		try:
 			categ = categoria.objects.get(NOMBRE='Hoteles')
@@ -430,34 +501,81 @@ def alojamiento(request):
 			hoteles=None
 	except Exception,e:
 		print e
-	return render_to_response('alojamiento.html',RequestContext(request,{'user':request.user,'hoteles':hoteles}))
+	return render_to_response('alojamiento.html',RequestContext(request,
+		{
+		'user':request.user,
+		'hoteles':hoteles,
+		'url':url,
+		}))
 
-def comida(request): 
-	return render_to_response('comida.html',RequestContext(request,{'user':request.user}))
+def comida(request):
+	url=resolver_url(request)
+	return render_to_response('comida.html',RequestContext(request,
+		{
+		'user':request.user,
+		'url':url,
+		}))
 
-def info(request): 
-	return render_to_response('info-pueblos.html',RequestContext(request,{'user':request.user}))
+def info(request):
+	url=resolver_url(request)
+	return render_to_response('info-pueblos.html',RequestContext(request,
+		{
+		'user':request.user,
+		'url':url,
+		}))
 
-def dir(request): 
-	return render_to_response('directorio.html',RequestContext(request,{'user':request.user}))
+def dir(request):
+	url=resolver_url(request)
+	return render_to_response('directorio.html',RequestContext(request,
+		{
+		'user':request.user,
+		'url':url,
+		}))
 
-def humans(request): 
-	return render_to_response('humans.txt',RequestContext(request,{'user':request.user}))
+def humans(request):
+	url=resolver_url(request)
+	return render_to_response('humans.txt',RequestContext(request,
+		{
+		'user':request.user,
+		'url':url,
+		}))
 
-def libreria(request): 
-	return render_to_response('libreria.html',RequestContext(request,{'user':request.user}))
+def libreria(request):
+	url=resolver_url(request)
+	return render_to_response('libreria.html',RequestContext(request,
+		{
+		'user':request.user,
+		'url':url,
+		}))
 
-def p(request): 
-	return render_to_response('pueblos/purisima.html',RequestContext(request,{'user':request.user}))
+def p(request):
+	url=resolver_url(request)
+	return render_to_response('pueblos/purisima.html',RequestContext(request,
+		{
+		'user':request.user,
+		'url':url,
+		}))
 
-def l(request): 
-	return render_to_response('pueblos/loreto.html',RequestContext(request,{'user':request.user}))
+def l(request):
+	url=resolver_url(request)
+	return render_to_response('pueblos/loreto.html',RequestContext(request,
+		{
+		'user':request.user,
+		'url':url,
+		}))
 
-def libro_p(request): 
+#ajax
+def libro_p(request):
+	url=resolver_url(request)
 	return render_to_response('libreria/libro_purisima.html',RequestContext(request,{'user':request.user}))
 
 def multimedia(request):
-	return render_to_response('multimedia.html',RequestContext(request,{'user':request.user}))
+	url=resolver_url(request)
+	return render_to_response('multimedia.html',RequestContext(request,
+		{
+		'user':request.user,
+		'url':url,
+		}))
 
 def multimedia_ajax(request):
 	if request.is_ajax():
@@ -505,13 +623,15 @@ def multimedia_ajax(request):
 	else:
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
+#Ajax
 def player(request):
 	return render_to_response('multimedia/player.html',RequestContext(request,{'user':request.user}))
-
+#Ajax
 def audio(request):
 	return render_to_response('multimedia/audio.html',RequestContext(request,{'user':request.user}))
 
 def eventos(request):
+	url=resolver_url(request)
 	try:
 		# import pdb
 		# pdb.set_trace()
@@ -532,7 +652,13 @@ def eventos(request):
 		#Agarrar 3 comentarios por cada relato a mostrar
 	except Exception,e:
 		print e
-	return render_to_response('eventos.html',RequestContext(request,{'user':request.user,'eventos':lista}))
+	return render_to_response('eventos.html',RequestContext(request,
+		{
+		'user':request.user,
+		'eventos':lista,
+		'url':url,
+		}))
+
 def comentarios_eventos_ajax(request):
 	# import pdb
 	# pdb.set_trace()
@@ -560,13 +686,15 @@ def comentarios_eventos_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 
-
+#ajax
 def galeria_2(request):
 	return render_to_response('multimedia/galeria.html',RequestContext(request,{'user':request.user}))
+
 
 def relatos(request):
 	# import pdb
 	# pdb.set_trace()
+	url=resolver_url(request)
 	try:
 		cont_relatos = relato.objects.count()
 		relatos = None
@@ -596,6 +724,7 @@ def relatos(request):
 		'mejores':mejores_relatos,
 		'user':request.user,
 		'pueblos':pueblos,
+		'url':url,
 		}))
 
 def comentarios_relatos_ajax(request):
@@ -663,6 +792,7 @@ def valorar_relatos_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')	
 
 def sitiosT(request):
+	url=resolver_url(request)
 	try:
 		# import pdb
 		# pdb.set_trace()
@@ -683,7 +813,13 @@ def sitiosT(request):
 		#Agarrar 3 comentarios por cada relato a mostrar
 	except Exception,e:
 		print e
-	return render_to_response('sitios_turisticos.html',RequestContext(request,{'sitios':sitios,'user':request.user,'sitios':lista}))
+	return render_to_response('sitios_turisticos.html',RequestContext(request,
+		{
+		'sitios':sitios,
+		'user':request.user,
+		'sitios':lista,
+		'url':url,
+		}))
 
 def comentarios_sitios_ajax(request):
 	# import pdb
@@ -714,6 +850,7 @@ def comentarios_sitios_ajax(request):
 def busqueda(request):
 	#import pdb
 	#pdb.set_trace()
+	url=resolver_url(request)
 	if 'text_search' in request.POST:
 		res = request.POST['text_search']
 		pueblos=None
@@ -735,9 +872,21 @@ def busqueda(request):
 				relatos=relato.objects.filter(TITULO__contains=res).count()
 		except Exception,e:
 			print e
-		return render_to_response('busqueda.html',RequestContext(request,{'respuesta':res,'user':request.user,'pueblos':pueblos,'eventos':eventos,'sitios':sitios,'relatos':relatos}))
+		return render_to_response('busqueda.html',RequestContext(request,
+			{'respuesta':res,
+			'user':request.user,
+			'pueblos':pueblos,
+			'eventos':eventos,
+			'sitios':sitios,
+			'relatos':relatos,
+			'url':url,
+			}))
 	else:
-		return render_to_response('busqueda.html')
+		return render_to_response('busqueda.html',RequestContext(request,
+			{
+			'user':user,
+			'url':url,
+			}))
 	
 def reporte_comentarios_ajax(request):
 	# import pdb
@@ -789,3 +938,33 @@ def enviar_relatos_ajax(request):
 			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
 	else:
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
+# def es(request):
+# 	process_request(request,'es-mx')
+# 	return render_to_response('index.html',RequestContext(request,{'user':request.user,}))
+
+# def en(request):
+# 	import pdb
+# 	pdb.set_trace()
+# 	process_request(request,'en')
+# 	return render_to_response('index.html',RequestContext(request,{'user':request.user,}))
+
+
+
+def resolver_url(request):
+	# import pdb
+	# pdb.set_trace()
+	cadena=None
+	temp = request.get_full_path()
+	cadena=''
+	for language in settings.LANGUAGES:
+		busca = language[0]
+		try:
+			indice=temp.rindex(busca+'/')
+			if indice !=-1:
+				indice += len(busca)
+				cadena=temp[indice:len(temp)]
+				break;
+		except Exception,e:
+			pass
+	return cadena
