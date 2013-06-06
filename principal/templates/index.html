@@ -11,14 +11,14 @@
 
 {% block contenedor %}
 		<section class="principal">
-			<h2>Novedades</h2>
+			<h2>{% trans 'Novedades' %}</h2>
 			<article class="contenido">
-				<a href="/descubra-bcs/">Descubra BCS</a>
+				<a href="/descubra-bcs/">{% trans 'Descubra BCS' %}</a>
 				<span><a href="/descubra-bcs/"><!--&gt;  Ver todos--></a></span>
 				<p class="articulos">
 				{% if turistico %}
 					<img src="{% mostrar_imagen_pueblo turistico.GALERIA.ARCHIVOS.all %}" alt="{{turistico.NOMBRE}}">
-					{{turistico.CULTURA|truncatechars:100}} <strong><a href="/descubra-bcs/?turistico='{{turistico.NOMBRE}}'">Leer más...</a> </strong>
+					{{turistico.CULTURA|truncatechars:100}} <strong><a href="/descubra-bcs/?turistico='{{turistico.NOMBRE}}'">{% trans 'Leer más' %}...</a> </strong>
 				{% else %}
 					<img src="/static/img/loreto.jpg" alt="Loreto">
 					Lo que iba aquí que se me olvido poner. <strong><a href="/descubra-bcs/">Leer más...</a> </strong>
@@ -26,20 +26,20 @@
 				</p>
 			</article>
 			<article class="contenido">
-				<a href="/bcs-desconocida/">BCS Desconocida</a>
+				<a href="/bcs-desconocida/">{% trans 'BCS Desconocida' %}</a>
 				<span><a href="/bcs-desconocida/"><!--&gt;  Ver todos--></a></span>
 				<p class="articulos">
 				{% if curiosidad %}
 					<img src="/static/img/loreto.jpg" alt="Loreto">
-					{{curiosidad.DESCRIPCION|truncatechars:100}}. <strong><a href="/bcs-desconocida/?curiosidad='{{curiosidad.TITULO}}'">Leer más...</a> </strong>
+					{{curiosidad.DESCRIPCION|truncatechars:100}}. <strong><a href="/bcs-desconocida/?curiosidad='{{curiosidad.TITULO}}'">{% trans 'Leer más' %}...</a> </strong>
 				{% else %}
 					<img src="/static/img/loreto.jpg" alt="Loreto">
-					Lo que iba aquí que se me olvido poner. <strong><a href="/descubra-bcs/">Leer más...</a> </strong>
+					Lo que iba aquí que se me olvido poner. <strong><a href="/descubra-bcs/">{% trans 'Leer más' %}...</a> </strong>
 				{% endif %}
 				</p>
 			</article>
 			<article class="contenido">
-				<a href="/mas-visto/">Pueblo más visto</a>
+				<a href="/mas-visto/">{% trans 'Pueblo más visto' %}</a>
 				<span><a href="#"><!--&gt;  Ver todos--></a></span>
 				<p class="articulos">
 				{% if mas_visto %}
@@ -47,12 +47,12 @@
 					{{mas_visto.HISTORIA|truncatechars:100}} <a href="/mas-visto/?visto='{{mas_visto.NOMBRE}}'">Leer más...</a> 
 				{% else %}
 					<img src="/static/img/loreto.jpg" alt="Loreto">
-					Lo que iba aquí que se me olvido poner. <strong><a href="/descubra-bcs/">Leer más...</a> </strong>
+					Lo que iba aquí que se me olvido poner. <strong><a href="/descubra-bcs/">{% trans 'Leer más' %}...</a> </strong>
 				{%  endif %}
 				</p>
 			</article>
 			<!-- Recomendaciones -->
-			<h2>Recomendaciones</h2>
+			<h2>{% trans 'Recomendaciones' %}</h2>
 			<section class="recomendaciones">
 				<!--<video id="my_video_1" class="video-js vjs-default-skin" controls preload="auto" width="440" height="240" data-setup="{}">
   				<source src="video/477 Aniversario de La Paz.mp4" type='video/mp4'>
@@ -83,7 +83,7 @@
 
 			</section>
 			<!-- Eventos -->
-			<h2>Eventos</h2>
+			<h2>{% trans 'Eventos' %}</h2>
 			<section class="eventos">
 				<div class="calendario-eventos">
 					<input type="text" id="eventos" gldp-id="gldp-3023006963" class="gldp-el">
@@ -91,15 +91,15 @@
     				</div>
 				</div>
 				<div class="calendario-notas">
-					<h3>Eventos de la semana</h3>
-					<p class="noticias">Selecciona alguna de las fechas en el Calendario.</p>
+					<h3>{% trans 'Eventos de la semana' %}</h3>
+					<p class="noticias">{% trans 'Selecciona alguna de las fechas en el Calendario' %}.</p>
 					{% for evento_mes in eventos_mes %}
 						{{evento_mes.NOMBRE}}
 						{{evento_mes.FECHA | date:'d/M/Y'}}
 					{% endfor %}
 				</div>
 				<section class="proximos-eventos">
-					<h4>Próximos Eventos</h4>
+					<h4>{% trans 'Próximos Eventos' %}</h4>
 					{% if eventos_hoy %}
 						{% for evento_hoy in eventos_hoy %}
 							<article>
@@ -129,101 +129,59 @@
 								</a>
 							</article>
 					{% endif %}
-					<span><a href="/eventos/">Ver todos los próximos eventos</a></span>
+					<span><a href="/eventos/">{% trans 'Ver todos los próximos eventos' %}</a></span>
 				</section>
 				<button id='cargar_eventos' style="display:none">cargar</button>
 				<section class="politicas">
-					<h2>Políticas de uso</h2>
+					<h2>{% trans 'Políticas de uso' %}</h2>
 					<img src="/static/img/politicas.png" alt="">
 					<p>
-						Visita nuestra sección de Políticas de Privacidad y Uso para que puedas navegar a través de nuestro sitio de manera más segura. 
+						{% trans 'Visita nuestra sección de Políticas de Privacidad y Uso para que puedas navegar a través de nuestro sitio de manera más segura' %}. 
 						<br><br>
-						<a href="/politicas/">Haga clic aquí para más información</a>
+						<a href="/politicas/">{% trans 'Haga clic aquí para más información' %}</a>
 					</p>
 				</section>
 			</section>
-<!-- 			<section class="eventos">
-				<div class="calendario-eventos">
-					<input type="text" id="eventos" gldp-id="gldp-3023006963" class="gldp-el">
-    				<div id="eventos_div" gldp-el="mydate">
-    				</div>
-				</div>
-				<div class="calendario-notas">
-					<h3>Eventos de la semana</h3>
-					<p class="noticias">Selecciona alguna de las fechas en el Calendario.</p>
-				</div>
-				<section class="proximos-eventos">
-					<h4>Próximos Eventos</h4>
-					<article>
-						<p>14</p>
-						<a href="#">
-							Fiestas tradicionales de La Purísima.
-						</a>
-					</article>
-					<article>
-						<p>16</p>
-						<a href="#">
-							Fiestas tradicionales de Loreto.
-						</a>
-					</article>
-					<article>
-						<p>20</p>
-						<a href="#">
-							Fiestas tradicionales de San Ignacio.
-						</a>
-					</article>
-					<span><a href="/eventos/">Ver todos los próximos eventos</a></span>
-				</section>
-				<section class="politicas">
-					<h2>Políticas de uso</h2>
-					<img src="/static/img/politicas.png" alt="">
-					<p>
-						Visita nuestra sección de Políticas de Privacidad y Uso para que puedas navegar a través de nuestro sitio de manera más segura. 
-						<br><br>
-						<a href="/politicas/">Haga clic aquí para más información</a>
-					</p>
-				</section>
-			</section> -->
 		</section>
 		<!-- Fin de Sección Principal -->
 		<section class="menu-lateral">
 		<!-- Menú lateral -->
-			<h2>Enlaces útiles</h2>
+			<h2>{% trans 'Enlaces útiles' %}</h2>
 			<!-- Enlaces útiles -->
 			<article class="enlaces-utiles">
 				<h3>
-					Accesos Directos
+					{% trans 'Accesos Directos' %}
 				</h3>
 				<p class="utilidades">
 					<img src="/static/img/asterisk.png" alt="Información Básica">
-					<a href="/accesos/">Información Básica</a>
+					<a href="/accesos/">{% trans 'Información Básica' %}</a>
 				</p>
 				<p class="utilidades">
 					<img src="/static/img/Maps.png" alt="Mapa">
-					<a href="/mapa/">Mapa</a>
+					<a href="/mapa/">{% trans 'Mapa' %}</a>
 				</p>
 				<p class="utilidades">
 					<img src="/static/img/hotel.png" alt="Alojamiento">
-					<a href="/alojamiento/">Alojamiento</a>
+					<a href="/alojamiento/">{% trans 'Alojamiento' %}</a>
 				</p>
 				<p class="utilidades">
 					<img src="/static/img/comida.png" alt="Comida">
-					<a href="/comida/">Comida</a>
+					<a href="/comida/">{% trans 'Comida' %}</a>
 				</p>
 				<p class="utilidades">
 					<img src="/static/img/pueblo.png" alt="Pueblos">
-					<a href="/pueblos/">Pueblos</a>
+					<a href="/pueblos/">{% trans 'Pueblos' %}</a>
 				</p>
 				<p class="utilidades">
 					<img src="/static/img/foto.png" alt="Galería">
-					<a href="/galerias/">Galería de Fotos</a>
+					<a href="/galerias/">{% trans 'Galería de Fotos' %}</a>
 				</p>
 			</article>
 			<article class="telefonos">
 			<!-- Teléfonos -->
-				<h3>Teléfonos</h3>
+				<h3>{% trans 'Teléfonos' context "Device" %}</h3>
 				<p>
-					<a href="#">Emergencias</a>
+					<a href="#">{% trans 'Emergencias' %}</a>
 					<br>
 					<a id="dir" href="/dir/" title="Directorio">
 						<img src="/static/img/directorio.png" alt=""/>
@@ -231,13 +189,13 @@
 				</p>
 				<span>
 					<a href="/dir/">
-						Ver teléfonos
+						{% trans 'Ver teléfonos' %}
 					</a>
 				</span>
 			</article>
 			<!-- Mapa General -->
 			<article class="mapa-misiones">
-				<h3>Mapa General de Misiones</h3>
+				<h3>{% trans 'Mapa General de Misiones' %}</h3>
 				<div id="page-wrap">
 					<ul id="locations">
 						{% if visitado %}
@@ -314,40 +272,40 @@
 					</ul>
 					<div id="map_canvas"></div>
 					<div id="more-info">
-						<h5><a href="/pueblos/">Más info (click aquí)</a></h5>
+						<h5><a href="/pueblos/">{% trans 'Más info (click aquí)' %}</a></h5>
 						<p>Hover over location on the left.</p>
 					</div>
 					<div></div>
 				</div>
 			</article>
 			<section class="relatos">
-				<h3>Relatos</h3>
+				<h3>{% trans 'Relatos' %}</h3>
 				<p>
-					<a href="/relatos/">Comparte tu historia.</a>
+					<a href="/relatos/">{% trans 'Comparte tu historia' %}.</a>
 				</p>
 				<p>
-					<a href="/relatos/">¿Cómo es la vida en tu comunidad?</a>
+					<a href="/relatos/">{% trans '¿Cómo es la vida en tu comunidad? ' %}</a>
 				</p>
 				<p>
-					<a href="/relatos/">¿Cómo era la vida en tu ciudad hace 5, 10, 20 o más años?</a>
+					<a href="/relatos/">{% trans '¿Cómo era la vida en tu ciudad hace 5, 10, 20 o más años?' %}</a>
 				</p>
 				<a href="/relatos/">
-					<img src="static/img/cuento.png" alt="Relatos" title="Da click para acceder">
+					<img src="/static/img/cuento.png" alt="Relatos" title="Da click para acceder">
 				</a>
 			</section>
 			<section class="materiales">
-				<h3>Materiales impresos</h3>
+				<h3>{% trans 'Materiales impresos' %}</h3>
 				<p>
-					¡Descarga nuestras guías turísticas así como la historia de nuestros Pueblos Fundacionales!
+					{% trans '¡Descarga nuestras guías turísticas así como la historia de nuestros Pueblos Fundacionales!' %}
 				</p>
 				<div>
 					<a href="/libros/">
-					Acceder
+					{% trans 'Acceder' %}
 					</a>
 				</div>
 			</section>
 			<section class="clima">
-				<h3>Clima</h3>
+				<h3>{% trans 'Clima' %}</h3>
 				<div id="weatherslider">
 					<span class="ws-location">Loreto, Baja California Sur</span>
 					<span class="ws-location">La Purísima, Baja California Sur, <br/>México</span>
@@ -361,11 +319,11 @@
 				</div>
 			</section>
 			<section class="multimedia">
-				<h3>Multimedia</h3>
+				<h3>{% trans 'Multimedia' %}</h3>
 				<p>
-					¿Quieres conocer la música típica de nuestra región? ¿Ver vídeos referentes a nuestras misiones? 
+					{% trans '¿Quieres conocer la música típica de nuestra región? ¿Ver vídeos referentes a nuestras misiones?' %} 
 					<br/><br/>
-					Ven y conoce los aspectos audiovisuales de nuestros Pueblos Fundacionales.
+						{% trans 'Entra y conoce los aspectos audiovisuales de nuestros Pueblos Fundacionales' context "Info site" %}.
 					<br><br>
 				</p>
 				<div>
@@ -379,7 +337,7 @@
 						<img src="/static/img/recetas.png" alt="" >
 					</a>
 					<br><br>
-					<a href="/multimedia/">Ver todos</a>
+					<a href="/multimedia/">{% trans 'Ver todos' %}</a>
 				</div>
 			</section>
 			<!--section class="suscribete">
@@ -391,7 +349,7 @@
 				</form>
 			</section-->
 			<aside >
-				<h3>¡Visítanos!</h3>
+				<h3>{% trans '¡Visítanos!' %}</h3>
 				<article>
 					<!-- 
 					Facebook
@@ -442,7 +400,7 @@
 			{
 				$.ajax({
 					async:false,
-	                url:"/eventos_ajax/",
+	                url:"{% url 'eventos_ajax' %}",
 	                data:{csrfmiddlewaretoken:'{{csrf_token}}','year':2013,'month':6,},
 	                type:'POST',
 	                success:function(response)
@@ -466,24 +424,24 @@
 	                    	}
 	                    	else if(response.respuesta=='noDatos')
 	                    	{
-	                    		alert('No hay eventos para el mes.');
+	                    		alert('{% trans "No hay eventos para el mes" %}.');
 	                    	}
 	                    	else if(response.respuesta=='noCampos')
 	                    	{
-	                    		alert('No se recibieron los campos completos.');
+	                    		alert('{% trans "No se recibieron los campos completos" %}.');
 	                    	}
 	                    	else if(response.respuesta=='noPOST')
 	                    	{
-	                    		alert('No se utilizó el mensaje correcto para comunicarse con el servidor.');
+	                    		alert(' {% trans "No se utilizó el mensaje correcto para comunicarse con el servidor" %}.');
 	                    	}
 	                   		else if(response.respuesta=='noAJAX')
 	                    	{
-	                    		alert('No se utilizó AJAX para la comunicación con el servidor.');
+	                    		alert('{% trans "No se utilizó AJAX para la comunicación con el servidor" %}.');
 	                    	}
 	                    }
 	                    else
 	                    {
-	                        alert('No hubo respuesta por parte del servidor.');
+	                        alert('{% trans "No hubo respuesta por parte del servidor" %}.');
 	                    }
 	                },
 	                error:function(jqXHR, status, error)

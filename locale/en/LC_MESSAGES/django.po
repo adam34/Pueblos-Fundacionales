@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-04 16:17-0600\n"
+"POT-Creation-Date: 2013-06-06 00:57-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: .\django_admin_bootstrapped\templates\admin\404.html.py:4
 #: .\django_admin_bootstrapped\templates\admin\404.html.py:8
@@ -33,7 +32,7 @@ msgstr ""
 #: .\django_admin_bootstrapped\templates\admin\change_list.html.py:38
 #: .\django_admin_bootstrapped\templates\admin\delete_confirmation.html.py:8
 #: .\django_admin_bootstrapped\templates\admin\delete_selected_confirmation.html.py:8
-#: .\django_admin_bootstrapped\templates\admin\index.html.py:15
+#: .\django_admin_bootstrapped\templates\admin\index.html.py:18
 #: .\django_admin_bootstrapped\templates\admin\invalid_setup.html.py:7
 #: .\django_admin_bootstrapped\templates\admin\object_history.html.py:8
 #: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:15
@@ -259,11 +258,11 @@ msgid ""
 "the appropriate user."
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:39
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:41
 msgid "<h2>Login</h2>"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:42
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:44
 #: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:29
 #: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:124
 #: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:146
@@ -274,19 +273,19 @@ msgid_plural "Please correct the errors below."
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:54
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:56
 msgid "Username:"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:63
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:66
 msgid "Password:"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:76
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:79
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:82
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:85
 #: .\django_admin_bootstrapped\templates\registration\password_reset_complete.html.py:18
 msgid "Log in"
 msgstr ""
@@ -997,10 +996,420 @@ msgstr ""
 msgid "Reset my password"
 msgstr ""
 
-#: .\pueblos\settings.py:47
-msgid "Español"
-msgstr ""
+#: .\principal\templates\base.html.py:8 .\principal\templates\base.html.py:93
+msgid "Pueblos Fundacionales"
+msgstr "Foundational Towns"
 
-#: .\pueblos\settings.py:48
-msgid "Ingles"
+#: .\principal\templates\base.html.py:44 .\principal\templates\base.html.py:53
+#: .\principal\templates\base.html.py:68 .\pueblos\settings.py:57
+msgid "Español"
+msgstr "Spanish"
+
+#: .\principal\templates\base.html.py:48 .\principal\templates\base.html.py:60
+#: .\principal\templates\base.html.py:72
+msgid "Inglés"
+msgstr "English"
+
+#: .\principal\templates\base.html.py:97
+msgid "Buscar"
+msgstr "Search"
+
+#: .\principal\templates\base.html.py:143
+msgid "Inicio"
+msgstr "Home"
+
+#: .\principal\templates\base.html.py:146
+msgctxt "part of Site"
+msgid "Secciones"
+msgstr "Sections"
+
+#: .\principal\templates\base.html.py:149
+#: .\principal\templates\index.html.py:173
+msgid "Pueblos"
+msgstr "Towns"
+
+#: .\principal\templates\base.html.py:152
+msgctxt "Gallery of images"
+msgid "Galerías"
+msgstr "Photo Gallery"
+
+#: .\principal\templates\base.html.py:159
+msgid "Hola"
+msgstr "Hello"
+
+#: .\principal\templates\base.html.py:164
+msgid "Ingresa"
+msgstr "Sign in"
+
+#: .\principal\templates\base.html.py:175
+msgid "Ingresar"
+msgstr "Log in"
+
+#: .\principal\templates\base.html.py:178
+#: .\principal\templates\base.html.py:204
+msgid "Usuario"
+msgstr "User"
+
+#: .\principal\templates\base.html.py:180
+msgid "Introduce tu nombre de usuario"
+msgstr "Enter your username"
+
+#: .\principal\templates\base.html.py:183
+#: .\principal\templates\base.html.py:208
+#: .\principal\templates\base.html.py:209
+#: .\principal\templates\base.html.py:210
+msgid "Contraseña"
+msgstr "Password"
+
+#: .\principal\templates\base.html.py:184
+msgid "Introduce tu contraseña"
+msgstr "Enter your password"
+
+#: .\principal\templates\base.html.py:186
+msgid "Entrar"
+msgstr "Log in"
+
+#: .\principal\templates\base.html.py:191
+#: .\principal\templates\base.html.py:196
+msgid "Recuperar"
+msgstr "Recovery"
+
+#: .\principal\templates\base.html.py:198
+#: .\principal\templates\base.html.py:215
+msgid "Regresar"
+msgstr "Return"
+
+#: .\principal\templates\base.html.py:202
+msgid "Registro"
+msgstr "Registration"
+
+#: .\principal\templates\base.html.py:206
+msgid "Email"
+msgstr "Email"
+
+#: .\principal\templates\base.html.py:207
+msgid "Correo electrónico"
+msgstr "Email"
+
+#: .\principal\templates\base.html.py:211
+msgid "Repetir Contraseña"
+msgstr "Repeat password"
+
+#: .\principal\templates\base.html.py:213
+msgid "Registrar"
+msgstr "Register"
+
+#: .\principal\templates\base.html.py:217
+msgid "Registrarse"
+msgstr "Register"
+
+#: .\principal\templates\base.html.py:219
+msgid "Olvidé mi contraseña"
+msgstr "Forgot my password"
+
+#: .\principal\templates\base.html.py:231
+msgid "Patrocinadores"
+msgstr "Sponsors"
+
+#: .\principal\templates\base.html.py:240
+msgid "Colaboradores"
+msgstr "partners"
+
+#: .\principal\templates\base.html.py:249
+msgid "Enlaces de interés"
+msgstr "Interested links"
+
+#: .\principal\templates\base.html.py:258
+msgid "Contacto"
+msgstr "Contact"
+
+#: .\principal\templates\base.html.py:368
+msgid "El nombre de usuario no puede ser mayor de 30 caracteres"
+msgstr "Username cannot be longer than 30 characters"
+
+#: .\principal\templates\base.html.py:374
+msgid "El nombre de usuario sólo puede contener letras y números"
+msgstr "Username can only contain letters and numbers"
+
+#: .\principal\templates\base.html.py:380
+msgid "La contraseña no puede quedar en blanco"
+msgstr "Password cannot be blank"
+
+#: .\principal\templates\base.html.py:394
+#: .\principal\templates\base.html.py:503
+msgid "Usuario logeado"
+msgstr "successful login"
+
+#: .\principal\templates\base.html.py:403
+#: .\principal\templates\base.html.py:508
+msgid "Error, datos incorrectos"
+msgstr "Error, incorrect data"
+
+#: .\principal\templates\base.html.py:407
+#: .\principal\templates\base.html.py:512
+msgid "Error, el usuario no esta autorizado para entrar en el sistema"
+msgstr "Error, user is not authorized to enter the system "
+
+#: .\principal\templates\base.html.py:415
+#: .\principal\templates\base.html.py:516
+#: .\principal\templates\base.html.py:555
+#: .\principal\templates\base.html.py:614
+#: .\principal\templates\index.html.py:431
+msgid "No se recibieron los campos completos"
+msgstr "No fields were full"
+
+#: .\principal\templates\base.html.py:419
+#: .\principal\templates\base.html.py:520
+#: .\principal\templates\base.html.py:559
+#: .\principal\templates\base.html.py:618
+#: .\principal\templates\index.html.py:435
+msgid "No se utilizó el mensaje correcto para comunicarse con el servidor"
+msgstr "It was not used to communicate the right message to the server"
+
+#: .\principal\templates\base.html.py:423
+#: .\principal\templates\base.html.py:524
+#: .\principal\templates\base.html.py:563
+#: .\principal\templates\base.html.py:622
+#: .\principal\templates\index.html.py:439
+msgid "No se utilizó AJAX para la comunicación con el servidor"
+msgstr "AJAX is not used for communication with the server"
+
+#: .\principal\templates\base.html.py:428
+#: .\principal\templates\base.html.py:568
+#: .\principal\templates\base.html.py:627
+#: .\principal\templates\index.html.py:444
+msgid "No hubo respuesta por parte del servidor"
+msgstr "There was no response from the server"
+
+#: .\principal\templates\base.html.py:459
+msgid ""
+"El nombre de usuario sólo puede contener letras y números, ningún otro tipo "
+"de caracter"
 msgstr ""
+"The username can only contain letters and numbers, no other type of character"
+
+#: .\principal\templates\base.html.py:465
+#: .\principal\templates\base.html.py:587
+msgid "El formato del email es incorrecto. Favor de verificarlo"
+msgstr "The email format is wrong. Please check"
+
+#: .\principal\templates\base.html.py:470
+msgid "El campo de la contraseña no puede permanecer en blanco"
+msgstr "The password field can not be blank"
+
+#: .\principal\templates\base.html.py:475
+msgid ""
+"Las campos de contraseñas no pueden ser diferentes. Verifiquelo, por favor"
+msgstr "The password fields can not be different. Check it, please"
+
+#: .\principal\templates\base.html.py:489
+msgid "Usuario registrado"
+msgstr "Registered user"
+
+#: .\principal\templates\base.html.py:529
+msgid "No hubo respuesta por parte del servidor "
+msgstr "There was no response from the server"
+
+#: .\principal\templates\base.html.py:543
+msgid "Error, datos incorrectos "
+msgstr "Error, incorrect data"
+
+#: .\principal\templates\base.html.py:547
+msgid ""
+"Error, el usuario que esta tratando de registrar, ya existe. Intente con "
+"otro diferente"
+msgstr ""
+"Error, the user who is trying to register, already exists. Try with other "
+"different"
+
+#: .\principal\templates\base.html.py:551
+msgid "Error, las contraseñas no coinciden"
+msgstr "Error, passwords is not the same"
+
+#: .\principal\templates\base.html.py:601
+msgid "Contraseña enviada a correo"
+msgstr "Password sent to email"
+
+#: .\principal\templates\base.html.py:610
+msgid "Error, no existe una cuenta de usuario con ese correo"
+msgstr "Error, there is not a user account with that email"
+
+#: .\principal\templates\index.html.py:14
+msgid "Novedades"
+msgstr "News"
+
+#: .\principal\templates\index.html.py:16
+msgid "Descubra BCS"
+msgstr "Descover BCS"
+
+#: .\principal\templates\index.html.py:21
+#: .\principal\templates\index.html.py:34
+#: .\principal\templates\index.html.py:37
+#: .\principal\templates\index.html.py:50
+msgid "Leer más"
+msgstr "Read more"
+
+#: .\principal\templates\index.html.py:29
+msgid "BCS Desconocida"
+msgstr "Unknown BCS"
+
+#: .\principal\templates\index.html.py:42
+msgid "Pueblo más visto"
+msgstr "People Most Viewed"
+
+#: .\principal\templates\index.html.py:55
+msgid "Recomendaciones"
+msgstr "Recommendations"
+
+#: .\principal\templates\index.html.py:86
+msgid "Eventos"
+msgstr "Events"
+
+#: .\principal\templates\index.html.py:94
+msgid "Eventos de la semana"
+msgstr "Week events"
+
+#: .\principal\templates\index.html.py:95
+msgid "Selecciona alguna de las fechas en el Calendario"
+msgstr "Select any of the dates on the calendar"
+
+#: .\principal\templates\index.html.py:102
+msgid "Próximos Eventos"
+msgstr "Upcoming Events"
+
+#: .\principal\templates\index.html.py:132
+msgid "Ver todos los próximos eventos"
+msgstr "View all upcoming events"
+
+#: .\principal\templates\index.html.py:136
+msgid "Políticas de uso"
+msgstr "Use Policies"
+
+#: .\principal\templates\index.html.py:139
+msgid ""
+"Visita nuestra sección de Políticas de Privacidad y Uso para que puedas "
+"navegar a través de nuestro sitio de manera más segura"
+msgstr ""
+"View our Privacy Policy section and use so you can navigate through our site "
+"more secure"
+
+#: .\principal\templates\index.html.py:141
+msgid "Haga clic aquí para más información"
+msgstr "Click here for more information"
+
+#: .\principal\templates\index.html.py:149
+msgid "Enlaces útiles"
+msgstr "Useful links"
+
+#: .\principal\templates\index.html.py:153
+msgid "Accesos Directos"
+msgstr "Shorcuts"
+
+#: .\principal\templates\index.html.py:157
+msgid "Información Básica"
+msgstr "Basic information"
+
+#: .\principal\templates\index.html.py:161
+msgid "Mapa"
+msgstr "Map"
+
+#: .\principal\templates\index.html.py:165
+msgid "Alojamiento"
+msgstr "Lodgment"
+
+#: .\principal\templates\index.html.py:169
+msgid "Comida"
+msgstr "Food"
+
+#: .\principal\templates\index.html.py:177
+msgid "Galería de Fotos"
+msgstr "Photo Gallery"
+
+#: .\principal\templates\index.html.py:182
+msgctxt "Device"
+msgid "Teléfonos"
+msgstr "Phones"
+
+#: .\principal\templates\index.html.py:184
+msgid "Emergencias"
+msgstr "Emergencies"
+
+#: .\principal\templates\index.html.py:192
+msgid "Ver teléfonos"
+msgstr "View phones"
+
+#: .\principal\templates\index.html.py:198
+msgid "Mapa General de Misiones"
+msgstr "General Map of Missions"
+
+#: .\principal\templates\index.html.py:275
+msgid "Más info (click aquí)"
+msgstr "More info. (click here)"
+
+#: .\principal\templates\index.html.py:282
+msgid "Relatos"
+msgstr "Stories"
+
+#: .\principal\templates\index.html.py:284
+msgid "Comparte tu historia"
+msgstr "Share your story"
+
+#: .\principal\templates\index.html.py:287
+msgid "¿Cómo es la vida en tu comunidad? "
+msgstr "How is life in your community?"
+
+#: .\principal\templates\index.html.py:290
+msgid "¿Cómo era la vida en tu ciudad hace 5, 10, 20 o más años?"
+msgstr "How was life in your city for 5, 10, 20 or more years?"
+
+#: .\principal\templates\index.html.py:297
+msgid "Materiales impresos"
+msgstr "Printed materials"
+
+#: .\principal\templates\index.html.py:299
+msgid ""
+"¡Descarga nuestras guías turísticas así como la historia de nuestros Pueblos "
+"Fundacionales!"
+msgstr "Download our turistic guides so as history of our Foundational Towns!"
+
+#: .\principal\templates\index.html.py:303
+msgid "Acceder"
+msgstr "Enter"
+
+#: .\principal\templates\index.html.py:308
+msgid "Clima"
+msgstr "Weather"
+
+#: .\principal\templates\index.html.py:322
+msgid "Multimedia"
+msgstr "Media"
+
+#: .\principal\templates\index.html.py:324
+msgid ""
+"¿Quieres conocer la música típica de nuestra región? ¿Ver vídeos referentes "
+"a nuestras misiones?"
+msgstr ""
+"Do you want to know typical music of our region? View related videos with "
+"our missions?'"
+
+#: .\principal\templates\index.html.py:326
+msgctxt "Info site"
+msgid ""
+"Entra y conoce los aspectos audiovisuales de nuestros Pueblos Fundacionales"
+msgstr "Enter and know aspects audiovisuales of our Foundational Towns"
+
+#: .\principal\templates\index.html.py:340
+msgid "Ver todos"
+msgstr "View all"
+
+#: .\principal\templates\index.html.py:352
+msgid "¡Visítanos!"
+msgstr "Visit us!"
+
+#: .\principal\templates\index.html.py:427
+msgid "No hay eventos para el mes"
+msgstr "There are not eventos for this month"
+
+#: .\pueblos\settings.py:58
+msgid "Ingles"
+msgstr "English"
