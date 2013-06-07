@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-07 03:17-0600\n"
+"POT-Creation-Date: 2013-06-07 16:52-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1036,7 +1036,8 @@ msgstr "Hotels"
 #: .\principal\templates\bcs-desconocida.html.py:19
 #: .\principal\templates\eventos.html.py:25
 #: .\principal\templates\galerias.html.py:31
-#: .\principal\templates\relatos.html.py:135
+#: .\principal\templates\relatos.html.py:30
+#: .\principal\templates\relatos.html.py:133
 msgid "Descripción"
 msgstr "Description"
 
@@ -1053,7 +1054,7 @@ msgctxt "USD"
 msgid "MXN"
 msgstr "USD"
 
-#: .\principal\templates\alojamiento.html.py:39
+#: .\principal\templates\alojamiento.html.py:40
 msgid "Más info"
 msgstr "More info"
 
@@ -1113,7 +1114,7 @@ msgstr "Log in"
 
 #: .\principal\templates\base.html.py:178
 #: .\principal\templates\base.html.py:204
-#: .\principal\templates\relatos.html.py:213
+#: .\principal\templates\relatos.html.py:211
 msgid "Usuario"
 msgstr "User"
 
@@ -1133,7 +1134,7 @@ msgid "Introduce tu contraseña"
 msgstr "Enter your password"
 
 #: .\principal\templates\base.html.py:186
-#: .\principal\templates\relatos.html.py:137
+#: .\principal\templates\relatos.html.py:135
 msgid "Entrar"
 msgstr "Log in"
 
@@ -1144,7 +1145,7 @@ msgstr "Recovery"
 
 #: .\principal\templates\base.html.py:198
 #: .\principal\templates\base.html.py:215
-#: .\principal\templates\mapa.html.py:24
+#: .\principal\templates\mapa.html.py:25
 msgid "Regresar"
 msgstr "Return"
 
@@ -1222,7 +1223,7 @@ msgstr "Error, user is not authorized to enter the system "
 #: .\principal\templates\base.html.py:415
 #: .\principal\templates\base.html.py:516
 #: .\principal\templates\base.html.py:555
-#: .\principal\templates\base.html.py:614
+#: .\principal\templates\base.html.py:615
 #: .\principal\templates\index.html.py:416
 msgid "No se recibieron los campos completos"
 msgstr "No fields were full"
@@ -1230,7 +1231,7 @@ msgstr "No fields were full"
 #: .\principal\templates\base.html.py:419
 #: .\principal\templates\base.html.py:520
 #: .\principal\templates\base.html.py:559
-#: .\principal\templates\base.html.py:618
+#: .\principal\templates\base.html.py:619
 #: .\principal\templates\index.html.py:420
 msgid "No se utilizó el mensaje correcto para comunicarse con el servidor"
 msgstr "It was not used to communicate the right message to the server"
@@ -1238,20 +1239,20 @@ msgstr "It was not used to communicate the right message to the server"
 #: .\principal\templates\base.html.py:423
 #: .\principal\templates\base.html.py:524
 #: .\principal\templates\base.html.py:563
-#: .\principal\templates\base.html.py:622
+#: .\principal\templates\base.html.py:623
 #: .\principal\templates\index.html.py:424
 msgid "No se utilizó AJAX para la comunicación con el servidor"
 msgstr "AJAX is not used for communication with the server"
 
 #: .\principal\templates\base.html.py:428
 #: .\principal\templates\base.html.py:568
-#: .\principal\templates\base.html.py:627
+#: .\principal\templates\base.html.py:628
 #: .\principal\templates\index.html.py:429
-#: .\principal\templates\relatos.html.py:232
-#: .\principal\templates\relatos.html.py:282
-#: .\principal\templates\relatos.html.py:326
-#: .\principal\templates\relatos.html.py:387
-#: .\principal\templates\relatos.html.py:450
+#: .\principal\templates\relatos.html.py:230
+#: .\principal\templates\relatos.html.py:280
+#: .\principal\templates\relatos.html.py:324
+#: .\principal\templates\relatos.html.py:385
+#: .\principal\templates\relatos.html.py:448
 msgid "No hubo respuesta por parte del servidor"
 msgstr "There was no response from the server"
 
@@ -1304,7 +1305,7 @@ msgstr "Error, passwords is not the same"
 msgid "Contraseña enviada a correo"
 msgstr "Password sent to email"
 
-#: .\principal\templates\base.html.py:610
+#: .\principal\templates\base.html.py:611
 msgid "Error, no existe una cuenta de usuario con ese correo"
 msgstr "Error, there is not a user account with that email"
 
@@ -1320,13 +1321,13 @@ msgstr "Unknown BCS"
 #: .\principal\templates\eventos.html.py:21
 #: .\principal\templates\mas-visto.html.py:18
 #: .\principal\templates\relatos.html.py:28
-#: .\principal\templates\relatos.html.py:125
+#: .\principal\templates\relatos.html.py:123
 msgid "Pueblo"
 msgstr "Town"
 
 #: .\principal\templates\bcs-desconocida.html.py:18
 #: .\principal\templates\curiosidades.html.py:20
-#: .\principal\templates\relatos.html.py:123
+#: .\principal\templates\relatos.html.py:121
 msgid "Título"
 msgstr "Title"
 
@@ -1461,7 +1462,7 @@ msgstr "Events"
 #: .\principal\templates\eventos.html.py:23
 #: .\principal\templates\eventos.html.py:41
 #: .\principal\templates\relatos.html.py:26
-#: .\principal\templates\relatos.html.py:217
+#: .\principal\templates\relatos.html.py:215
 msgid "Fecha"
 msgstr "Date"
 
@@ -1475,38 +1476,32 @@ msgid "a las"
 msgstr "At"
 
 #: .\principal\templates\eventos.html.py:44
-#: .\principal\templates\eventos.html.py:64
+#: .\principal\templates\eventos.html.py:62
 #: .\principal\templates\relatos.html.py:63
-#: .\principal\templates\relatos.html.py:97
+#: .\principal\templates\relatos.html.py:95
 #: .\principal\templates\sitios_turisticos.html.py:55
-#: .\principal\templates\sitios_turisticos.html.py:76
+#: .\principal\templates\sitios_turisticos.html.py:74
 msgid "Reportar comentario"
 msgstr "Report comment"
 
-#: .\principal\templates\eventos.html.py:51
-#: .\principal\templates\relatos.html.py:73
-#: .\principal\templates\sitios_turisticos.html.py:62
-msgid "Mostrar más comentarios"
-msgstr "Show more comments"
-
-#: .\principal\templates\eventos.html.py:67
-#: .\principal\templates\relatos.html.py:100
-#: .\principal\templates\relatos.html.py:344
-#: .\principal\templates\sitios_turisticos.html.py:79
+#: .\principal\templates\eventos.html.py:65
+#: .\principal\templates\relatos.html.py:98
+#: .\principal\templates\relatos.html.py:342
+#: .\principal\templates\sitios_turisticos.html.py:77
 msgid "Comentario inapropiado"
 msgstr "Inappropriate Comment"
 
-#: .\principal\templates\eventos.html.py:68
-#: .\principal\templates\relatos.html.py:101
-#: .\principal\templates\relatos.html.py:348
-#: .\principal\templates\sitios_turisticos.html.py:80
+#: .\principal\templates\eventos.html.py:66
+#: .\principal\templates\relatos.html.py:99
+#: .\principal\templates\relatos.html.py:346
+#: .\principal\templates\sitios_turisticos.html.py:78
 msgid "Contenido vulgar"
 msgstr "Vulgar content"
 
-#: .\principal\templates\eventos.html.py:69
-#: .\principal\templates\relatos.html.py:102
-#: .\principal\templates\relatos.html.py:352
-#: .\principal\templates\sitios_turisticos.html.py:81
+#: .\principal\templates\eventos.html.py:67
+#: .\principal\templates\relatos.html.py:100
+#: .\principal\templates\relatos.html.py:350
+#: .\principal\templates\sitios_turisticos.html.py:79
 msgid "Comentario ofensivo"
 msgstr "Ofensive comment"
 
@@ -1764,20 +1759,24 @@ msgid "Mapa de Pueblos Fundacionales"
 msgstr "Foundational Towns"
 
 #: .\principal\templates\mapa.html.py:23
+msgid "Reiniciar"
+msgstr "Reset"
+
+#: .\principal\templates\mapa.html.py:24
 msgid "Obtener ruta"
-msgstr ""
+msgstr "Get route"
 
-#: .\principal\templates\mapa.html.py:25
+#: .\principal\templates\mapa.html.py:26
 msgid "Adelante"
-msgstr ""
+msgstr "Forward"
 
-#: .\principal\templates\mapa.html.py:32
+#: .\principal\templates\mapa.html.py:33
 #: .\principal\templates\multimedia.html.py:25
 #: .\principal\templates\pueblos.html.py:35
 msgid "Menú"
 msgstr "Menu"
 
-#: .\principal\templates\mapa.html.py:34
+#: .\principal\templates\mapa.html.py:35
 #: .\principal\templates\sitios_turisticos.html.py:34
 msgid "Dirección"
 msgstr "Direction"
@@ -1959,95 +1958,90 @@ msgstr "Enter here"
 msgid "Autor"
 msgstr "Author"
 
-#: .\principal\templates\relatos.html.py:30
-#, fuzzy
-msgid "Descripción "
-msgstr "Description"
-
 #: .\principal\templates\relatos.html.py:33
 msgid "Valoración"
 msgstr "Rate"
 
 #: .\principal\templates\relatos.html.py:43
-#: .\principal\templates\relatos.html.py:269
-#: .\principal\templates\relatos.html.py:312
+#: .\principal\templates\relatos.html.py:267
+#: .\principal\templates\relatos.html.py:310
 msgid "Puntos acumulados"
 msgstr "accumulated points"
 
-#: .\principal\templates\relatos.html.py:71
+#: .\principal\templates\relatos.html.py:70
 #, fuzzy
 msgid "No comentarios"
 msgstr "Report comment"
 
-#: .\principal\templates\relatos.html.py:81
+#: .\principal\templates\relatos.html.py:79
 msgid "Mejores relatos"
 msgstr "Better stories"
 
-#: .\principal\templates\relatos.html.py:89
+#: .\principal\templates\relatos.html.py:87
 msgid "Escribir relato"
 msgstr "Write your story"
 
-#: .\principal\templates\relatos.html.py:103
+#: .\principal\templates\relatos.html.py:101
 msgid "Spam"
 msgstr "Spam"
 
-#: .\principal\templates\relatos.html.py:118
+#: .\principal\templates\relatos.html.py:116
 msgid "Introduce un título para tu relato"
 msgstr "Enter a title for your story"
 
-#: .\principal\templates\relatos.html.py:119
+#: .\principal\templates\relatos.html.py:117
 msgid "En el recuadro grande comienza a escribir la historia"
 msgstr "In the large box begins to write the story"
 
-#: .\principal\templates\relatos.html.py:121
+#: .\principal\templates\relatos.html.py:119
 msgid "Nota: Después de enviar tu relato será previamente revisado"
 msgstr "Note: After submitting your story will be previously reviewed"
 
-#: .\principal\templates\relatos.html.py:123
+#: .\principal\templates\relatos.html.py:121
 msgid "Introduce un título para tu relato "
 msgstr "Enter a title for your story"
 
-#: .\principal\templates\relatos.html.py:222
+#: .\principal\templates\relatos.html.py:220
 #, fuzzy
 msgid "Comentario agregado"
 msgstr "Inappropriate Comment"
 
-#: .\principal\templates\relatos.html.py:226
+#: .\principal\templates\relatos.html.py:224
 #, fuzzy
 msgid "Ocurrió un error. Favor de verificarlo"
 msgstr "The email format is wrong. Please check"
 
-#: .\principal\templates\relatos.html.py:243
+#: .\principal\templates\relatos.html.py:241
 msgid ""
 "Asegurese de haber introducido un comentario antes de tratarlo de enviar"
 msgstr ""
 
-#: .\principal\templates\relatos.html.py:273
-#: .\principal\templates\relatos.html.py:316
+#: .\principal\templates\relatos.html.py:271
+#: .\principal\templates\relatos.html.py:314
 msgid "No puede votar más de una vez por un comentario"
 msgstr "You can not vote more than once for a comment"
 
-#: .\principal\templates\relatos.html.py:277
-#: .\principal\templates\relatos.html.py:320
-#: .\principal\templates\relatos.html.py:381
-#: .\principal\templates\relatos.html.py:444
+#: .\principal\templates\relatos.html.py:275
+#: .\principal\templates\relatos.html.py:318
+#: .\principal\templates\relatos.html.py:379
+#: .\principal\templates\relatos.html.py:442
 msgid "Ocurrió un error interno"
 msgstr "An internal error occurred"
 
-#: .\principal\templates\relatos.html.py:360
+#: .\principal\templates\relatos.html.py:358
 msgid "Seleccione una opción, por favor"
 msgstr "Select a option, please"
 
-#: .\principal\templates\relatos.html.py:376
+#: .\principal\templates\relatos.html.py:374
 #, fuzzy
 msgid "Reporte enviado"
 msgstr "Report comment"
 
-#: .\principal\templates\relatos.html.py:406
+#: .\principal\templates\relatos.html.py:404
 msgid "El relato debe tener un titulo"
 msgstr "Story have to have a title"
 
-#: .\principal\templates\relatos.html.py:412
+#: .\principal\templates\relatos.html.py:410
 #, fuzzy
 msgid ""
 "El titulo sólo puede contener letras y números, con palabras separadas por "
@@ -2055,15 +2049,15 @@ msgid ""
 msgstr ""
 "The username can only contain letters and numbers, no other type of character"
 
-#: .\principal\templates\relatos.html.py:418
+#: .\principal\templates\relatos.html.py:416
 msgid "El relato debe tener una descripción"
 msgstr "The story should have a description"
 
-#: .\principal\templates\relatos.html.py:423
+#: .\principal\templates\relatos.html.py:421
 msgid "Seleccione un pueblo para él que registrará el relato"
 msgstr ""
 
-#: .\principal\templates\relatos.html.py:439
+#: .\principal\templates\relatos.html.py:437
 msgid "Relato enviado"
 msgstr ""
 
@@ -2253,6 +2247,13 @@ msgstr "Phones"
 #: .\principal\templates\sitios_turisticos.html.py:38
 msgid "Etiquetas"
 msgstr "Tags"
+
+#~ msgid "Mostrar más comentarios"
+#~ msgstr "Show more comments"
+
+#, fuzzy
+#~ msgid "Descripción "
+#~ msgstr "Description"
 
 #~ msgid "Ingles"
 #~ msgstr "English"

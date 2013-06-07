@@ -573,7 +573,7 @@ def alojamiento(request):
 				hoteles= sitio_turistico.objects.filter(CATEGORIA=categ)
 				temp = []
 				for hotel in hoteles:
-					temp.append(hoteles.get_sitio_turistico_idioma(language))
+					temp.append(hotel.get_sitio_turistico_idioma(language))
 				hoteles=temp
 			else:
 				hoteles=None
