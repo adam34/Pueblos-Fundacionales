@@ -93,10 +93,6 @@
 				<div class="calendario-notas">
 					<h3>{% trans 'Eventos de la semana' %}</h3>
 					<p class="noticias">{% trans 'Selecciona alguna de las fechas en el Calendario' %}.</p>
-					{% for evento_mes in eventos_mes %}
-						{{evento_mes.NOMBRE}}
-						{{evento_mes.FECHA | date:'d/M/Y'}}
-					{% endfor %}
 				</div>
 				<section class="proximos-eventos">
 					<h4>{% trans 'Próximos Eventos' %}</h4>
@@ -104,30 +100,16 @@
 						{% for evento_hoy in eventos_hoy %}
 							<article>
 								<p>{{evento_hoy.FECHA | date:'d'}}</p>
-								<a href="/eventos/?evento={{evento_hoy.ID}}">
+								<a href="{% url 'eventos' %}?evento={{evento_hoy.ID}}">
 									{{evento_hoy.NOMBRE}}
 								</a>
 							</article>
 						{% endfor %}
 					{% else %}
 							<article>
-								<p>18</p>
-								<a href="/eventos/">
-									Fiestas de San Ignacio
+								<a href="#">
+									No existen eventos para el día de hoy.
 								</a>
-							</article>
-							<article>
-								<p>22</p>
-								<a href="/eventos/">
-									Fiestas de San Ignacio
-								</a>
-							</article>
-							<article>
-								<p>26</p>
-								<a href="/eventos/">
-									Fiestas de San Ignacio
-								</a>
-							</article>
 					{% endif %}
 					<span><a href="/eventos/">{% trans 'Ver todos los próximos eventos' %}</a></span>
 				</section>
@@ -389,68 +371,103 @@
 	<script src="/static/js/weatherslider.kreaturamedia.jquery.js"></script>
 	<!-- Eventos -->
 	<script src="/static/js/glDatePicker.js"></script>
-	<script src="/static/js/eventos.js"></script>
+	<!-- <script src="/static/js/eventos.js"></script> -->
 	<!-- Script Clima-->
 	<script src="/static/js/example.js"></script>
 	<script type="text/javascript">
-		$(function()
-		{
-			$("#cargar_eventos").on('click',obtener_eventos);
-			function obtener_eventos(e)
-			{
-				$.ajax({
-					async:false,
-	                url:"{% url 'eventos_ajax' %}",
-	                data:{csrfmiddlewaretoken:'{{csrf_token}}','year':2013,'month':6,},
-	                type:'POST',
-	                success:function(response)
-	                {
-	                	if(response!='')
-	                    {
-	                    	if(response.respuesta=='exito')
-	                    	{
-	                    		$('.proximos-eventos').html('');
-	                    		$('.proximos-eventos').append('<h4>Próximos Eventos</h4>')
-	                    		for(i=0;i<response.eventos.length;i++)
-	                    		{
-									$('.proximos-eventos').append('<article>'+
-									'<p>'+response.eventos[i].day+'/'+response.eventos[i].month+'/'+response.eventos[i].year+
-									'</p>'+
-									'<a href=/eventos/?evento='+response.eventos[i].id+'>'+response.eventos[i].nombre+
-									'</a>'+
-									'</article>');
-	                    		}
-								$('.proximos-eventos').append('<span><a href="/eventos/">Ver todos los próximos eventos</a></span>');
-	                    	}
-	                    	else if(response.respuesta=='noDatos')
-	                    	{
-	                    		alert('{% trans "No hay eventos para el mes" %}.');
-	                    	}
-	                    	else if(response.respuesta=='noCampos')
-	                    	{
-	                    		alert('{% trans "No se recibieron los campos completos" %}.');
-	                    	}
-	                    	else if(response.respuesta=='noPOST')
-	                    	{
-	                    		alert(' {% trans "No se utilizó el mensaje correcto para comunicarse con el servidor" %}.');
-	                    	}
-	                   		else if(response.respuesta=='noAJAX')
-	                    	{
-	                    		alert('{% trans "No se utilizó AJAX para la comunicación con el servidor" %}.');
-	                    	}
-	                    }
-	                    else
-	                    {
-	                        alert('{% trans "No hubo respuesta por parte del servidor" %}.');
-	                    }
-	                },
-	                error:function(jqXHR, status, error)
-	                {
-	                    alert(jqXHR.responseText+'\n'+status+'\n'+ error);
-	                },
-	            });
-            return false;
-			}
-		});
+	function obtener_eventos(year,month,day)
+	{
+		month+=1
+		$.ajax({
+			async:false,
+            url:"{% url 'eventos_ajax' %}",
+            data:{csrfmiddlewaretoken:'{{csrf_token}}','year':year,'month':month,'day':day},
+            type:'POST',
+            success:function(response)
+            {
+            	if(response!='')
+                {
+                	if(response.respuesta=='exito')
+                	{
+                		$('.proximos-eventos').html('');
+                		$('.proximos-eventos').append('<h4>Próximos Eventos</h4>')
+                		for(i=0;i<response.eventos.length;i++)
+                		{
+							$('.proximos-eventos').append('<article>'+
+							'<p>'+response.eventos[i].day+
+							'</p>'+
+							'<a href='+response.eventos[i].url+'>'+response.eventos[i].nombre+
+							'</a>'+
+							'</article>');
+                		}
+						$('.proximos-eventos').append('<span><a href="/eventos/">Ver todos los próximos eventos</a></span>');
+                	}
+                	else if(response.respuesta=='noDatos')
+                	{
+                		$('.proximos-eventos').html('');
+                		$('.proximos-eventos').append('<h4>Próximos Eventos</h4>')
+						$('.proximos-eventos').append('<article>'+
+						'<a href="#">No hay eventos para el día seleccionado.</a>'+
+						'</article>');
+                		// alert('{% trans "No hay eventos para el dia" %}.');
+                	}
+                	else if(response.respuesta=='noCampos')
+                	{
+                		alert('{% trans "No se recibieron los campos completos" %}.');
+                	}
+                	else if(response.respuesta=='noPOST')
+                	{
+                		alert(' {% trans "No se utilizó el mensaje correcto para comunicarse con el servidor" %}.');
+                	}
+               		else if(response.respuesta=='noAJAX')
+                	{
+                		alert('{% trans "No se utilizó AJAX para la comunicación con el servidor" %}.');
+                	}
+                }
+                else
+                {
+                    alert('{% trans "No hubo respuesta por parte del servidor" %}.');
+                }
+            },
+            error:function(jqXHR, status, error)
+            {
+                alert(jqXHR.responseText+'\n'+status+'\n'+ error);
+            },
+        });
+    return false;
+	}
+	var myDatePicker
+	$(window).on("load", function() {
+	    console.log("Funciona");
+	    myDatePicker =$('#eventos').glDatePicker(
+	    {
+	        showAlways: true,
+	        cssName: 'default',
+	        selectedDate: new Date(2013, 5, 7),
+	        specialDates: 
+	        [
+	            // {
+	            //     date: new Date(2013, 0, 8),
+	            //     data: { message: 'Reunión de Pueblos Fundacionales' },
+	            //     repeatMonth: true
+	            // },
+	            // {
+	            //     date: new Date(2013, 0, 1),
+	            //     data: { message: 'Feliz Año Nuevo!' },
+	            //     repeatYear: false
+	            // },
+	        ],
+	        onClick: function(target, cell, date, data) {
+	        	obtener_eventos(date.getFullYear(),date.getMonth(),date.getDate())
+	            target.val(date.getFullYear() + ' - ' +
+	            date.getMonth() + ' - ' +
+	            date.getDate());
+	            if(data != null) {
+	                $("p.noticias").empty();
+	                $("p.noticias").append("El evento es:" + '\n' + data.message);
+	            }
+	        }
+	    });
+	});
 	</script>
 {% endblock %}

@@ -113,10 +113,11 @@ def eventos_ajax(request):
 	# pdb.set_trace()
 	if request.is_ajax():
 		if request.POST:
-			if ('year' in request.POST and 'month' in request.POST):
+			if ('year' in request.POST and 'month' in request.POST and 'day' in request.POST):
 				year=int(request.POST['year'])
 				month=int(request.POST['month'])
-				eventos_mes=evento.objects.filter(FECHA__year=year,FECHA__month=month).order_by('FECHA')[:3]
+				day=int(request.POST['day'])
+				eventos_mes=evento.objects.filter(FECHA__year=year,FECHA__month=month,FECHA__day=day).order_by('FECHA')[:3]
 				if eventos_mes.count()<=0:
 					return HttpResponse(json.dumps({'respuesta':'noDatos'}),mimetype='application/json')
 				else:
@@ -128,6 +129,7 @@ def eventos_ajax(request):
 						dicc['year']=evento_mes.FECHA.year
 						dicc['nombre']=evento_mes.NOMBRE
 						dicc['id']=evento_mes.ID
+						dicc['url']=u'/'+request.LANGUAGE_CODE+'/eventos/?evento='+str(evento_mes.ID)
 						respuesta.append(dicc)
 					return HttpResponse(json.dumps({'respuesta':'exito','eventos':respuesta}),mimetype='application/json')
 			else:

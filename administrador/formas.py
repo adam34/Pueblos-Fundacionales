@@ -87,9 +87,7 @@ class CustomAutenticacionForm(AuthenticationForm):
 			self.user_cache = authenticate(username=username,
 											password=password)
 			if self.user_cache is None:
-				raise forms.ValidationError(
-					self.error_messages['invalid_login']
-					)
+				raise ValidationError(u'Los datos de usuario y contraseña son incorrectos. Favor de verificarlos.')
 			elif not self.user_cache.is_active:
 				self._errors['username']= ErrorList([u"El usuario no esta activo o ha sido bloqueado."])
 			elif not self.user_cache.is_staff:
@@ -277,6 +275,8 @@ class GroupForm(forms.ModelForm):
 
 
 	def clean(self):
+		# import pdb
+		# pdb.set_trace()
 		super(GroupForm, self).clean()
 		cleaned_data = self.cleaned_data
 		return cleaned_data
@@ -307,6 +307,8 @@ class GroupChangeForm(forms.ModelForm):
 
 
 	def clean(self):
+		# import pdb
+		# pdb.set_trace()
 		super(GroupChangeForm, self).clean()
 		cleaned_data = self.cleaned_data
 		return cleaned_data
