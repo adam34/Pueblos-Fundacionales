@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-07 02:25-0600\n"
+"POT-Creation-Date: 2013-06-07 03:17-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1036,6 +1036,7 @@ msgstr ""
 #: .\principal\templates\bcs-desconocida.html.py:19
 #: .\principal\templates\eventos.html.py:25
 #: .\principal\templates\galerias.html.py:31
+#: .\principal\templates\relatos.html.py:135
 msgid "Descripción"
 msgstr ""
 
@@ -1112,6 +1113,7 @@ msgstr ""
 
 #: .\principal\templates\base.html.py:178
 #: .\principal\templates\base.html.py:204
+#: .\principal\templates\relatos.html.py:213
 msgid "Usuario"
 msgstr ""
 
@@ -1131,6 +1133,7 @@ msgid "Introduce tu contraseña"
 msgstr ""
 
 #: .\principal\templates\base.html.py:186
+#: .\principal\templates\relatos.html.py:137
 msgid "Entrar"
 msgstr ""
 
@@ -1244,6 +1247,11 @@ msgstr ""
 #: .\principal\templates\base.html.py:568
 #: .\principal\templates\base.html.py:627
 #: .\principal\templates\index.html.py:429
+#: .\principal\templates\relatos.html.py:232
+#: .\principal\templates\relatos.html.py:282
+#: .\principal\templates\relatos.html.py:326
+#: .\principal\templates\relatos.html.py:387
+#: .\principal\templates\relatos.html.py:450
 msgid "No hubo respuesta por parte del servidor"
 msgstr ""
 
@@ -1308,11 +1316,14 @@ msgstr ""
 #: .\principal\templates\descubra-bcs.html.py:18
 #: .\principal\templates\eventos.html.py:21
 #: .\principal\templates\mas-visto.html.py:18
+#: .\principal\templates\relatos.html.py:28
+#: .\principal\templates\relatos.html.py:125
 msgid "Pueblo"
 msgstr ""
 
 #: .\principal\templates\bcs-desconocida.html.py:18
 #: .\principal\templates\curiosidades.html.py:20
+#: .\principal\templates\relatos.html.py:123
 msgid "Título"
 msgstr ""
 
@@ -1447,6 +1458,8 @@ msgstr ""
 
 #: .\principal\templates\eventos.html.py:23
 #: .\principal\templates\eventos.html.py:41
+#: .\principal\templates\relatos.html.py:26
+#: .\principal\templates\relatos.html.py:217
 msgid "Fecha"
 msgstr ""
 
@@ -1461,27 +1474,36 @@ msgstr ""
 
 #: .\principal\templates\eventos.html.py:44
 #: .\principal\templates\eventos.html.py:64
+#: .\principal\templates\relatos.html.py:63
+#: .\principal\templates\relatos.html.py:97
 #: .\principal\templates\sitios_turisticos.html.py:55
 #: .\principal\templates\sitios_turisticos.html.py:76
 msgid "Reportar comentario"
 msgstr ""
 
 #: .\principal\templates\eventos.html.py:51
+#: .\principal\templates\relatos.html.py:73
 #: .\principal\templates\sitios_turisticos.html.py:62
 msgid "Mostrar más comentarios"
 msgstr ""
 
 #: .\principal\templates\eventos.html.py:67
+#: .\principal\templates\relatos.html.py:100
+#: .\principal\templates\relatos.html.py:344
 #: .\principal\templates\sitios_turisticos.html.py:79
 msgid "Comentario inapropiado"
 msgstr ""
 
 #: .\principal\templates\eventos.html.py:68
+#: .\principal\templates\relatos.html.py:101
+#: .\principal\templates\relatos.html.py:348
 #: .\principal\templates\sitios_turisticos.html.py:80
 msgid "Contenido vulgar"
 msgstr ""
 
 #: .\principal\templates\eventos.html.py:69
+#: .\principal\templates\relatos.html.py:102
+#: .\principal\templates\relatos.html.py:352
 #: .\principal\templates\sitios_turisticos.html.py:81
 msgid "Comentario ofensivo"
 msgstr ""
@@ -1587,6 +1609,7 @@ msgid "Más info (click aquí)"
 msgstr ""
 
 #: .\principal\templates\index.html.py:264
+#: .\principal\templates\relatos.html.py:18
 #: .\principal\templates\secciones.html.py:57
 msgid "Relatos"
 msgstr ""
@@ -1769,12 +1792,232 @@ msgstr ""
 msgid "Audio"
 msgstr ""
 
+#: .\principal\templates\politicas.html.py:12
+msgid "Políticas de privacidad y/o uso"
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:13
+msgid "Políticas de privacidad"
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:15
+msgid ""
+"En cumplimiento con lo establecido por políticas propias, te informamos "
+"nuestra Política de Privacidad y manejo de datos personales y hacemos el "
+"siguiente compromiso:"
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:19
+msgid ""
+"Los datos que te solicitamos en el formulario de registro únicamente serán "
+"utilizados para poder establecer contacto contigo e identificarte en todo el "
+"seguimiento de las secciones dinámicas, tales como subir relatos o subir "
+"imágenes."
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:22
+msgid ""
+"Los datos que ingreses en el formulario de registro no serán difundidos, "
+"distribuidos o comercializados."
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:25
+msgid ""
+"En caso de que desees eliminar tu cuenta de nuestra base de datos podrás, en "
+"cualquier momento, solicitar la baja de tus datos mediante correo "
+"electrónico a"
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:28
+msgid "Si necesitas mayor información por favor escribe a"
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:31
+msgid "Manejo de datos personales"
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:34
+msgid ""
+"Esta Política de Privacidad describe los tipos de información recolectados "
+"por Pueblos Fundacionales en su sitio Web, cómo los usamos y protegemos. "
+"Esta Política de Privacidad no es aplicable a banners, anuncios o "
+"promociones, que se desplieguen dentro del sitio Web."
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:37
+msgid ""
+"Al usar nuestro sitio Web usted expresa su aceptación de esta Política de "
+"Privacidad. Si no acepta las condiciones de esta Política de Privacidad ni "
+"los Términos y Condiciones de uso de nuestro sitio Web, le sugerimos no "
+"divulgar su información personal. "
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:39
+msgid "Información que recolectamos"
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:41
+msgid ""
+"Pueblos Fundacionales recolecta la siguiente información: nombre y "
+"apellidos, nombre de usuario e email. Pueblos Fundacionales no recolectará "
+"ninguna información de los visitantes a nuestro sitio a menos que nos "
+"suministren su información personal de manera voluntaria ya que sólo "
+"requeriremos la información necesaria para participar en las actividades de "
+"nuestro sitio Web."
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:44
+msgid ""
+"Cuando usted decide proporcionarnos su información personal, nos está "
+"autorizando a usarla de acuerdo con los términos de esta Política de "
+"Privacidad."
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:47
+msgid "Cambios en la Política de Privacidad"
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:49
+msgid ""
+"Pueblos Fundacionales reserva el derecho de cambiar o remover esta Política "
+"de Privacidad a nuestra discreción, le haremos llegar un correo electrónico "
+"con las últimas actualizaciones."
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:51
+msgid "Enlaces a otros sitios Web"
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:53
+msgid ""
+"Los usuarios deben saber que al acceder a este sitio pueden ser "
+"direccionados a otros sitios que están fuera de nuestro control. Pueblos "
+"Fundacionales no garantiza la Política de Privacidad o el contenido de "
+"ningún sitio de terceros que tenga enlaces con nuestro sitio."
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:56
+msgid "Cómo contactarnos"
+msgstr ""
+
+#: .\principal\templates\politicas.html.py:59
+msgid ""
+"Si tuviera alguna duda o inquietud acerca de nuestra Política de Privacidad "
+"o de la  recolección de datos, por favor envíenos un mensaje de correo "
+"electrónico a"
+msgstr ""
+
 #: .\principal\templates\pueblos.html.py:30
 msgid "Visita nuestro catálogo digital"
 msgstr ""
 
 #: .\principal\templates\pueblos.html.py:31
 msgid "Entra aquí"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:24
+msgid "Autor"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:30
+msgid "Descripción "
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:33
+msgid "Valoración"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:43
+#: .\principal\templates\relatos.html.py:269
+#: .\principal\templates\relatos.html.py:312
+msgid "Puntos acumulados"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:71
+msgid "No comentarios"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:81
+msgid "Mejores relatos"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:89
+msgid "Escribir relato"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:103
+msgid "Spam"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:118
+msgid "Introduce un título para tu relato"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:119
+msgid "En el recuadro grande comienza a escribir la historia"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:121
+msgid "Nota: Después de enviar tu relato será previamente revisado"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:123
+msgid "Introduce un título para tu relato "
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:222
+msgid "Comentario agregado"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:226
+msgid "Ocurrió un error. Favor de verificarlo"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:243
+msgid ""
+"Asegurese de haber introducido un comentario antes de tratarlo de enviar"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:273
+#: .\principal\templates\relatos.html.py:316
+msgid "No puede votar más de una vez por un comentario"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:277
+#: .\principal\templates\relatos.html.py:320
+#: .\principal\templates\relatos.html.py:381
+#: .\principal\templates\relatos.html.py:444
+msgid "Ocurrió un error interno"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:360
+msgid "Seleccione una opción, por favor"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:376
+msgid "Reporte enviado"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:406
+msgid "El relato debe tener un titulo"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:412
+msgid ""
+"El titulo sólo puede contener letras y números, con palabras separadas por "
+"un espacio"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:418
+msgid "El relato debe tener una descripción"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:423
+msgid "Seleccione un pueblo para él que registrará el relato"
+msgstr ""
+
+#: .\principal\templates\relatos.html.py:439
+msgid "Relato enviado"
 msgstr ""
 
 #: .\principal\templates\secciones.html.py:19

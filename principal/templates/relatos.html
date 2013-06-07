@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {%  block css %}
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
@@ -14,22 +15,22 @@
 {% block contenedor %}
 	<section class="contenedor_relatos">
 		<section class="story">
-			<h2>Relatos</h2>
+			<h2>{% trans 'Relatos' %}</h2>
 			<ul>
 				{% for relato in relatos  %}
 				<li id='relato_{{relato.relato.ID}}'>
 					<h3> {{relato.relato.TITULO}}</h3>
 					<br>
-					<span>Autor:</span>&nbsp; &nbsp;{{relato.relato.USUARIO.username}}
+					<span>{% trans 'Autor'%}:</span>&nbsp; &nbsp;{{relato.relato.USUARIO.username}}
 					<br>
-					<span>Fecha:</span>&nbsp; &nbsp;{{relato.relato.FECHA}}
+					<span>{% trans 'Fecha'%}:</span>&nbsp; &nbsp;{{relato.relato.FECHA}}
 					<br>
-					<span>Pueblo:</span> &nbsp; &nbsp;{{relato.relato.PUEBLO.NOMBRE}}
+					<span>{% trans 'Pueblo' %}:</span> &nbsp; &nbsp;{{relato.relato.PUEBLO.NOMBRE}}
 					<br>
-					<span>Descripción:</span> &nbsp; &nbsp;<p>{{relato.relato.DESCRIPCION}}</p>
+					<span>{% trans 'Descripción' %}:</span> &nbsp; &nbsp;<p>{{relato.relato.DESCRIPCION}}</p>
 					<br><br>
 					{% if user.username|length > 0 %}
-					<span>Valoración: </span>
+					<span>{% trans 'Valoración' %}: </span>
 					<span class="plus">
 						<img id='{{relato.relato.ID}}' class='me_gusta' src="/static/img/heart.png" alt="" title="Me gustó">
 					</span>
@@ -39,7 +40,7 @@
 					{% endif %}
 
 					<span aria-hidden="true" class="icon-heart-broken minus"></span>
-					&nbsp; &nbsp;<span id='puntaje_{{relato.relato.ID}}'>Puntos acumulados: {{relato.relato.VALORACION}}	</span>
+					&nbsp; &nbsp;<span id='puntaje_{{relato.relato.ID}}'>{% trans 'Puntos acumulados' %}: {{relato.relato.VALORACION}}	</span>
 
 					{% if user.username|length > 0 %}
 					<form id='{{relato.relato.ID}}' name="comentario" action="#">
@@ -59,7 +60,7 @@
 								<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
 								{% if user.username|length > 0 %}
 									{% if comentario.USUARIO.username != user.username %}
-									<a id='{{comentario.ID}}' class="vinculo_reportar_r" href="#relatoReportado">Reportar comentario</a>
+									<a id='{{comentario.ID}}' class="vinculo_reportar_r" href="#relatoReportado">{% trans 'Reportar comentario' %}</a>
 									{% endif %}
 								{% endif %}
 							</section>
@@ -67,9 +68,9 @@
 							<br>
 						{% endfor %}
 					{% else %}
-						<p>No comentarios</p>
+						<p>{% trans 'No comentarios' %}</p>
 					{% endif %}
-					<div id="more"> Mostrar más comentarios </div>
+					<div id="more"> {% trans 'Mostrar más comentarios' %} </div>
 					
 				</li>
 				{% endfor %}
@@ -77,7 +78,7 @@
 
 		</section>
 		<section class="menu_story">
-			<h3>Mejores relatos</h3>
+			<h3>{% trans 'Mejores relatos' %}</h3>
 			<p>
 				{% for rel in mejores  %}
 					<br>
@@ -85,7 +86,7 @@
 				{% endfor %}
 			</p>
 			{% if user.username|length > 0 %}
-			<a id="aRelato" href="#relatoNuevo">Escribir relato</a>
+			<a id="aRelato" href="#relatoNuevo">{% trans 'Escribir relato' %}</a>
 			{% endif %}
 		</section>
 	</section>
@@ -93,13 +94,13 @@
 		<div>
 			<a href="#cerrar" title="Close" class="cerrar">X</a>
 			<section class="formulario_re">
-				<h2>Reportar comentario</h2>
+				<h2>{% trans 'Reportar comentario' %}</h2>
 				<form id='form_reporte' action="#">
 					<input id='comentario' type='hidden' value=''>
-					<input type="radio" name="reporte" value="1">Comentario inapropiado <br>
-					<input type="radio" name="reporte" value="2">Contenido vulgar <br>
-					<input type="radio" name="reporte" value="3">Comentario ofensivo <br>
-					<input type="radio" name="reporte" value="4">Spam<br>
+					<input type="radio" name="reporte" value="1">{% trans 'Comentario inapropiado' %} <br>
+					<input type="radio" name="reporte" value="2">{% trans 'Contenido vulgar' %} <br>
+					<input type="radio" name="reporte" value="3">{% trans 'Comentario ofensivo' %} <br>
+					<input type="radio" name="reporte" value="4">{% trans 'Spam' %}<br>
 					<input name="enviar" value="Enviar" type="button">
 				</form>
 			</section>
@@ -114,14 +115,14 @@
 				<h2>Escribe tu relato</h2>
 				<form action="#">
 					<span>Instrucciones:</span><br>
-					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Introduce un título para tu relato</span><br>
-					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En el recuadro grande comienza a escribir la historia </span><br><br>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'Introduce un título para tu relato' %}</span><br>
+					<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{% trans 'En el recuadro grande comienza a escribir la historia' %} </span><br><br>
 					<span id="nota">
-						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[Nota: Después de enviar tu relato será previamente revisado]
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[{% trans 'Nota: Después de enviar tu relato será previamente revisado' %}]
 					</span><br>
-					<label for="titulo">Título: </label><input id="titulo" type="text" placeholder="&nbsp;Introduce un título para tu relato" required maxlength='30'>
+					<label for="titulo">{% trans 'Título' %}: </label><input id="titulo" type="text" placeholder="&nbsp;{% trans 'Introduce un título para tu relato ' %}" required maxlength='30'>
 					<br><br>
-					<label for="titulo">Pueblo: </label>
+					<label for="titulo">{% trans 'Pueblo' %}: </label>
 					<select id='pueblos'>
 						<option value='' selected>--------------------------------------------------------------------</option>
 						{% if pueblos %}
@@ -131,9 +132,9 @@
 						{% endif %}
 					</select>
 					<br><br>
-					<label for="relato">Descripción: </label><textarea id='relato' name="relato" cols="80" rows="5" maxlength='2000'></textarea>
+					<label for="relato">{% trans 'Descripción' %}: </label><textarea id='relato' name="relato" cols="80" rows="5" maxlength='2000'></textarea>
 					<br>
-					<input name="enviar" value="Entrar" type="button">
+					<input name="enviar" value=" {% trans 'Entrar' %}" type="button">
 				</form>
 			</section>
 		</div>
@@ -209,26 +210,26 @@ $(function(){
 	            		{
 		            		$('#relato_'+id).append(
 		            			'<section class="comments">'+
-		            			'<h4>Usuario: {{user.username}} </h4>'+
+		            			'<h4> {% trans "Usuario" %}: {{user.username}} </h4>'+
 		            			'<div>'+
 		            				comentario+
 		            			'</div>'+
-		            			'<p id="fechacomentarios">Fecha: '+response.fecha+'</p>'+
+		            			'<p id="fechacomentarios">{% trans "Fecha" %}: '+response.fecha+'</p>'+
 		            			'</section>'+
 		            			'<br>'
 		            			);
 		            			$('form#'+id+' textarea').val('');
-		            			alert('Comentario agregado.');
+		            			alert('{% trans "Comentario agregado" %}.');
 	            		}
 	            		else
 	            		{
-	            			alert('Ocurrió un error. Favor de verificarlo.');
+	            			alert('{% trans "Ocurrió un error. Favor de verificarlo" %}.');
 	            		}
 
                     }
                     else
                     {
-                        alert('No hubo respuesta por parte del servidor.');
+                        alert('{% trans "No hubo respuesta por parte del servidor" %}.');
                     }
                 },
                  error:function(jqXHR, status, error)
@@ -239,7 +240,7 @@ $(function(){
 		}
 		else
 		{
-			alert('Asegurese de haber introducido un comentario antes de tratarlo de enviar.');
+			alert('{% trans "Asegurese de haber introducido un comentario antes de tratarlo de enviar" %}.');
 		}
 		return false;
 	}
@@ -265,20 +266,20 @@ $(function(){
                 {
                 	if(response.respuesta=='exito')
                 	{
-                		$('#puntaje_'+id).html('Puntos acumulados: '+response.valoracion);	
+                		$('#puntaje_'+id).html(' {% trans "Puntos acumulados" %}: '+response.valoracion);	
                 	}
                 	else if (response.respuesta=='noVotar')
                 	{
-                		alert('No puede votar más de una vez por un comentario.');
+                		alert('{% trans "No puede votar más de una vez por un comentario" %}.');
                 	}
                 	else
                 	{
-						alert('Ocurrió un error interno.');
+						alert('{% trans "Ocurrió un error interno" %}.');
                 	}
                 }
                 else
                 {
-                    alert('No hubo respuesta por parte del servidor.');
+                    alert('{% trans "No hubo respuesta por parte del servidor" %}.');
                 }
             },
              error:function(jqXHR, status, error)
@@ -308,21 +309,21 @@ $(function(){
                 {
                 	if(response.respuesta=='exito')
                 	{
-                		$('#puntaje_'+id).html('Puntos acumulados: '+response.valoracion);	
+                		$('#puntaje_'+id).html('{% trans "Puntos acumulados" %}: '+response.valoracion);	
                 	}
                 	else if (response.respuesta=='noVotar')
                 	{
-                		alert('No puede votar más de una vez por un comentario.');
+                		alert('{% trans "No puede votar más de una vez por un comentario" %}.');
                 	}
                 	else
                 	{
-						alert('Ocurrió un error interno.');
+						alert('{% trans "Ocurrió un error interno" %}.');
                 	}
 
                 }
                 else
                 {
-                    alert('No hubo respuesta por parte del servidor.');
+                    alert('{% trans "No hubo respuesta por parte del servidor" %}.');
                 }
             },
              error:function(jqXHR, status, error)
@@ -340,15 +341,15 @@ $(function(){
 		razon=$('#form_reporte input[name="reporte"]').val()
 		if(razon=="1")
 		{
-			razon="Comentario inapropiado";
+			razon="{% trans 'Comentario inapropiado' %}";
 		}
 		else if(razon=="2")
 		{
-			razon="Contenido vulgar";
+			razon="{% trans 'Contenido vulgar' %}";
 		}
 		else if(razon=="3")
 		{
-			razon="Comentario ofensivo";
+			razon="{% trans 'Comentario ofensivo' %}";
 		}
 		else if(razon=="4")
 		{
@@ -356,7 +357,7 @@ $(function(){
 		}
 		else
 		{
-			alert('Seleccione una opción, por favor.');
+			alert('{% trans "Seleccione una opción, por favor" %}.');
 			return;
 		}
 
@@ -372,18 +373,18 @@ $(function(){
                 {
                 	if(response.respuesta=='exito')
                 	{
-                		alert('Reporte enviado.');
+                		alert('{% trans "Reporte enviado" %}.');
                 		$cerrar_rep.trigger('click');
                 	}
                 	else
                 	{
-						alert('Ocurrió un error interno.');
+						alert('{% trans "Ocurrió un error interno" %}.');
                 	}
 
                 }
                 else
                 {
-                    alert('No hubo respuesta por parte del servidor.');
+                    alert('{% trans "No hubo respuesta por parte del servidor" %}.');
                 }
             },
              error:function(jqXHR, status, error)
@@ -402,24 +403,24 @@ $(function(){
 		pueblo=$('#relatoNuevo #pueblos').val()
 		if(titulo=="")
 		{
-			alert('El relato debe tener un titulo.');
+			alert('{% trans "El relato debe tener un titulo" %}.');
 			return;
 		}
 		patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{1,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ0-9]{1,})*$/;
 		if(!patt.test(titulo))
 		{
-			alert('El titulo sólo puede contener letras y números, con palabras separadas por un espacio.');
+			alert('{% trans "El titulo sólo puede contener letras y números, con palabras separadas por un espacio" %}.');
 			return;
 		}
 
 		if(relato=="")
 		{
-			alert('El relato debe tener una descripción.');
+			alert('{% trans "El relato debe tener una descripción" %}.');
 			return;
 		}
 		if(pueblo=="")
 		{
-			alert('Seleccione un pueblo para él que registrará el relato.');
+			alert('{% trans "Seleccione un pueblo para él que registrará el relato" %}.');
 			return;
 		}
 
@@ -435,18 +436,18 @@ $(function(){
                 {
                 	if(response.respuesta=='exito')
                 	{
-                		alert('Relato enviado.');
+                		alert('{% trans "Relato enviado" %}.');
                 		$cerrar1.trigger('click');
                 	}
                 	else
                 	{
-						alert('Ocurrió un error interno.');
+						alert('{% trans "Ocurrió un error interno" %}.');
                 	}
 
                 }
                 else
                 {
-                    alert('No hubo respuesta por parte del servidor.');
+                    alert('{% trans "No hubo respuesta por parte del servidor" %}.');
                 }
             },
              error:function(jqXHR, status, error)
