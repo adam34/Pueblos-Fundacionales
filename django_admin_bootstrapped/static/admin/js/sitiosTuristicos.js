@@ -73,10 +73,10 @@ function validar_formulario()
     {
         errores.push('El tamaño del nombre no puede ser mayor de 30 caracteres.');
     }
-    patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ]{3,})*$/;
+    patt= /^([A-Za-zñÑáéíóúÁÉÍÓÚ]{2,})+((\s{1})[A-Za-zñÑáéíóúÁÉÍÓÚ]{2,})*$/;
     if(!patt.test(valor))
     {
-        errores.push('El campo de nombre(s) no tiene el formato correcto. Asegurese de introducir nombres compuestos sólo por letras, de 3 caracteres como mínimo, separados por un "sólo" espacio y de proporcionar tanto el/los nombre(s) como el/los apellido(s).');
+        errores.push('El campo de nombre(s) no tiene el formato correcto. Asegurese de introducir nombres compuestos sólo por letras, de 2 caracteres como mínimo, separados por un "sólo" espacio y de proporcionar tanto el/los nombre(s) como el/los apellido(s).');
     }
     if($("#id_PUEBLO").val()=="")
     {

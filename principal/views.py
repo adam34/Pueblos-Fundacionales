@@ -1,5 +1,6 @@
 # Create your views here.
 # -*- encoding: utf-8 -*-
+from __future__ import unicode_literals
 	# import pdb
 	# pdb.set_trace()
 import json
@@ -26,6 +27,7 @@ def home(request):
 	# import pdb
 	# pdb.set_trace()
 	url=resolver_url(request)
+	language=obtener_idioma(request)
 	try:
 		#Se obtienen los pueblos turisticos solamente y se elige 1 al azar.
 		cantidad_turisticos=pueblo.objects.filter(TIPO='T').count()
@@ -33,12 +35,15 @@ def home(request):
 		if cantidad_turisticos > 0:
 			azar=random.randint(0,cantidad_turisticos-1)
 			turistico=pueblo.objects.filter(TIPO='T')[azar]
-		cantidad_curiosidades=curiosidad.objects.count()
+			turistico=turistico.get_pueblo_idioma(language)
+		
 		#Procedimiento similar al de pueblos turisticos pero con las curiosidades
+		cantidad_curiosidades=curiosidad.objects.count()
 		curios=None
 		if cantidad_curiosidades > 0:
 			azar=random.randint(0,cantidad_curiosidades-1)
 			curios=curiosidad.objects.all()[azar]
+			curios=curios.get_curiosidad_idioma(language)
 		#Se obtiene el pueblo más visitado y los 4 más visitados
 		total_pueblos=pueblo.objects.count()
 		pueblo_masVisitado=None
@@ -46,6 +51,8 @@ def home(request):
 		if total_pueblos >0:
 			pueblos_masVisitados=pueblo.objects.order_by('-VISITAS')[:4]
 			pueblo_masVisitado=pueblos_masVisitados[0]
+			pueblo_masVisitado=pueblo_masVisitado.get_pueblo_idioma(language)
+		
 		#Se obtienen los sitios con contrato vigente y con menor numero de veces desplegados
 		total_contratos=contrato.objects.count()
 		contracts=None
@@ -64,15 +71,27 @@ def home(request):
 				if len(contracts)>=2:
 					break
 			#contracts = contrato.objects.all().order_by('NOVECES')[:2]
+		
 		#Obtener los 3 primeros
 		# import pdb
 		# pdb.set_trace()
 		hoy_time=datetime.datetime.now()
 		eventos_hoy=evento.objects.filter(FECHA__day=hoy_time.day).order_by('FECHA')
 		if eventos_hoy.count()>0:
+			temp = []
+			for even in eventos_hoy:
+				temp.append(even.get_evento_idioma(language))
+			eventos_hoy=temp
+		else:
 			eventos_hoy=None
+
 		eventos_mes=evento.objects.filter(FECHA__year=hoy_time.year,FECHA__month=hoy_time.month).order_by('FECHA')
 		if eventos_mes.count()>0:
+			temp = []
+			for even in eventos_mes:
+				temp.append(even.get_evento_idioma(language))
+			eventos_mes=temp
+		else:
 			eventos_mes=None
 
 	except Exception,e:
@@ -88,6 +107,7 @@ def home(request):
 		'eventos_mes':eventos_mes,
 		'url':url
 		}))
+
 def eventos_ajax(request):
 	# import pdb
 	# pdb.set_trace()
@@ -118,8 +138,8 @@ def eventos_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def login_ajax(request):
-	import pdb
-	pdb.set_trace()
+	# import pdb
+	# pdb.set_trace()
 	if request.is_ajax():
 		if request.POST:
 			if not request.user.is_authenticated():
@@ -147,6 +167,7 @@ def login_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 	pass
 
+#No olvidar traducir el contenido del correo
 def registro_usuario_ajax(request):
 	if request.is_ajax():
 		if request.POST:
@@ -191,6 +212,7 @@ def registro_usuario_ajax(request):
 	else:
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
+#No olvidar traducir el contenido del correo.
 def recupera_ajax(request):
 	if request.is_ajax():
 		if request.POST:
@@ -268,6 +290,9 @@ def cerrar_sesion(request):
 	return redirect(home)
 
 def secciones(request):
+	# import pdb
+	# pdb.set_trace()
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	cant_elementos = sitio_turistico.objects.count()
 	sitios = None
@@ -281,7 +306,8 @@ def secciones(request):
 				loop=4
 			for i in range(0,loop):
 				azar=random.randint(0,cant_elementos-1)
-				lista.append(sitios[azar])
+				sitio = sitios[azar].get_sitio_turistico_idioma(language)
+				lista.append(sitio)
 				sitios.remove(sitios[azar])
 				cant_elementos -=1
 	except Exception, e:
@@ -295,12 +321,17 @@ def secciones(request):
 		}))
 
 def pueblos(request):
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	try:
 		cant_pueblos= pueblo.objects.count()
 		pueblos = None
 		if cant_pueblos >0:
 			pueblos= pueblo.objects.all()
+			temp = []
+			for village in pueblos:
+				temp.append(village.get_pueblo_idioma(language))
+			pueblos=temp
 	except Exception,e:
 		print e
 	return render_to_response('pueblos.html',RequestContext(request,{
@@ -312,14 +343,17 @@ def pueblos(request):
 def pueblos_ajax(request):
 	# import pdb
 	# pdb.set_trace()
+	language=obtener_idioma(request)
 	if request.is_ajax():
 		if request.POST:
 			if 'NOMBRE' in request.POST:
 				try:				
 					nombre = request.POST['NOMBRE']
 					poblado = pueblo.objects.get(NOMBRE=nombre)
-					dicc = dict()
-					dicc = {'NOMBRE':poblado.NOMBRE,'HISTORIA':poblado.HISTORIA,'CULTURA':poblado.CULTURA,'COMIDA':poblado.COMIDA,'DATOS':poblado.DATOS}
+					poblado.VISITAS+=1
+					poblado.save()
+					temp = poblado.get_pueblo_idioma(language)
+					dicc = {'NOMBRE':poblado.NOMBRE,'HISTORIA':temp.HISTORIA,'CULTURA':temp.CULTURA,'COMIDA':temp.COMIDA,'DATOS':temp.DATOS}
 					return HttpResponse(json.dumps({'respuesta':'exito','pueblo':dicc}),mimetype='application/json')
 				except Exception,e:
 					return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')
@@ -342,12 +376,17 @@ def politicas(request):
 		}))
 
 def curiosidades(request):
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	try:
 		cant_curiosidades= curiosidad.objects.count()
 		curiosidades = None
 		if cant_curiosidades >0:
 			curiosidades= curiosidad.objects.all()
+			temp = []
+			for curio in curiosidades:
+				temp.append(curio.get_curiosidad_idioma(language))
+			curiosidades=temp
 	except Exception,e:
 		print e
 	return render_to_response('curiosidades.html',RequestContext(request,
@@ -358,12 +397,17 @@ def curiosidades(request):
 		}))
 
 def masvisto(request):
+	# import pdb
+	# pdb.set_trace()
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	try:
 		cant_pueblos= pueblo.objects.count()
 		mas_visto = None
 		if cant_pueblos >0:
-			mas_visto= pueblo.objects.all().order_by('VISITAS')[0]
+			mas_visto= pueblo.objects.all().order_by('-VISITAS')[0]
+			temp=mas_visto.get_pueblo_idioma(language)
+			mas_visto=temp
 	except Exception,e:
 		print e
 	return render_to_response('mas-visto.html',RequestContext(request,
@@ -374,12 +418,17 @@ def masvisto(request):
 		}))
 
 def descubrabcs(request):
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	try:
 		cant_turisticos= pueblo.objects.filter(TIPO='T').count()
 		turisticos = None
 		if cant_turisticos >0:
 			turisticos= pueblo.objects.filter(TIPO='T')
+			temp=[]
+			for turistico in turisticos:
+				temp.append(turistico.get_pueblo_idioma(language))
+			turisticos=temp
 	except Exception,e:
 		print e
 	return render_to_response('descubra-bcs.html',RequestContext(request,
@@ -390,12 +439,17 @@ def descubrabcs(request):
 		}))
 
 def bcsdesconocida(request):
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	try:
 		cant_curiosidades= curiosidad.objects.count()
 		curiosidades = None
 		if cant_curiosidades >0:
 			curiosidades= curiosidad.objects.all()
+			temp=[]
+			for curio in curiosidades:
+				temp.append(curio.get_curiosidad_idioma(language))
+			curiosidades=temp
 	except Exception,e:
 		print e
 	return render_to_response('bcs-desconocida.html',RequestContext(request,
@@ -437,12 +491,17 @@ def galerias_ajax(request):
 		raise Http404
 
 def libros(request):
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	hoy = datetime.datetime.now()
 	cont_eventos = evento.objects.filter(FECHA__gt=hoy)
 	eventos = None
 	if cont_eventos > 0:
 		eventos = evento.objects.filter(FECHA__gt=hoy)
+		temp = []
+		for event in eventos:
+			temp.append(event.get_evento_idioma(language))
+		eventos=temp
 	return render_to_response('libros.html',RequestContext(request,
 		{
 		'user':request.user,
@@ -458,22 +517,36 @@ def basico(request):
 		'url':url,
 		}))
 
+#Ver si es necesario traducir la información en este.
 def mapa(request):
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	try:
 		cant_fund= pueblo.objects.filter(TIPO='F').count()
 		pueblos_fund = None
 		if cant_fund >0:
 			pueblos_fund= pueblo.objects.filter(TIPO='F')
+			temp = []
+			for pueb in pueblos_fund:
+				temp.append(pueb.get_pueblo_idioma(language))
+			pueblos_fund=temp
 		cant_turis= pueblo.objects.filter(TIPO='T').count()
 		pueblos_turis = None
 		if cant_turis >0:
 			pueblos_turis= pueblo.objects.filter(TIPO='T')
+			temp = []
+			for pueb in pueblos_turis:
+				temp.append(pueb.get_pueblo_idioma(language))
+			pueblos_turis=temp
 
 		cant_sitios=sitio_turistico.objects.all()
 		sitios = None
 		if cant_sitios >0:
 			sitios=sitio_turistico.objects.all()
+			temp = []
+			for site in sitios:
+				temp.append(site.get_sitio_turistico_idioma(language))
+			pueblos_turis=temp
 	except Exception,e:
 		print e
 	return render_to_response('mapa.html',RequestContext(request,
@@ -486,6 +559,7 @@ def mapa(request):
 		}))
 
 def alojamiento(request):
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	try:
 		try:
@@ -495,6 +569,10 @@ def alojamiento(request):
 		if categ is not None:
 			if sitio_turistico.objects.filter(CATEGORIA=categ).count() > 0:
 				hoteles= sitio_turistico.objects.filter(CATEGORIA=categ)
+				temp = []
+				for hotel in hoteles:
+					temp.append(hoteles.get_sitio_turistico_idioma(language))
+				hoteles=temp
 			else:
 				hoteles=None
 		else:
@@ -631,6 +709,7 @@ def audio(request):
 	return render_to_response('multimedia/audio.html',RequestContext(request,{'user':request.user}))
 
 def eventos(request):
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	try:
 		# import pdb
@@ -643,11 +722,13 @@ def eventos(request):
 			for event in eventos:
 				dic = dict()
 				coment_cont=comentario_evento.objects.filter(EVENTO=event).count()
-				dic['evento']=event
 				if coment_cont > 0:
 					dic['comentarios']=comentario_evento.objects.filter(EVENTO=event)[:3]
 				else:
 					dic['comentarios']=None
+				
+				event=event.get_evento_idioma(language)
+				dic['evento']=event
 				lista.append(dic)
 		#Agarrar 3 comentarios por cada relato a mostrar
 	except Exception,e:
@@ -694,6 +775,7 @@ def galeria_2(request):
 def relatos(request):
 	# import pdb
 	# pdb.set_trace()
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	try:
 		cont_relatos = relato.objects.count()
@@ -705,11 +787,13 @@ def relatos(request):
 			for rel in relatos:
 				dic = dict()
 				coment_cont=comentario_relato.objects.filter(RELATOS=rel)
-				dic['relato']=rel
+				
 				if coment_cont > 0:
 					dic['comentarios']=comentario_relato.objects.filter(RELATOS=rel)[:3]
 				else:
 					dic['comentarios']=None
+				rel=rel.get_relato_idioma(language)
+				dic['relato']=rel
 				lista.append(dic)
 			mejores_relatos=relato.objects.all().order_by('-VALORACION')[:3]
 		cont_pueblos= pueblo.objects.count()
@@ -793,6 +877,7 @@ def valorar_relatos_ajax(request):
 
 def sitiosT(request):
 	url=resolver_url(request)
+	language=obtener_idioma(request)
 	try:
 		# import pdb
 		# pdb.set_trace()
@@ -804,11 +889,13 @@ def sitiosT(request):
 			for sitio in sitios:
 				dic = dict()
 				coment_cont=comentario_sitio.objects.filter(SITIOS=sitio).count()
-				dic['sitio']=sitio
+				
 				if coment_cont > 0:
 					dic['comentarios']=comentario_sitio.objects.filter(SITIOS=sitio)[:3]
 				else:
 					dic['comentarios']=None
+				sitio=sitio.get_sitio_turistico_idioma(language)
+				dic['sitio']=sitio
 				lista.append(dic)
 		#Agarrar 3 comentarios por cada relato a mostrar
 	except Exception,e:
@@ -850,6 +937,7 @@ def comentarios_sitios_ajax(request):
 def busqueda(request):
 	#import pdb
 	#pdb.set_trace()
+	language=obtener_idioma(request)
 	url=resolver_url(request)
 	if 'text_search' in request.POST:
 		res = request.POST['text_search']
@@ -861,15 +949,31 @@ def busqueda(request):
 			cont_pueblos= pueblo.objects.filter(NOMBRE__contains=res).count()
 			if cont_pueblos >0:
 				pueblos=pueblo.objects.filter(NOMBRE__contains=res)
+				temp = []
+				for pueb in pueblos:
+					temp.append(pueb.get_pueblo_idioma(language))
+				pueblos=temp
 			cont_eventos=evento.objects.filter(NOMBRE__contains=res).count()
 			if cont_eventos>0:
 				eventos=evento.objects.filter(NOMBRE__contains=res)
+				temp = []
+				for even in eventos:
+					temp.append(even.get_evento_idioma(language))
+				eventos=temp
 			cont_sitios=sitio_turistico.objects.filter(Q(NOMBRE__contains=res) | Q(DIRECCION__contains=res) | Q(DESCRIPCION__contains=res)).count()
-			if cont_sitios>0:
+			if cont_sitios>0:				
 				sitios=sitio_turistico.objects.filter(Q(NOMBRE__contains=res) | Q(DIRECCION__contains=res) | Q(DESCRIPCION__contains=res)).count()
+				temp = []
+				for site in sitios:
+					temp.append(site.get_sitio_turistico_idioma(language))
+				sitios=temp		
 			cont_relatos=relato.objects.filter(TITULO__contains=res).count()
 			if cont_relatos>0:
 				relatos=relato.objects.filter(TITULO__contains=res).count()
+				temp = []
+				for rel in relatos:
+					temp.append(rel.get_sitio_relato_idioma(language))
+				relatos=temp	
 		except Exception,e:
 			print e
 		return render_to_response('busqueda.html',RequestContext(request,
@@ -914,8 +1018,9 @@ def reporte_comentarios_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def enviar_relatos_ajax(request):
-	# import pdb
-	# pdb.set_trace()
+	import pdb
+	pdb.set_trace()
+	language=obtener_idioma(request)
 	if request.is_ajax():
 		if request.POST:
 			if ('TITULO' in request.POST and 'RELATO' in request.POST  and 'PUEBLO' in request.POST):
@@ -926,8 +1031,14 @@ def enviar_relatos_ajax(request):
 				village=pueblo.objects.get(NOMBRE=nombre)
 				try:
 					fecha =datetime.datetime.now()
-					rel = relato(TITULO=titulo,DESCRIPCION=contenido,FECHA=fecha,USUARIO=usuario,PUEBLO=village,APROBADO=False,VALORACION=0)
-					rel.save()
+					if language == settings.SELECTED_LANGUAGE:
+						rel = relato(TITULO="",DESCRIPCION="",FECHA=fecha,USUARIO=usuario,PUEBLO=village,APROBADO=False,VALORACION=0)
+						rel.save()
+						rel_idiom=relato_idioma(TITULO=titulo,DESCRIPCION=contenido,RELATO=rel,IDIOMA=language)
+						rel_idiom.save()
+					else:
+						rel = relato(TITULO=titulo,DESCRIPCION=contenido,FECHA=fecha,USUARIO=usuario,PUEBLO=village,APROBADO=False,VALORACION=0)
+						rel.save()
 					return HttpResponse(json.dumps({'respuesta':'exito'}),mimetype='application/json')
 				except Exception,e:
 					print e
@@ -950,7 +1061,7 @@ def enviar_relatos_ajax(request):
 # 	return render_to_response('index.html',RequestContext(request,{'user':request.user,}))
 
 
-
+#--------------------------------------------------------------------------->
 def resolver_url(request):
 	# import pdb
 	# pdb.set_trace()
@@ -968,3 +1079,10 @@ def resolver_url(request):
 		except Exception,e:
 			pass
 	return cadena
+
+def obtener_idioma(request):
+	for language in settings.LANGUAGES:
+		idioma = language[0]
+		if idioma == request.LANGUAGE_CODE:
+			return language[1]
+	return ''

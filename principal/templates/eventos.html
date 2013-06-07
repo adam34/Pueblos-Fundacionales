@@ -106,7 +106,7 @@
 			{
 				$.ajax({
 					 async:false,
-	                url:"/comentarios_eventos_ajax/",
+	                url:"{% url 'comentarios_eventos_ajax' %}",
 	                data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'COMENTARIO':comentario},
 	                type:'POST',
 	                //dataType:
@@ -183,7 +183,7 @@
 
 		$.ajax({
 			async:false,
-            url:"/reporte_comentarios_ajax/",
+            url:"{% url 'reporte_comentarios_ajax' %}",
             data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'RAZON':razon,'TIPO_COMENTARIO':'E'},
             type:'POST',
             //dataType:

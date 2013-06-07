@@ -141,21 +141,21 @@
 					<div>
 						<h4>{{evento.NOMBRE}}</h4>
 						<p>{{evento.DESCRIPCION}}</p>
-						<p><a href='/eventos/'>Ir al evento</a></p>
+						<p><a href='{% url "eventos" %}'>Ir al evento</a></p>
 					</div>
 				</article>
 				{% endfor %}
 			{% else %}
 				<p>No hay eventos proximos a ocurrir.</p>
 			{% endif %}
-			<section class="suscribete_redes">
+<!-- 			<section class="suscribete_redes">
 				<h3>Suscríbete</h3>
 				<form action="#">
 					<input type="text" placeholder="&nbsp;Introduce tu email">
 					<br><br>
 					<input name="enviar" value="Enviar" type="button">
 				</form>
-			</section>
+			</section> -->
 		</section>
 	</section>
 {% endblock %}

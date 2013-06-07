@@ -54,9 +54,11 @@ LANGUAGE_CODE = 'es-mx'
 ugettext = lambda s: s
 
 LANGUAGES = (
-    ('es-mx', ugettext('Español')),
-    ('en', ugettext('Ingles')),
+    (('es-mx', u'Español')),
+    (('en', 'Ingles')),
 )
+
+SELECTED_LANGUAGE = LANGUAGES[0][1]
 
 LOCALE_PATHS = (
     #'C:/Proyectos/Pueblos-Fundacionales/locale',
@@ -149,6 +151,7 @@ TEMPLATE_DIRS = (
 TEMPLATE_CONTEXT_PROCESSORS =(
     'django.core.context_processors.i18n',
     'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
 )
 
 INSTALLED_APPS = (

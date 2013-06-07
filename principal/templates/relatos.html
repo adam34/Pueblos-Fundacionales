@@ -196,7 +196,7 @@ $(function(){
 		{
 			$.ajax({
 				 async:false,
-                url:"/comentarios_relatos_ajax/",
+                url:"{% url 'comentarios_relatos_ajax' %}",
                 data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'COMENTARIO':comentario},
                 type:'POST',
                 //dataType:
@@ -255,7 +255,7 @@ $(function(){
 		//$elemento = $(e.target)
 		$.ajax({
 			 async:false,
-            url:"/valorar_relatos_ajax/",
+            url:"{% url 'valorar_relatos_ajax' %}",
             data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'VALORACION':valor},
             type:'POST',
             //dataType:
@@ -298,7 +298,7 @@ $(function(){
 		//$elemento = $(e.target)
 		$.ajax({
 			 async:false,
-            url:"/valorar_relatos_ajax/",
+            url:"{% url 'valorar_relatos_ajax' %}",
             data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'VALORACION':valor},
             type:'POST',
             //dataType:
@@ -362,7 +362,7 @@ $(function(){
 
 		$.ajax({
 			async:false,
-            url:"/reporte_comentarios_ajax/",
+            url:"{% url 'reporte_comentarios_ajax' %}",
             data:{csrfmiddlewaretoken:'{{csrf_token}}','ID':id,'RAZON':razon,'TIPO_COMENTARIO':'R'},
             type:'POST',
             //dataType:
@@ -425,7 +425,7 @@ $(function(){
 
 		$.ajax({
 			async:false,
-            url:"/enviar_relatos_ajax/",
+            url:"{% url 'enviar_relatos_ajax' %}",
             data:{csrfmiddlewaretoken:'{{csrf_token}}','TITULO':titulo,'RELATO':relato,'PUEBLO':pueblo},
             type:'POST',
             //dataType:

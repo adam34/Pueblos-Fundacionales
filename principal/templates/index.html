@@ -154,27 +154,27 @@
 				</h3>
 				<p class="utilidades">
 					<img src="/static/img/asterisk.png" alt="Información Básica">
-					<a href="/accesos/">{% trans 'Información Básica' %}</a>
+					<a href="{% url 'basico' %}">{% trans 'Información Básica' %}</a>
 				</p>
 				<p class="utilidades">
 					<img src="/static/img/Maps.png" alt="Mapa">
-					<a href="/mapa/">{% trans 'Mapa' %}</a>
+					<a href="{% url 'mapa' %}">{% trans 'Mapa' %}</a>
 				</p>
 				<p class="utilidades">
 					<img src="/static/img/hotel.png" alt="Alojamiento">
-					<a href="/alojamiento/">{% trans 'Alojamiento' %}</a>
+					<a href="{% url 'alojamiento' %}">{% trans 'Alojamiento' %}</a>
 				</p>
 				<p class="utilidades">
 					<img src="/static/img/comida.png" alt="Comida">
-					<a href="/comida/">{% trans 'Comida' %}</a>
+					<a href="{% url 'comida' %}">{% trans 'Comida' %}</a>
 				</p>
 				<p class="utilidades">
 					<img src="/static/img/pueblo.png" alt="Pueblos">
-					<a href="/pueblos/">{% trans 'Pueblos' %}</a>
+					<a href="{% url 'pueblos' %}">{% trans 'Pueblos' %}</a>
 				</p>
 				<p class="utilidades">
 					<img src="/static/img/foto.png" alt="Galería">
-					<a href="/galerias/">{% trans 'Galería de Fotos' %}</a>
+					<a href="{% url 'galerias' %}">{% trans 'Galería de Fotos' %}</a>
 				</p>
 			</article>
 			<article class="telefonos">
@@ -183,12 +183,12 @@
 				<p>
 					<a href="#">{% trans 'Emergencias' %}</a>
 					<br>
-					<a id="dir" href="/dir/" title="Directorio">
+					<a id="dir" href="{% url 'dir' %}" title="Directorio">
 						<img src="/static/img/directorio.png" alt=""/>
 					</a>
 				</p>
 				<span>
-					<a href="/dir/">
+					<a href="{% url 'dir' %}">
 						{% trans 'Ver teléfonos' %}
 					</a>
 				</span>

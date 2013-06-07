@@ -22,100 +22,101 @@
 				<section class="map_tree">
 					<ul>
 						<li>
-							<a href="/">{% trans 'Inicio' %}</a>
+							<a href="{% url 'home' %}">{% trans 'Inicio' %}</a>
 						</li>
 						<li>
 							<a href="/secciones/">{% trans 'Secciones' %}</a>
 							<ul>
 								<li>
-									<a href="/alojamiento/">
+									<a href="{% url 'alojamiento' %}">
 										{% trans 'Hoteles' context "Hotels" %}
 									</a>
 								</li>
 								<li>
-									<a href="/comida/">
+									<a href="{% url 'comida' %}">
 										{% trans 'Restaurantes' context "Restaurants" %}
 									</a>
 								</li>
 								<li>
-									<a href="/eventos/">
+									<a href="{% url 'eventos' %}">
 										{% trans 'Eventos' %}
 									</a>
 								</li>
 								<li>
-									<a href="/galerias/">
+									<a href="{% url 'galerias' %}">
 										{% trans 'Galería' context "Gallery" %}
 									</a>
 								</li>
 								<li>
-									<a href="/curiosidades/">
+									<a href="{% url 'curiosidades' %}">
 										{% trans 'Curiosidades' context "Curiosities" %}
 									</a>
 								</li>
 								<li>
-									<a href="/relatos/">
+									<a href="{% url 'relatos' %}">
 										{% trans 'Relatos' %}
 									</a>
 								</li>
 								<li>
-									<a href="/directorio/">
+									<a href="{% url 'directorio' %}">
 										{% trans 'Directorio' context "Directory" %}
 									</a>
 								</li>
 								<li>
-									<a href="/libreria/">
+									<a href="{% url 'libreria' %}">
 										{% trans 'Librería' context "Library" %}
 									</a>
 								</li>
 								<li>
-									<a href="/sitios_turisticos/">
+									<a href="{% url 'sitios_turisticos' %}">
 										{% trans 'Sitios Turísticos' context "Tourist Sites" %}
 									</a>
 								</li>
 								<li>
-									<a href="/mapa/">
+									<a href="{% url 'mapa' %}">
 										{% trans 'Mapa' %}
 									</a>
 								</li>
 								<li>
-									<a href="/multimedia/">
+									<a href="{% url 'multimedia' %}">
 										{% trans 'Multimedia' %}
 									</a>
 								</li>
 								<li>
-									<a href="/libros/">
+									<a href="{% url 'libros' %}">
 										{% trans 'Descargas' context "Downloads" %}
 									</a>
 								</li>
 							</ul>
 						</li>
+
 						<li>
-							<a href="/pueblos/">
+							<a href="{% url 'pueblos' %}">
 								{% trans 'Pueblos' %}
 							</a>
 						</li>
 						<li>
-							<a href="/galerias/">
+							<a href="{% url 'galerias' %}">
 								{% trans 'Galerías' %}
 							</a>
 						</li>
 						<li>
-							<a href="/">
+							<a href="{% url 'home' %}">
 								{% trans 'Novedades' %}
 							</a>
 							<ul>
 								<li>
-									<a href="/bcs-desconocida/">
+									<a href="{% url 'bcsdesconocida' %}">
 										{% trans 'BCS Desconocida' %}
 									</a>
 								</li>
 								<li>
-									<a href="/descubra-bcs/">
+									<a href="{% url 'descubrabcs' %}">
 										{% trans 'Descubra BCS' %}
 									</a>
 								</li>
 								<li>
-									<a href="/mas-visto/">
+									<a href="{% url 'masvisto' %}">
 										{% trans 'Pueblo más visto' context "Town most viewed" %}
 									</a>
 								</li>
@@ -123,9 +124,10 @@
 						</li>
 					</ul>
 				</section>
+
 				<br><br>
 			<span>
-				<a href="/sitios_turisticos/">
+				<a href="{% url 'sitios_turisticos' %}">
 					{% trans 'Visita nuestra sección de Sitios Turísticos, da click' %} <span>{% trans 'aquí' %}</span>
 				</a>
 			</span>
@@ -138,7 +140,7 @@
 					<li>Hostal</li>
 					<li>B &amp; B [Bed and breakfast]</li>
 				</ul>
-				<a class="entrar" href="/alojamiento/">{% trans 'Visitar sección' %}</a>
+				<a class="entrar" href="{% url 'alojamiento' %}">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_restaurantes">
 				<h4>{% trans 'Restaurantes' %}</h4>
@@ -146,7 +148,7 @@
 					<li>{% trans 'Comida sudcaliforniana' context "BCS Food" %}</li>
 					<li>{% trans '¿A dónde voy a comer?' %}</li>
 				</ul>
-				<a class="entrar" href="/comida/">{% trans 'Visitar sección' %}</a>
+				<a class="entrar" href="{% url 'comida' %}">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_pueblos">
 				<h4>{% trans 'Pueblos Fundacionales' %}</h4>
@@ -157,7 +159,7 @@
 					<li>{% trans 'Museos' %}</li>
 					<li>{% trans 'Galerías de Artes' %}</li>
 				</ul>
-				<a class="entrar" href="/pueblos/">{% trans 'Visitar sección' %}</a>
+				<a class="entrar" href="{% url 'pueblos' %}">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_eventos">
 				<h4>{% trans 'Eventos' %}</h4>
@@ -165,7 +167,7 @@
 					<li>{% trans 'Pueblos Fundacionales' %}</li>
 					<li>{% trans 'Arte' %}</li>
 				</ul>
-				<a class="entrar" href="/eventos/">{% trans 'Visitar sección' %}</a>
+				<a class="entrar" href="{% url 'eventos' %}">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_centros">
 				<h4>{% trans 'Galerías' %}</h4>
@@ -174,7 +176,7 @@
 					<li>{% trans 'Fotografías históricas' %}</li>
 					<li>{% trans 'Fotografías actuales' %}</li>
 				</ul>
-					<a class="entrar" href="/curiosidades/">{% trans 'Visitar sección' %}</a>
+					<a class="entrar" href="{% url 'galerias' %}">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_curiosidades">
 				<h4>{% trans 'Curiosidades' %}</h4>
@@ -183,7 +185,7 @@
 					<li>{% trans 'Flora' %}</li>
 					<li>{% trans 'Fauna' %}</li>
 				</ul>
-				<a class="entrar" href="/curiosidades/">{% trans 'Visitar sección' %}</a>
+				<a class="entrar" href="{% url 'curiosidades' %}">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_catalogo">
 				<h4>{% trans 'Catálogo digital' %}</h4>
@@ -191,7 +193,7 @@
 					<li>{% trans 'Libros históricos' %}</li>
 					<li>{% trans 'Libros sobre los Pueblos' %}</li>
 				</ul>
-				<a class="entrar" href="/libreria/">{% trans 'Visitar sección' %}</a>
+				<a class="entrar" href="{% url 'libreria' %}">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_catalogo">
 				<h4>{% trans 'Directorio Telefónico' %}</h4>
@@ -199,7 +201,7 @@
 					<li>{% trans 'Emergencias' %}</li>
 					<li>{% trans 'Cruz Roja' %}</li>
 				</ul>
-				<a class="entrar" href="/libreria/">{% trans 'Visitar sección' %}</a>
+				<a class="entrar" href="{% url 'dir' %}">{% trans 'Visitar sección' %}</a>
 			</section>
 		</section>
 		<section class="menu_turistico">
@@ -207,7 +209,7 @@
 				<img src="/static/img/turismo.jpg" alt="">
 				<p></p>
 				<h4>
-					<a href="/libros/">
+					<a href="{% url 'libros' %}">
 						{% trans 'Visita' %}
 					</a>
 				</h4>	
@@ -217,7 +219,7 @@
 				<img src="/static/img/turismo.jpg" alt="">
 				<p></p>
 				<h4>
-					<a href="/libros/">
+					<a href="{% url 'libros' %}">
 						{% trans 'Guías turísticas' %}
 					</a>
 				</h4>	
@@ -234,7 +236,7 @@
 				<div>
 					<h4>{{sitio.NOMBRE}}</h4>
 					<p>{{sitio.DESCRIPCION}}</a></p>
-					<p><a href='/sitios_turisticos/'>Ver sitio</a></p>
+					<p><a href='{% url "sitios_turisticos" %}'>Ver sitio</a></p>
 				</div>
 			</article>
 			{% endfor %}
