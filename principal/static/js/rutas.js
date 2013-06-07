@@ -1,80 +1,32 @@
+  var map;
+  var route;
 $(document).on("ready", function(){
-    var map; 
-    var route;
+    //prettyPrint();
     $('#forward').attr('disabled', 'disabled');
-        $('#back').attr('disabled', 'disabled');
-        $('#get_route').click(function(e){
-          e.preventDefault();
-          origin = map.setCenter(position.coords.latitude, position.coords.longitude);
-          destination = map.markers[map.markers.length-1].getPosition();
-          map.getRoutes({
-            origin: [origin.lat(), origin.lng()],
-            destination: [destination.lat(), destination.lng()],
-            travelMode: 'driving',
-            callback: function(e){
-                route = new GMaps.Route({
-                  map: map,
-                  route: e[0],
-                  strokeColor: '#336699',
-                  strokeOpacity: 0.5,
-                  strokeWeight: 10
-              });
-              $('#forward').removeAttr('disabled');
-              $('#back').removeAttr('disabled');
+    $('#back').attr('disabled', 'disabled');
+    $('#get_route').click(function(e){
+      e.preventDefault();
+
+        origin = map.markers[0].getPosition();
+        destination = map.markers[map.markers.length-1].getPosition();
+
+        map.getRoutes({
+          origin: [origin.lat(), origin.lng()],
+          destination: [destination.lat(), destination.lng()],
+          travelMode: 'driving',
+          callback: function(e){
+            route = new GMaps.Route({
+              map: map,
+              route: e[0],
+              strokeColor: '#336699',
+              strokeOpacity: 0.5,
+              strokeWeight: 10
+            });
+            $('#forward').removeAttr('disabled');
+            $('#back').removeAttr('disabled');
           }
         });
-        $('#forward').click(function(e){
-          e.preventDefault();
-            route.forward();
-            if(route.step_count < route.steps_length)
-              $('#steps').append('<li">'+route.steps[route.step_count].instructions+'</li>'+'<br/>');
-          });
-        });
-        $('#back').click(function(e){
-          e.preventDefault();
-          route.back();
-
-            if(route.step_count >= 0)
-              $('#steps').find('li').last().remove();
-          });
-    
-    map = new GMaps({
-        div: '#map',
-        lat: 24.13570,
-        lng: -110.33032,
-        zoom: 6,
-        //zoom: 17,
-        /*click: function(e){
-              map.addMarker({
-                lat: e.latLng.lat(),
-                lng: e.latLng.lng()
-              });
-          }*/
-    });
-    $('#geocoding_form').submit(function(e){
-      e.preventDefault();
-      GMaps.geocode({
-        address: $('#address').val().trim(),
-        callback: function(results, status){
-          if(status=='OK'){
-                    var latlng = results[0].geometry.location;
-                    map.setCenter(latlng.lat(), latlng.lng());
-                    map.addMarker({
-                      lat: latlng.lat(),
-                      lng: latlng.lng()
-                  });
-                }
-              }
-      });
-    });
-    //Autobus
-    map.addMarker({
-      lat: 24.13548,
-        lng: -110.32978,
-        title: 'Parada de Autobus',
-      icon: '/static/img/iconos/bus.png',
-    });
-    //Hotel 
+         //Hotel 
     map.addMarker({
       lat:  24.1586,
         lng: -110.3198,
@@ -219,6 +171,50 @@ $(document).on("ready", function(){
       title: 'San Ignacio',
       icon: '/static/img/iconos/misiones3.png',
     });
+        $('#forward').click(function(e){
+          e.preventDefault();
+          route.forward();
+
+          if(route.step_count < route.steps_length)
+            $('#steps').append('<li>'+route.steps[route.step_count].instructions+'</li>');
+        });
+        $('#back').click(function(e){
+          e.preventDefault();
+          route.back();
+
+          if(route.step_count >= 0)
+            $('#steps').find('li').last().remove();
+        });
+      });
+      map = new GMaps({
+        div: '#map',
+        lat:  26.185556,  
+        lng: -112.075278,
+        zoom: 8,
+       // zoom: 16,
+        click: function(e){
+          map.addMarker({
+            lat: e.latLng.lat(),
+            lng: e.latLng.lng()
+       });
+      }
+   });
+     $('#geocoding_form').submit(function(e){
+      e.preventDefault();
+      GMaps.geocode({
+        address: $('#address').val().trim(),
+        callback: function(results, status){
+          if(status=='OK'){
+                    var latlng = results[0].geometry.location;
+                    map.setCenter(latlng.lat(), latlng.lng());
+                    map.addMarker({
+                      lat: latlng.lat(),
+                      lng: latlng.lng()
+              });
+            }
+         }
+      });
+    });
     GMaps.geolocate({
       success: function(position) {
       map.setCenter(position.coords.latitude, position.coords.longitude);
@@ -230,4 +226,6 @@ $(document).on("ready", function(){
       alert("Your browser does not support geolocation");
       },
   });
+   
+   
 });
