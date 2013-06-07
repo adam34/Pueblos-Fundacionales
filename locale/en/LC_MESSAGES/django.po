@@ -8,11 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2013-06-06 18:52-0600\n"
-=======
-"POT-Creation-Date: 2013-06-06 15:25-0600\n"
->>>>>>> upstream/master
+"POT-Creation-Date: 2013-06-06 21:00-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -266,7 +262,7 @@ msgstr ""
 msgid "<h2>Login</h2>"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:42
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:44
 #: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:29
 #: .\django_admin_bootstrapped\templates\admin\cms\page\_change_form.html.py:124
 #: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:146
@@ -277,19 +273,19 @@ msgid_plural "Please correct the errors below."
 msgstr[0] ""
 msgstr[1] ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:54
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:56
 msgid "Username:"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:64
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:66
 msgid "Password:"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:77
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:79
 msgid "Forgotten your password or username?"
 msgstr ""
 
-#: .\django_admin_bootstrapped\templates\admin\login.html.py:83
+#: .\django_admin_bootstrapped\templates\admin\login.html.py:85
 #: .\django_admin_bootstrapped\templates\registration\password_reset_complete.html.py:18
 msgid "Log in"
 msgstr ""
@@ -1001,8 +997,8 @@ msgid "Reset my password"
 msgstr ""
 
 #: .\principal\templates\base.html.py:8 .\principal\templates\base.html.py:93
-#: .\principal\templates\secciones.html.py:152
-#: .\principal\templates\secciones.html.py:165
+#: .\principal\templates\secciones.html.py:154
+#: .\principal\templates\secciones.html.py:167
 msgid "Pueblos Fundacionales"
 msgstr "Foundational Towns"
 
@@ -1033,7 +1029,7 @@ msgstr "Sections"
 #: .\principal\templates\base.html.py:149
 #: .\principal\templates\index.html.py:173
 #: .\principal\templates\pueblos.html.py:23
-#: .\principal\templates\secciones.html.py:94
+#: .\principal\templates\secciones.html.py:95
 msgid "Pueblos"
 msgstr "Towns"
 
@@ -1244,12 +1240,12 @@ msgid "Error, no existe una cuenta de usuario con ese correo"
 msgstr "Error, there is not a user account with that email"
 
 #: .\principal\templates\index.html.py:14
-#: .\principal\templates\secciones.html.py:104
+#: .\principal\templates\secciones.html.py:105
 msgid "Novedades"
 msgstr "News"
 
 #: .\principal\templates\index.html.py:16
-#: .\principal\templates\secciones.html.py:114
+#: .\principal\templates\secciones.html.py:115
 msgid "Descubra BCS"
 msgstr "Descover BCS"
 
@@ -1262,7 +1258,7 @@ msgid "Leer más"
 msgstr "Read more"
 
 #: .\principal\templates\index.html.py:29
-#: .\principal\templates\secciones.html.py:109
+#: .\principal\templates\secciones.html.py:110
 msgid "BCS Desconocida"
 msgstr "Unknown BCS"
 
@@ -1276,7 +1272,7 @@ msgstr "Recommendations"
 
 #: .\principal\templates\index.html.py:86
 #: .\principal\templates\secciones.html.py:42
-#: .\principal\templates\secciones.html.py:163
+#: .\principal\templates\secciones.html.py:165
 msgid "Eventos"
 msgstr "Events"
 
@@ -1347,7 +1343,7 @@ msgid "Teléfonos"
 msgstr "Phones"
 
 #: .\principal\templates\index.html.py:184
-#: .\principal\templates\secciones.html.py:199
+#: .\principal\templates\secciones.html.py:201
 msgid "Emergencias"
 msgstr "Emergencies"
 
@@ -1429,7 +1425,6 @@ msgstr "Visit us!"
 msgid "No hay eventos para el mes"
 msgstr "There are not eventos for this month"
 
-<<<<<<< HEAD
 #: .\principal\templates\pueblos.html.py:30
 msgid "Visita nuestro catálogo digital"
 msgstr "Visit our Digital Catalog"
@@ -1492,151 +1487,150 @@ msgctxt "Downloads"
 msgid "Descargas"
 msgstr "Downloads"
 
-#: .\principal\templates\secciones.html.py:99
-#: .\principal\templates\secciones.html.py:171
+#: .\principal\templates\secciones.html.py:100
+#: .\principal\templates\secciones.html.py:173
 msgid "Galerías"
 msgstr "Gallery"
 
-#: .\principal\templates\secciones.html.py:119
+#: .\principal\templates\secciones.html.py:120
 msgctxt "Town most viewed"
 msgid "Pueblo más visto"
 msgstr "Town most viewed"
 
-#: .\principal\templates\secciones.html.py:129
+#: .\principal\templates\secciones.html.py:131
 msgid "Visita nuestra sección de Sitios Turísticos, da click"
 msgstr "Visit our Tourist Sites section, please click"
 
-#: .\principal\templates\secciones.html.py:129
+#: .\principal\templates\secciones.html.py:131
 msgid "aquí"
 msgstr "here"
 
-#: .\principal\templates\secciones.html.py:133
 #: .\principal\templates\secciones.html.py:135
-#: .\principal\templates\secciones.html.py:136
 #: .\principal\templates\secciones.html.py:137
+#: .\principal\templates\secciones.html.py:138
+#: .\principal\templates\secciones.html.py:139
 msgid "Hoteles"
 msgstr "Hotels"
 
-#: .\principal\templates\secciones.html.py:141
-#: .\principal\templates\secciones.html.py:149
-#: .\principal\templates\secciones.html.py:160
-#: .\principal\templates\secciones.html.py:168
-#: .\principal\templates\secciones.html.py:177
-#: .\principal\templates\secciones.html.py:186
-#: .\principal\templates\secciones.html.py:194
-#: .\principal\templates\secciones.html.py:202
+#: .\principal\templates\secciones.html.py:143
+#: .\principal\templates\secciones.html.py:151
+#: .\principal\templates\secciones.html.py:162
+#: .\principal\templates\secciones.html.py:170
+#: .\principal\templates\secciones.html.py:179
+#: .\principal\templates\secciones.html.py:188
+#: .\principal\templates\secciones.html.py:196
+#: .\principal\templates\secciones.html.py:204
 msgid "Visitar sección"
 msgstr "Visit section"
 
-#: .\principal\templates\secciones.html.py:144
+#: .\principal\templates\secciones.html.py:146
 msgid "Restaurantes"
 msgstr "Restaurants"
 
-#: .\principal\templates\secciones.html.py:146
+#: .\principal\templates\secciones.html.py:148
 msgctxt "BCS Food"
 msgid "Comida sudcaliforniana"
 msgstr "BCS Food"
 
-#: .\principal\templates\secciones.html.py:147
+#: .\principal\templates\secciones.html.py:149
 msgid "¿A dónde voy a comer?"
 msgstr "Where am I go to eat?"
 
-#: .\principal\templates\secciones.html.py:154
+#: .\principal\templates\secciones.html.py:156
 msgid "Historia"
 msgstr "History"
 
-#: .\principal\templates\secciones.html.py:155
+#: .\principal\templates\secciones.html.py:157
 msgid "Pueblos y tradiciones"
 msgstr "Foundational Towns"
 
-#: .\principal\templates\secciones.html.py:156
+#: .\principal\templates\secciones.html.py:158
 msgid "Misiones"
 msgstr "Misions"
 
-#: .\principal\templates\secciones.html.py:157
+#: .\principal\templates\secciones.html.py:159
 msgid "Museos"
 msgstr "Museum"
 
-#: .\principal\templates\secciones.html.py:158
+#: .\principal\templates\secciones.html.py:160
 msgid "Galerías de Artes"
 msgstr "Art Gallery"
 
-#: .\principal\templates\secciones.html.py:166
+#: .\principal\templates\secciones.html.py:168
 msgid "Arte"
 msgstr "Art"
 
-#: .\principal\templates\secciones.html.py:173
+#: .\principal\templates\secciones.html.py:175
 msgctxt "BCS Towns"
 msgid "Pueblos Sudcalifornianos"
 msgstr "Foundational Towns"
 
-#: .\principal\templates\secciones.html.py:174
+#: .\principal\templates\secciones.html.py:176
 msgid "Fotografías históricas"
 msgstr "Historical photos"
 
-#: .\principal\templates\secciones.html.py:175
+#: .\principal\templates\secciones.html.py:177
 msgid "Fotografías actuales"
 msgstr "Actual photography"
 
-#: .\principal\templates\secciones.html.py:180
+#: .\principal\templates\secciones.html.py:182
 msgid "Curiosidades"
 msgstr "Curiosities"
 
-#: .\principal\templates\secciones.html.py:182
+#: .\principal\templates\secciones.html.py:184
 msgid "¿Sabías que... ?"
 msgstr "Did you know...?"
 
-#: .\principal\templates\secciones.html.py:183
+#: .\principal\templates\secciones.html.py:185
 msgid "Flora"
 msgstr "Flora"
 
-#: .\principal\templates\secciones.html.py:184
+#: .\principal\templates\secciones.html.py:186
 msgid "Fauna"
 msgstr "Fauna"
 
-#: .\principal\templates\secciones.html.py:189
+#: .\principal\templates\secciones.html.py:191
 msgid "Catálogo digital"
 msgstr "Digital Catalog"
 
-#: .\principal\templates\secciones.html.py:191
+#: .\principal\templates\secciones.html.py:193
 msgid "Libros históricos"
 msgstr "Historical photos"
 
-#: .\principal\templates\secciones.html.py:192
+#: .\principal\templates\secciones.html.py:194
 msgid "Libros sobre los Pueblos"
 msgstr "Books about Towns"
 
-#: .\principal\templates\secciones.html.py:197
+#: .\principal\templates\secciones.html.py:199
 msgid "Directorio Telefónico"
 msgstr "Phone directory"
 
-#: .\principal\templates\secciones.html.py:200
+#: .\principal\templates\secciones.html.py:202
 msgid "Cruz Roja"
 msgstr "Red Cross"
 
-#: .\principal\templates\secciones.html.py:211
+#: .\principal\templates\secciones.html.py:213
 msgid "Visita"
 msgstr "Visit"
 
-#: .\principal\templates\secciones.html.py:214
+#: .\principal\templates\secciones.html.py:216
 msgid ""
 "¿Quieres visitar alguno de los Pueblos? Entra aquí y entérate de algunos "
 "consejos"
 msgstr ""
 "Do you want to visit some of the Towns? Enter here and find out some tips"
 
-#: .\principal\templates\secciones.html.py:221
+#: .\principal\templates\secciones.html.py:223
 msgid "Guías turísticas"
 msgstr "Tourist Guides"
 
-#: .\principal\templates\secciones.html.py:224
+#: .\principal\templates\secciones.html.py:226
 msgid "Ven y visualiza alguna guía turística, mapa o rutas qué seguir"
 msgstr "Come and view any guidebook, map or routes which follow"
 
-#: .\principal\templates\secciones.html.py:230
+#: .\principal\templates\secciones.html.py:232
 msgid "Sugerencias"
 msgstr "Suggestions"
 
-#: .\pueblos\settings.py:58
-msgid "Ingles"
-msgstr "English"
+#~ msgid "Ingles"
+#~ msgstr "English"

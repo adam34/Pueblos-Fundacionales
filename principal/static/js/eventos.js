@@ -1,6 +1,7 @@
+var myDatePicker
 $(window).on("load", function() {
     console.log("Funciona");
-    $('#eventos').glDatePicker(
+    myDatePicker =$('#eventos').glDatePicker(
     {
         showAlways: true,
         cssName: 'default',
