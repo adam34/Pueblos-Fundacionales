@@ -725,9 +725,9 @@ def eventos(request):
 				dic = dict()
 				coment_cont=comentario_evento.objects.filter(EVENTO=event).count()
 				if coment_cont > 0:
-					dic['comentarios']=comentario_evento.objects.filter(EVENTO=event)[:3]
+					dic['comentarios']=comentario_evento.objects.filter(EVENTO=event)
 				else:
-					dic['comentarios']=None
+					dic['comentarios']=[]
 				
 				event=event.get_evento_idioma(language)
 				dic['evento']=event
@@ -791,7 +791,7 @@ def relatos(request):
 				coment_cont=comentario_relato.objects.filter(RELATOS=rel)
 				
 				if coment_cont > 0:
-					dic['comentarios']=comentario_relato.objects.filter(RELATOS=rel)[:3]
+					dic['comentarios']=comentario_relato.objects.filter(RELATOS=rel)
 				else:
 					dic['comentarios']=None
 				rel=rel.get_relato_idioma(language)
@@ -893,9 +893,9 @@ def sitiosT(request):
 				coment_cont=comentario_sitio.objects.filter(SITIOS=sitio).count()
 				
 				if coment_cont > 0:
-					dic['comentarios']=comentario_sitio.objects.filter(SITIOS=sitio)[:3]
+					dic['comentarios']=comentario_sitio.objects.filter(SITIOS=sitio)
 				else:
-					dic['comentarios']=None
+					dic['comentarios']=[]
 				sitio=sitio.get_sitio_turistico_idioma(language)
 				dic['sitio']=sitio
 				lista.append(dic)
@@ -937,8 +937,8 @@ def comentarios_sitios_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def busqueda(request):
-	#import pdb
-	#pdb.set_trace()
+	# import pdb
+	# pdb.set_trace()
 	language=obtener_idioma(request)
 	url=resolver_url(request)
 	if 'text_search' in request.POST:
@@ -964,11 +964,13 @@ def busqueda(request):
 				eventos=temp
 			cont_sitios=sitio_turistico.objects.filter(Q(NOMBRE__contains=res) | Q(DIRECCION__contains=res) | Q(DESCRIPCION__contains=res)).count()
 			if cont_sitios>0:				
-				sitios=sitio_turistico.objects.filter(Q(NOMBRE__contains=res) | Q(DIRECCION__contains=res) | Q(DESCRIPCION__contains=res)).count()
+				cont_sitios=sitio_turistico.objects.filter(Q(NOMBRE__contains=res) | Q(DIRECCION__contains=res) | Q(DESCRIPCION__contains=res)).count()
 				temp = []
-				for site in sitios:
-					temp.append(site.get_sitio_turistico_idioma(language))
-				sitios=temp		
+				if cont_sitios >0:
+					sitios=sitio_turistico.objects.filter(Q(NOMBRE__contains=res) | Q(DIRECCION__contains=res) | Q(DESCRIPCION__contains=res))
+					for site in sitios:
+						temp.append(site.get_sitio_turistico_idioma(language))
+						sitios=temp		
 			cont_relatos=relato.objects.filter(TITULO__contains=res).count()
 			if cont_relatos>0:
 				relatos=relato.objects.filter(TITULO__contains=res).count()
@@ -990,7 +992,7 @@ def busqueda(request):
 	else:
 		return render_to_response('busqueda.html',RequestContext(request,
 			{
-			'user':user,
+			'user':request.user,
 			'url':url,
 			}))
 	
@@ -1045,6 +1047,37 @@ def enviar_relatos_ajax(request):
 				except Exception,e:
 					print e
 					return HttpResponse(json.dumps({'respuesta':'fallido'}),mimetype='application/json')		
+			else:
+				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
+		else:
+			return HttpResponse(json.dumps({'respuesta':'noPOST'}),mimetype='application/json')
+	else:
+		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
+
+def mostrar_mas_comentarios_relatos_ajax(request):
+	if request.is_ajax():
+		if request.POST:
+			if ('RELATO' in request.POST):
+				iden=request.POST['ID']
+				usuario=request.user
+				try:
+					rel=relato.objects.get(ID=iden)						
+					comen_relato=comentario_relato.objects.filter(RELATOS=rel)
+					dic['relato']=rel.ID
+					objs = comentario_relato.objects.filter(RELATOS=rel)[3:]
+					#dic['comentarios']=
+					lista = []
+					for obj in objs:
+						dicc = {}
+						dicc['usuario']=obj.USUARIO.username
+						dicc['comentario']=obj.DESCRIPCION
+						dicc['fecha']= obj.fecha.strftime('%d/%m/%Y, a las %H:%M:%S ')
+						lista.append(dicc)
+					dic['comentario']=lista
+					return HttpResponse(json.dumps({'respuesta':'exito','comentarios':dic}),mimetype='application/json')
+				except Exception,e:
+					print e
+					return HttpResponse(json.dumps({'respuesta':'noRelato'}),mimetype='application/json')		
 			else:
 				return HttpResponse(json.dumps({'respuesta':'noCampos'}),mimetype='application/json')
 		else:

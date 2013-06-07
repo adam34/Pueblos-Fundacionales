@@ -375,36 +375,37 @@ class PuebloForm(forms.ModelForm):
 		pueblo.save()
 
 		for idioma in IDIOMAS:
-			nombre="HISTORIA_"+idioma[0]
-			historia=""
-			cultura=""
-			comida=""
-			datos=""
-			if self.data.__contains__(nombre):
-				historia=self.data[nombre]
-			nombre="CULTURA_"+idioma[0]
-			if self.data.__contains__(nombre):
-				cultura=self.data[nombre]
-			nombre="COMIDA_"+idioma[0]
-			if self.data.__contains__(nombre):
-				comida=self.data[nombre]
-			nombre="DATOS_"+idioma[0]
-			if self.data.__contains__(nombre):
-				datos=self.data[nombre]
-			
-			if (historia != "" or cultura !="" or comida != "" or datos !=""):
-				pueb_idiom = pueblo_idioma()
-				pueb_idiom.PUEBLO = pueblo
-				pueb_idiom.IDIOMA = idioma[0]
-				pueb_idiom.HISTORIA = historia
-				pueb_idiom.CULTURA = cultura
-				pueb_idiom.COMIDA = comida
-				pueb_idiom.DATOS = datos
-				pueb_idiom.save(commit)
-			#HISTORIA
-			#CULTURA
-			#COMIDAS
-			#DATOS
+			if idioma !=u'Español':
+				nombre="HISTORIA_"+idioma[0]
+				historia=""
+				cultura=""
+				comida=""
+				datos=""
+				if self.data.__contains__(nombre):
+					historia=self.data[nombre]
+				nombre="CULTURA_"+idioma[0]
+				if self.data.__contains__(nombre):
+					cultura=self.data[nombre]
+				nombre="COMIDA_"+idioma[0]
+				if self.data.__contains__(nombre):
+					comida=self.data[nombre]
+				nombre="DATOS_"+idioma[0]
+				if self.data.__contains__(nombre):
+					datos=self.data[nombre]
+				
+				if (historia != "" or cultura !="" or comida != "" or datos !=""):
+					pueb_idiom = pueblo_idioma()
+					pueb_idiom.PUEBLO = pueblo
+					pueb_idiom.IDIOMA = idioma[0]
+					pueb_idiom.HISTORIA = historia
+					pueb_idiom.CULTURA = cultura
+					pueb_idiom.COMIDA = comida
+					pueb_idiom.DATOS = datos
+					pueb_idiom.save(commit)
+				#HISTORIA
+				#CULTURA
+				#COMIDAS
+				#DATOS
 		return pueblo
 
 	def clean(self):
@@ -500,7 +501,7 @@ class PuebloChangeForm(forms.ModelForm):
 		self.fields['MAPA'].widget = MapInput(attrs={'type':'text',"class":"span12 vTextField"},data=coordenadas)
 
 	def save(self,commit=True):
-		pueblo = super(PuebloForm, self).save(commit=False)
+		pueblo = super(PuebloChangeForm, self).save(commit=False)
 		pueblo.HISTORIA=self.data['HISTORIA']
 		pueblo.CULTURA=self.data['CULTURA']
 		pueblo.COMIDA=self.data['COMIDA']
@@ -1153,7 +1154,7 @@ class SitiosTuristicosChangeForm(forms.ModelForm):
 			if self.data.__contains__(nombre):
 				descripcion=self.data[nombre]
 			
-			if (titulo != "" or descripcion !=""):
+			if (descripcion !=""):
 				sit_idiom = sitio_turistico_idioma()
 				sit_idiom.SITIO = sitio
 				sit_idiom.IDIOMA= idioma[0]
