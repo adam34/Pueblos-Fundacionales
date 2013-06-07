@@ -197,7 +197,22 @@ $(document).on("ready", function(){
             lat: e.latLng.lat(),
             lng: e.latLng.lng()
        });
+        $('#reset').on('click',reiniciar);
+        function reiniciar(e)
+        {
+          if (map.markers.length>0)
+          {
+            map.removeMarkers();
+          }
+          if ( map.routes.length>0)
+          {
+            map.removeRoutes();
+          }
+          map.removePolylines();
+          $('#steps').html('');
+        }
       }
+
    });
      $('#geocoding_form').submit(function(e){
       e.preventDefault();

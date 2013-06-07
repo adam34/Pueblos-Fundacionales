@@ -20,6 +20,7 @@
 		<section id="map" class="contenedor_mapa">
 		</section>
 		<div class="row">
+			<a href="#" class="btn" id="reset">{% trans 'Reiniciar' %}</a>
   			<a href="#" class="btn" id="get_route">{% trans 'Obtener ruta' %}</a>
   			<a href="#" class="btn" id="back">&laquo; {% trans 'Regresar' %}</a>
   			<a href="#" class="btn" id="forward">{% trans 'Adelante' %} &raquo;</a>
@@ -37,7 +38,7 @@
         		<input type="submit" class="btn" value="Buscar" />
       		</div>
     	</form>
-    	{% if fundacionales %}
+ <!--    	{% if fundacionales %}
     		<p>Existen pueblos fundacionales para colocar en el mapa</p>
     	{% else %}
     		<p>No existen pueblos fundacionales para colocar en el mapa</p>
@@ -51,7 +52,7 @@
     		<p>Existen sitios para colocar en el mapa</p>
     	{% else %}
     		<p>No existen sitios para colocar en el mapa</p>
-    	{% endif %}
+    	{% endif %} -->
 	</section>
 {% endblock %}
 
