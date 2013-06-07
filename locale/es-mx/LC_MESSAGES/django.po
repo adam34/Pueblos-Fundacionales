@@ -8,11 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-<<<<<<< HEAD
-"POT-Creation-Date: 2013-06-06 21:00-0600\n"
-=======
-"POT-Creation-Date: 2013-06-07 01:42-0600\n"
->>>>>>> upstream/master
+"POT-Creation-Date: 2013-06-07 02:25-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,11 +53,11 @@ msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\500.html.py:8
 msgid "Server error"
-msgstr "Error en el servidor"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\500.html.py:12
 msgid "Server error (500)"
-msgstr "Error en el servidor (500)"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\500.html.py:15
 msgid "Server Error <em>(500)</em>"
@@ -76,12 +72,12 @@ msgstr ""
 #: .\django_admin_bootstrapped\templates\admin\actions.html.py:4
 #: .\django_admin_bootstrapped\templates\admin\filer\actions.html.py:8
 msgid "Run the selected action"
-msgstr "Correr la acción seleccionada"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\actions.html.py:4
 #: .\django_admin_bootstrapped\templates\admin\filer\actions.html.py:8
 msgid "Go"
-msgstr "Ejecutar"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\actions.html.py:11
 #: .\django_admin_bootstrapped\templates\admin\filer\actions.html.py:15
@@ -104,13 +100,13 @@ msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\base.html.py:57
 msgid "Welcome,"
-msgstr "Bienvenido"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\base.html.py:60
 #: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:19
 #: .\django_admin_bootstrapped\templates\admin\auth\user\change_password.html.py:53
 msgid "Change password"
-msgstr "Cambiar contraseña"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\base.html.py:62
 msgid "Log out"
@@ -120,19 +116,19 @@ msgstr "Salirse"
 #: .\principal\templates\admin\config.html.py:52
 #: .\principal\templates\admin\pueblos.html.py:52
 msgid "Recent Actions"
-msgstr "Acciones recientes"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\base.html.py:79
 #: .\principal\templates\admin\config.html.py:64
 #: .\principal\templates\admin\pueblos.html.py:64
 msgid "Unknown content"
-msgstr "Contenido desconocido"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\base.html.py:84
 #: .\principal\templates\admin\config.html.py:69
 #: .\principal\templates\admin\pueblos.html.py:69
 msgid "None available"
-msgstr "Ningún disponible"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\change_form.html.py:23
 #: .\django_admin_bootstrapped\templates\admin\cms\page\change_form.html.py:79
@@ -176,7 +172,7 @@ msgstr ""
 #: .\django_admin_bootstrapped\templates\admin\cms\page\_change_list.html.py:94
 #: .\django_admin_bootstrapped\templates\admin\cms\page\change_list.html.py:115
 msgid "Filter"
-msgstr "Filtrar"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\change_list.html.py:86
 msgid "Por favor, corrija el siguiente error."
@@ -204,9 +200,6 @@ msgid ""
 "related objects, but your account doesn't have permission to delete the "
 "following types of objects:"
 msgstr ""
-"El borrar el objeto %(object_name)s '%(escaped_object)s' podría resultar en "
-"la eliminación de los objetos relacionados a él, pero tu cuenta no tiene "
-"permiso para eliminar los siguientes tipos de objetos"
 
 #: .\django_admin_bootstrapped\templates\admin\delete_confirmation.html.py:26
 #, python-format
@@ -225,11 +218,11 @@ msgstr ""
 #: .\django_admin_bootstrapped\templates\admin\delete_confirmation.html.py:39
 #: .\django_admin_bootstrapped\templates\admin\delete_selected_confirmation.html.py:49
 msgid "Yes, I'm sure"
-msgstr "Si, estoy seguro"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\delete_selected_confirmation.html.py:11
 msgid "Delete multiple objects"
-msgstr "Borrar multiples objetos"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\delete_selected_confirmation.html.py:20
 #, python-format
@@ -307,7 +300,7 @@ msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\object_history.html.py:25
 msgid "Action"
-msgstr "Accionar"
+msgstr ""
 
 #: .\django_admin_bootstrapped\templates\admin\object_history.html.py:39
 msgid ""
@@ -1027,7 +1020,7 @@ msgid "Los pueblos de"
 msgstr ""
 
 #: .\principal\templates\alojamiento.html.py:18
-#: .\principal\templates\index.html.py:165
+#: .\principal\templates\index.html.py:147
 msgid "Alojamiento"
 msgstr ""
 
@@ -1094,7 +1087,7 @@ msgid "Secciones"
 msgstr ""
 
 #: .\principal\templates\base.html.py:149
-#: .\principal\templates\index.html.py:173
+#: .\principal\templates\index.html.py:155
 #: .\principal\templates\pueblos.html.py:23
 #: .\principal\templates\secciones.html.py:95
 msgid "Pueblos"
@@ -1227,7 +1220,7 @@ msgstr ""
 #: .\principal\templates\base.html.py:516
 #: .\principal\templates\base.html.py:555
 #: .\principal\templates\base.html.py:614
-#: .\principal\templates\index.html.py:431
+#: .\principal\templates\index.html.py:416
 msgid "No se recibieron los campos completos"
 msgstr ""
 
@@ -1235,7 +1228,7 @@ msgstr ""
 #: .\principal\templates\base.html.py:520
 #: .\principal\templates\base.html.py:559
 #: .\principal\templates\base.html.py:618
-#: .\principal\templates\index.html.py:435
+#: .\principal\templates\index.html.py:420
 msgid "No se utilizó el mensaje correcto para comunicarse con el servidor"
 msgstr ""
 
@@ -1243,14 +1236,14 @@ msgstr ""
 #: .\principal\templates\base.html.py:524
 #: .\principal\templates\base.html.py:563
 #: .\principal\templates\base.html.py:622
-#: .\principal\templates\index.html.py:439
+#: .\principal\templates\index.html.py:424
 msgid "No se utilizó AJAX para la comunicación con el servidor"
 msgstr ""
 
 #: .\principal\templates\base.html.py:428
 #: .\principal\templates\base.html.py:568
 #: .\principal\templates\base.html.py:627
-#: .\principal\templates\index.html.py:444
+#: .\principal\templates\index.html.py:429
 msgid "No hubo respuesta por parte del servidor"
 msgstr ""
 
@@ -1304,11 +1297,6 @@ msgstr ""
 msgid "Error, no existe una cuenta de usuario con ese correo"
 msgstr ""
 
-<<<<<<< HEAD
-#: .\principal\templates\index.html.py:14
-#: .\principal\templates\secciones.html.py:105
-msgid "Novedades"
-=======
 #: .\principal\templates\bcs-desconocida.html.py:11
 #: .\principal\templates\index.html.py:29
 #: .\principal\templates\secciones.html.py:110
@@ -1330,7 +1318,6 @@ msgstr ""
 
 #: .\principal\templates\bcs-desconocida.html.py:24
 msgid "No existen curiosidades para mostrar."
->>>>>>> upstream/master
 msgstr ""
 
 #: .\principal\templates\curiosidades.html.py:13
@@ -1367,7 +1354,7 @@ msgid "Cultura"
 msgstr ""
 
 #: .\principal\templates\descubra-bcs.html.py:22
-#: .\principal\templates\index.html.py:169
+#: .\principal\templates\index.html.py:151
 #: .\principal\templates\mas-visto.html.py:22
 msgid "Comida"
 msgstr ""
@@ -1518,14 +1505,6 @@ msgstr ""
 msgid "Leer más"
 msgstr ""
 
-<<<<<<< HEAD
-#: .\principal\templates\index.html.py:29
-#: .\principal\templates\secciones.html.py:110
-msgid "BCS Desconocida"
-msgstr ""
-
-=======
->>>>>>> upstream/master
 #: .\principal\templates\index.html.py:42
 msgid "Pueblo más visto"
 msgstr ""
@@ -1534,15 +1513,6 @@ msgstr ""
 msgid "Recomendaciones"
 msgstr ""
 
-<<<<<<< HEAD
-#: .\principal\templates\index.html.py:86
-#: .\principal\templates\secciones.html.py:42
-#: .\principal\templates\secciones.html.py:165
-msgid "Eventos"
-msgstr ""
-
-=======
->>>>>>> upstream/master
 #: .\principal\templates\index.html.py:94
 msgid "Eventos de la semana"
 msgstr ""
@@ -1551,143 +1521,138 @@ msgstr ""
 msgid "Selecciona alguna de las fechas en el Calendario"
 msgstr ""
 
-#: .\principal\templates\index.html.py:102
+#: .\principal\templates\index.html.py:98
 msgid "Próximos Eventos"
 msgstr ""
 
-#: .\principal\templates\index.html.py:132
+#: .\principal\templates\index.html.py:114
 msgid "Ver todos los próximos eventos"
 msgstr ""
 
-#: .\principal\templates\index.html.py:136
+#: .\principal\templates\index.html.py:118
 msgid "Políticas de uso"
 msgstr ""
 
-#: .\principal\templates\index.html.py:139
+#: .\principal\templates\index.html.py:121
 msgid ""
 "Visita nuestra sección de Políticas de Privacidad y Uso para que puedas "
 "navegar a través de nuestro sitio de manera más segura"
 msgstr ""
 
-#: .\principal\templates\index.html.py:141
+#: .\principal\templates\index.html.py:123
 msgid "Haga clic aquí para más información"
 msgstr ""
 
-#: .\principal\templates\index.html.py:149
+#: .\principal\templates\index.html.py:131
 msgid "Enlaces útiles"
 msgstr ""
 
-#: .\principal\templates\index.html.py:153
+#: .\principal\templates\index.html.py:135
 msgid "Accesos Directos"
 msgstr ""
 
-#: .\principal\templates\index.html.py:157
+#: .\principal\templates\index.html.py:139
 msgid "Información Básica"
 msgstr ""
 
-#: .\principal\templates\index.html.py:161
+#: .\principal\templates\index.html.py:143
 #: .\principal\templates\secciones.html.py:77
 msgid "Mapa"
 msgstr ""
 
-#: .\principal\templates\index.html.py:177
+#: .\principal\templates\index.html.py:159
 msgid "Galería de Fotos"
 msgstr ""
 
-#: .\principal\templates\index.html.py:182
+#: .\principal\templates\index.html.py:164
 msgctxt "Device"
 msgid "Teléfonos"
 msgstr ""
 
-#: .\principal\templates\index.html.py:184
+#: .\principal\templates\index.html.py:166
 #: .\principal\templates\secciones.html.py:201
 msgid "Emergencias"
 msgstr ""
 
-#: .\principal\templates\index.html.py:192
+#: .\principal\templates\index.html.py:174
 msgid "Ver teléfonos"
 msgstr ""
 
-#: .\principal\templates\index.html.py:198
+#: .\principal\templates\index.html.py:180
 msgid "Mapa General de Misiones"
 msgstr ""
 
-#: .\principal\templates\index.html.py:275
+#: .\principal\templates\index.html.py:257
 msgid "Más info (click aquí)"
 msgstr ""
 
-#: .\principal\templates\index.html.py:282
+#: .\principal\templates\index.html.py:264
 #: .\principal\templates\secciones.html.py:57
 msgid "Relatos"
 msgstr ""
 
-#: .\principal\templates\index.html.py:284
+#: .\principal\templates\index.html.py:266
 msgid "Comparte tu historia"
 msgstr ""
 
-#: .\principal\templates\index.html.py:287
+#: .\principal\templates\index.html.py:269
 msgid "¿Cómo es la vida en tu comunidad? "
 msgstr ""
 
-#: .\principal\templates\index.html.py:290
+#: .\principal\templates\index.html.py:272
 msgid "¿Cómo era la vida en tu ciudad hace 5, 10, 20 o más años?"
 msgstr ""
 
-#: .\principal\templates\index.html.py:297
+#: .\principal\templates\index.html.py:279
 msgid "Materiales impresos"
 msgstr ""
 
-#: .\principal\templates\index.html.py:299
+#: .\principal\templates\index.html.py:281
 msgid ""
 "¡Descarga nuestras guías turísticas así como la historia de nuestros Pueblos "
 "Fundacionales!"
 msgstr ""
 
-#: .\principal\templates\index.html.py:303
+#: .\principal\templates\index.html.py:285
 msgid "Acceder"
 msgstr ""
 
-#: .\principal\templates\index.html.py:308
+#: .\principal\templates\index.html.py:290
 msgid "Clima"
 msgstr ""
 
-#: .\principal\templates\index.html.py:322
+#: .\principal\templates\index.html.py:304
 #: .\principal\templates\multimedia.html.py:19
 #: .\principal\templates\secciones.html.py:82
 msgid "Multimedia"
 msgstr ""
 
-#: .\principal\templates\index.html.py:324
+#: .\principal\templates\index.html.py:306
 msgid ""
 "¿Quieres conocer la música típica de nuestra región? ¿Ver vídeos referentes "
 "a nuestras misiones?"
 msgstr ""
 
-#: .\principal\templates\index.html.py:326
+#: .\principal\templates\index.html.py:308
 msgctxt "Info site"
 msgid ""
 "Entra y conoce los aspectos audiovisuales de nuestros Pueblos Fundacionales"
 msgstr ""
 
-#: .\principal\templates\index.html.py:340
+#: .\principal\templates\index.html.py:322
 msgid "Ver todos"
 msgstr ""
 
-#: .\principal\templates\index.html.py:352
+#: .\principal\templates\index.html.py:334
 msgid "¡Visítanos!"
 msgstr ""
 
-#: .\principal\templates\index.html.py:427
-msgid "No hay eventos para el mes"
+#: .\principal\templates\index.html.py:412
+msgid "No hay eventos para el dia"
 msgstr ""
 
-<<<<<<< HEAD
-#: .\principal\templates\pueblos.html.py:30
-msgid "Visita nuestro catálogo digital"
-=======
 #: .\principal\templates\libreria.html.py:21
 msgid "Libros digitales"
->>>>>>> upstream/master
 msgstr ""
 
 #: .\principal\templates\libreria.html.py:27
@@ -1863,14 +1828,6 @@ msgctxt "Downloads"
 msgid "Descargas"
 msgstr ""
 
-<<<<<<< HEAD
-#: .\principal\templates\secciones.html.py:100
-#: .\principal\templates\secciones.html.py:173
-msgid "Galerías"
-msgstr ""
-
-=======
->>>>>>> upstream/master
 #: .\principal\templates\secciones.html.py:120
 msgctxt "Town most viewed"
 msgid "Pueblo más visto"
@@ -1884,16 +1841,6 @@ msgstr ""
 msgid "aquí"
 msgstr ""
 
-<<<<<<< HEAD
-#: .\principal\templates\secciones.html.py:135
-#: .\principal\templates\secciones.html.py:137
-#: .\principal\templates\secciones.html.py:138
-#: .\principal\templates\secciones.html.py:139
-msgid "Hoteles"
-msgstr ""
-
-=======
->>>>>>> upstream/master
 #: .\principal\templates\secciones.html.py:143
 #: .\principal\templates\secciones.html.py:151
 #: .\principal\templates\secciones.html.py:162
@@ -1901,10 +1848,6 @@ msgstr ""
 #: .\principal\templates\secciones.html.py:179
 #: .\principal\templates\secciones.html.py:188
 #: .\principal\templates\secciones.html.py:196
-<<<<<<< HEAD
-#: .\principal\templates\secciones.html.py:204
-=======
->>>>>>> upstream/master
 msgid "Visitar sección"
 msgstr ""
 
@@ -1921,14 +1864,6 @@ msgstr ""
 msgid "¿A dónde voy a comer?"
 msgstr ""
 
-<<<<<<< HEAD
-#: .\principal\templates\secciones.html.py:156
-#, fuzzy
-msgid "Historia"
-msgstr "Historial de periodico"
-
-=======
->>>>>>> upstream/master
 #: .\principal\templates\secciones.html.py:157
 msgid "Pueblos y tradiciones"
 msgstr ""
@@ -1962,13 +1897,6 @@ msgstr ""
 msgid "Fotografías actuales"
 msgstr ""
 
-<<<<<<< HEAD
-#: .\principal\templates\secciones.html.py:182
-msgid "Curiosidades"
-msgstr ""
-
-=======
->>>>>>> upstream/master
 #: .\principal\templates\secciones.html.py:184
 msgid "¿Sabías que... ?"
 msgstr ""
@@ -2001,36 +1929,16 @@ msgstr ""
 msgid "Cruz Roja"
 msgstr ""
 
-<<<<<<< HEAD
-#: .\principal\templates\secciones.html.py:213
-msgid "Visita"
-msgstr ""
-
-#: .\principal\templates\secciones.html.py:216
-=======
 #: .\principal\templates\secciones.html.py:215
 msgid "Visita"
 msgstr ""
 
 #: .\principal\templates\secciones.html.py:218
->>>>>>> upstream/master
 msgid ""
 "¿Quieres visitar alguno de los Pueblos? Entra aquí y entérate de algunos "
 "consejos"
 msgstr ""
 
-<<<<<<< HEAD
-#: .\principal\templates\secciones.html.py:223
-msgid "Guías turísticas"
-msgstr ""
-
-#: .\principal\templates\secciones.html.py:226
-msgid "Ven y visualiza alguna guía turística, mapa o rutas qué seguir"
-msgstr ""
-
-#: .\principal\templates\secciones.html.py:232
-msgid "Sugerencias"
-=======
 #: .\principal\templates\secciones.html.py:225
 msgid "Guías turísticas"
 msgstr ""
@@ -2053,7 +1961,6 @@ msgstr ""
 
 #: .\principal\templates\sitios_turisticos.html.py:38
 msgid "Etiquetas"
->>>>>>> upstream/master
 msgstr ""
 
 #~ msgid "Ingles"
