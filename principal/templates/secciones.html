@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {%  block css %}
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
@@ -15,107 +16,107 @@
 
 {% block contenedor %}
 	<section class="secciones">
-		<h2>Secciones</h2>
+		<h2>{% trans 'Secciones' %}</h2>
 		<section class="sitios_turisticos">
-			<h3>Mapa del Sitio</h3>
+			<h3>{% trans 'Mapa del sitio' context "Site Map" %}</h3>
 				<section class="map_tree">
 					<ul>
 						<li>
-							<a href="/">Inicio</a>
+							<a href="/">{% trans 'Inicio' %}</a>
 						</li>
 						<li>
-							<a href="/secciones/">Secciones</a>
+							<a href="/secciones/">{% trans 'Secciones' %}</a>
 							<ul>
 								<li>
 									<a href="/alojamiento/">
-										Hoteles
+										{% trans 'Hoteles' context "Hotels" %}
 									</a>
 								</li>
 								<li>
 									<a href="/comida/">
-										Restaurantes
+										{% trans 'Restaurantes' context "Restaurants" %}
 									</a>
 								</li>
 								<li>
 									<a href="/eventos/">
-										Eventos
+										{% trans 'Eventos' %}
 									</a>
 								</li>
 								<li>
 									<a href="/galerias/">
-										Galería
+										{% trans 'Galería' context "Gallery" %}
 									</a>
 								</li>
 								<li>
 									<a href="/curiosidades/">
-										Curiosidades
+										{% trans 'Curiosidades' context "Curiosities" %}
 									</a>
 								</li>
 								<li>
 									<a href="/relatos/">
-										Relatos
+										{% trans 'Relatos' %}
 									</a>
 								</li>
 								<li>
 									<a href="/directorio/">
-										Directorio
+										{% trans 'Directorio' context "Directory" %}
 									</a>
 								</li>
 								<li>
 									<a href="/libreria/">
-										Libreria
+										{% trans 'Librería' context "Library" %}
 									</a>
 								</li>
 								<li>
 									<a href="/sitios_turisticos/">
-										Sitios Turísticos
+										{% trans 'Sitios Turísticos' context "Tourist Sites" %}
 									</a>
 								</li>
 								<li>
 									<a href="/mapa/">
-										Mapa
+										{% trans 'Mapa' %}
 									</a>
 								</li>
 								<li>
 									<a href="/multimedia/">
-										Multimedia
+										{% trans 'Multimedia' %}
 									</a>
 								</li>
 								<li>
 									<a href="/libros/">
-										Descargas
+										{% trans 'Descargas' context "Downloads" %}
 									</a>
 								</li>
 							</ul>
 						</li>
 						<li>
 							<a href="/pueblos/">
-								Pueblos
+								{% trans 'Pueblos' %}
 							</a>
 						</li>
 						<li>
 							<a href="/galerias/">
-								Galerías
+								{% trans 'Galerías' %}
 							</a>
 						</li>
 						<li>
 							<a href="/">
-								Novedades
+								{% trans 'Novedades' %}
 							</a>
 							<ul>
 								<li>
 									<a href="/bcs-desconocida/">
-										BCS Desconocida
+										{% trans 'BCS Desconocida' %}
 									</a>
 								</li>
 								<li>
 									<a href="/descubra-bcs/">
-										Descubra BCS
+										{% trans 'Descubra BCS' %}
 									</a>
 								</li>
 								<li>
 									<a href="/mas-visto/">
-										Pueblo más visto
+										{% trans 'Pueblo más visto' context "Town most viewed" %}
 									</a>
 								</li>
 							</ul>
@@ -125,80 +126,80 @@
 				<br><br>
 			<span>
 				<a href="/sitios_turisticos/">
-					Visita nuestra sección de Sitios Turísticos, da click <span>aquí</span>
+					{% trans 'Visita nuestra sección de Sitios Turísticos, da click' %} <span>{% trans 'aquí' %}</span>
 				</a>
 			</span>
 			<section class="hoteles">
-				<h4>Hoteles</h4>
+				<h4>{% trans 'Hoteles' %}</h4>
 				<ul>
-					<li>Hoteles ★★★★</li>
-					<li>Hoteles ★★★</li>
-					<li>Hoteles ★★★</li>
+					<li>{% trans 'Hoteles' %} ★★★★</li>
+					<li>{% trans 'Hoteles' %} ★★★</li>
+					<li>{% trans 'Hoteles' %} ★★</li>
 					<li>Hostal</li>
 					<li>B &amp; B [Bed and breakfast]</li>
 				</ul>
-				<a class="entrar" href="/alojamiento/">Visitar sección</a>
+				<a class="entrar" href="/alojamiento/">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_restaurantes">
-				<h4>Restaurantes</h4>
+				<h4>{% trans 'Restaurantes' %}</h4>
 				<ul>
-					<li>Comida sudcaliforniana</li>
-					<li>¿A dónde voy a comer?</li>
+					<li>{% trans 'Comida sudcaliforniana' context "BCS Food" %}</li>
+					<li>{% trans '¿A dónde voy a comer?' %}</li>
 				</ul>
-				<a class="entrar" href="/comida/">Visitar sección</a>
+				<a class="entrar" href="/comida/">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_pueblos">
-				<h4>Pueblos Fundacionales</h4>
+				<h4>{% trans 'Pueblos Fundacionales' %}</h4>
 				<ul>
-					<li>Historia</li>
-					<li>Pueblos y tradiciones</li>
-					<li>Misiones</li>
-					<li>Museos</li>
-					<li>Galerías de Artes</li>
+					<li>{% trans 'Historia' %}</li>
+					<li>{% trans 'Pueblos y tradiciones' %}</li>
+					<li>{% trans 'Misiones' %}</li>
+					<li>{% trans 'Museos' %}</li>
+					<li>{% trans 'Galerías de Artes' %}</li>
 				</ul>
-				<a class="entrar" href="/pueblos/">Visitar sección</a>
+				<a class="entrar" href="/pueblos/">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_eventos">
-				<h4>Eventos</h4>
+				<h4>{% trans 'Eventos' %}</h4>
 				<ul>
-					<li>Pueblos Fundacionales</li>
-					<li>Arte</li>
+					<li>{% trans 'Pueblos Fundacionales' %}</li>
+					<li>{% trans 'Arte' %}</li>
 				</ul>
-				<a class="entrar" href="/eventos/">Visitar sección</a>
+				<a class="entrar" href="/eventos/">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_centros">
-				<h4>Galerías</h4>
+				<h4>{% trans 'Galerías' %}</h4>
 				<ul>
-					<li>Pueblos Sudcalifornianos</li>
-					<li>Fotografías históricas</li>
-					<li>Fotografías actuales</li>
+					<li>{% trans 'Pueblos Sudcalifornianos' context "BCS Towns" %}</li>
+					<li>{% trans 'Fotografías históricas' %}</li>
+					<li>{% trans 'Fotografías actuales' %}</li>
 				</ul>
-					<a class="entrar" href="/curiosidades/">Visitar sección</a>
+					<a class="entrar" href="/curiosidades/">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_curiosidades">
-				<h4>Curiosidades</h4>
+				<h4>{% trans 'Curiosidades' %}</h4>
 				<ul>
-					<li>¿Sabías que... ?</li>
-					<li>Flora</li>
-					<li>Fauna</li>
+					<li>{% trans '¿Sabías que... ?' %}</li>
+					<li>{% trans 'Flora' %}</li>
+					<li>{% trans 'Fauna' %}</li>
 				</ul>
-				<a class="entrar" href="/curiosidades/">Visitar sección</a>
+				<a class="entrar" href="/curiosidades/">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_catalogo">
-				<h4>Catálogo digital</h4>
+				<h4>{% trans 'Catálogo digital' %}</h4>
 				<ul>
-					<li>Libros históricos</li>
-					<li>Libros sobre los Pueblos</li>
+					<li>{% trans 'Libros históricos' %}</li>
+					<li>{% trans 'Libros sobre los Pueblos' %}</li>
 				</ul>
-				<a class="entrar" href="/libreria/">Visitar sección</a>
+				<a class="entrar" href="/libreria/">{% trans 'Visitar sección' %}</a>
 			</section>
 			<section class="seccion_catalogo">
-				<h4>Directorio Telefónico</h4>
+				<h4>{% trans 'Directorio Telefónico' %}</h4>
 				<ul>
-					<li>Emergencias</li>
-					<li>Cruz Roja</li>
+					<li>{% trans 'Emergencias' %}</li>
+					<li>{% trans 'Cruz Roja' %}</li>
 				</ul>
-				<a class="entrar" href="/libreria/">Visitar sección</a>
+				<a class="entrar" href="/libreria/">{% trans 'Visitar sección' %}</a>
 			</section>
 		</section>
 		<section class="menu_turistico">
@@ -207,26 +208,26 @@
 				<p></p>
 				<h4>
 					<a href="/libros/">
-						Visita
+						{% trans 'Visita' %}
 					</a>
 				</h4>	
-				<p>¿Quieres visitar alguno de los Pueblos? Entra aquí y entérate de algunos consejos </p>	
+				<p>{% trans '¿Quieres visitar alguno de los Pueblos? Entra aquí y entérate de algunos consejos' %} </p>	
 			</article>
 			<article class="guias_turisticas">
 				<img src="/static/img/turismo.jpg" alt="">
 				<p></p>
 				<h4>
 					<a href="/libros/">
-						Guías turísticas
+						{% trans 'Guías turísticas' %}
 					</a>
 				</h4>	
-				<p>Ven y visualiza alguna guía turística, mapa o rutas qué seguir</p>
+				<p>{% trans 'Ven y visualiza alguna guía turística, mapa o rutas qué seguir' %}</p>
 			</article>
 		</section>
 	</section>
 	<section class="menu_secciones">
 		<section class="seccion_sugerencias">
-			<h3>Sugerencias</h3>
+			<h3>{% trans 'Sugerencias' %}</h3>
 			{% for sitio in sitios %}
 			<article>
 				<img src="/uploads/{{sitio.IMAGEN}}" alt="">
