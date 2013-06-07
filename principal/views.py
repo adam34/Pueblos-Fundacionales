@@ -937,8 +937,6 @@ def comentarios_sitios_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def busqueda(request):
-	# import pdb
-	# pdb.set_trace()
 	language=obtener_idioma(request)
 	url=resolver_url(request)
 	if 'text_search' in request.POST:
@@ -947,6 +945,7 @@ def busqueda(request):
 		eventos=None
 		sitios=None
 		relatos=None
+		curiosidades=None
 		try:
 			cont_pueblos= pueblo.objects.filter(NOMBRE__contains=res).count()
 			if cont_pueblos >0:
@@ -973,11 +972,18 @@ def busqueda(request):
 						sitios=temp		
 			cont_relatos=relato.objects.filter(TITULO__contains=res).count()
 			if cont_relatos>0:
-				relatos=relato.objects.filter(TITULO__contains=res).count()
+				relatos=relato.objects.filter(TITULO__contains=res)
 				temp = []
 				for rel in relatos:
-					temp.append(rel.get_sitio_relato_idioma(language))
-				relatos=temp	
+					temp.append(rel.get_relato_idioma(language))
+				relatos=temp
+			cont_curiosidad=curiosidad.objects.filter(TITULO__contains=res).count()
+			if cont_curiosidad>0:
+				curiosidades=curiosidad.objects.filter(TITULO__contains=res)
+				temp = []
+				for cur in curiosidades:
+					temp.append(cur.get_curiosidad_idioma(language))
+				curiosidades=temp
 		except Exception,e:
 			print e
 		return render_to_response('busqueda.html',RequestContext(request,
@@ -987,6 +993,7 @@ def busqueda(request):
 			'eventos':eventos,
 			'sitios':sitios,
 			'relatos':relatos,
+			'curiosidades':curiosidades,
 			'url':url,
 			}))
 	else:

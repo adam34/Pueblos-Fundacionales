@@ -7,23 +7,35 @@
 {% block contenedor %}
 	<section class="contenedor">
 			<h2>Búsqueda</h2>
-			<h3>Resultados obtenidos: </h3>
-			{% if respuesta %}
-				{{respuesta}}
+			{% if pueblos or eventos or sitios or relatos or curiosidades %}
+			<h4>Resultados obtenidos para la cadena: {{respuesta}}  </h4>
+			<br>
+			<ul>
 				{% for pueblo in pueblos %}
-					<p>{{pueblo.NOMBRE}}</p>
+				<li><a href="{% url 'pueblos' %}?p={{pueblo.ID}}">{{pueblo.NOMBRE}}</a></li>
+				<li style="list-style:none; margin-left: 2%;">{{ pueblo.HISTORIA|truncatechars:'100' }}</li>
 				{% endfor %}
+				<br>
 				{% for evento in eventos %}
-					<p>{{evento.NOMBRE}}</p>
+					<li><a href="{% url 'eventos' %}?e={{evento.ID}}">{{evento.NOMBRE}}</a></li>
+					<li style="list-style:none; margin-left: 2%;">{{ evento.DESCRIPCION|truncatechars:'100' }}</li>
 				{% endfor %}
+				<br>
 				{% for sitio in sitios %}
-					<p>{{sitio.NOMBRE}}</p>
+					<li><a href="{% url 'sitios_turisticos' %}?s={{sitio.ID}}">{{sitio.NOMBRE}}</a></li>
+					<li style="list-style:none; margin-left: 2%;">{{ sitio.DESCRIPCION|truncatechars:'100' }}</li>
 				{% endfor %}
 				{% for relato in relatos  %}
-					<p>{{sitio.TITULO}}</p>
+					<li><a href="{% url 'relatos' %}?r={{relato.ID}}">{{relato.TITULO}}</a></li>
+					<li style="list-style:none; margin-left: 2%;">{{ relato.DESCRIPCION|truncatechars:'100' }}</li>
 				{% endfor %}
+				{% for curiosidad in curiosidades  %}
+					<li><a href="{% url 'curiosidades' %}?c={{curiosidad.ID}}">{{curiosidad.TITULO}}</a></li>
+					<li style="list-style:none; margin-left: 2%;">{{ curiosidad.DESCRIPCION|truncatechars:'100' }}</li>
+				{% endfor %}
+			</ul>
 			{% else %}
-				<p>No hubo respuesta del lado del servidor.</p>
+				<p style='text-align:center;'>No se encontraron coincidencias con la cadena proporcionada.</p>
 			{% endif %}
 	</section>
 {% endblock %}
