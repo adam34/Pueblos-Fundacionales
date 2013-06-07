@@ -375,37 +375,36 @@ class PuebloForm(forms.ModelForm):
 		pueblo.save()
 
 		for idioma in IDIOMAS:
-			if idioma !=u'Español':
-				nombre="HISTORIA_"+idioma[0]
-				historia=""
-				cultura=""
-				comida=""
-				datos=""
-				if self.data.__contains__(nombre):
-					historia=self.data[nombre]
-				nombre="CULTURA_"+idioma[0]
-				if self.data.__contains__(nombre):
-					cultura=self.data[nombre]
-				nombre="COMIDA_"+idioma[0]
-				if self.data.__contains__(nombre):
-					comida=self.data[nombre]
-				nombre="DATOS_"+idioma[0]
-				if self.data.__contains__(nombre):
-					datos=self.data[nombre]
-				
-				if (historia != "" or cultura !="" or comida != "" or datos !=""):
-					pueb_idiom = pueblo_idioma()
-					pueb_idiom.PUEBLO = pueblo
-					pueb_idiom.IDIOMA = idioma[0]
-					pueb_idiom.HISTORIA = historia
-					pueb_idiom.CULTURA = cultura
-					pueb_idiom.COMIDA = comida
-					pueb_idiom.DATOS = datos
-					pueb_idiom.save(commit)
-				#HISTORIA
-				#CULTURA
-				#COMIDAS
-				#DATOS
+			nombre="HISTORIA_"+idioma[0]
+			historia=""
+			cultura=""
+			comida=""
+			datos=""
+			if self.data.__contains__(nombre):
+				historia=self.data[nombre]
+			nombre="CULTURA_"+idioma[0]
+			if self.data.__contains__(nombre):
+				cultura=self.data[nombre]
+			nombre="COMIDA_"+idioma[0]
+			if self.data.__contains__(nombre):
+				comida=self.data[nombre]
+			nombre="DATOS_"+idioma[0]
+			if self.data.__contains__(nombre):
+				datos=self.data[nombre]
+			
+			if (historia != "" or cultura !="" or comida != "" or datos !=""):
+				pueb_idiom = pueblo_idioma()
+				pueb_idiom.PUEBLO = pueblo
+				pueb_idiom.IDIOMA = idioma[0]
+				pueb_idiom.HISTORIA = historia
+				pueb_idiom.CULTURA = cultura
+				pueb_idiom.COMIDA = comida
+				pueb_idiom.DATOS = datos
+				pueb_idiom.save(commit)
+			#HISTORIA
+			#CULTURA
+			#COMIDAS
+			#DATOS
 		return pueblo
 
 	def clean(self):
@@ -529,13 +528,22 @@ class PuebloChangeForm(forms.ModelForm):
 				datos=self.data[nombre]
 			
 			if (historia != "" or cultura !="" or comida != "" or datos !=""):
-				pueb_idiom = pueblo_idioma()
-				pueb_idiom.PUEBLO = pueblo
-				pueb_idiom.IDIOMA = idioma[0]
-				pueb_idiom.HISTORIA = historia
-				pueb_idiom.CULTURA = cultura
-				pueb_idiom.COMIDA = comida
-				pueb_idiom.DATOS = datos
+				#pueb_idiom = pueblo_idioma()
+				if pueblo_idioma.objects.filter(PUEBLO=pueblo,IDIOMA=idioma[0]).exists():
+					pueb_idiom=pueblo_idioma.objects.get(PUEBLO=pueblo,IDIOMA=idioma[0])
+					pueb_idiom.HISTORIA = historia
+					pueb_idiom.CULTURA = cultura
+					pueb_idiom.COMIDA = comida
+					pueb_idiom.DATOS = datos
+				else:
+					pueb_idiom=pueblo_idioma()
+					pueb_idiom.HISTORIA = historia
+					pueb_idiom.CULTURA = cultura
+					pueb_idiom.COMIDA = comida
+					pueb_idiom.DATOS = datos
+					pueb_idiom.PUEBLO = pueblo
+					pueb_idiom.IDIOMA = idioma[0]
+
 				pueb_idiom.save(commit)
 		return pueblo
 
@@ -669,12 +677,17 @@ class CuriosidadesChangeForm(forms.ModelForm):
 				descripcion=self.data[nombre]
 			
 			if (titulo != "" or descripcion !=""):
-				cur_idiom = curiosidad_idioma()
-				cur_idiom.CURIOSIDAD = curiosidad
-				cur_idiom.IDIOMA= idioma[0]
-				cur_idiom.TITULO = titulo
-				cur_idiom.DESCRIPCION = descripcion
-				cur_idiom.save(commit)
+				if curiosidad_idioma.objects.filter(CURIOSIDAD=curiosidad,IDIOMA=idioma[0]).exists():
+					cur_idiom= curiosidad_idioma.objects.get(CURIOSIDAD=curiosidad,IDIOMA=idioma[0])
+					cur_idiom.TITULO = titulo
+					cur_idiom.DESCRIPCION = descripcion
+				else:
+					cur_idiom = curiosidad_idioma()
+					cur_idiom.CURIOSIDAD = curiosidad					
+					cur_idiom.IDIOMA= idioma[0]
+					cur_idiom.TITULO = titulo
+					cur_idiom.DESCRIPCION = descripcion
+			cur_idiom.save(commit)
 		return curiosidad
 
 
@@ -834,11 +847,17 @@ class EventosChangeForm(forms.ModelForm):
 				descripcion=self.data[nombre]
 			
 			if (lugar != "" or descripcion !=""):
-				event_idiom = evento_idioma()
-				event_idiom.EVENTO = evento
-				event_idiom.IDIOMA= idioma[0]
-				event_idiom.LUGAR = lugar
-				event_idiom.DESCRIPCION = descripcion
+				if evento_idioma.objects.filter(EVENTO=evento,IDIOMA=idioma[0]).exists():
+					event_idiom= evento_idioma.objects.get(EVENTO=evento,IDIOMA=idioma[0])
+
+					event_idiom.LUGAR = lugar
+					event_idiom.DESCRIPCION = descripcion
+				else:
+					event_idiom = evento_idioma()
+					event_idiom.EVENTO = evento
+					event_idiom.IDIOMA= idioma[0]
+					event_idiom.LUGAR = lugar
+					event_idiom.DESCRIPCION = descripcion
 				event_idiom.save(commit)
 		return evento
 
@@ -893,8 +912,8 @@ class RelatosForm(forms.ModelForm):
 			relato.FECHA= datetime.datetime.now()
 		
 		relato.save()
-		import pdb
-		pdb.set_trace()
+		# import pdb
+		# pdb.set_trace()
 		for idioma in IDIOMAS:
 			titulo=""
 			descripcion=""
@@ -979,11 +998,16 @@ class RelatosChangeForm(forms.ModelForm):
 				descripcion=self.data[nombre]
 			
 			if (titulo != "" or descripcion !=""):
-				tit_idiom = relato_idioma()
-				tit_idiom.RELATO = relato
-				tit_idiom.IDIOMA= idioma[0]
-				tit_idiom.TITULO = titulo
-				tit_idiom.DESCRIPCION = descripcion
+				if relato_idioma.objects.filter(RELATO=relato,IDIOMA=idioma[0]).exists():
+					tit_idiom=relato_idioma.objects.get(RELATO=relato,IDIOMA=idioma[0])
+					tit_idiom.TITULO = titulo
+					tit_idiom.DESCRIPCION = descripcion
+				else:
+					tit_idiom = relato_idioma()
+					tit_idiom.RELATO = relato
+					tit_idiom.IDIOMA= idioma[0]
+					tit_idiom.TITULO = titulo
+					tit_idiom.DESCRIPCION = descripcion
 				tit_idiom.save(commit)
 		return relato
 
@@ -1155,10 +1179,14 @@ class SitiosTuristicosChangeForm(forms.ModelForm):
 				descripcion=self.data[nombre]
 			
 			if (descripcion !=""):
-				sit_idiom = sitio_turistico_idioma()
-				sit_idiom.SITIO = sitio
-				sit_idiom.IDIOMA= idioma[0]
-				sit_idiom.DESCRIPCION = descripcion
+				if sitio_turistico_idioma.objects.filter(SITIO=sitio,IDIOMA=idioma[0]).exists():
+					sit_idiom=sitio_turistico_idioma.objects.get(SITIO=sitio,IDIOMA=idioma[0])
+					sit_idiom.DESCRIPCION = descripcion
+				else:				
+					sit_idiom = sitio_turistico_idioma()
+					sit_idiom.SITIO = sitio
+					sit_idiom.IDIOMA= idioma[0]
+					sit_idiom.DESCRIPCION = descripcion
 				sit_idiom.save(commit)
 		return sitio
 

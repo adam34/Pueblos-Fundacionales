@@ -499,9 +499,9 @@ class AccordionMultiplesSimpleTextbox(Widget):
             if band:
                 output.append(mark_safe("""
                         <div class='tab-pane' id='"""+name+"_"+idioma[0]+"""'>
-                            <input type='text' class='vTextField span10' name="""+name+"""_"""+idioma[0]+""" placeholder='Descripción en """+idioma[1]+"""' value='"""+self.datos[idioma[0]]+"""' %s attrs_finales>
+                            <input type='text' class='vTextField span10' name="""+name+"""_"""+idioma[0]+""" placeholder='Descripción en """+idioma[1]+"""' value='"""+self.datos[idioma[0]]+"""' %s>
                         </div>
-                    """))
+                    """)% attrs_finales)
             else:                
                 output.append(mark_safe("""
                         <div class='tab-pane' id='"""+name+"_"+idioma[0]+"""'>
