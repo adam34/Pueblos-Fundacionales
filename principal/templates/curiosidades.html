@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {%  block css %}
 
 	<!-- Hoja de Estilos -->
@@ -9,15 +10,15 @@
 {% block contenedor %}
 	<section class="contenedor">
 		<section class="basico_curiosidades">
-			<h2>Curiosidades</h2>
+			<h2>{% trans 'Curiosidades' %}</h2>
 			{% if curiosidades %}
 			<!-- Sección de codigo para cuando la variable curiosidades tiene un valor. El otro caso es para cuando no regresa nada y se coloca alguna estructura por default-->
 			<ul>
 				{% for curiosidad in curiosidades %}
 				<li>
-					<span>Pueblo: </span> {{curiosidad.PUEBLO.NOMBRE}} <br>
-					<span>Título: </span> {{curiosidad.TITULO}} <br>
-					<span>curiosidad: </span> {{curiosidad.DESCRIPCION}} <br>
+					<span>{% trans 'Pueblo' %}: </span> {{curiosidad.PUEBLO.NOMBRE}} <br>
+					<span>{% trans 'Título'%}: </span> {{curiosidad.TITULO}} <br>
+					<span>{% trans 'curiosidad' %}: </span> {{curiosidad.DESCRIPCION}} <br>
 				</li>
 				{% endfor %}
 			</ul>

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {%  block css %}
 	<!-- Hoja de Estilos -->
 	{{block.super}}
@@ -8,18 +9,18 @@
 {% block contenedor %}
 	<section class="contenedor">
 		<section class="basico_bcs">
-			<h2>Descubra BCS</h2>
+			<h2>{% trans 'Descubra BCS' %}</h2>
 			{% if turisticos %}
 			<!-- Sección de codigo para cuando la variable turisticos tiene un valor. El otro caso es para cuando no regresa nada y se coloca alguna estructura por default-->
 			<ul>
 				{% for turistico in turisticos %}
 				<li>
-					<span>Pueblo: </span>{{turistico.NOMBRE}} <br>
-					<span>Municipio: </span>{{turistico.MUNICIPIO}} <br>
-					<span>Historia: </span>{{turistico.HISTORIA}} <br>
-					<span>Cultura: </span>{{turistico.CULTURA}} <br>
-					<span>Comida: </span>{{turistico.COMIDA}} <br>
-					<span>Galería: </span>{{turistico.GALERIA}}
+					<span>{% trans 'Pueblo' %}: </span>{{turistico.NOMBRE}} <br>
+					<span>{% trans 'Municipio' %}: </span>{{turistico.MUNICIPIO}} <br>
+					<span>{% trans 'Historia' %}: </span>{{turistico.HISTORIA}} <br>
+					<span>{% trans 'Cultura' %}: </span>{{turistico.CULTURA}} <br>
+					<span>{% trans 'Comida' %}: </span>{{turistico.COMIDA}} <br>
+					<span>{% trans 'Galería' %}: </span>{{turistico.GALERIA}}
 				</li>
 				{% endfor %}
 			</ul>

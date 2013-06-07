@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load i18n %}
+
 {%  block css %}
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
@@ -15,13 +18,13 @@
 
 {% block contenedor %}
 	<section class="pueblos">
-		<h2>Libros digitales</h2>
+		<h2>{% trans 'Libros digitales' %}</h2>
 		<section class="libreria">
 		</section>
 	</section>
 	<section class="pueblos_menu">
 		<section class="menuLibros">
-			<h2>Libros</h2>
+			<h2>{% trans 'Libros' %}</h2>
 			<article>
 				<a href="#" id="libro_purisima">	
 					<img src="/static/img/portada.png" alt="">

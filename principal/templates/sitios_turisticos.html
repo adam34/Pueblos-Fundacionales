@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load i18n %}
+
 {%  block css %}
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
@@ -15,7 +18,7 @@
 {% block contenedor %}
 	<section class="contenedor">
 		<section class="contenedor_eventos">
-			<h2 class="eventos-h2">Sitios Turísticos</h2>
+			<h2 class="eventos-h2">{% trans 'Sitios Turísticos' %}</h2>
 			<section class="sites_t">
 				{% if sitios %}
 				<ul>
@@ -28,11 +31,11 @@
 						<br><br>
 						<div>{{sitio.sitio.DESCRIPCION}}</div>
 						<br>
-						<div><span>Dirección: </span>{{sitio.sitio.DIRECCION}} en {{sitio.sitio.PUEBLO.NOMBRE}}</div>
+						<div><span>{% trans 'Dirección' %}: </span>{{sitio.sitio.DIRECCION}} {% trans 'en' %} {{sitio.sitio.PUEBLO.NOMBRE}}</div>
 						<br>
-						<div><span>Teléfonos: </span>{{sitio.sitio.TELEFONOS}}</div>
+						<div><span>{% trans 'Teléfonos' %}: </span>{{sitio.sitio.TELEFONOS}}</div>
 						<br>
-						<div id="etiquetas"><span>Etiquetas: </span>{{sitio.sitio.CATEGORIA}}</div>
+						<div id="etiquetas"><span>{% trans 'Etiquetas' %}: </span>{{sitio.sitio.CATEGORIA}}</div>
 						<form id='{{sitio.sitio.ID}}' action="#">
 							<textarea rows="4" cols="45" placeholder="Comenta"></textarea>
 							<br><br>
@@ -46,17 +49,17 @@
 							<div><!-- start slipsum code -->
 								{{comentario.DESCRIPCION}}
 							</div>
-							<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
+							<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, {% trans 'a las' %} {{comentario.FECHA|date:'H:i:s'}}</p>
 							{% if user.username|length > 0 %}
 								{% if comentario.USUARIO.username != user.username %}
-								<a id='{{comentario.ID}}' class="vinculo_reportar" href="#relatoReportado">Reportar comentario</a>
+								<a id='{{comentario.ID}}' class="vinculo_reportar" href="#relatoReportado">{% trans 'Reportar comentario' %}</a>
 								{% endif %}
 							{% endif %}
 						<br>
 						{% endfor %}
 						</section>
 						<br>
-						<div id="more"> Mostrar más comentarios </div>
+						<div id="more"> {% trans 'Mostrar más comentarios' %} </div>
 					</li>
 					{% endfor %}
 				</ul>
@@ -70,13 +73,13 @@
 		<div>
 			<a href="#cerrar" title="Close" class="cerrar">X</a>
 			<section class="formulario_re">
-				<h2>Reportar comentario</h2>
+				<h2>{% trans 'Reportar comentario' %}</h2>
 				<form id='form_reporte' action="#">
 					<input id='comentario' type='hidden' value=''>
-					<input type="radio" name="reporte" value="1">Comentario inapropiado <br>
-					<input type="radio" name="reporte" value="2">Contenido vulgar <br>
-					<input type="radio" name="reporte" value="3">Comentario ofensivo <br>
-					<input type="radio" name="reporte" value="4">Spam<br>
+					<input type="radio" name="reporte" value="1">{% trans 'Comentario inapropiado' %} <br>
+					<input type="radio" name="reporte" value="2">{% trans 'Contenido vulgar' %} <br>
+					<input type="radio" name="reporte" value="3">{% trans 'Comentario ofensivo' %} <br>
+					<input type="radio" name="reporte" value="4">Spam <br>
 					<input name="enviar" value="Enviar" type="button">
 				</form>
 			</section>

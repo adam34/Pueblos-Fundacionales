@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block css %}
 	<!-- Autores -- >
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
@@ -14,9 +15,9 @@
 	<link rel='stylesheet' id='camera-css' href='/static/css/camera.css' media='all'> 
 {% endblock %}
 {% block contenedor %}
-<h2>Alojamiento</h2>
+<h2>{% trans 'Alojamiento' %}</h2>
 <section class="hoteles">
-	<h3>Hoteles</h3>
+	<h3>{% trans 'Hoteles' %}</h3>
 	<section class="hoteles_4">
 	{% if hoteles %}
 		{% for hotel in hoteles %}
@@ -29,13 +30,13 @@
 				<p class="habitaciones">
 					
 				</p>
-				<p class="desc">Descripción: {{hotel.DESCRIPCION}}</p>
-				<span>Ubicación: {{hotel.PUEBLO.MUNICIPIO}}</span>
+				<p class="desc">{% trans 'Descripción' %}: {{hotel.DESCRIPCION}}</p>
+				<span>{% trans 'Ubicación' %}: {{hotel.PUEBLO.MUNICIPIO}}</span>
 			</article>
 			<article class="costo_hoteles">
-				<p>Desde <span>${{hotel.PRECIO_DESDE}}</span> MXN</p>
+				<p>{% trans 'Desde' %} <span>${{hotel.PRECIO_DESDE}}</span> {% trans 'MXN' context 'USD' %} </p>
 				<a href="{{hotel.URL}}" target="_blank">
-					Más info
+					{% trans 'Más info' %}
 				</a>
 			</article>
 		</section>

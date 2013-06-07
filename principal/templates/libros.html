@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load i18n %}
+
 {%  block css %}
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
@@ -16,26 +19,26 @@
 {% block contenedor %}
 	<section class="libros">
 		<h3>
-			Zona de Descargas
+			{% trans 'Zona de Descargas' %}
 		</h3>
 		<p>
-			Todos los documentos se encuentran en formato Pdf. 
-			<br/>Necesita Acrobat Reader para visualizar este formato. 
+			{% trans 'Todos los documentos se encuentran en formato Pdf.' %}
+			<br/>{% trans 'Necesita Acrobat Reader para visualizar este formato.'%} 
 			<br/>
-			Lo puede descargar <a href="http://get.adobe.com/es/reader/" target="_blank">Aquí</a>.
+			{% trans 'Lo puede descargar' %} <a href="http://get.adobe.com/es/reader/" target="_blank">{% trans 'Aquí' %}</a>.
 		</p>
 		<h2>
-			Documentos
+			{% trans 'Documentos' %}
 		</h2>
 		<section class="informacion_general">
-			<h3>Historia</h3>
+			<h3>{% trans 'Historia' %}</h3>
 			<article>
 				<a href="https://www.dropbox.com/s/hk8fum63u36a6ir/La%20Pur%C3%ADsima.pdf" target="_blank">
 					<img src="/static/img/libro.jpg" alt="">
 				</a>
 				<div>
-					<h4>Historia de La Purísima</h4>
-						<a href="https://www.dropbox.com/s/hk8fum63u36a6ir/La%20Pur%C3%ADsima.pdf" target="_blank">Descarga el archivo en formato Pdf.</a>
+					<h4>{% trans 'Historia de La Purísima' %}</h4>
+						<a href="https://www.dropbox.com/s/hk8fum63u36a6ir/La%20Pur%C3%ADsima.pdf" target="_blank">{% trans 'Descarga el archivo en formato Pdf.' %} </a>
 				</div>
 			</article>
 			<article>
@@ -43,22 +46,22 @@
 					<img src="/static/img/libro.jpg" alt="">
 				</a>
 				<div>
-					<h4>Historia de Loreto</h4>
-					<a href="">Descarga el archivo en formato Pdf.</a>
+					<h4>{% trans 'Historia de Loreto' %}</h4>
+					<a href="">{% trans 'Descarga el archivo en formato Pdf.' %}</a>
 				</div>
 			</article>
 		</section>
 		<section class="folletos">
 			<h3>
-				Folletos
+				{% trans 'Folletos' %}
 			</h3>
 			<article>
 				<a href="#">
 					<img src="/static/img/folleto.jpg" alt="">
 				</a>
 					<div>
-						<h4>Fototeca</h4>
-						<a href="">Descarga el archivo en formato Pdf.</a>
+						<h4>{% trans 'Fototeca' %}</h4>
+						<a href="">{% trans 'Descarga el archivo en formato Pdf.' %}</a>
 					</div>
 				</article>
 				<article>
@@ -66,8 +69,8 @@
 						<img src="/static/img/folleto.jpg" alt="">
 					</a>
 					<div>
-						<h4>Fototeca</h4>
-						<a href="">Descarga el archivo en formato Pdf.</a>
+						<h4>{% trans 'Fototeca' %}</h4>
+						<a href="">{% trans 'Descarga el archivo en formato Pdf.' %}</a>
 					</div>
 				</article>
 				<article>
@@ -75,8 +78,8 @@
 						<img src="/static/img/folleto.jpg" alt="">
 					</a>
 					<div>
-						<h4>Fototeca</h4>
-						<a href="">Descarga el archivo en formato Pdf.</a>
+						<h4>{% trans 'Fototeca' %}</h4>
+						<a href="">{% trans 'Descarga el archivo en formato Pdf.' %}</a>
 					</div>
 				</article>
 				<article>
@@ -84,8 +87,8 @@
 						<img src="/static/img/folleto.jpg" alt="">
 					</a>
 					<div>
-						<h4>Fototeca</h4>
-						<a href="">Descarga el archivo en formato Pdf.</a>
+						<h4>{% trans 'Fototeca' %}</h4>
+						<a href="">{% trans 'Descarga el archivo en formato Pdf.' %}</a>
 					</div>
 				</article>
 			</section>
@@ -98,7 +101,25 @@
 						<img src="/static/img/mapa.jpg" alt="">
 					</a>
 					<div>
-						<h4>Mapa de BCS</h4>
+						<h4>{% trans 'Mapa de BCS' %}</h4>
+						<a href="">{% trans 'Descarga el archivo en formato Pdf.' %}</a>
+					</div>
+				</article>
+				<article>
+					<a href="#">
+						<img src="/static/img/mapa.jpg" alt="">
+					</a>
+					<div>
+						<h4>{% trans 'Mapa de Loreto' %}</h4>
+						<a href="">{% trans 'Descarga el archivo en formato Pdf.' %}</a>
+					</div>
+				</article>
+				<article>
+					<a href="#">
+						<img src="/static/img/mapa.jpg" alt="">
+					</a>
+					<div>
+						<h4>{% trans 'Mapa de BCS' %}</h4>
 						<a href="">Descarga el archivo en formato Pdf.</a>
 					</div>
 				</article>
@@ -107,33 +128,15 @@
 						<img src="/static/img/mapa.jpg" alt="">
 					</a>
 					<div>
-						<h4>Mapa de Loreto</h4>
-						<a href="">Descarga el archivo en formato Pdf.</a>
-					</div>
-				</article>
-				<article>
-					<a href="#">
-						<img src="/static/img/mapa.jpg" alt="">
-					</a>
-					<div>
-						<h4>Mapa de BCS</h4>
-						<a href="">Descarga el archivo en formato Pdf.</a>
-					</div>
-				</article>
-				<article>
-					<a href="#">
-						<img src="/static/img/mapa.jpg" alt="">
-					</a>
-					<div>
-						<h4>Mapa de Loreto</h4>
-						<a href="">Descarga el archivo en formato Pdf.</a>
+						<h4>{% trans 'Mapa de Loreto' %}</h4>
+						<a href="">{% trans 'Descarga el archivo en formato Pdf.' %}</a>
 					</div>
 				</article>
 		</section>
 	</section>
 	<section class="menu_libros">
 		<section class="redes_sociales">
-			<h3>Sugerencias</h3>
+			<h3>{% trans 'Sugerencias' %}</h3>
 			{% if eventos %}
 				{% for evento in eventos %}
 				<article>

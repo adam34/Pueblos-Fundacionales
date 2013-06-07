@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load i18n %}
+
 {%  block css %}
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
@@ -13,22 +16,22 @@
 
 {% block contenedor %}
 	<section class="mapa">
-		<h2>Mapa de Pueblos Fundacionales</h2>
+		<h2>{% trans 'Mapa de Pueblos Fundacionales' %}</h2>
 		<section id="map" class="contenedor_mapa">
 		</section>
 		<div class="row">
-  			<a href="#" class="btn" id="get_route">Obtener ruta</a>
-  			<a href="#" class="btn" id="back">&laquo; Regresar</a>
-  			<a href="#" class="btn" id="forward">Adelante &raquo;</a>
+  			<a href="#" class="btn" id="get_route">{% trans 'Obtener ruta' %}</a>
+  			<a href="#" class="btn" id="back">&laquo; {% trans 'Regresar' %}</a>
+  			<a href="#" class="btn" id="forward">{% trans 'Adelante' %} &raquo;</a>
 		</div>
 		<div class="row">
   			<ul id="steps"></ul>
 		</div>
 	</section>
 	<section class="menu_mapas">
-		<h2>Menú</h2>
+		<h2>{% trans 'Menú' %}</h2>
 		 <form method="post" id="geocoding_form">
-      		<label for="address">Dirección:</label>
+      		<label for="address">{% trans 'Dirección' %}:</label>
       		<div class="input">
         		<input type="text" id="address" name="address"/>
         		<input type="submit" class="btn" value="Buscar" />
