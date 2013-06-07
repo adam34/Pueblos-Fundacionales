@@ -383,6 +383,7 @@ class ArchivosAdmin(admin.ModelAdmin):
 	list_display =('NOMBRE','DESCRIPCION','RUTA')
 	list_per_page = 10
 	search_fields = ['NOMBRE',]
+	ordering = ['NOMBRE',]
 	def get_form(self, request, obj=None, **kwargs):
 		#print dir(self.form._meta.fields)
 		if obj: # obj is not None, so this is a change page
@@ -402,7 +403,6 @@ class ArchivosAdmin(admin.ModelAdmin):
 					}),
 				)
 		return super(ArchivosAdmin, self).get_form(request, obj, **kwargs)
-	
 #Fin ArchivosAdmin
 
 
