@@ -2,12 +2,20 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
-
+from django.db.models.signals import pre_delete
 # Create your models here.
 
 IDIOMAS =(
 	('Ingles',u'Inglés'),
 	)
+
+
+def eliminar_archivo(sender, instance, *args, **kwargs):
+	import pdb
+	pdb.set_trace()
+	storage,path = instance.RUTA.storage,instance.RUTA.storage
+	instance.RUTA.delete()
+	storage.delete(path)
 
 class archivo(models.Model):
 	class Meta:
@@ -19,6 +27,8 @@ class archivo(models.Model):
 	RUTA=models.ImageField(max_length=100,upload_to='galerias/')
 	def __unicode__(self):
 		return self.NOMBRE
+pre_delete.connect(eliminar_archivo,sender=archivo)
+
 
 class galeria(models.Model):
 	class Meta:

@@ -1329,8 +1329,8 @@ class ArchivosForm(forms.ModelForm):
 		self.fields['RUTA'].help_text= "Obligatorio. Es el archivo que se subirá al servidor. El tamaño del nombre no puede ser mayor de 50 caracteres, y eso incluye la extensión."
 		#self.fields['FECHA_INICIO'].widget.attrs['readonly']= 'true'
 	def clean(self):
-		import pdb
-		pdb.set_trace()
+		# import pdb
+		# pdb.set_trace()
 		super(ArchivosForm, self).clean()
 
 		nombre=self.data['NOMBRE']
@@ -1363,8 +1363,8 @@ class ArchivosChangeForm(forms.ModelForm):
 			print e
 
 	def clean(self):
-		import pdb
-		pdb.set_trace()
+		# import pdb
+		# pdb.set_trace()
 		super(ArchivosChangeForm, self).clean()
 
 		nombre=self.data['NOMBRE']
