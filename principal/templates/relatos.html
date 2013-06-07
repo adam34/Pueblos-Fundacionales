@@ -19,7 +19,7 @@
 			<ul>
 				{% for relato in relatos  %}
 				<li id='relato_{{relato.relato.ID}}'>
-					<h3> {{relato.relato.TITULO}}</h3>
+					<h3 id='{{relato.relato.ID}}'> {{relato.relato.TITULO}}</h3>
 					<br>
 					<span>{% trans 'Autor'%}:</span>&nbsp; &nbsp;{{relato.relato.USUARIO.username}}
 					<br>
@@ -69,10 +69,6 @@
 					{% else %}
 						<p>{% trans 'No comentarios' %}</p>
 					{% endif %}
-					{% if relato.comentarios|length > 3 %}
-					<div id="more" class='ver_mas'>
-						<input type='hidden'value='{{relato.relato.ID}}'>
-					{% endif %}
 					
 				</li>
 				{% endfor %}
@@ -84,7 +80,7 @@
 			<p>
 				{% for rel in mejores  %}
 					<br>
-					<h4 style='max-width:60%;'> {{rel.TITULO}}</h4>
+					<h4 style='max-width:60%;'>{{rel.TITULO}}</h4>
 				{% endfor %}
 			</p>
 			{% if user.username|length > 0 %}

@@ -35,9 +35,11 @@
 			</article>
 			<article class="costo_hoteles">
 				<p>{% trans 'Desde' %} <span>${{hotel.PRECIO_DESDE}}</span> {% trans 'MXN' context 'USD' %} </p>
+				{% if hotel.URL %}
 				<a href="{{hotel.URL}}" target="_blank">
 					{% trans 'Más info' %}
 				</a>
+				{% endif %}
 			</article>
 		</section>
 		{% endfor %}

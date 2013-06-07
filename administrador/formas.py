@@ -1046,6 +1046,7 @@ class SitiosTuristicosForm(forms.ModelForm):
 		self.fields['PRECIO_HASTA'].help_text= "Opcional. Intervalo final del servicio propuesto del sitio, en dado caso que así lo preste. La moneda utilizada es el dolar americano. En dado caso que se coloque uno de ellos es OBLIGATORIO que el inicial sea menor que el final."
 		self.fields['URL'].help_text="Direccion URL del sitio, si lo tuviera. Ejemplo: http://example.com"
 		self.fields['URL'].label="Sitio Web"
+		self.fields['URL'].required=True
 		self.initial['PRECIO_DESDE'] ='0.00'
 		self.initial['PRECIO_HASTA'] ='0.00'
 		self.fields['PRECIO_DESDE'].required=False
@@ -1135,6 +1136,7 @@ class SitiosTuristicosChangeForm(forms.ModelForm):
 		self.fields['PRECIO_HASTA'].required=False
 		self.fields['URL'].help_text="Direccion URL del sitio, si lo tuviera. Ejemplo: http://example.com"
 		self.fields['URL'].label="Sitio Web"
+		self.fields['URL'].required=True
 		self.fields['IMAGEN'].help_text= "Obligatorio. Banner de la empresa."
 		self.fields['LATITUD'].widget = HiddenInput()
 		self.fields['LONGITUD'].widget = HiddenInput()
