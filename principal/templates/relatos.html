@@ -64,13 +64,15 @@
 									{% endif %}
 								{% endif %}
 							</section>
-
 							<br>
 						{% endfor %}
 					{% else %}
 						<p>{% trans 'No comentarios' %}</p>
 					{% endif %}
-					<div id="more"> {% trans 'Mostrar más comentarios' %} </div>
+					{% if relato.comentarios|length > 3 %}
+					<div id="more" class='ver_mas'>
+						<input type='hidden'value='{{relato.relato.ID}}'>
+					{% endif %}
 					
 				</li>
 				{% endfor %}
@@ -456,6 +458,11 @@ $(function(){
             },
         });
 		return false;
+	}
+	$('.mostrar_mas').on('click',mostrar_mas);
+	function mostrar_mas(e)
+	{
+		$elemento=$(e.target);
 	}
 {% endif %}
 </script>
