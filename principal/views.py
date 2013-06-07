@@ -1020,8 +1020,8 @@ def reporte_comentarios_ajax(request):
 		return HttpResponse(json.dumps({'respuesta':'noAJAX'}),mimetype='application/json')
 
 def enviar_relatos_ajax(request):
-	import pdb
-	pdb.set_trace()
+	# import pdb
+	# pdb.set_trace()
 	language=obtener_idioma(request)
 	if request.is_ajax():
 		if request.POST:

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {%  block css %}
 
 	{{block.super}}
@@ -8,54 +9,54 @@
 {% block contenedor %}
 	<section class="contenedor">
 		<section class="uso">
-			<h2>Políticas de privacidad y/o uso</h2>
-			<h4>Políticas de privacidad</h4>
+			<h2>{% trans 'Políticas de privacidad y/o uso' %}</h2>
+			<h4>{% trans 'Políticas de privacidad' %}</h4>
 			<p>
-				En cumplimiento con lo establecido por políticas propias, te informamos nuestra Política de Privacidad y manejo de datos personales y hacemos el siguiente compromiso: 
+				{% trans 'En cumplimiento con lo establecido por políticas propias, te informamos nuestra Política de Privacidad y manejo de datos personales y hacemos el siguiente compromiso:' %} 
 			</p>
 			<ol>
 				<li>
-					Los datos que te solicitamos en el formulario de registro únicamente serán utilizados para poder establecer contacto contigo e identificarte en todo el seguimiento de las secciones dinámicas, tales como subir relatos o subir imágenes. 
+					{% trans 'Los datos que te solicitamos en el formulario de registro únicamente serán utilizados para poder establecer contacto contigo e identificarte en todo el seguimiento de las secciones dinámicas, tales como subir relatos o subir imágenes.' %}
 				</li>
 				<li>
-					Los datos que ingreses en el formulario de registro no serán difundidos, distribuidos o comercializados. 
+					{% trans 'Los datos que ingreses en el formulario de registro no serán difundidos, distribuidos o comercializados.' %}
 				</li>
 				<li>
-					En caso de que desees eliminar tu cuenta de nuestra base de datos podrás, en cualquier momento, solicitar la baja de tus datos mediante correo electrónico a pueblos@pfsud.mx 
+					{% trans 'En caso de que desees eliminar tu cuenta de nuestra base de datos podrás, en cualquier momento, solicitar la baja de tus datos mediante correo electrónico a' %} pueblos@pfsud.mx
 				</li>
 				<li>
-					Si necesitas mayor información por favor escribe a pueblos@pfsud.mx 
+					{% trans 'Si necesitas mayor información por favor escribe a' %} pueblos@pfsud.mx
 				</li>
 			</ol>
-				<h4>Manejo de datos personales </h4>
+				<h4>{% trans 'Manejo de datos personales' %} </h4>
 			<p>
 			
-				Esta Política de Privacidad describe los tipos de información recolectados por Pueblos Fundacionales en su sitio Web, cómo los usamos y protegemos. Esta Política de Privacidad no es aplicable a banners, anuncios o promociones, que se desplieguen dentro del sitio Web.
+				{% trans 'Esta Política de Privacidad describe los tipos de información recolectados por Pueblos Fundacionales en su sitio Web, cómo los usamos y protegemos. Esta Política de Privacidad no es aplicable a banners, anuncios o promociones, que se desplieguen dentro del sitio Web.' %}
 			</p>
 			<p>
-				Al usar nuestro sitio Web usted expresa su aceptación de esta Política de Privacidad. Si no acepta las condiciones de esta Política de Privacidad ni los Términos y Condiciones de uso de nuestro sitio Web, le sugerimos no divulgar su información personal. 
+				{% trans 'Al usar nuestro sitio Web usted expresa su aceptación de esta Política de Privacidad. Si no acepta las condiciones de esta Política de Privacidad ni los Términos y Condiciones de uso de nuestro sitio Web, le sugerimos no divulgar su información personal. ' %}
 			</p>
-			<h4>Información que recolectamos</h4>
+			<h4>{% trans 'Información que recolectamos' %}</h4>
 			<p>
-				Pueblos Fundacionales recolecta la siguiente información: nombre y apellidos, nombre de usuario e email. Pueblos Fundacionales no recolectará ninguna 	información de los visitantes a nuestro sitio a menos que nos suministren su información personal de manera voluntaria ya que sólo requeriremos la información necesaria para participar en las actividades de nuestro sitio Web. 
+				{% trans 'Pueblos Fundacionales recolecta la siguiente información: nombre y apellidos, nombre de usuario e email. Pueblos Fundacionales no recolectará ninguna información de los visitantes a nuestro sitio a menos que nos suministren su información personal de manera voluntaria ya que sólo requeriremos la información necesaria para participar en las actividades de nuestro sitio Web.' %}
 			</p>
 			<p>
-				Cuando usted decide proporcionarnos su información personal, nos está autorizando a usarla de acuerdo con los términos de esta Política de Privacidad.
+				{% trans 'Cuando usted decide proporcionarnos su información personal, nos está autorizando a usarla de acuerdo con los términos de esta Política de Privacidad.' %}
 			</p>
 		
-			<h4>Cambios en la Política de Privacidad </h4>
+			<h4>{% trans 'Cambios en la Política de Privacidad' %} </h4>
 			<p>
-				Pueblos Fundacionales reserva el derecho de cambiar o remover esta Política de Privacidad a nuestra discreción, le haremos llegar un correo electrónico con las últimas actualizaciones.
+				{% trans 'Pueblos Fundacionales reserva el derecho de cambiar o remover esta Política de Privacidad a nuestra discreción, le haremos llegar un correo electrónico con las últimas actualizaciones.' %}
 			</p>
-			<h4>Enlaces a otros sitios Web</h4>
+			<h4>{% trans 'Enlaces a otros sitios Web' %}</h4>
 			<p>
-				Los usuarios deben saber que al acceder a este sitio pueden ser direccionados a otros sitios que están fuera de nuestro control. Pueblos Fundacionales no garantiza la Política de Privacidad o el contenido de ningún sitio de terceros que tenga enlaces con nuestro sitio. 
+				{% trans 'Los usuarios deben saber que al acceder a este sitio pueden ser direccionados a otros sitios que están fuera de nuestro control. Pueblos Fundacionales no garantiza la Política de Privacidad o el contenido de ningún sitio de terceros que tenga enlaces con nuestro sitio.' %}
 			</p>
 			<h4>
-				Cómo contactarnos			
+				{% trans 'Cómo contactarnos' %}
 			</h4>
 	 		<p>
-	 			Si tuviera alguna duda o inquietud acerca de nuestra Política de Privacidad o de la  recolección de datos, por favor envíenos un mensaje de correo electrónico a pueblos@pfsud.mx 
+	 			{% trans 'Si tuviera alguna duda o inquietud acerca de nuestra Política de Privacidad o de la  recolección de datos, por favor envíenos un mensaje de correo electrónico a' %} pueblos@pfsud.mx 
 			</p>
 			<br>
 		</section>

@@ -233,6 +233,7 @@ class EventosAdmin(admin.ModelAdmin):
 class RelatosAdmin(admin.ModelAdmin):
 	list_display =('TITULO','USUARIO','APROBADO')
 	list_per_page = 10
+	list_display_links = ('USUARIO','TITULO')
 	search_fields = ['TITULO','USUARIO']
 	list_filter = ('USUARIO','APROBADO',)
 	def get_form(self, request, obj=None, **kwargs):
