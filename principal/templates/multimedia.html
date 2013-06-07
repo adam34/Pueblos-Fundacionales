@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load i18n %}
+
 {%  block css %}
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
@@ -13,15 +16,15 @@
 
 {% block contenedor %}
 	<section class="multimedia_r">
-		<h2>Multimedia</h2>
+		<h2>{% trans 'Multimedia' %}</h2>
 		<section class="contenido_multimedia">
 
 		</section>
 	</section>
 	<section class="menu_multimedia">
-		<h2>Menú</h2>
+		<h2>{% trans 'Menú' %}</h2>
 		<a href="#" id="player">Video</a>
-		<a href="#" id="audio">Audio</a>
+		<a href="#" id="audio">{% trans 'Audio' %}</a>
 	</section>
 {% endblock %}
 

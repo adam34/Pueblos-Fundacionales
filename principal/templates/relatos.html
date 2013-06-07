@@ -59,7 +59,7 @@
 								<p id="fechacomentarios">Fecha: {{comentario.FECHA|date:'d/m/Y'}}, a las {{comentario.FECHA|date:'H:i:s'}}</p>
 								{% if user.username|length > 0 %}
 									{% if comentario.USUARIO.username != user.username %}
-									<a id='{{comentario.ID}}' class="vinculo_reportar" href="#relatoReportado">Reportar comentario</a>
+									<a id='{{comentario.ID}}' class="vinculo_reportar_r" href="#relatoReportado">Reportar comentario</a>
 									{% endif %}
 								{% endif %}
 							</section>

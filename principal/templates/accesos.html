@@ -1,20 +1,21 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block css %}
 	{{block.super}}
 	<link rel="stylesheet" href="/static/css/accesos.css">
 {% endblock %}
 {% block contenedor %}
 	<section class="basico">
-		<h2>Sobre Pueblos Fundacionales</h2>
+		<h2>{% trans 'Sobre Pueblos Fundacionales' %}</h2>
 		<section class="lista">
 				<ul>
 				<li>
 					<a href="#" id="proy">
-						Proyecto Pueblos Fundacionales
+						{% trans 'Proyecto Pueblos Fundacionales' %}
 					</a>
 					<div id="proy_b">
 						<p>
-							“Integración turística de los pueblos fundacionales de la Región Norte del Estado”<br>
+							{% trans 'Integración turística de los pueblos fundacionales de la Región Norte del Estado' %} <br>
 							<span>Loreto-San Javier- San José y San Miguel de Comondú- Mulegé-San Ignacio</span>
 						</p>
 						<ul>
@@ -83,11 +84,11 @@
 				<div id="proyecto"></div>
 				<li>
 					<a class="cosas" id="cosas" href="#">
-						Cosas que deberías de saber
+						{% trans 'Cosas que deberías de saber' %} 
 					</a>
 					<div id="cosasqds">
 						<p>
-							Los pueblos de <strong>Baja California Sur</strong> cuentan entre sus tradiciones más importantes la celebración de su santo patrono. Ese día es aprovechado para realizar los bautizos y confirmaciones de los niños. Por lo general la fiesta del santo se hace acompañar de una feria en la plaza pública, donde se ofertan diferentes platillos que van desde la barbacoa, las empanadas y los tamales, hasta el pescado empapelado y la carne asada en leña de mezquite. Destacan en estas celebraciones las carreras de caballos o "tlacuachadas", las cuales se realizan entre el bullicio de los tastes casi siempre llenos de música ranchera interpretada por conjuntos de la localidad.
+							{% trans 'Los pueblos de' %} <strong>Baja California Sur</strong> {% trans 'Sobre Pueblos Fundacionales' %} cuentan entre sus tradiciones más importantes la celebración de su santo patrono. Ese día es aprovechado para realizar los bautizos y confirmaciones de los niños. Por lo general la fiesta del santo se hace acompañar de una feria en la plaza pública, donde se ofertan diferentes platillos que van desde la barbacoa, las empanadas y los tamales, hasta el pescado empapelado y la carne asada en leña de mezquite. Destacan en estas celebraciones las carreras de caballos o "tlacuachadas", las cuales se realizan entre el bullicio de los tastes casi siempre llenos de música ranchera interpretada por conjuntos de la localidad.
 							<br><br>
 							Una de las celebraciones que más llama la atención es la de <strong>San Francisco Javier</strong>, santuario al que acuden los devotos de este santo los días primero y dos de diciembre de cada año.
 							<br><br>

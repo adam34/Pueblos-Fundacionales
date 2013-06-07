@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load i18n %}
+
 {%  block css %}
 	<link rel="author" type="text/plain" href="/templates/humans.txt">
 	<!-- Normalize -->
@@ -15,17 +18,17 @@
 
 {% block contenedor %}
 	<section class="pueblos">
-		<h2>Galería</h2>
+		<h2>{% trans 'Galería' %}</h2>
 		{% for galeria in galerias %}
 		<section class="gallery">
 			<ul>
 				<li>
 					<img src="/static/img/album.png" alt="">
 					<br>
-					<span>Galería: </span>
+					<span>{% trans 'Galería' %}: </span>
 						<a href="#" class="gal">{{galeria.NOMBRE}}</a>
 					<br>
-					<span>Descripción: </span>{{galeria.DESCRIPCION}}
+					<span>{% trans 'Descripción' %}: </span>{{galeria.DESCRIPCION}}
 				</li>
 			</ul>
 		</section>
@@ -35,7 +38,7 @@
 		</section>
 	</section>
 	<section class="pueblos_menu">
-		<h3>Galerías</h3>
+		<h3>{% trans 'Galerías' %}</h3>
 		{% for galeria in galerias %}
 			<p>{{galeria.NOMBRE}}</p>
 		{% endfor %}

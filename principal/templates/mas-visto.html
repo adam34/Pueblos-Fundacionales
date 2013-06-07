@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% load i18n %}
+
 {%  block css %}
 	<!-- Hoja de Estilos -->
 	{{block.super}}
@@ -8,18 +11,18 @@
 {% block contenedor %}
 	<section class="contenedor">
 		<section class="basico_masvisto">
-			<h2>Pueblo Más Visto</h2>
+			<h2>{% trans 'Pueblo Más Visto' %}</h2>
 			{% if mas_visto %}
 			<ul>
 				<li>
-					<span>Pueblo: </span>{{mas_visto.NOMBRE}}<br>
-					<span>Municipio: </span>{{mas_visto.MUNICIPIO}}<br>
-					<span>Historia: </span>{{mas_visto.HISTORIA}} <br>
-					<span>Cultura: </span>{{mas_visto.CULTURA}} <br>
-					<span>Comida: </span>{{mas_visto.COMIDA}} <br>
-					<span>Datos: </span>{{mas_visto.DATOS}} <br>
-					<span>Galería: </span>{{mas_visto.GALERIA}} <br>
-					<span>Tipo: </span>{% if mas_visto.TIPO == 'F' %}Fundacional{% else %}Turístico{% endif %} <br>
+					<span>{% trans 'Pueblo' %}: </span>{{mas_visto.NOMBRE}}<br>
+					<span>{% trans 'Municipio' %}: </span>{{mas_visto.MUNICIPIO}}<br>
+					<span>{% trans 'Historia' %}: </span>{{mas_visto.HISTORIA}} <br>
+					<span>{% trans 'Cultura' %}: </span>{{mas_visto.CULTURA}} <br>
+					<span>{% trans 'Comida' %}: </span>{{mas_visto.COMIDA}} <br>
+					<span>{% trans 'Datos' %}: </span>{{mas_visto.DATOS}} <br>
+					<span>{% trans 'Galería' %}: </span>{{mas_visto.GALERIA}} <br>
+					<span>{% trans 'Tipo' %}: </span>{% if mas_visto.TIPO == 'F' %}Fundacional{% else %}Turístico{% endif %} <br>
 				</li>
 			</ul>
 			{% else %}

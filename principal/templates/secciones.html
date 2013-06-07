@@ -201,7 +201,9 @@
 					<li>{% trans 'Emergencias' %}</li>
 					<li>{% trans 'Cruz Roja' %}</li>
 				</ul>
-				<a class="entrar" href="{% url 'dir' %}">{% trans 'Visitar sección' %}</a>
+				<a href="{% url 'dir' %}">
+					{% trans 'Directorio' context "Directory" %}
+				</a>
 			</section>
 		</section>
 		<section class="menu_turistico">

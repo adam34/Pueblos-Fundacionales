@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block css %}
 	{{block.super}}
 	<link rel="stylesheet" href="/static/css/accesos.css">
@@ -7,20 +8,20 @@
 {% block contenedor %}
 	<section class="contenedor">
 		<section class="basico_desconocida">
-			<h2>BCS Desconocida</h2>
+			<h2>{% trans 'BCS Desconocida' %}</h2>
 			{% if curiosidades %}
 			<!-- Sección de codigo para cuando la variable curiosidades tiene un valor. El otro caso es para cuando no regresa nada y se coloca alguna estructura por default-->
 			<ul>
 				{% for curiosidad in curiosidades %}
 				<li>
-					<span>Pueblo: </span>{{curiosidad.PUEBLO.NOMBRE}}<br>
-					<span>Título: </span>{{curiosidad.TITULO}} <br>
-					<span>Descripción: </span>{{curiosidad.DESCRIPCION}} 
+					<span>{% trans 'Pueblo' %}: </span>{{curiosidad.PUEBLO.NOMBRE}}<br>
+					<span>{% trans 'Título' %}: </span>{{curiosidad.TITULO}} <br>
+					<span>{% trans 'Descripción' %}: </span>{{curiosidad.DESCRIPCION}} 
 				</li>
 				{% endfor %}
 			</ul>
 			{% else %}
-			<p>No existen curiosidades para mostrar.</p>
+			<p>{% trans 'No existen curiosidades para mostrar.' %}</p>
 			{% endif %}
 		</section>
 		<section class="menu_basico">

@@ -8,7 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
+<<<<<<< HEAD
 "POT-Creation-Date: 2013-06-06 21:00-0600\n"
+=======
+"POT-Creation-Date: 2013-06-07 01:42-0600\n"
+>>>>>>> upstream/master
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -999,6 +1003,66 @@ msgstr ""
 msgid "Reset my password"
 msgstr ""
 
+#: .\principal\templates\accesos.html.py:9
+#: .\principal\templates\accesos.html.py:91
+msgid "Sobre Pueblos Fundacionales"
+msgstr ""
+
+#: .\principal\templates\accesos.html.py:14
+msgid "Proyecto Pueblos Fundacionales"
+msgstr ""
+
+#: .\principal\templates\accesos.html.py:18
+msgid ""
+"Integración turística de los pueblos fundacionales de la Región Norte del "
+"Estado"
+msgstr ""
+
+#: .\principal\templates\accesos.html.py:87
+msgid "Cosas que deberías de saber"
+msgstr ""
+
+#: .\principal\templates\accesos.html.py:91
+msgid "Los pueblos de"
+msgstr ""
+
+#: .\principal\templates\alojamiento.html.py:18
+#: .\principal\templates\index.html.py:165
+msgid "Alojamiento"
+msgstr ""
+
+#: .\principal\templates\alojamiento.html.py:20
+#: .\principal\templates\secciones.html.py:135
+#: .\principal\templates\secciones.html.py:137
+#: .\principal\templates\secciones.html.py:138
+#: .\principal\templates\secciones.html.py:139
+msgid "Hoteles"
+msgstr ""
+
+#: .\principal\templates\alojamiento.html.py:33
+#: .\principal\templates\bcs-desconocida.html.py:19
+#: .\principal\templates\eventos.html.py:25
+#: .\principal\templates\galerias.html.py:31
+msgid "Descripción"
+msgstr ""
+
+#: .\principal\templates\alojamiento.html.py:34
+msgid "Ubicación"
+msgstr ""
+
+#: .\principal\templates\alojamiento.html.py:37
+msgid "Desde"
+msgstr ""
+
+#: .\principal\templates\alojamiento.html.py:37
+msgctxt "USD"
+msgid "MXN"
+msgstr ""
+
+#: .\principal\templates\alojamiento.html.py:39
+msgid "Más info"
+msgstr ""
+
 #: .\principal\templates\base.html.py:8 .\principal\templates\base.html.py:93
 #: .\principal\templates\secciones.html.py:154
 #: .\principal\templates\secciones.html.py:167
@@ -1084,6 +1148,7 @@ msgstr ""
 
 #: .\principal\templates\base.html.py:198
 #: .\principal\templates\base.html.py:215
+#: .\principal\templates\mapa.html.py:24
 msgid "Regresar"
 msgstr ""
 
@@ -1239,14 +1304,210 @@ msgstr ""
 msgid "Error, no existe una cuenta de usuario con ese correo"
 msgstr ""
 
+<<<<<<< HEAD
 #: .\principal\templates\index.html.py:14
 #: .\principal\templates\secciones.html.py:105
 msgid "Novedades"
+=======
+#: .\principal\templates\bcs-desconocida.html.py:11
+#: .\principal\templates\index.html.py:29
+#: .\principal\templates\secciones.html.py:110
+msgid "BCS Desconocida"
 msgstr ""
 
+#: .\principal\templates\bcs-desconocida.html.py:17
+#: .\principal\templates\curiosidades.html.py:19
+#: .\principal\templates\descubra-bcs.html.py:18
+#: .\principal\templates\eventos.html.py:21
+#: .\principal\templates\mas-visto.html.py:18
+msgid "Pueblo"
+msgstr ""
+
+#: .\principal\templates\bcs-desconocida.html.py:18
+#: .\principal\templates\curiosidades.html.py:20
+msgid "Título"
+msgstr ""
+
+#: .\principal\templates\bcs-desconocida.html.py:24
+msgid "No existen curiosidades para mostrar."
+>>>>>>> upstream/master
+msgstr ""
+
+#: .\principal\templates\curiosidades.html.py:13
+#: .\principal\templates\secciones.html.py:182
+msgid "Curiosidades"
+msgstr ""
+
+#: .\principal\templates\curiosidades.html.py:21
+msgid "curiosidad"
+msgstr ""
+
+#: .\principal\templates\descubra-bcs.html.py:12
 #: .\principal\templates\index.html.py:16
 #: .\principal\templates\secciones.html.py:115
 msgid "Descubra BCS"
+msgstr ""
+
+#: .\principal\templates\descubra-bcs.html.py:19
+#: .\principal\templates\mas-visto.html.py:19
+msgid "Municipio"
+msgstr ""
+
+#: .\principal\templates\descubra-bcs.html.py:20
+#: .\principal\templates\libros.html.py:34
+#: .\principal\templates\mas-visto.html.py:20
+#: .\principal\templates\secciones.html.py:156
+#, fuzzy
+msgid "Historia"
+msgstr "Historial de periodico"
+
+#: .\principal\templates\descubra-bcs.html.py:21
+#: .\principal\templates\mas-visto.html.py:21
+msgid "Cultura"
+msgstr ""
+
+#: .\principal\templates\descubra-bcs.html.py:22
+#: .\principal\templates\index.html.py:169
+#: .\principal\templates\mas-visto.html.py:22
+msgid "Comida"
+msgstr ""
+
+#: .\principal\templates\descubra-bcs.html.py:23
+#: .\principal\templates\galerias.html.py:21
+#: .\principal\templates\galerias.html.py:28
+#: .\principal\templates\mas-visto.html.py:24
+msgid "Galería"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:12
+msgid "Directorio"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:16
+msgid "Protección Civil Municipal"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:26
+msgid "Denuncia Anónima"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:31
+msgid "Unidad Municipal de Atención Ciudadana"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:36
+msgid "Bomberos"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:41
+msgid "Comisión Nacional de Derechos Humanos"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:46
+msgid "Sistema de Agua Potable y Alcantarillado"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:51
+msgid "Policia Ministerial"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:56
+msgid "Comisión Federal de Electricidad"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:61
+msgid "Cruz Roja Mexicana"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:66
+msgid "Direccion de Seguridad y Transito Municipal"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:71
+msgid "Comandancia Los Olivos"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:76
+msgid "Policia Federal de Caminos"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:86
+msgid "Procuraduria Federal del Consumidor"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:91
+msgid "Servicios Publicos"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:106
+msgid "Hospital Psiquiatrico de"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:111
+msgid "Centro Estatal de Oncologia"
+msgstr ""
+
+#: .\principal\templates\directorio.html.py:121
+msgid "Unidad Médico Familiar"
+msgstr ""
+
+#: .\principal\templates\eventos.html.py:12
+#: .\principal\templates\index.html.py:86
+#: .\principal\templates\secciones.html.py:42
+#: .\principal\templates\secciones.html.py:165
+msgid "Eventos"
+msgstr ""
+
+#: .\principal\templates\eventos.html.py:23
+#: .\principal\templates\eventos.html.py:41
+msgid "Fecha"
+msgstr ""
+
+#: .\principal\templates\eventos.html.py:27
+msgid "Lugar"
+msgstr ""
+
+#: .\principal\templates\eventos.html.py:41
+#: .\principal\templates\sitios_turisticos.html.py:52
+msgid "a las"
+msgstr ""
+
+#: .\principal\templates\eventos.html.py:44
+#: .\principal\templates\eventos.html.py:64
+#: .\principal\templates\sitios_turisticos.html.py:55
+#: .\principal\templates\sitios_turisticos.html.py:76
+msgid "Reportar comentario"
+msgstr ""
+
+#: .\principal\templates\eventos.html.py:51
+#: .\principal\templates\sitios_turisticos.html.py:62
+msgid "Mostrar más comentarios"
+msgstr ""
+
+#: .\principal\templates\eventos.html.py:67
+#: .\principal\templates\sitios_turisticos.html.py:79
+msgid "Comentario inapropiado"
+msgstr ""
+
+#: .\principal\templates\eventos.html.py:68
+#: .\principal\templates\sitios_turisticos.html.py:80
+msgid "Contenido vulgar"
+msgstr ""
+
+#: .\principal\templates\eventos.html.py:69
+#: .\principal\templates\sitios_turisticos.html.py:81
+msgid "Comentario ofensivo"
+msgstr ""
+
+#: .\principal\templates\galerias.html.py:41
+#: .\principal\templates\secciones.html.py:100
+#: .\principal\templates\secciones.html.py:173
+msgid "Galerías"
+msgstr ""
+
+#: .\principal\templates\index.html.py:14
+#: .\principal\templates\secciones.html.py:105
+msgid "Novedades"
 msgstr ""
 
 #: .\principal\templates\index.html.py:21
@@ -1257,11 +1518,14 @@ msgstr ""
 msgid "Leer más"
 msgstr ""
 
+<<<<<<< HEAD
 #: .\principal\templates\index.html.py:29
 #: .\principal\templates\secciones.html.py:110
 msgid "BCS Desconocida"
 msgstr ""
 
+=======
+>>>>>>> upstream/master
 #: .\principal\templates\index.html.py:42
 msgid "Pueblo más visto"
 msgstr ""
@@ -1270,12 +1534,15 @@ msgstr ""
 msgid "Recomendaciones"
 msgstr ""
 
+<<<<<<< HEAD
 #: .\principal\templates\index.html.py:86
 #: .\principal\templates\secciones.html.py:42
 #: .\principal\templates\secciones.html.py:165
 msgid "Eventos"
 msgstr ""
 
+=======
+>>>>>>> upstream/master
 #: .\principal\templates\index.html.py:94
 msgid "Eventos de la semana"
 msgstr ""
@@ -1321,14 +1588,6 @@ msgstr ""
 #: .\principal\templates\index.html.py:161
 #: .\principal\templates\secciones.html.py:77
 msgid "Mapa"
-msgstr ""
-
-#: .\principal\templates\index.html.py:165
-msgid "Alojamiento"
-msgstr ""
-
-#: .\principal\templates\index.html.py:169
-msgid "Comida"
 msgstr ""
 
 #: .\principal\templates\index.html.py:177
@@ -1393,6 +1652,7 @@ msgid "Clima"
 msgstr ""
 
 #: .\principal\templates\index.html.py:322
+#: .\principal\templates\multimedia.html.py:19
 #: .\principal\templates\secciones.html.py:82
 msgid "Multimedia"
 msgstr ""
@@ -1421,16 +1681,135 @@ msgstr ""
 msgid "No hay eventos para el mes"
 msgstr ""
 
+<<<<<<< HEAD
+#: .\principal\templates\pueblos.html.py:30
+msgid "Visita nuestro catálogo digital"
+=======
+#: .\principal\templates\libreria.html.py:21
+msgid "Libros digitales"
+>>>>>>> upstream/master
+msgstr ""
+
+#: .\principal\templates\libreria.html.py:27
+msgid "Libros"
+msgstr ""
+
+#: .\principal\templates\libros.html.py:22
+msgid "Zona de Descargas"
+msgstr ""
+
+#: .\principal\templates\libros.html.py:25
+msgid "Todos los documentos se encuentran en formato Pdf."
+msgstr ""
+
+#: .\principal\templates\libros.html.py:26
+msgid "Necesita Acrobat Reader para visualizar este formato."
+msgstr ""
+
+#: .\principal\templates\libros.html.py:28
+msgid "Lo puede descargar"
+msgstr ""
+
+#: .\principal\templates\libros.html.py:28
+msgid "Aquí"
+msgstr ""
+
+#: .\principal\templates\libros.html.py:31
+msgid "Documentos"
+msgstr ""
+
+#: .\principal\templates\libros.html.py:40
+msgid "Historia de La Purísima"
+msgstr ""
+
+#: .\principal\templates\libros.html.py:41
+#: .\principal\templates\libros.html.py:50
+#: .\principal\templates\libros.html.py:64
+#: .\principal\templates\libros.html.py:73
+#: .\principal\templates\libros.html.py:82
+#: .\principal\templates\libros.html.py:91
+#: .\principal\templates\libros.html.py:105
+#: .\principal\templates\libros.html.py:114
+#: .\principal\templates\libros.html.py:132
+msgid "Descarga el archivo en formato Pdf."
+msgstr ""
+
+#: .\principal\templates\libros.html.py:49
+#, fuzzy
+msgid "Historia de Loreto"
+msgstr "Historial de periodico"
+
+#: .\principal\templates\libros.html.py:56
+msgid "Folletos"
+msgstr ""
+
+#: .\principal\templates\libros.html.py:63
+#: .\principal\templates\libros.html.py:72
+#: .\principal\templates\libros.html.py:81
+#: .\principal\templates\libros.html.py:90
+msgid "Fototeca"
+msgstr ""
+
+#: .\principal\templates\libros.html.py:104
+#: .\principal\templates\libros.html.py:122
+msgid "Mapa de BCS"
+msgstr ""
+
+#: .\principal\templates\libros.html.py:113
+#: .\principal\templates\libros.html.py:131
+msgid "Mapa de Loreto"
+msgstr ""
+
+#: .\principal\templates\libros.html.py:139
+#: .\principal\templates\secciones.html.py:234
+msgid "Sugerencias"
+msgstr ""
+
+#: .\principal\templates\mapa.html.py:19
+msgid "Mapa de Pueblos Fundacionales"
+msgstr ""
+
+#: .\principal\templates\mapa.html.py:23
+msgid "Obtener ruta"
+msgstr ""
+
+#: .\principal\templates\mapa.html.py:25
+msgid "Adelante"
+msgstr ""
+
+#: .\principal\templates\mapa.html.py:32
+#: .\principal\templates\multimedia.html.py:25
+#: .\principal\templates\pueblos.html.py:35
+msgid "Menú"
+msgstr ""
+
+#: .\principal\templates\mapa.html.py:34
+#: .\principal\templates\sitios_turisticos.html.py:34
+msgid "Dirección"
+msgstr ""
+
+#: .\principal\templates\mas-visto.html.py:14
+msgid "Pueblo Más Visto"
+msgstr ""
+
+#: .\principal\templates\mas-visto.html.py:23
+msgid "Datos"
+msgstr ""
+
+#: .\principal\templates\mas-visto.html.py:25
+msgid "Tipo"
+msgstr ""
+
+#: .\principal\templates\multimedia.html.py:27
+msgid "Audio"
+msgstr ""
+
 #: .\principal\templates\pueblos.html.py:30
 msgid "Visita nuestro catálogo digital"
 msgstr ""
 
 #: .\principal\templates\pueblos.html.py:31
 msgid "Entra aquí"
-msgstr ""
-
-#: .\principal\templates\pueblos.html.py:35
-msgid "Menú"
 msgstr ""
 
 #: .\principal\templates\secciones.html.py:19
@@ -1464,6 +1843,7 @@ msgid "Curiosidades"
 msgstr ""
 
 #: .\principal\templates\secciones.html.py:62
+#: .\principal\templates\secciones.html.py:205
 msgctxt "Directory"
 msgid "Directorio"
 msgstr ""
@@ -1483,11 +1863,14 @@ msgctxt "Downloads"
 msgid "Descargas"
 msgstr ""
 
+<<<<<<< HEAD
 #: .\principal\templates\secciones.html.py:100
 #: .\principal\templates\secciones.html.py:173
 msgid "Galerías"
 msgstr ""
 
+=======
+>>>>>>> upstream/master
 #: .\principal\templates\secciones.html.py:120
 msgctxt "Town most viewed"
 msgid "Pueblo más visto"
@@ -1501,6 +1884,7 @@ msgstr ""
 msgid "aquí"
 msgstr ""
 
+<<<<<<< HEAD
 #: .\principal\templates\secciones.html.py:135
 #: .\principal\templates\secciones.html.py:137
 #: .\principal\templates\secciones.html.py:138
@@ -1508,6 +1892,8 @@ msgstr ""
 msgid "Hoteles"
 msgstr ""
 
+=======
+>>>>>>> upstream/master
 #: .\principal\templates\secciones.html.py:143
 #: .\principal\templates\secciones.html.py:151
 #: .\principal\templates\secciones.html.py:162
@@ -1515,7 +1901,10 @@ msgstr ""
 #: .\principal\templates\secciones.html.py:179
 #: .\principal\templates\secciones.html.py:188
 #: .\principal\templates\secciones.html.py:196
+<<<<<<< HEAD
 #: .\principal\templates\secciones.html.py:204
+=======
+>>>>>>> upstream/master
 msgid "Visitar sección"
 msgstr ""
 
@@ -1532,11 +1921,14 @@ msgstr ""
 msgid "¿A dónde voy a comer?"
 msgstr ""
 
+<<<<<<< HEAD
 #: .\principal\templates\secciones.html.py:156
 #, fuzzy
 msgid "Historia"
 msgstr "Historial de periodico"
 
+=======
+>>>>>>> upstream/master
 #: .\principal\templates\secciones.html.py:157
 msgid "Pueblos y tradiciones"
 msgstr ""
@@ -1570,10 +1962,13 @@ msgstr ""
 msgid "Fotografías actuales"
 msgstr ""
 
+<<<<<<< HEAD
 #: .\principal\templates\secciones.html.py:182
 msgid "Curiosidades"
 msgstr ""
 
+=======
+>>>>>>> upstream/master
 #: .\principal\templates\secciones.html.py:184
 msgid "¿Sabías que... ?"
 msgstr ""
@@ -1606,16 +2001,25 @@ msgstr ""
 msgid "Cruz Roja"
 msgstr ""
 
+<<<<<<< HEAD
 #: .\principal\templates\secciones.html.py:213
 msgid "Visita"
 msgstr ""
 
 #: .\principal\templates\secciones.html.py:216
+=======
+#: .\principal\templates\secciones.html.py:215
+msgid "Visita"
+msgstr ""
+
+#: .\principal\templates\secciones.html.py:218
+>>>>>>> upstream/master
 msgid ""
 "¿Quieres visitar alguno de los Pueblos? Entra aquí y entérate de algunos "
 "consejos"
 msgstr ""
 
+<<<<<<< HEAD
 #: .\principal\templates\secciones.html.py:223
 msgid "Guías turísticas"
 msgstr ""
@@ -1626,6 +2030,30 @@ msgstr ""
 
 #: .\principal\templates\secciones.html.py:232
 msgid "Sugerencias"
+=======
+#: .\principal\templates\secciones.html.py:225
+msgid "Guías turísticas"
+msgstr ""
+
+#: .\principal\templates\secciones.html.py:228
+msgid "Ven y visualiza alguna guía turística, mapa o rutas qué seguir"
+msgstr ""
+
+#: .\principal\templates\sitios_turisticos.html.py:21
+msgid "Sitios Turísticos"
+msgstr ""
+
+#: .\principal\templates\sitios_turisticos.html.py:34
+msgid "en"
+msgstr ""
+
+#: .\principal\templates\sitios_turisticos.html.py:36
+msgid "Teléfonos"
+msgstr ""
+
+#: .\principal\templates\sitios_turisticos.html.py:38
+msgid "Etiquetas"
+>>>>>>> upstream/master
 msgstr ""
 
 #~ msgid "Ingles"

@@ -188,7 +188,8 @@ header{background:transparent;height:160px}
 .comments h4,.comments div{color:#a70325;display:inline-block;font-weight:bold;margin-top:5%;vertical-align:top;width:25%}
 .comments div{color:#1e6381;font-weight:normal;height:auto;padding-bottom:.5em;text-align:justify;width:65%}
 .comments p#fechacomentarios{color:#ce8610;margin-top:1em}
-.comments a{color:#a70325;display:block;font-weight:bold;padding-bottom:.5em;text-decoration:none;left:70%;position:relative}
+.comments a.vinculo_reportar{color:#a70325;display:block;font-size:.9em;font-weight:bold;left:20%;margin-top:.5em;padding-bottom:.5em;position:relative;text-decoration:none}
+.comments a.vinculo_reportar_r{color:#a70325;display:block;font-size:.9em;font-weight:bold;font-weight:bold;margin-top:.5em;padding-bottom:.5em;text-decoration:none;left:70%;position:relative}
 .contenedor_relatos{height:auto}
 .menu_story,.story{display:inline-block;vertical-align:top;width:18%}
 .menu_story p{font-size:.9em;font-weight:bold;text-align:center;width:100%}
