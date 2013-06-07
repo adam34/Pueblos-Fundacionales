@@ -44,7 +44,7 @@
 				<p class="articulos">
 				{% if mas_visto %}
 					<img src="{% mostrar_imagen_pueblo mas_visto.GALERIA.ARCHIVOS.all %}" alt="Loreto">
-					{{mas_visto.HISTORIA|truncatechars:100}} <a href="/mas-visto/?visto='{{mas_visto.NOMBRE}}'">Leer más...</a> 
+					{{mas_visto.HISTORIA|truncatechars:100}} <a href="/mas-visto/?visto='{{mas_visto.NOMBRE}}'">{% trans 'Leer más' %}</a> 
 				{% else %}
 					<img src="/static/img/loreto.jpg" alt="Loreto">
 					Lo que iba aquí que se me olvido poner. <strong><a href="/descubra-bcs/">{% trans 'Leer más' %}...</a> </strong>
