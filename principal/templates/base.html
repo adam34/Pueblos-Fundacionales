@@ -394,7 +394,7 @@
                     		alert('{% trans "Usuario logeado" %}.');
 		                	setTimeout(function()
 		                	{
-		                		location.href='{% url "home" %}';
+		                		location.href='/{{LANGUAGE_CODE}}{{url}}';
 		                	}
 		                		,1000);
                     	}
@@ -601,7 +601,8 @@
                     		alert('{% trans "Contraseña enviada a correo" %}.');
 		                	setTimeout(function()
 		                	{
-		                		location.href='{% url "home" %}';
+		                		//{{url}}
+		                		location.href="/{{LANGUAGE_CODE}}{{url}}";
 		                	}
 		                		,1000);
                     	}

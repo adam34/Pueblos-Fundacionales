@@ -1105,8 +1105,6 @@ def mostrar_mas_comentarios_relatos_ajax(request):
 
 #--------------------------------------------------------------------------->
 def resolver_url(request):
-	# import pdb
-	# pdb.set_trace()
 	cadena=None
 	temp = request.get_full_path()
 	cadena=''
