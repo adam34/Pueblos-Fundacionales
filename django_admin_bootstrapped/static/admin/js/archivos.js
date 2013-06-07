@@ -60,7 +60,15 @@ function validar_formulario()
         {
             partes = $ruta.val().split("\\");
             archivo = partes[partes.length-1];
-            $('#id_NOMBRE').val(archivo);
+            if(archivo.length >50)
+            {
+                alert('El nombre del archivo no puede ser mayor a 50 caracteres, eso incluye la extensión.');
+            }
+            else
+            {
+                $('#id_NOMBRE').val(archivo);
+            }
+            
         }
     }
 

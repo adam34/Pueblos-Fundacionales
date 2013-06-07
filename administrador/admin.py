@@ -405,6 +405,9 @@ class ArchivosAdmin(admin.ModelAdmin):
 	
 #Fin ArchivosAdmin
 
+
+
+
 #ModelAdmin de reportes para el manejo de las paginas para agregar, modificar y mostrar elementos
 class Reportes_Admin(admin.ModelAdmin):
 	list_display =('USUARIO','FECHA')

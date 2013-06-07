@@ -1326,8 +1326,20 @@ class ArchivosForm(forms.ModelForm):
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre de la galeria. Sólo caracteres."
 		self.fields['NOMBRE'].widget=HiddenInput()
 		self.fields['DESCRIPCION'].help_text= "Opcional. Referencia de la galería. No más de 100 caracteres"
-		self.fields['RUTA'].help_text= "Obligatorio. Ruta del archivo que se guardará en el sistema."
+		self.fields['RUTA'].help_text= "Obligatorio. Es el archivo que se subirá al servidor. El tamaño del nombre no puede ser mayor de 50 caracteres, y eso incluye la extensión."
 		#self.fields['FECHA_INICIO'].widget.attrs['readonly']= 'true'
+	def clean(self):
+		import pdb
+		pdb.set_trace()
+		super(ArchivosForm, self).clean()
+
+		nombre=self.data['NOMBRE']
+		if archivo.objects.filter(NOMBRE=nombre).exists():
+			self._errors['RUTA']= ErrorList([u"Ya existe un archivo con un nombre igual al que está tratando de subir."])	
+
+		cleaned_data = self.cleaned_data
+		return cleaned_data
+
 
 class ArchivosChangeForm(forms.ModelForm):
 	usuario = None
@@ -1343,7 +1355,7 @@ class ArchivosChangeForm(forms.ModelForm):
 		self.fields['NOMBRE'].help_text= "Obligatorio. Nombre de la galeria. Sólo caracteres."
 		self.fields['NOMBRE'].widget=HiddenInput()
 		self.fields['DESCRIPCION'].help_text= "Opcional. Referencia de la galería."
-		self.fields['RUTA'].help_text= "Obligatorio. Ruta del archivo que se guardará en el sistema."
+		self.fields['RUTA'].help_text= "Obligatorio. Es el archivo que se subirá al servidor. El tamaño del nombre no puede ser mayor de 50 caracteres, y eso incluye la extensión."
 		obj = kwargs['instance']
 		try:
 			self.initial['NOMBRE'] = obj.NOMBRE
@@ -1351,14 +1363,22 @@ class ArchivosChangeForm(forms.ModelForm):
 			print e
 
 	def clean(self):
-		# import pdb
-		# pdb.set_trace()
+		import pdb
+		pdb.set_trace()
 		super(ArchivosChangeForm, self).clean()
+
+		nombre=self.data['NOMBRE']
+		cont = archivo.objects.filter(NOMBRE=nombre).count()
+		if cont > 0:
+			dupl=archivo.objects.filter(NOMBRE=nombre)[0]
+			if self.instance.ID!=dupl.ID:
+				self._errors['RUTA']= ErrorList([u"Ya existe un archivo con un nombre igual al que está tratando de subir."])
+
 		cleaned_data = self.cleaned_data
 		return cleaned_data
 #---------------------------Fin de formularios para el modelo de archivos----------------------
 
-#------------------------------Formularios para el modelo de archivos------------------------
+#------------------------------Formularios para el modelo de reportes------------------------
 
 
 class ReporteChangeForm(forms.ModelForm):
@@ -1411,4 +1431,8 @@ class ReporteChangeForm(forms.ModelForm):
 		super(ReporteChangeForm, self).clean()
 		cleaned_data = self.cleaned_data
 		return cleaned_data
-#---------------------------Fin de formularios para el modelo de archivos----------------------
+#---------------------------Fin de formularios para el modelo de reportes----------------------
+
+
+
+

@@ -14,9 +14,9 @@ class archivo(models.Model):
 		verbose_name="archivo" #Nombre en singular del modelo
 		verbose_name_plural="archivos" #Nombre en plural del modelo
 	ID=models.AutoField(primary_key=True)
-	NOMBRE=models.CharField(unique=True,max_length=20,null=False)
+	NOMBRE=models.CharField(unique=True,max_length=50,null=False)
 	DESCRIPCION=models.CharField(max_length=100,null=False, blank=True)
-	RUTA=models.ImageField(upload_to='galerias/')
+	RUTA=models.ImageField(max_length=100,upload_to='galerias/')
 	def __unicode__(self):
 		return self.NOMBRE
 
